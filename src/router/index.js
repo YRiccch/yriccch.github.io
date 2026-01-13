@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import CameraControl from '../views/CameraControl.vue'
+import CameraControl from '../views/designs/CameraControl.vue'
+import SketchEdit from '../views/designs/SketchEdit.vue'
 
 const router = createRouter({
   // Use createWebHashHistory for simpler GitHub Pages deployment compatibility
@@ -13,9 +14,14 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/gallery/3d-camera',
-      name: '3d-camera',
+      path: '/designs/camera-move',
+      name: 'camera-move',
       component: CameraControl
+    },
+    {
+      path: '/designs/sketch-edit',
+      name: 'sketch-edit',
+      component: SketchEdit
     }
   ],
   scrollBehavior(to, from, savedPosition) {

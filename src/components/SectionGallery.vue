@@ -1,27 +1,3 @@
-<script setup>
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-
-const galleryItems = [
-  { 
-    title: "3D Camera Control", 
-    desc: "Interactive 3D Scene", 
-    color: "#FFCDD2",
-    route: '/gallery/3d-camera'
-  },
-  { title: "Project B", desc: "Web Design", color: "#C8E6C9" },
-  { title: "Project C", desc: "Mobile App", color: "#BBDEFB" },
-  { title: "Project D", desc: "Data Art", color: "#E1BEE7" }
-]
-
-const handleItemClick = (item) => {
-  if (item.route) {
-    router.push(item.route)
-  }
-}
-</script>
-
 <template>
   <section id="gallery" class="section-container">
     <h2 class="section-title">🎨 {{ $t('gallery.title') }}</h2>
@@ -29,20 +5,41 @@ const handleItemClick = (item) => {
     
     <div class="gallery-grid">
       <div 
-        v-for="(item, index) in galleryItems" 
-        :key="index" 
+        v-for="(item, index) in projectStore.projects" 
+        :key="item.id" 
         class="gallery-item" 
-        :style="{ backgroundColor: item.color }"
+        :style="{ 
+          backgroundColor: item.color || '#f0f0f0',
+          backgroundImage: item.thumbnail ? `url(${item.thumbnail})` : 'none',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }"
         @click="handleItemClick(item)"
       >
         <div class="overlay">
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.desc }}</p>
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.description }}</p>
         </div>
       </div>
     </div>
   </section>
 </template>
+
+<script setup>
+import { useRouter } from 'vue-router'
+import { useProjectStore } from '../stores/project'
+
+const router = useRouter()
+const projectStore = useProjectStore()
+
+const handleItemClick = (item) => {
+  if (item.path) {
+    router.push(item.path)
+  }
+}
+</script>
+
+
 
 <style scoped lang="scss">
 .section-container {

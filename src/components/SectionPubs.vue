@@ -1,32 +1,3 @@
-<script setup>
-import { FileText, Github } from 'lucide-vue-next'
-
-const publications = [
-  {
-    title: "AniMaster: Human-Computer Collaborative Generation of Long-Form Animation from the Director's Perspective",
-    authors: "<b>Ruiqi Yu</b>, et al.",
-    venue: "In Progress (July 2025 - Present)",
-    links: []
-  },
-  {
-    title: "COIVis: Eyetracking-based Visual Exploration of Concept Learning in MOOC Videos",
-    authors: "<b>Ruiqi Yu</b>, et al.",
-    venue: "Submitted to IEEE VIS 2025 (Under Revision)",
-    links: [
-      // { name: 'PDF', url: '#', icon: FileText }
-    ]
-  },
-  {
-    title: "Multi network sampling driven by representation learning",
-    authors: "<b>Ruiqi Yu</b> (First Author), Supervisor",
-    venue: "Journal of Zhejiang University – SCIENCE (Oct 2021 - Mar 2022)",
-    links: [
-      { name: 'Journal', url: '#', icon: FileText }
-    ]
-  }
-]
-</script>
-
 <template>
   <section id="publications" class="section-container">
     <h2 class="section-title">📝 {{ $t('pubs.title') }}</h2>
@@ -49,6 +20,21 @@ const publications = [
     </div>
   </section>
 </template>
+
+<script setup>
+import { FileText, Github } from 'lucide-vue-next'
+
+const publications = [
+  {
+    title: "表征学习驱动的多重网络图采样",
+    authors: "<b>虞瑞麒</b>，刘玉华，沈禧龙，翟如钰，张翔，周志光",
+    venue: "Journal of Zhejiang University – SCIENCE (2022)",
+    links: [
+      // { name: 'Journal', url: '#', icon: FileText }
+    ]
+  }
+]
+</script>
 
 <style scoped lang="scss">
 .section-container {

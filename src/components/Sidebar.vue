@@ -1,0 +1,143 @@
+<script setup>
+import { Mail, MapPin, Github, Linkedin, GraduationCap } from 'lucide-vue-next'
+</script>
+
+<template>
+  <aside class="sidebar">
+    <div class="profile-container">
+      <div class="avatar-wrapper">
+        <!-- Placeholder for avatar -->
+        <div class="avatar-placeholder">
+          <span>Photo</span>
+        </div>
+        <!-- Uncomment below when you have an image -->
+        <!-- <img src="@/assets/avatar.jpg" alt="Avatar" class="avatar" /> -->
+      </div>
+      
+      <h1 class="name">{{ $t('sidebar.name') }}</h1>
+      <p class="role">{{ $t('sidebar.role') }}</p>
+      <p class="affiliation">{{ $t('sidebar.affiliation') }}</p>
+      
+      <div class="contact-info">
+        <div class="item">
+          <Mail size="16" />
+          <a :href="'mailto:' + $t('sidebar.email')">{{ $t('sidebar.email') }}</a>
+        </div>
+        <div class="item">
+          <MapPin size="16" />
+          <span>{{ $t('sidebar.location') }}</span>
+        </div>
+      </div>
+
+      <div class="social-links">
+        <a href="https://github.com/YRiccch" target="_blank" class="social-item">
+          <Github size="20" />
+          <span>{{ $t('sidebar.github') }}</span>
+        </a>
+        <a href="#" target="_blank" class="social-item">
+          <Linkedin size="20" />
+          <span>{{ $t('sidebar.linkedin') }}</span>
+        </a>
+         <a href="#" target="_blank" class="social-item">
+          <GraduationCap size="20" />
+          <span>{{ $t('sidebar.orcid') }}</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+</template>
+
+<style scoped lang="scss">
+.sidebar {
+  width: 100%;
+  padding: 2rem 0;
+  
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .avatar-wrapper {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    
+    .avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      background-color: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-weight: 500;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: #1a1a1a;
+  }
+
+  .role {
+    font-size: 1.1rem;
+    color: #4a4a4a;
+    margin: 0 0 0.25rem 0;
+  }
+
+  .affiliation {
+    font-size: 1rem;
+    color: #0056b3; // Academic blue
+    margin: 0 0 1.5rem 0;
+    font-weight: 500;
+  }
+
+  .contact-info {
+    margin-bottom: 1.5rem;
+    
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      color: #555;
+      font-size: 0.9rem;
+      
+      a:hover {
+        color: #0056b3;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .social-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #555;
+      font-size: 0.95rem;
+      
+      &:hover {
+        color: #0056b3;
+      }
+    }
+  }
+}
+</style>

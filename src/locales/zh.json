@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "homepage": "主页",
+    "about": "关于我",
+    "news": "最新动态",
+    "publications": "发表论文",
+    "cv": "简历",
+    "gallery": "设计作品"
+  },
+  "sidebar": {
+    "name": "余瑞琪",
+    "role": "硕士研究生",
+    "affiliation": "杭州电子科技大学",
+    "location": "中国 杭州",
+    "email": "richyu{'@'}hdu.edu.cn",
+    "github": "Github",
+    "linkedin": "领英",
+    "orcid": "ORCID"
+  },
+  "about": {
+    "title": "你好，我是余瑞琪",
+    "intro": "我目前是**杭州电子科技大学**计算机科学与技术专业的**硕士研究生**（2024年9月至今）。此前，我于2023年6月在杭州电子科技大学获得数字媒体技术学士学位（2019年9月 - 2023年6月），期间获得三等奖学金及三项校级个人奖学金。",
+    "research_interests": "我的研究兴趣包括**数据可视化**、**人机交互**和**计算机图形学**。在生成式AI时代，我特别热衷于将AI融入可视化和交互设计中，我相信它们的协同作用将推动显著的创新。",
+    "tech_stack": "技术栈：d3.js, Vue, FastAPI, Figma 等。",
+    "job_seeking": "我目前正在寻找实习机会。"
+  },
+  "news": {
+    "title": "动态与经历",
+    "more": "查看更多..."
+  },
+  "pubs": {
+    "title": "精选论文"
+  },
+  "gallery": {
+    "title": "设计作品集",
+    "desc": "我的一些交互设计尝试。"
+  }
+}

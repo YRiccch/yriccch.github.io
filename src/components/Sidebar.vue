@@ -6,12 +6,7 @@ import { Mail, MapPin, Github, Linkedin, GraduationCap } from 'lucide-vue-next'
   <aside class="sidebar">
     <div class="profile-container">
       <div class="avatar-wrapper">
-        <!-- Placeholder for avatar -->
-        <div class="avatar-placeholder">
-          <span>Photo</span>
-        </div>
-        <!-- Uncomment below when you have an image -->
-        <!-- <img src="@/assets/avatar.jpg" alt="Avatar" class="avatar" /> -->
+        <img src="@/assets/img/myPhoto.jpg" alt="Ruiqi Yu" class="avatar" />
       </div>
       
       <h1 class="name">{{ $t('sidebar.name') }}</h1>
@@ -34,10 +29,6 @@ import { Mail, MapPin, Github, Linkedin, GraduationCap } from 'lucide-vue-next'
           <Github size="20" />
           <span>{{ $t('sidebar.github') }}</span>
         </a>
-        <a href="#" target="_blank" class="social-item">
-          <Linkedin size="20" />
-          <span>{{ $t('sidebar.linkedin') }}</span>
-        </a>
          <a href="#" target="_blank" class="social-item">
           <GraduationCap size="20" />
           <span>{{ $t('sidebar.orcid') }}</span>
@@ -59,8 +50,8 @@ import { Mail, MapPin, Github, Linkedin, GraduationCap } from 'lucide-vue-next'
   }
 
   .avatar-wrapper {
-    width: 160px;
-    height: 160px;
+    width: 220px;
+    height: 300px;
     margin-bottom: 1.5rem;
     border-radius: 12px;
     overflow: hidden;

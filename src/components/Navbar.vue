@@ -20,7 +20,6 @@ const navItems = [
   { key: 'about', id: 'about' },
   { key: 'news', id: 'news' },
   { key: 'publications', id: 'publications' },
-  { key: 'cv', id: 'cv' }, // This might be a link to a PDF in the future
   { key: 'gallery', id: 'gallery' }
 ]
 </script>

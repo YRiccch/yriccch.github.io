@@ -1,10 +1,25 @@
 <script setup>
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
 const galleryItems = [
-  { title: "Project A", desc: "Interactive Viz", color: "#FFCDD2" },
+  { 
+    title: "3D Camera Control", 
+    desc: "Interactive 3D Scene", 
+    color: "#FFCDD2",
+    route: '/gallery/3d-camera'
+  },
   { title: "Project B", desc: "Web Design", color: "#C8E6C9" },
   { title: "Project C", desc: "Mobile App", color: "#BBDEFB" },
   { title: "Project D", desc: "Data Art", color: "#E1BEE7" }
 ]
+
+const handleItemClick = (item) => {
+  if (item.route) {
+    router.push(item.route)
+  }
+}
 </script>
 
 <template>
@@ -13,7 +28,13 @@ const galleryItems = [
     <p class="section-desc">{{ $t('gallery.desc') }}</p>
     
     <div class="gallery-grid">
-      <div v-for="(item, index) in galleryItems" :key="index" class="gallery-item" :style="{ backgroundColor: item.color }">
+      <div 
+        v-for="(item, index) in galleryItems" 
+        :key="index" 
+        class="gallery-item" 
+        :style="{ backgroundColor: item.color }"
+        @click="handleItemClick(item)"
+      >
         <div class="overlay">
           <h3>{{ item.title }}</h3>
           <p>{{ item.desc }}</p>

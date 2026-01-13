@@ -18,10 +18,6 @@ const { t } = useI18n()
       <p class="tech-stack">
         <b>{{ $t('about.tech_stack') }}</b>
       </p>
-
-      <p class="job-seeking">
-        {{ $t('about.job_seeking') }}
-      </p>
     </div>
   </section>
 </template>

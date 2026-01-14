@@ -104,9 +104,10 @@ const handleItemClick = (item) => {
     }
     
     p {
-      margin: 0;
+      margin: 0 1rem;
       font-size: 0.9rem;
       opacity: 0.8;
+      text-align: center;
     }
   }
 }

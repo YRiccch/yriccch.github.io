@@ -22,7 +22,7 @@ import SectionGallery from '../components/SectionGallery.vue'
         <SectionGallery />
         
         <footer class="footer">
-          <p>&copy; {{ new Date().getFullYear() }} Ruiqi Yu. All rights reserved.</p>
+          <p>&copy; {{ new Date().getFullYear() }} Yu Ruiqi. All rights reserved.</p>
         </footer>
       </main>
     </div>

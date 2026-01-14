@@ -19,10 +19,8 @@
   },
   "about": {
     "title": "Hi, I'm Yu Ruiqi！",
-    "intro": "I am currently a **Master's Degree Candidate** in Computer Science and Technology at **Hangzhou Dianzi University** (Sep 2024 - Present). Previously, I received my Bachelor's degree in Digital Media Technology from Hangzhou Dianzi University (Sep 2019 - June 2023), where I was awarded the Third-class Excellence Scholarship and three School-level Individual Scholarships.",
-    "research_interests": "My research interests include **Data Visualization**, **Human-Computer Interaction**, and **Computer Graphics**. In the era of generative AI, I am particularly excited about integrating AI into visualization and interaction design, as I believe their synergy will drive remarkable innovations.",
-    "tech_stack": "Tech Stack: d3.js, Vue, FastAPI, Figma, and more.",
-    "job_seeking": "I am currently looking for internship opportunities."
+    "intro": "I am currently a **Master's Degree Candidate** in Computer Science and Technology at **Hangzhou Dianzi University** (Sep 2024 - Present). Previously, I received my Bachelor's degree in Digital Media Technology from Hangzhou Dianzi University (Sep 2019 - June 2023).",
+    "research_interests": "My research interests include **Data Visualization**, **Human-Computer Interaction**, and **Computer Graphics**. In the era of generative AI, I am particularly excited about integrating AI into visualization and interaction design, as I believe their synergy will drive remarkable innovations."
   },
   "news": {
     "title": "My Timeline",

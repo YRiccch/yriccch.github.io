@@ -10,16 +10,8 @@ const newsItems = [
     content: 'Started Master\'s degree at **Hangzhou Dianzi University**.' 
   },
   { 
-    date: '2024.04 - 2025.01', 
-    content: 'Participated in project: **Intelligent Decision-Making System for Energy Pricing Based on Industry LLMs** (Front-end design & development).' 
-  },
-  { 
     date: '2023.06', 
     content: 'Graduated from **Hangzhou Dianzi University** (Undergraduate).' 
-  },
-  { 
-    date: '2022.03', 
-    content: 'Published paper: **Multi network sampling driven by representation learning** in Journal of Zhejiang University – SCIENCE.' 
   }
 ]
 </script>

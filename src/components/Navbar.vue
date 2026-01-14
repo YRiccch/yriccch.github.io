@@ -9,9 +9,21 @@ const toggleLanguage = () => {
 }
 
 const scrollToSection = (id) => {
+  if (id === 'home') {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    return
+  }
+  
   const element = document.getElementById(id)
   if (element) {
-    element.scrollIntoView({ behavior: 'smooth' })
+    const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 0
+    const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+    const offsetPosition = elementPosition - navbarHeight - 20 // Added extra 20px padding
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    })
   }
 }
 

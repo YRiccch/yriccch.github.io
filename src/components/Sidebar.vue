@@ -6,7 +6,7 @@ import { Mail, MapPin, Github, Linkedin, GraduationCap } from 'lucide-vue-next'
   <aside class="sidebar">
     <div class="profile-container">
       <div class="avatar-wrapper">
-        <img src="@/assets/img/myPhoto.jpg" alt="Ruiqi Yu" class="avatar" />
+        <img src="@/assets/img/myPhoto1.jpg" alt="Ruiqi Yu" class="avatar" />
       </div>
       
       <h1 class="name">{{ $t('sidebar.name') }}</h1>

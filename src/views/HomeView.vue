@@ -58,16 +58,16 @@ import SectionGallery from '../components/SectionGallery.vue'
 }
 
 .main-content {
-  padding-top: 2rem;
+  padding-top: 0;
   padding-bottom: 4rem;
 }
 
 .footer {
   margin-top: 4rem;
   padding-top: 2rem;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid var(--border-color);
   text-align: center;
-  color: #888;
+  color: var(--text-quaternary);
   font-size: 0.85rem;
 }
 

@@ -50,7 +50,7 @@ const handleItemClick = (item) => {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  color: #222;
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -58,7 +58,7 @@ const handleItemClick = (item) => {
 
 .section-desc {
   margin-bottom: 1.5rem;
-  color: #666;
+  color: var(--text-tertiary);
 }
 
 .gallery-grid {

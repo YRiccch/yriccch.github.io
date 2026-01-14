@@ -14,10 +14,6 @@ const { t } = useI18n()
         <h3>Research Interests</h3>
         <p class="interests-text" v-html="$t('about.research_interests').replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')"></p>
       </div>
-
-      <p class="tech-stack">
-        <b>{{ $t('about.tech_stack') }}</b>
-      </p>
     </div>
   </section>
 </template>
@@ -31,13 +27,13 @@ const { t } = useI18n()
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #222;
+  color: var(--text-primary);
 }
 
 .intro-text {
   font-size: 1.05rem;
   line-height: 1.6;
-  color: #333;
+  color: var(--text-primary);
   margin-bottom: 1.5rem;
 }
 
@@ -48,24 +44,24 @@ const { t } = useI18n()
     font-size: 1.1rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: #444;
+    color: var(--text-secondary);
   }
   
   .interests-text {
     font-size: 1rem;
     line-height: 1.5;
-    color: #333;
+    color: var(--text-primary);
   }
 }
 
 .tech-stack {
   font-size: 1rem;
-  color: #555;
+  color: var(--text-secondary);
   margin-bottom: 1rem;
 }
 
 .job-seeking {
-  color: #d32f2f;
+  color: #ef5350; /* Slightly lighter red for better visibility in dark mode, or could use var */
   font-weight: 500;
   margin-top: 1rem;
 }

@@ -2,23 +2,23 @@
 // Updated based on CV Experience
 const newsItems = [
   { 
-    date: '2026.01.01 - 2026.03.31', 
+    date: '2026.01.01 - now', 
     content: 'Embark on a three-month visiting research stay at **Nanyang Technological University**, Singapore, under the supervision of **Prof. Wang**.' 
   },
   { 
-    date: '2024.09', 
+    date: '2024.09 - now', 
     content: 'Started Master\'s degree at **Hangzhou Dianzi University**.' 
   },
   { 
-    date: '2023.06', 
-    content: 'Graduated from **Hangzhou Dianzi University** (Undergraduate).' 
+    date: '2019.09 - 2023.06', 
+    content: 'Earn a Bachelor’s degree in **Digital Media Technology** from **Hangzhou Dianzi University**.' 
   }
 ]
 </script>
 
 <template>
   <section id="news" class="section-container">
-    <h2 class="section-title">🔥 {{ $t('news.title') }}</h2>
+    <h2 class="section-title">⌛ {{ $t('news.title') }}</h2>
     
     <div class="timeline">
       <div class="timeline-axis"></div>
@@ -43,7 +43,7 @@ const newsItems = [
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 2rem;
-  color: #222;
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -62,7 +62,7 @@ const newsItems = [
   top: 0;
   bottom: 0;
   width: 2px;
-  background-color: #ddd;
+  background-color: var(--timeline-line);
   
   /* Upward arrow at the top */
   &::before {
@@ -72,7 +72,7 @@ const newsItems = [
     left: -4px;
     border-width: 0 5px 8px 5px; /* Triangle pointing up */
     border-style: solid;
-    border-color: transparent transparent #ddd transparent;
+    border-color: transparent transparent var(--timeline-line) transparent;
   }
 }
 
@@ -96,14 +96,14 @@ const newsItems = [
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: #fff;
-  border: 2px solid #0056b3;
+  background-color: var(--card-bg);
+  border: 2px solid var(--primary-color);
   z-index: 1;
   transition: all 0.3s ease;
 }
 
 .timeline-item:hover .timeline-marker {
-  background-color: #0056b3;
+  background-color: var(--primary-color);
   transform: scale(1.2);
 }
 
@@ -115,26 +115,26 @@ const newsItems = [
 .timeline-date {
   font-family: 'Consolas', monospace;
   font-weight: 700;
-  color: #0056b3;
+  color: var(--primary-color);
   font-size: 1.05rem;
   margin-bottom: 0.5rem;
   line-height: 1.2;
 }
 
 .timeline-body {
-  color: #333;
+  color: var(--text-primary);
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #f8f9fa;
+  background-color: var(--timeline-body-bg);
   padding: 1rem;
   border-radius: 8px;
-  border-left: 4px solid #e9ecef;
+  border-left: 4px solid var(--timeline-body-border);
   transition: all 0.3s ease;
   
   &:hover {
-    background-color: #fff;
+    background-color: var(--card-bg);
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    border-left-color: #0056b3;
+    border-left-color: var(--primary-color);
   }
 }
 
@@ -142,7 +142,7 @@ const newsItems = [
   display: inline-block;
   margin-top: 1rem;
   font-size: 0.9rem;
-  color: #0056b3;
+  color: var(--primary-color);
   text-decoration: none;
   font-weight: 600;
   

@@ -60,11 +60,11 @@ import { Mail, MapPin, Github, Linkedin, GraduationCap } from 'lucide-vue-next'
     .avatar-placeholder {
       width: 100%;
       height: 100%;
-      background-color: #e0e0e0;
+      background-color: var(--hover-bg);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #666;
+      color: var(--text-tertiary);
       font-weight: 500;
     }
 
@@ -79,18 +79,18 @@ import { Mail, MapPin, Github, Linkedin, GraduationCap } from 'lucide-vue-next'
     font-size: 1.75rem;
     font-weight: 700;
     margin: 0 0 0.5rem 0;
-    color: #1a1a1a;
+    color: var(--text-primary);
   }
 
   .role {
     font-size: 1.1rem;
-    color: #4a4a4a;
+    color: var(--text-secondary);
     margin: 0 0 0.25rem 0;
   }
 
   .affiliation {
     font-size: 1rem;
-    color: #0056b3; // Academic blue
+    color: var(--primary-color); // Academic blue
     margin: 0 0 1.5rem 0;
     font-weight: 500;
   }
@@ -103,11 +103,11 @@ import { Mail, MapPin, Github, Linkedin, GraduationCap } from 'lucide-vue-next'
       align-items: center;
       gap: 0.5rem;
       margin-bottom: 0.5rem;
-      color: #555;
+      color: var(--text-secondary);
       font-size: 0.9rem;
       
       a:hover {
-        color: #0056b3;
+        color: var(--primary-color);
         text-decoration: underline;
       }
     }
@@ -122,11 +122,11 @@ import { Mail, MapPin, Github, Linkedin, GraduationCap } from 'lucide-vue-next'
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      color: #555;
+      color: var(--text-secondary);
       font-size: 0.95rem;
       
       &:hover {
-        color: #0056b3;
+        color: var(--primary-color);
       }
     }
   }

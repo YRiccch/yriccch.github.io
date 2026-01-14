@@ -45,7 +45,7 @@ const publications = [
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  color: #222;
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -65,19 +65,19 @@ const publications = [
     font-size: 1.1rem;
     font-weight: 600;
     margin: 0 0 0.25rem 0;
-    color: #0056b3;
+    color: var(--primary-color);
   }
   
   .pub-authors {
     font-size: 0.95rem;
     margin: 0 0 0.25rem 0;
-    color: #444;
+    color: var(--text-secondary);
   }
   
   .pub-venue {
     font-size: 0.9rem;
     font-style: italic;
-    color: #666;
+    color: var(--text-tertiary);
     margin: 0 0 0.5rem 0;
   }
   
@@ -91,14 +91,15 @@ const publications = [
       gap: 0.25rem;
       font-size: 0.8rem;
       padding: 0.2rem 0.6rem;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color);
       border-radius: 4px;
-      color: #555;
-      background-color: #fff;
+      color: var(--text-secondary);
+      background-color: var(--card-bg);
+      transition: all 0.2s;
       
       &:hover {
-        border-color: #0056b3;
-        color: #0056b3;
+        border-color: var(--primary-color);
+        color: var(--primary-color);
       }
     }
   }

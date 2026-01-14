@@ -1,8 +1,33 @@
 <script setup>
+import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { Languages } from 'lucide-vue-next'
+import { Languages, Sun, Moon } from 'lucide-vue-next'
 
 const { locale } = useI18n()
+
+// Theme Logic
+const isDark = ref(false)
+
+const toggleTheme = () => {
+  isDark.value = !isDark.value
+  if (isDark.value) {
+    document.documentElement.classList.add('dark')
+    localStorage.setItem('theme', 'dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+    localStorage.setItem('theme', 'light')
+  }
+}
+
+onMounted(() => {
+  const savedTheme = localStorage.getItem('theme')
+  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+  
+  if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+    isDark.value = true
+    document.documentElement.classList.add('dark')
+  }
+})
 
 const toggleLanguage = () => {
   locale.value = locale.value === 'en' ? 'zh' : 'en'
@@ -46,10 +71,17 @@ const navItems = [
       </li>
     </ul>
 
-    <button @click="toggleLanguage" class="lang-btn" title="Switch Language">
-      <Languages size="18" />
-      <span>{{ locale === 'en' ? '中文' : 'English' }}</span>
-    </button>
+    <div class="nav-actions">
+      <button @click="toggleTheme" class="icon-btn" :title="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+        <Sun v-if="isDark" size="18" />
+        <Moon v-else size="18" />
+      </button>
+
+      <button @click="toggleLanguage" class="lang-btn" title="Switch Language">
+        <Languages size="18" />
+        <span>{{ locale === 'en' ? '中文' : 'English' }}</span>
+      </button>
+    </div>
   </nav>
 </template>
 
@@ -60,12 +92,13 @@ const navItems = [
   align-items: center;
   padding: 1rem 0;
   margin-bottom: 2rem;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
-  background-color: rgba(249, 249, 249, 0.95);
+  background-color: var(--navbar-bg);
   backdrop-filter: blur(5px);
   z-index: 100;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .nav-list {
@@ -75,12 +108,13 @@ const navItems = [
   .nav-link {
     font-size: 0.95rem;
     font-weight: 500;
-    color: #555;
+    color: var(--text-secondary);
     position: relative;
     padding: 0.5rem 0;
+    transition: color 0.3s;
     
     &:hover {
-      color: #0056b3;
+      color: var(--primary-color);
     }
 
     &::after {
@@ -90,7 +124,7 @@ const navItems = [
       left: 0;
       width: 0;
       height: 2px;
-      background-color: #0056b3;
+      background-color: var(--primary-color);
       transition: width 0.3s ease;
     }
 
@@ -100,22 +134,46 @@ const navItems = [
   }
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--border-color);
+  padding: 0.4rem;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: var(--hover-bg);
+    color: var(--text-primary);
+  }
+}
+
 .lang-btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   background: none;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   padding: 0.4rem 0.8rem;
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.9rem;
-  color: #555;
+  color: var(--text-secondary);
   transition: all 0.2s;
 
   &:hover {
-    background-color: #eee;
-    color: #000;
+    background-color: var(--hover-bg);
+    color: var(--text-primary);
   }
 }
 

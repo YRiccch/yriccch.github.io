@@ -112,6 +112,24 @@ const newsItems = [
   flex-direction: column;
 }
 
+@media (max-width: 600px) {
+  .timeline {
+    padding-left: 10px;
+  }
+  
+  .timeline-item {
+    padding-left: 20px;
+  }
+  
+  .timeline-axis {
+    left: 0;
+  }
+  
+  .timeline-marker {
+    left: -6px;
+  }
+}
+
 .timeline-date {
   font-family: 'Consolas', monospace;
   font-weight: 700;

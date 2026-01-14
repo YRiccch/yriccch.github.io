@@ -22,6 +22,9 @@ import { Mail, MapPin, Github, Linkedin, GraduationCap } from 'lucide-vue-next'
           <MapPin size="16" />
           <span>{{ $t('sidebar.location') }}</span>
         </div>
+                <div class="motto">
+          <p>“ {{ $t('sidebar.motto') }} ”</p>
+        </div>
       </div>
 
       <div class="social-links">
@@ -109,6 +112,21 @@ import { Mail, MapPin, Github, Linkedin, GraduationCap } from 'lucide-vue-next'
       a:hover {
         color: var(--primary-color);
         text-decoration: underline;
+      }
+    }
+
+    .motto {
+      margin-top: 1rem;
+      padding-left: 1rem;
+      border-left: 3px solid var(--border-color);
+      
+      p {
+        font-family: 'Georgia', 'Times New Roman', serif;
+        font-style: italic;
+        color: var(--text-tertiary);
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin: 0;
       }
     }
   }

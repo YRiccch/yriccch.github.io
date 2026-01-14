@@ -15,15 +15,20 @@ import SectionGallery from '../components/SectionGallery.vue'
       </div>
       
       <main class="main-content">
-        <Navbar />
-        <SectionAbout />
-        <SectionNews />
-        <SectionPubs />
-        <SectionGallery />
-        
-        <footer class="footer">
-          <p>&copy; {{ new Date().getFullYear() }} Yu Ruiqi. All rights reserved.</p>
-        </footer>
+        <div class="content-wrapper">
+          <Navbar />
+          
+          <div class="sections-list">
+            <SectionAbout />
+            <SectionNews />
+            <SectionPubs />
+            <SectionGallery />
+            
+            <footer class="footer">
+              <p>&copy; {{ new Date().getFullYear() }} Ruiqi Yu. All rights reserved.</p>
+            </footer>
+          </div>
+        </div>
       </main>
     </div>
   </div>
@@ -34,13 +39,14 @@ import SectionGallery from '../components/SectionGallery.vue'
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
+  min-height: 100vh;
 }
 
 .layout-grid {
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 4rem;
-  min-height: 100vh;
+  padding-top: 2rem;
 }
 
 .sidebar-column {
@@ -78,11 +84,56 @@ import SectionGallery from '../components/SectionGallery.vue'
   }
   
   .sidebar-column {
-    order: -1; // Keep sidebar on top or move it? Usually top for mobile
+    order: -1;
   }
   
   .app-container {
     padding: 0 1rem;
+    padding-right: 0; /* Reset right padding as we will use flex layout */
+  }
+
+  /* Mobile Layout: Side-by-Side (Content Left, Navbar Right) */
+  .content-wrapper {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    /* Ensure content takes available space */
+  }
+
+  /* Sections List on the Left */
+  .sections-list {
+    flex: 1;
+    min-width: 0; /* Prevent overflow */
+    order: 1;
+  }
+  
+  /* Navbar on the Right */
+  .content-wrapper > :first-child { /* Navbar */
+    flex-shrink: 0;
+    order: 2;
+    /* Navbar root will stretch to full height of content-wrapper */
+  }
+}
+
+/* Restore flat layout for Desktop */
+@media (min-width: 901px) {
+  .content-wrapper,
+  .sections-list {
+    display: contents;
+  }
+}
+
+@media (max-width: 600px) {
+  .layout-grid {
+    gap: 1.5rem;
+  }
+  
+  .app-container {
+     padding-right: 0;
+  }
+  
+  .footer {
+    margin-top: 3rem;
   }
 }
 </style>

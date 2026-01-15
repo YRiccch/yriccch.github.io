@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { Languages, Sun, Moon, Menu, X } from 'lucide-vue-next'
+import { Languages, Sun, Moon, Menu, X, Home, User, Newspaper, BookOpen, Image } from 'lucide-vue-next'
 
 const { locale } = useI18n()
 
@@ -63,11 +63,11 @@ const scrollToSection = (id) => {
 }
 
 const navItems = [
-  { key: 'homepage', id: 'home' },
-  { key: 'about', id: 'about' },
-  { key: 'news', id: 'news' },
-  { key: 'publications', id: 'publications' },
-  { key: 'gallery', id: 'gallery' }
+  { key: 'homepage', id: 'home', icon: Home },
+  { key: 'about', id: 'about', icon: User },
+  { key: 'news', id: 'news', icon: Newspaper },
+  { key: 'publications', id: 'publications', icon: BookOpen },
+  { key: 'gallery', id: 'gallery', icon: Image }
 ]
 </script>
 
@@ -110,8 +110,8 @@ const navItems = [
       </div>
 
       <div class="mobile-menu">
-         <a v-for="item in navItems" :key="item.key" href="#" @click.prevent="scrollToSection(item.id)" class="nav-pill">
-            {{ $t(`nav.${item.key}`) }}
+         <a v-for="item in navItems" :key="item.key" href="#" @click.prevent="scrollToSection(item.id)" class="nav-pill" :title="$t(`nav.${item.key}`)">
+            <component :is="item.icon" size="20" />
          </a>
       </div>
     </div>
@@ -230,6 +230,7 @@ const navItems = [
     position: sticky; /* Changed from fixed to sticky to follow content flow */
     top: 2rem;
     margin-left: 1rem; /* Add spacing from content */
+    margin-right: 1rem;
     gap: 1.5rem;
     align-items: flex-end;
     z-index: 99;
@@ -237,6 +238,8 @@ const navItems = [
 
   .mobile-actions {
     display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     gap: 0.5rem;
   }
 
@@ -267,17 +270,18 @@ const navItems = [
   }
 
   .nav-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--card-bg);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.9rem;
+    padding: 10px;
+    border-radius: 50%;
     color: var(--text-secondary);
     text-decoration: none;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     border: 1px solid var(--border-color);
     transition: all 0.2s;
-    white-space: nowrap;
-
+    
     &:hover {
       color: var(--primary-color);
       transform: translateX(-4px);

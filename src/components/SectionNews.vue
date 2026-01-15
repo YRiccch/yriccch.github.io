@@ -2,11 +2,11 @@
 // Updated based on CV Experience
 const newsItems = [
   { 
-    date: '2026.01.01 - now', 
+    date: '2026.01.01 - Now', 
     content: 'Embark on a three-month visiting research stay at **Nanyang Technological University**, Singapore, under the supervision of **Prof. Wang**.' 
   },
   { 
-    date: '2024.09 - now', 
+    date: '2024.09 - Now', 
     content: 'Started Master\'s degree at **Hangzhou Dianzi University**.' 
   },
   { 

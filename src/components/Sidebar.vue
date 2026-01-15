@@ -98,6 +98,18 @@ import { Mail, MapPin, Github, Linkedin, GraduationCap } from 'lucide-vue-next'
     font-weight: 500;
   }
 
+  @media (max-width: 900px) {
+    .profile-container {
+      align-items: center;
+      text-align: center;
+    }
+
+    .contact-info .item,
+    .social-links .social-item {
+      justify-content: center;
+    }
+  }
+
   .contact-info {
     margin-bottom: 1.5rem;
     

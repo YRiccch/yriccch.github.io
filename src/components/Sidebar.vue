@@ -32,10 +32,6 @@ import { Mail, MapPin, Github, Linkedin, GraduationCap } from 'lucide-vue-next'
           <Github size="20" />
           <span>{{ $t('sidebar.github') }}</span>
         </a>
-         <a href="#" target="_blank" class="social-item">
-          <GraduationCap size="20" />
-          <span>{{ $t('sidebar.orcid') }}</span>
-        </a>
       </div>
     </div>
   </aside>

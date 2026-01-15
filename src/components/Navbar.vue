@@ -65,7 +65,7 @@ const scrollToSection = (id) => {
 const navItems = [
   { key: 'homepage', id: 'home', icon: Home },
   { key: 'about', id: 'about', icon: User },
-  { key: 'news', id: 'news', icon: Newspaper },
+  { key: 'timeline', id: 'timeline', icon: Newspaper },
   { key: 'publications', id: 'publications', icon: BookOpen },
   { key: 'gallery', id: 'gallery', icon: Image }
 ]

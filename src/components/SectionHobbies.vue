@@ -21,18 +21,46 @@ import travelIcon from '@/assets/img/Travel.svg'
 const chartRef = ref(null)
 let myChart = null
 
+const hobbiesData = [
+  { name: 'Basketball', icon: basketballIcon, love: 5, max: 5 },
+  { name: 'Singing', icon: singingIcon, love: 3, max: 5},
+  { name: 'Guitar', icon: guitarIcon, love: 3, max: 5 },
+  { name: 'Travel', icon: travelIcon, love: 5, max: 5 }
+]
+
 const initChart = () => {
   if (!chartRef.value) return
   
   myChart = echarts.init(chartRef.value)
   
+  // Generate configuration dynamically from data
+  const indicators = hobbiesData.map(item => ({
+    name: item.name,
+    max: item.max
+  }))
+
+  const richConfig = hobbiesData.reduce((acc, item) => {
+    acc[item.name] = {
+      height: 50,
+      width: 50,
+      align: 'center',
+      backgroundColor: {
+        image: item.icon
+      },
+      marginBottom: 5
+    }
+    return acc
+  }, {})
+
+  const loveValues = hobbiesData.map(item => item.love)
+  
   const option = {
-    color: ['#FF917C', '#5B8FF9'],
+    color: ['#0056b3'],
     tooltip: {
       trigger: 'item'
     },
     legend: {
-      data: ['Degree of Love', 'Degree of Skill'],
+      data: ['Interest'],
       right: 0,
       top: 0,
       orient: 'vertical',
@@ -41,63 +69,25 @@ const initChart = () => {
       }
     },
     radar: {
-      indicator: [
-        { name: 'Basketball', max: 100 },
-        { name: 'Singing', max: 100 },
-        { name: 'Guitar', max: 100 },
-        { name: 'Travel', max: 100 }
-      ],
+      indicator: indicators,
       center: ['50%', '50%'],
-      radius: '65%',
+      radius: '50%',
       splitNumber: 4,
       shape: 'circle',
       axisName: {
         formatter: function (value) {
-          return '{' + value + '|}\n{value}';
+          return '{' + value + '|}\n{label|' + value + '}';
         },
         rich: {
-          Basketball: {
-            height: 40,
-            width: 40,
+          ...richConfig,
+          label: {
+            color: 'var(--text-secondary)',
+            fontSize: 14,
+            fontWeight: 'bold',
             align: 'center',
-            backgroundColor: {
-              image: basketballIcon
-            },
-            marginBottom: 5 // Add spacing between icon and text
-          },
-          Singing: {
-            height: 40,
-            width: 40,
-            align: 'center',
-            backgroundColor: {
-              image: singingIcon
-            },
-            marginBottom: 5
-          },
-          Guitar: {
-            height: 40,
-            width: 40,
-            align: 'center',
-            backgroundColor: {
-              image: guitarIcon
-            },
-            marginBottom: 5
-          },
-          Travel: {
-            height: 40,
-            width: 40,
-            align: 'center',
-            backgroundColor: {
-              image: travelIcon
-            },
-            marginBottom: 5
+            padding: [5, 0, 0, 0]
           }
-        },
-        color: 'var(--text-secondary)',
-        fontSize: 14,
-        fontWeight: 'bold',
-        padding: [0, 5],
-        lineHeight: 20 // Adjust line height to accommodate text below icon
+        }
       },
       splitArea: {
         areaStyle: {
@@ -128,25 +118,12 @@ const initChart = () => {
         },
         data: [
           {
-            value: [95, 95, 85, 98],
-            name: 'Degree of Love',
+            value: loveValues,
+            name: 'Interest',
             areaStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: 'rgba(255, 145, 124, 0.4)' },
-                { offset: 1, color: 'rgba(255, 145, 124, 0.1)' }
-              ])
-            },
-            lineStyle: {
-              width: 2
-            }
-          },
-          {
-            value: [80, 85, 60, 90],
-            name: 'Degree of Skill',
-            areaStyle: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: 'rgba(91, 143, 249, 0.4)' },
-                { offset: 1, color: 'rgba(91, 143, 249, 0.1)' }
+                { offset: 0, color: 'rgba(0, 86, 179, 0.4)' },
+                { offset: 1, color: 'rgba(0, 86, 179, 0.1)' }
               ])
             },
             lineStyle: {

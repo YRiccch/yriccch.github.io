@@ -2,7 +2,7 @@
   "nav": {
     "homepage": "Homepage",
     "about": "About Me",
-    "news": "News",
+    "timeline": "Timeline",
     "publications": "Publications",
     "cv": "CV",
     "gallery": "Design Gallery"
@@ -15,15 +15,14 @@
     "motto": "Through iterative exploration, meaningful patterns eventually emerge.",
     "email": "richyu{'@'}hdu.edu.cn",
     "github": "Github",
-    "linkedin": "LinkedIn",
-    "orcid": "ORCID"
+    "linkedin": "LinkedIn"
   },
   "about": {
     "title": "Hi, I'm Yu Ruiqi！",
     "intro": "I am currently a **Master's Degree Candidate** in Computer Science and Technology at **Hangzhou Dianzi University**. Previously, I received my Bachelor's degree in Digital Media Technology from Hangzhou Dianzi University.",
     "research_interests": "My research interests include **Data Visualization**, **Human-Computer Interaction**, and **Computer Graphics**. In the era of generative AI, I am particularly excited about integrating AI into visualization and interaction design, as I believe their synergy will drive remarkable innovations."
   },
-  "news": {
+  "timeline": {
     "title": "My Timeline",
     "more": "Show more..."
   },

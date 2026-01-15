@@ -1,6 +1,6 @@
 <script setup>
 // Updated based on CV Experience
-const newsItems = [
+const timelineItems = [
   { 
     date: '2026.01.01 - Now', 
     content: 'Embark on a three-month visiting research stay at **Nanyang Technological University**, Singapore, under the supervision of **Prof. Wang**.' 
@@ -17,12 +17,12 @@ const newsItems = [
 </script>
 
 <template>
-  <section id="news" class="section-container">
-    <h2 class="section-title">⌛ {{ $t('news.title') }}</h2>
+  <section id="timeline" class="section-container">
+    <h2 class="section-title">⌛ {{ $t('timeline.title') }}</h2>
     
     <div class="timeline">
       <div class="timeline-axis"></div>
-      <div v-for="(item, index) in newsItems" :key="index" class="timeline-item">
+      <div v-for="(item, index) in timelineItems" :key="index" class="timeline-item">
         <div class="timeline-marker"></div>
         <div class="timeline-content-wrapper">
           <div class="timeline-date">{{ item.date }}</div>

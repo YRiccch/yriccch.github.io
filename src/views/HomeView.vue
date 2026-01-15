@@ -3,7 +3,7 @@ import Sidebar from '../components/Sidebar.vue'
 import Navbar from '../components/Navbar.vue'
 import SectionAbout from '../components/SectionAbout.vue'
 import SectionHobbies from '../components/SectionHobbies.vue'
-import SectionNews from '../components/SectionNews.vue'
+import SectionTimeline from '../components/SectionTimeline.vue'
 import SectionPubs from '../components/SectionPubs.vue'  
 import SectionGallery from '../components/SectionGallery.vue'
 </script>
@@ -22,7 +22,7 @@ import SectionGallery from '../components/SectionGallery.vue'
           <div class="sections-list">
             <SectionAbout />
             <SectionHobbies />
-            <SectionNews />
+            <SectionTimeline />
             <SectionPubs />
             <SectionGallery />
             

@@ -12,6 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "echarts": "^6.0.0",
     "element-plus": "^2.13.1",
     "lucide-vue-next": "^0.562.0",
     "pinia": "^3.0.4",

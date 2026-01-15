@@ -12,7 +12,16 @@ const { t } = useI18n()
       
       <div class="interests-container">
         <h3>Research Interests</h3>
-        <p class="interests-text" v-html="$t('about.research_interests').replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')"></p>
+        <div class="interests-icons">
+          <div class="interest-item">
+            <img src="@/assets/img/DataVisualization.svg" alt="Data Visualization" />
+            <span>Data Visualization & Analysis</span>
+          </div>
+          <div class="interest-item">
+            <img src="@/assets/img/HCI.svg" alt="Human-Computer Interaction" />
+            <span>Human-Computer Interaction</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -43,14 +52,38 @@ const { t } = useI18n()
   h3 {
     font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     color: var(--text-secondary);
   }
-  
-  .interests-text {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: var(--text-primary);
+
+  .interests-icons {
+    display: flex;
+    gap: 4rem; /* Increased gap for larger icons */
+    flex-wrap: wrap;
+    justify-content: center; /* Center the icons */
+
+    .interest-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+      
+      img {
+        height: 120px; /* Increased size from 60px */
+        width: auto;
+        transition: transform 0.3s;
+      }
+      
+      span {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+      }
+
+      &:hover img {
+        transform: scale(1.1);
+      }
+    }
   }
 }
 

@@ -40,6 +40,14 @@ export const useProjectStore = defineStore('project', () => {
       thumbnail: '', 
       description: '挖掘普通用户在 AI 视频生成中的真实痛点与需求。',
       color: "#74b9ff"
+    },
+    {
+      id: 'new-project',
+      name: 'Montage Planning Simulator',
+      path: '/designs/MontagePlanningSimulator',
+      thumbnail: 'https://placehold.co/600x400/81ecec/white?text=MontagePlanningSimulator',
+      description: '模拟视频Montage规划，帮助用户优化视频组合。',
+      color: "#81ecec"
     }
     // 您可以在此处添加更多项目
   ])

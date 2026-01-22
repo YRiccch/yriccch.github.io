@@ -4,6 +4,7 @@ import CameraControl from '../views/designs/CameraControl.vue'
 import SketchEdit from '../views/designs/SketchEdit.vue'
 import AniMaster from '../views/designs/AniMaster.vue'
 import FreshmanSurvey from '../views/designs/FreshmanSurvey.vue'
+import NewProject from '../views/designs/MontagePlanningSimulator.vue'
 
 const router = createRouter({
   // Use createWebHashHistory for simpler GitHub Pages deployment compatibility
@@ -34,6 +35,11 @@ const router = createRouter({
       path: '/designs/freshman',
       name: 'freshman',
       component: FreshmanSurvey
+    },
+    {
+      path: '/designs/MontagePlanningSimulator',
+      name: 'new-project',
+      component: NewProject
     }
   ],
   scrollBehavior(to, from, savedPosition) {

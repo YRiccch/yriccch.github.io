@@ -58,12 +58,6 @@
     ]
   },
   {
-    "id": "section_3",
-    "type": "section_header",
-    "title": "第三部分：画面实现参数 (D3 Visual Aesthetics)",
-    "desc": "筛选性价比最高的视觉控制参数。"
-  },
-  {
     "id": "q6",
     "category": "D3: Parameter Mapping",
     "title": "6. [参数映射] 假设您要指挥 AI 生成一个“压抑”的镜头，您认为控制哪 3 个参数最能直接实现这个效果？（请选 3 项）",
@@ -90,12 +84,6 @@
       { "id": "light_cheat", "text": "概念打光：为了情绪在不该有光的地方打光", "mapping": "Feature: Conceptual_Lighting" },
       { "id": "none", "text": "不打破，我追求物理真实", "mapping": "Feature: Photorealism" }
     ]
-  },
-  {
-    "id": "section_4",
-    "type": "section_header",
-    "title": "第四部分：设计空间完备性验证 (D4/Gap)",
-    "desc": "确定系统的“及格线”要素。"
   },
   {
     "id": "q8",

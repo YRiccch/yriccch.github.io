@@ -1,11 +1,13 @@
 <script setup>
 import { ref, computed } from 'vue'
 import questionsData from '@/data/questionnares/questionnaires.json'
-
 const questions = questionsData
 
 const currentStep = ref(0)
 const answers = ref({})
+const isSubmitting = ref(false)
+// TODO: Replace with your deployed Google Apps Script Web App URL
+const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL' 
 
 const currentQuestion = computed(() => questions[currentStep.value])
 const progress = computed(() => (currentStep.value / (questions.length - 1)) * 100)
@@ -119,9 +121,45 @@ function prevStep() {
   }
 }
 
-function submitData() {
-  console.log('Survey Data:', answers.value)
-  alert('数据已记录，这部分将用于论文的 Formative Study 章节。')
+async function submitData() {
+  if (GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL') {
+    alert('Developer: Please configure the Google Script URL in the code.')
+    console.warn('Missing GOOGLE_SCRIPT_URL')
+    return
+  }
+
+  if (isSubmitting.value) return
+  isSubmitting.value = true
+
+  try {
+    const payload = { ...answers.value }
+    // Add client-side metadata
+    payload._meta = {
+      userAgent: navigator.userAgent,
+      timestamp: new Date().toISOString()
+    }
+
+    // Use text/plain to prevent CORS preflight OPTIONS request
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    })
+
+    const result = await response.json()
+
+    if (result.status === 'success') {
+      console.log('Survey Data Saved:', result)
+      alert('数据已成功提交！感谢您的参与。')
+    } else {
+      throw new Error(result.message || 'Server returned error')
+    }
+  } catch (err) {
+    console.error('Submit Error:', err)
+    alert('提交失败，请检查网络或联系管理员。\n' + err.message)
+  } finally {
+    isSubmitting.value = false
+  }
 }
 
 // Initialize Slider defaults
@@ -190,7 +228,11 @@ questions.forEach(q => {
            </div> 
   
            <div style="margin-top:30px;"> 
-             <button class="btn btn-next" @click="submitData">提交数据 <i class="fas fa-check"></i></button> 
+             <button class="btn btn-next" @click="submitData" :disabled="isSubmitting">
+               {{ isSubmitting ? '提交中...' : '提交数据' }} 
+               <i v-if="!isSubmitting" class="fas fa-check"></i>
+               <i v-else class="fas fa-spinner fa-spin"></i>
+             </button> 
            </div> 
         </div>
 

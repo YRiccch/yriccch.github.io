@@ -1,0 +1,123 @@
+[
+  {
+    "id": "intro",
+    "type": "intro",
+    "title": "AI 动画创作体验与痛点调研",
+    "desc": "我们正在开发一款能帮普通人做动画的 AI 工具。无论您是写小说的、画漫画的，还是纯粹的脑洞爱好者，我们都想知道：在使用 AI 生成视频时，您遇到了哪些“想得到但做不出”的困难？",
+    "btnText": "开始吐槽"
+  },
+  {
+    "id": "profile_role",
+    "category": "基本情况",
+    "title": "1. 您目前的创作主要集中在哪个领域？",
+    "type": "multi",
+    "dimension": "profile",
+    "options": [
+      { "id": "writer", "text": "文字创作者（网文、剧本、同人小说）" },
+      { "id": "painter", "text": "视觉创作者（插画、漫画）" },
+      { "id": "fan", "text": "二创/混剪爱好者" },
+      { "id": "tech", "text": "AI 技术尝鲜者" },
+      { "id": "other", "text": "其他" }
+    ]
+  },
+  {
+    "id": "pain_prompt",
+    "category": "痛点 1: 提示词之苦 (对应 D3 视觉美学)",
+    "title": "2. 在使用 AI 生成视频时，您是否经常感到“词穷”？即脑子里有画面，但不知道用什么专业术语（如光影、运镜）描述出来？",
+    "type": "slider",
+    "dimension": "d3",
+    "min": 1,
+    "max": 5,
+    "labels": {
+      "1": "完全没问题，我是Prompt大师",
+      "5": "非常痛苦，只会写“高清、好看”"
+    },
+    "mapping": "视听素养鸿沟"
+  },
+  {
+    "id": "pain_consistency",
+    "category": "痛点 2: 角色崩坏 (对应 D1 叙事状态)",
+    "title": "3. 生成多段视频时，以下哪个问题最劝退您？",
+    "type": "multi",
+    "dimension": "d1",
+    "options": [
+      { "id": "face", "text": "角色长相变来变去（一会黑头发，一会黄头发）", "mapping": "身份一致性痛点" },
+      { "id": "cloth", "text": "衣服/道具细节对不上（上个镜头戴帽子，下个镜头没了）", "mapping": "状态一致性痛点" },
+      { "id": "env", "text": "场景结构突变（房子忽大忽小）", "mapping": "环境一致性痛点" },
+      { "id": "none", "text": "目前的工具已经解决得很好" }
+    ]
+  },
+  {
+    "id": "pain_logic",
+    "category": "痛点 3: 剪辑生硬 (对应 D2 视觉逻辑)",
+    "title": "4. 把生成的多个片段拼在一起时，您通常会有什么感觉？",
+    "type": "single",
+    "dimension": "d2",
+    "options": [
+      { "id": "ppt", "text": "像 PPT 播放，镜头之间没有联系，很生硬。", "mapping": "缺乏连贯性" },
+      { "id": "rhythm", "text": "节奏很平，没有电影那种“起承转合”的感觉。", "mapping": "缺乏节奏感" },
+      { "id": "ok", "text": "还可以，能看懂就行。" }
+    ]
+  },
+  {
+    "id": "need_translation",
+    "category": "需求验证: 自动翻译 (对应 D2/D3)",
+    "title": "5. 如果有一个工具，您只需要输入“他感到绝望”，AI自动帮您补全成“特写镜头 + 阴暗灯光 + 荷兰角构图”，您需要吗？",
+    "type": "single",
+    "dimension": "d3",
+    "options": [
+      { "id": "need", "text": "太需要了！我不懂这些术语。", "mapping": "强需求：语义映射" },
+      { "id": "learn", "text": "我可以学，但我希望它能给我建议。", "mapping": "中需求：辅助建议" },
+      { "id": "no", "text": "不需要，我想自己控制每一个参数。", "mapping": "弱需求：全手动" }
+    ]
+  },
+  {
+    "id": "need_state",
+    "category": "需求验证: 状态记忆 (对应 D1)",
+    "title": "6. 假如您写剧本时提到“主角受伤了”，您希望 AI 生成工具做什么？",
+    "type": "single",
+    "dimension": "d1",
+    "options": [
+      { "id": "auto", "text": "自动记住这个状态，后面所有生成的镜头主角都要带伤。", "mapping": "强需求：自动状态机" },
+      { "id": "remind", "text": "生成时提醒我一下“要不要加伤口Prompt”。", "mapping": "中需求：提示" },
+      { "id": "manual", "text": "我自己会每次手动写进 Prompt 里。", "mapping": "弱需求：手动" }
+    ]
+  },
+  {
+    "id": "pain_modify",
+    "category": "痛点 4: 修改噩梦 (对应 D4 交互)",
+    "title": "7. 视频生成出来后，如果想改剧本里的一句话（例如：把“白天”改成“黄昏”），您现在的做法是？",
+    "type": "single",
+    "dimension": "d4",
+    "options": [
+      { "id": "all", "text": "极其崩溃，相关的几十个镜头全部重新跑一遍 Prompt。", "mapping": "高修改成本" },
+      { "id": "part", "text": "只重做几个关键的，其他的凑合用。", "mapping": "妥协" },
+      { "id": "easy", "text": "目前的工具改起来很方便。", "mapping": "低修改成本" }
+    ]
+  },
+  {
+    "id": "interaction_mode",
+    "category": "需求验证: 交互方式 (对应 D4)",
+    "title": "8. 您理想中的“AI 导演工具”长什么样？",
+    "type": "multi",
+    "dimension": "d4",
+    "options": [
+      { "id": "word", "text": "像写文档一样：我只管改文字，右边画面自动变。", "mapping": "文本驱动工作流" },
+      { "id": "timeline", "text": "像剪辑软件一样：有时间轴，可以拖拽、修剪。", "mapping": "时序驱动工作流" },
+      { "id": "chat", "text": "像聊天一样：我和 AI 对话，它帮我改。", "mapping": "对话驱动工作流" }
+    ]
+  },
+  {
+    "id": "open_scene",
+    "category": "开放场景",
+    "title": "9. 您脑海中有一个想做但一直没做出来的画面/故事吗？之所以没做出来，是被卡在了哪一步？",
+    "type": "text",
+    "dimension": "open"
+  },
+  {
+    "id": "result",
+    "type": "result",
+    "title": "感谢您的反馈！",
+    "desc": "您的痛点正是我们努力解决的方向。"
+  }
+]

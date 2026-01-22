@@ -2,6 +2,8 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CameraControl from '../views/designs/CameraControl.vue'
 import SketchEdit from '../views/designs/SketchEdit.vue'
+import AniMaster from '../views/designs/AniMaster.vue'
+import FreshmanSurvey from '../views/designs/FreshmanSurvey.vue'
 
 const router = createRouter({
   // Use createWebHashHistory for simpler GitHub Pages deployment compatibility
@@ -22,6 +24,16 @@ const router = createRouter({
       path: '/designs/sketch-edit',
       name: 'sketch-edit',
       component: SketchEdit
+    },
+    {
+      path: '/designs/animaster',
+      name: 'animaster',
+      component: AniMaster
+    },
+    {
+      path: '/designs/freshman',
+      name: 'freshman',
+      component: FreshmanSurvey
     }
   ],
   scrollBehavior(to, from, savedPosition) {

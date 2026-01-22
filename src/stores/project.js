@@ -25,6 +25,22 @@ export const useProjectStore = defineStore('project', () => {
       description: '利用sketch自由绘图的方式，来识别用户的运镜意图。',
       color: "#BBDEFB"
     },
+    {
+      id: 'animaster',
+      name: 'AniMaster: 动画创作思维调研',
+      path: '/designs/animaster',
+      thumbnail: '', // Optional: Add a thumbnail if available, or rely on color
+      description: 'AI 辅助动画创作思维与工作流调研',
+      color: "#a29bfe"
+    },
+    {
+      id: 'freshman',
+      name: 'AniMaster: 新手痛点调研',
+      path: '/designs/freshman',
+      thumbnail: '', 
+      description: '挖掘普通用户在 AI 视频生成中的真实痛点与需求。',
+      color: "#74b9ff"
+    }
     // 您可以在此处添加更多项目
   ])
 

@@ -1,0 +1,133 @@
+[
+  {
+    "id": "intro",
+    "type": "intro",
+    "title": "AniMaster 专家知识库构建调研",
+    "desc": "我们正在开发一款基于‘导演思维’的 AI 动画辅助系统。本调研旨在挖掘您在从剧本到分镜转化过程中的‘隐性决策逻辑’。您的经验将被编码为系统的核心算法规则。",
+    "btnText": "开始访谈"
+  },
+  {
+    "id": "q1",
+    "category": "D1: Narrative Analysis",
+    "title": "1. 当您拿到一场戏的剧本（例如“主角走进废弃医院”），在画第一笔分镜前，您脑子里会先给这场戏贴上哪几个最关键的标签？（请按优先级排序）",
+    "type": "sortable",
+    "dimension": "d1",
+    "options": [
+      { "id": "tone", "text": "情绪基调 (Mood: 压抑/惊悚/温馨)", "mapping": "C1.2 情感基调" },
+      { "id": "func", "text": "叙事功能 (Function: 交代环境/推进动作)", "mapping": "C1.1 叙事弧阶段" },
+      { "id": "energy", "text": "能量/节奏 (Energy: 快/慢)", "mapping": "C2.3 节奏控制" },
+      { "id": "conflict", "text": "核心冲突 (Conflict: 人与环境/人与人)", "mapping": "C2.2 表现蒙太奇" },
+      { "id": "spacetime", "text": "时空状态 (SpaceTime: 黎明/黄昏)", "mapping": "C1.3 实体与环境状态" }
+    ]
+  },
+  {
+    "id": "q3",
+    "category": "D2: Visual Preamble",
+    "title": "3. [时空缝合] 剧本写“张三走进房间”，但画面通常不会直接画进门。请问您决定“是否需要先给几个空镜头（建立镜头）”的核心依据是？",
+    "type": "single",
+    "dimension": "d2",
+    "options": [
+      { "id": "new_scene", "text": "依据场景新旧：只要是新场景，必须先交代环境", "mapping": "Trigger: Scene_Change" },
+      { "id": "pacing", "text": "依据叙事节奏：紧张时不交代直接进，舒缓时才交代", "mapping": "Trigger: Pacing_Slow" },
+      { "id": "random", "text": "看心情，没有固定规律", "mapping": "No_Rule" }
+    ]
+  },
+  {
+    "id": "q4",
+    "category": "D2: Cinematic Idioms",
+    "title": "4. [套路验证] 在处理以下高频情节时，您是否承认自己有一套相对固定的“思维模版”？（请勾选您认为有固定套路的场景）",
+    "type": "multi",
+    "dimension": "d2",
+    "options": [
+      { "id": "dialogue", "text": "双人对话 (建立 -> 正反打 -> 反应)", "mapping": "Idiom: Dialogue_Sequence" },
+      { "id": "discovery", "text": "发现秘密 (推镜头 -> 特写物体 -> 特写惊讶)", "mapping": "Idiom: Discovery_Sequence" },
+      { "id": "chase", "text": "追逐打斗 (全景动势 -> 碎片化特写)", "mapping": "Idiom: Action_Sequence" },
+      { "id": "none", "text": "我都靠灵感，从不通过套路", "mapping": "Invalidate_Idioms" }
+    ]
+  },
+  {
+    "id": "q5",
+    "category": "D2: Logic Priority",
+    "title": "5. [逻辑优先级] 如果您只能向 AI 传达一条关于“剪辑”的铁律，为了保证叙事能被看懂，您会选哪条？",
+    "type": "single",
+    "dimension": "d2",
+    "options": [
+      { "id": "spacial_logic", "text": "时空逻辑：必须先交代环境(Where)，再交代人(Who)", "mapping": "Rule: Establish_First" },
+      { "id": "match_logic", "text": "视线逻辑：视线匹配与轴线关系不能乱", "mapping": "Rule: Continuity_Match" },
+      { "id": "rhythm_logic", "text": "节奏逻辑：动作快镜头短，动作慢镜头长", "mapping": "Rule: Pacing_Sync" }
+    ]
+  },
+  {
+    "id": "section_3",
+    "type": "section_header",
+    "title": "第三部分：画面实现参数 (D3 Visual Aesthetics)",
+    "desc": "筛选性价比最高的视觉控制参数。"
+  },
+  {
+    "id": "q6",
+    "category": "D3: Parameter Mapping",
+    "title": "6. [参数映射] 假设您要指挥 AI 生成一个“压抑”的镜头，您认为控制哪 3 个参数最能直接实现这个效果？（请选 3 项）",
+    "type": "multi",
+    "maxSelect": 3,
+    "dimension": "d3",
+    "options": [
+      { "id": "angle", "text": "构图角度 (如：俯拍/上帝视角)", "mapping": "C3.1 构图与视点" },
+      { "id": "light", "text": "光影反差 (如：低调/硬光)", "mapping": "C3.2 光影调性" },
+      { "id": "color", "text": "色彩倾向 (如：冷色/去饱和)", "mapping": "C3.2 光影调性(色彩)" },
+      { "id": "comp", "text": "构图重心 (如：边缘构图/挤压)", "mapping": "C3.1 构图与视点" },
+      { "id": "lens", "text": "镜头焦距 (如：广角畸变)", "mapping": "C3.1 (Discarded if low rank)" },
+      { "id": "move", "text": "镜头运动 (如：缓慢推镜头)", "mapping": "C3.3 运镜行为" }
+    ]
+  },
+  {
+    "id": "q7",
+    "category": "D3: Animation Specifics",
+    "title": "7. [动画特权] 相比于实拍，在做动画 Layout 时，您会为了叙事张力而故意打破哪些物理规律？",
+    "type": "single",
+    "dimension": "d3",
+    "options": [
+      { "id": "persp", "text": "透视变形：为了张力画伪透视 (鱼眼/夸张)", "mapping": "Feature: NPR_Deformation" },
+      { "id": "light_cheat", "text": "概念打光：为了情绪在不该有光的地方打光", "mapping": "Feature: Conceptual_Lighting" },
+      { "id": "none", "text": "不打破，我追求物理真实", "mapping": "Feature: Photorealism" }
+    ]
+  },
+  {
+    "id": "section_4",
+    "type": "section_header",
+    "title": "第四部分：设计空间完备性验证 (D4/Gap)",
+    "desc": "确定系统的“及格线”要素。"
+  },
+  {
+    "id": "q8",
+    "category": "D4: Minimum Viable Info",
+    "title": "8. [极限挑战] 如果把分镜外包给新人，您**最少**需要提供哪些信息，他画出来的东西才不会偏离本意？（请选必选项）",
+    "type": "multi",
+    "dimension": "d4",
+    "options": [
+      { "id": "tone", "text": "情绪基调", "mapping": "Validate: D1_Tone" },
+      { "id": "shot_size", "text": "景别 (远/中/近)", "mapping": "Validate: D3_Framing" },
+      { "id": "angle", "text": "机位 (俯/仰/平)", "mapping": "Validate: D3_Angle" },
+      { "id": "action", "text": "关键动作", "mapping": "Validate: D1_Action" },
+      { "id": "light", "text": "灯光位置", "mapping": "Discard: Too_Granular" },
+      { "id": "prev_shot", "text": "上一镜头的结束动作 (连戏)", "mapping": "Validate: D2_Continuity" }
+    ]
+  },
+  {
+    "id": "q9",
+    "category": "D4: Pain Points",
+    "title": "9. [痛点挖掘] 您觉得现在的 AI 视频生成工具（如 Sora/Runway），最缺“导演感”的地方在哪里？",
+    "type": "single",
+    "dimension": "d4",
+    "options": [
+      { "id": "comp_fail", "text": "瞎构图：主次不分，构图没有叙事目的", "mapping": "Gap: D3_Intent" },
+      { "id": "edit_fail", "text": "瞎剪辑：镜头之间没有逻辑联系，像 PPT", "mapping": "Gap: D2_Logic" },
+      { "id": "emo_fail", "text": "没情绪：光影只服务于好看，不服务于剧情", "mapping": "Gap: D1_D3_Mapping" }
+    ]
+  },
+  {
+    "id": "result",
+    "type": "result",
+    "title": "访谈结束",
+    "desc": "感谢您的宝贵经验！！"
+  }
+]

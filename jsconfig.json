@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "lib": ["esnext", "dom"],
+    "types": ["vite/client"],
     "paths": {
       "@/*": ["./src/*"]
     }

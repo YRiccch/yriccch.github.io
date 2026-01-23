@@ -1,0 +1,979 @@
+{
+  "PhaseList": [
+    {
+      "phaseID": "P1",
+      "SegmentList": [
+        {
+          "SegmentID": "S1",
+          "preSegID": [],
+          "nextSegID": [
+            "S2"
+          ],
+          "fillImageURL": "/RefImage/location/森林.png",
+          "Location": {
+            "LocationID": "L1",
+            "LocationName": "小红帽家（室内）",
+            "LocationDesc": "母亲交代任务与嘱托，准备蛋糕与葡萄酒。",
+            "LocationImageURL": ["/RefImage/location/森林.png","/RefImage/location/小红帽的家.png", "/RefImage/location/外婆的家.png"]
+          },
+          "Characters": [
+            {
+              "CharacterID": "C1",
+              "CharacterName": "小红帽",
+              "CharacterDesc": "天真善良的小女孩。",
+              "CharacterImageURL": ["/RefImage/character/小红帽.png", "/RefImage/character/小红帽2.png", "/RefImage/character/小红帽3.png"]
+            },
+            {
+              "CharacterID": "C2",
+              "CharacterName": "母亲",
+              "CharacterDesc": "叮嘱女儿走大路、守礼节。",
+              "CharacterImageURL": ["/RefImage/character/妈妈.png"]
+            }
+          ],
+          "EventList": [
+            {
+              "EventID": "S1-E1",
+              "preEventID": "",
+              "nextEventID": "S1-E2",
+              "EventDesc": "母亲把蛋糕与葡萄酒交给小红帽，嘱咐送给生病的外婆。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C2",
+                  "CharacterName": "母亲",
+                  "CharacterDesc": "叮嘱女儿走大路、守礼节。",
+                  "CharacterImageURL": "/RefImage/character/妈妈.png"
+                },
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "天真善良的小女孩。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S1-E2",
+              "preEventID": "S1-E1",
+              "nextEventID": "S1-E3",
+              "EventDesc": "母亲叮嘱：天黑前动身、不要离开大路、到外婆家先问好、不东张西望。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C2",
+                  "CharacterName": "母亲",
+                  "CharacterDesc": "叮嘱女儿走大路、守礼节。",
+                  "CharacterImageURL": "/RefImage/character/妈妈.png"
+                },
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "天真善良的小女孩。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S1-E3",
+              "preEventID": "S1-E2",
+              "nextEventID": "S1-E4",
+              "EventDesc": "小红帽承诺会小心行事，并与母亲拉手作保证。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "天真善良的小女孩。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                },
+                {
+                  "CharacterID": "C2",
+                  "CharacterName": "母亲",
+                  "CharacterDesc": "叮嘱女儿走大路、守礼节。",
+                  "CharacterImageURL": "/RefImage/character/妈妈.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S1-E4",
+              "preEventID": "S1-E3",
+              "nextEventID": "S1-E5",
+              "EventDesc": "母亲替她把篮子系紧，又补上一句：路上若遇陌生人，不要随口说出外婆住处。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C2",
+                  "CharacterName": "母亲",
+                  "CharacterDesc": "再三叮咛，担心女儿心软。",
+                  "CharacterImageURL": "/RefImage/character/妈妈.png"
+                },
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "点头应下，却对森林充满好奇。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S1-E5",
+              "preEventID": "S1-E4",
+              "nextEventID": "S1-E6",
+              "EventDesc": "小红帽整理红斗篷，把花别在领口，心里盘算着到外婆家要先问好，再把点心摆整齐。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "把母亲的话记在心里，但仍幻想一路的风景。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S1-E6",
+              "preEventID": "S1-E5",
+              "nextEventID": "",
+              "EventDesc": "她提着篮子出门，母亲站在门口目送，直到红斗篷的影子消失在屋外的光里。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "踏上去往外婆家的路。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                },
+                {
+                  "CharacterID": "C2",
+                  "CharacterName": "母亲",
+                  "CharacterDesc": "仍有几分不安。",
+                  "CharacterImageURL": "/RefImage/character/妈妈.png"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "phaseID": "P2",
+      "SegmentList": [
+        {
+          "SegmentID": "S2",
+          "preSegID": [
+            "S1"
+          ],
+          "nextSegID": [
+            "S3",
+            "S4"
+          ],
+          "fillImageURL": "/RefImage/location/屋外.png",
+          "Location": {
+            "LocationID": "L2",
+            "LocationName": "屋外小道",
+            "LocationDesc": "屋外相遇与试探：狼挑唆小红帽离开大路去采花。",
+            "LocationImageURL": "/RefImage/location/屋外.png"
+          },
+          "Characters": [
+            {
+              "CharacterID": "C1",
+              "CharacterName": "小红帽",
+              "CharacterDesc": "天真善良的小女孩。",
+              "CharacterImageURL": "/RefImage/character/小红帽.png"
+            },
+            {
+              "CharacterID": "C3",
+              "CharacterName": "大灰狼",
+              "CharacterDesc": "诡计多端、极善伪装。",
+              "CharacterImageURL": "/RefImage/character/狼1.png"
+            }
+          ],
+          "EventList": [
+            {
+              "EventID": "S2-E1",
+              "preEventID": "",
+              "nextEventID": "S2-E2",
+              "EventDesc": "小红帽出门来到屋外小道。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "天真善良的小女孩。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S2-E2",
+              "preEventID": "S2-E1",
+              "nextEventID": "S2-E3",
+              "EventDesc": "小红帽与狼寒暄，狼套问目的地与篮中食物。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "天真善良的小女孩。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                },
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "诡计多端、极善伪装。",
+                  "CharacterImageURL": "/RefImage/character/狼1.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S2-E3",
+              "preEventID": "S2-E2",
+              "nextEventID": "S2-E4",
+              "EventDesc": "狼怂恿去林中采花与听鸟鸣，小红帽决定偏离大路。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "天真善良的小女孩。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                },
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "诡计多端、极善伪装。",
+                  "CharacterImageURL": "/RefImage/character/狼1.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S2-E4",
+              "preEventID": "S2-E3",
+              "nextEventID": "S2-E5",
+              "EventDesc": "狼装作体贴地指给她看路旁的野花，说外婆闻到花香心情会好，还夸她“真懂孝顺”。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "一边赞美一边试探，暗暗套出更多信息。",
+                  "CharacterImageURL": "/RefImage/character/狼1.png"
+                },
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "被夸得开心，戒心更松。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S2-E5",
+              "preEventID": "S2-E4",
+              "nextEventID": "S2-E6",
+              "EventDesc": "她想起母亲“别离开大路”的话，脚步迟疑；狼则提议比赛：他走“近路”，她去采花，看看谁先到外婆家。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "犹豫不决。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                },
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "用“游戏”包装诡计。",
+                  "CharacterImageURL": "/RefImage/character/狼1.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S2-E6",
+              "preEventID": "S2-E5",
+              "nextEventID": "S2-E7",
+              "EventDesc": "狼故意慢声细语地问清“外婆的小屋在森林哪一边”，随后转身就跑，像是怕输掉比赛。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "记牢住处线索，抢先离去。",
+                  "CharacterImageURL": "/RefImage/character/狼1.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S2-E7",
+              "preEventID": "S2-E6",
+              "nextEventID": "",
+              "EventDesc": "小红帽被比赛激起兴致，转进林子采花，越走越远，路也渐渐看不见了。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "沉浸在花香与鸟鸣里，忘了赶路。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "phaseID": "P3",
+      "SegmentList": [
+        {
+          "SegmentID": "S3",
+          "preSegID": [
+            "S2"
+          ],
+          "nextSegID": [
+            "S5"
+          ],
+          "fillImageURL": "/RefImage/location/森林.png",
+          "Location": {
+            "LocationID": "L3",
+            "LocationName": "森林深处",
+            "LocationDesc": "小红帽采花越走越深，暂忘行程。",
+            "LocationImageURL": "/RefImage/location/森林.png"
+          },
+          "Characters": [
+            {
+              "CharacterID": "C1",
+              "CharacterName": "小红帽",
+              "CharacterDesc": "天真善良的小女孩。",
+              "CharacterImageURL": "/RefImage/character/小红帽.png"
+            }
+          ],
+          "EventList": [
+            {
+              "EventID": "S3-E1",
+              "preEventID": "",
+              "nextEventID": "S3-E2",
+              "EventDesc": "阳光在林间跳荡、花鸟相映，小红帽被吸引。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "天真善良的小女孩。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S3-E2",
+              "preEventID": "S3-E1",
+              "nextEventID": "S3-E3",
+              "EventDesc": "她一路采花，走到林子更深处。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "天真善良的小女孩。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S3-E3",
+              "preEventID": "S3-E2",
+              "nextEventID": "S3-E4",
+              "EventDesc": "采满一怀方想起外婆，准备回到大路继续赶路。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "天真善良的小女孩。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S3-E4",
+              "preEventID": "S3-E3",
+              "nextEventID": "S3-E5",
+              "EventDesc": "她回头才发现来时的路已被草叶遮住，林里忽然安静得只剩自己的呼吸声。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "开始有些害怕，抱紧花束。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S3-E5",
+              "preEventID": "S3-E4",
+              "nextEventID": "S3-E6",
+              "EventDesc": "她看见泥地里有几串新鲜脚印，像是有人匆匆跑过；她想起那只狼，心里一沉。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "后悔偏离大路，决定赶紧出去。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S3-E6",
+              "preEventID": "S3-E5",
+              "nextEventID": "",
+              "EventDesc": "她沿着较宽的兽径快步走，终于重新看见大路的痕迹，便提起裙摆往外婆家方向赶去。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "把花束捧在怀里，步子比来时更急。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SegmentID": "S4",
+          "preSegID": [
+            "S2"
+          ],
+          "nextSegID": [
+            "S5"
+          ],
+          "fillImageURL": "/RefImage/location/外婆家屋外.png",
+          "Location": {
+            "LocationID": "L5",
+            "LocationName": "外婆家屋外",
+            "LocationDesc": "狼先一步抵达并敲门，自称小红帽送食物。",
+            "LocationImageURL": "/RefImage/location/外婆家屋外.png"
+          },
+          "Characters": [
+            {
+              "CharacterID": "C3",
+              "CharacterName": "大灰狼",
+              "CharacterDesc": "诡计多端、极善伪装。",
+              "CharacterImageURL": "/RefImage/character/狼1.png"
+            },
+            {
+              "CharacterID": "C4",
+              "CharacterName": "外婆",
+              "CharacterDesc": "体弱多病，住在森林边的木屋。",
+              "CharacterImageURL": "/RefImage/character/外婆.png"
+            }
+          ],
+          "EventList": [
+            {
+              "EventID": "S4-E1",
+              "preEventID": "",
+              "nextEventID": "S4-E2",
+              "EventDesc": "狼抵达外婆家屋外，敲门称是小红帽来送东西。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "诡计多端、极善伪装。",
+                  "CharacterImageURL": "/RefImage/character/狼1.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S4-E2",
+              "preEventID": "S4-E1",
+              "nextEventID": "S4-E3",
+              "EventDesc": "屋内外婆回应，让“拉一下门栓”。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C4",
+                  "CharacterName": "外婆",
+                  "CharacterDesc": "体弱多病，住在森林边的木屋。",
+                  "CharacterImageURL": "/RefImage/character/外婆.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S4-E3",
+              "preEventID": "S4-E2",
+              "nextEventID": "S4-E4",
+              "EventDesc": "门栓应声松动，屋门将要开启。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "诡计多端、极善伪装。",
+                  "CharacterImageURL": "/RefImage/character/狼1.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S4-E4",
+              "preEventID": "S4-E3",
+              "nextEventID": "S4-E5",
+              "EventDesc": "狼贴在门缝边听了听，屋里只有外婆断续的咳声；他压低嗓子又喊了一遍，确认没有旁人。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "谨慎确认环境，避免被发现。",
+                  "CharacterImageURL": "/RefImage/character/狼1.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S4-E5",
+              "preEventID": "S4-E4",
+              "nextEventID": "",
+              "EventDesc": "他把“我带了点心和酒”的话在嘴里反复练了两遍，才露出笑意，准备进屋。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "用甜言蜜语掩盖獠牙。",
+                  "CharacterImageURL": "/RefImage/character/狼1.png"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "phaseID": "P4",
+      "SegmentList": [
+        {
+          "SegmentID": "S5",
+          "preSegID": [
+            "S3",
+            "S4"
+          ],
+          "nextSegID": [
+            "S6"
+          ],
+          "fillImageURL": "/RefImage/location/外婆的家.png",
+          "Location": {
+            "LocationID": "L6",
+            "LocationName": "外婆的家（卧室）",
+            "LocationDesc": "狼入屋吞外婆并伪装成外婆。",
+            "LocationImageURL": "/RefImage/location/外婆的家.png"
+          },
+          "Characters": [
+            {
+              "CharacterID": "C3",
+              "CharacterName": "大灰狼",
+              "CharacterDesc": "伪装成外婆。",
+              "CharacterImageURL": "/RefImage/character/狼_披着外婆的衣服.png"
+            },
+            {
+              "CharacterID": "C4",
+              "CharacterName": "外婆",
+              "CharacterDesc": "被狼吞食。",
+              "CharacterImageURL": "/RefImage/character/外婆.png"
+            }
+          ],
+          "EventList": [
+            {
+              "EventID": "S5-E1",
+              "preEventID": "",
+              "nextEventID": "S5-E2",
+              "EventDesc": "狼拉门栓入内，直奔卧室。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "凶狠敏捷。",
+                  "CharacterImageURL": "/RefImage/character/狼1.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S5-E2",
+              "preEventID": "S5-E1",
+              "nextEventID": "S5-E3",
+              "EventDesc": "狼将外婆吞入腹中。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "凶狠敏捷。",
+                  "CharacterImageURL": "/RefImage/character/狼1.png"
+                },
+                {
+                  "CharacterID": "C4",
+                  "CharacterName": "外婆",
+                  "CharacterDesc": "来不及呼救。",
+                  "CharacterImageURL": "/RefImage/character/外婆.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S5-E3",
+              "preEventID": "S5-E2",
+              "nextEventID": "S5-E4",
+              "EventDesc": "狼穿上外婆的衣服，戴上帽子，躺回床上拉上帘子。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "伪装成外婆。",
+                  "CharacterImageURL": "/RefImage/character/狼_披着外婆的衣服.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S5-E4",
+              "preEventID": "S5-E3",
+              "nextEventID": "S5-E5",
+              "EventDesc": "他把屋里收拾得像外婆还在：把椅子推回原位，窗帘半掩，只留一道缝让光线落在床沿。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "故意制造“病中卧床”的假象。",
+                  "CharacterImageURL": "/RefImage/character/狼_披着外婆的衣服.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S5-E5",
+              "preEventID": "S5-E4",
+              "nextEventID": "S5-E6",
+              "EventDesc": "狼学着外婆的声音咳了两声，练习用温和的语气回答“进来吧”，又把嗓子压得更沙哑些。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "反复排练，等待猎物上门。",
+                  "CharacterImageURL": "/RefImage/character/狼_披着外婆的衣服.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S5-E6",
+              "preEventID": "S5-E5",
+              "nextEventID": "",
+              "EventDesc": "他缩进被窝，耳朵竖起听门外动静，爪子却悄悄搭在被角下。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "耐心潜伏。",
+                  "CharacterImageURL": "/RefImage/character/狼_披着外婆的衣服.png"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "phaseID": "P5",
+      "SegmentList": [
+        {
+          "SegmentID": "S6",
+          "preSegID": [
+            "S5"
+          ],
+          "nextSegID": [],
+          "fillImageURL": "/RefImage/location/外婆的家.png",
+          "Location": {
+            "LocationID": "L6",
+            "LocationName": "外婆的家（卧室/起居）",
+            "LocationDesc": "小红帽到达后的疑惑、被吞、猎人营救与结尾。",
+            "LocationImageURL": "/RefImage/location/外婆的家.png"
+          },
+          "Characters": [
+            {
+              "CharacterID": "C1",
+              "CharacterName": "小红帽",
+              "CharacterDesc": "携花来到外婆家。",
+              "CharacterImageURL": "/RefImage/character/小红帽.png"
+            },
+            {
+              "CharacterID": "C3",
+              "CharacterName": "大灰狼",
+              "CharacterDesc": "伪装成外婆。",
+              "CharacterImageURL": "/RefImage/character/狼_披着外婆的衣服.png"
+            },
+            {
+              "CharacterID": "C4",
+              "CharacterName": "外婆",
+              "CharacterDesc": "从狼肚里被救出。",
+              "CharacterImageURL": "/RefImage/character/外婆.png"
+            },
+            {
+              "CharacterID": "C5",
+              "CharacterName": "猎人",
+              "CharacterDesc": "路过入屋，剪开狼肚救人。",
+              "CharacterImageURL": "/RefImage/character/妈妈.png"
+            }
+          ],
+          "EventList": [
+            {
+              "EventID": "S6-E1",
+              "preEventID": "",
+              "nextEventID": "S6-E2",
+              "EventDesc": "小红帽带着花来到外婆家，见屋门敞开，心生疑惧并进屋问候无应。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "携花来到外婆家。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S6-E2",
+              "preEventID": "S6-E1",
+              "nextEventID": "S6-E3",
+              "EventDesc": "她拉开帘子见到“外婆”。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "携花来到外婆家。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                },
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "伪装成外婆。",
+                  "CharacterImageURL": "/RefImage/character/狼_披着外婆的衣服.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S6-E3",
+              "preEventID": "S6-E2",
+              "nextEventID": "S6-E4",
+              "EventDesc": "对话：耳朵为何这么大——为了更好地听你说话。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "疑惑渐起。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                },
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "继续伪装哄骗。",
+                  "CharacterImageURL": "/RefImage/character/狼_披着外婆的衣服.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S6-E4",
+              "preEventID": "S6-E3",
+              "nextEventID": "S6-E5",
+              "EventDesc": "对话：眼睛为何这么大——为了更清楚地看你。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "疑惑更深。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                },
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "继续伪装哄骗。",
+                  "CharacterImageURL": "/RefImage/character/狼_披着外婆的衣服.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S6-E5",
+              "preEventID": "S6-E4",
+              "nextEventID": "S6-E6",
+              "EventDesc": "对话：手为何这么大——可以更好地抱着你。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "靠近。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                },
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "继续伪装哄骗。",
+                  "CharacterImageURL": "/RefImage/character/狼_披着外婆的衣服.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S6-E6",
+              "preEventID": "S6-E5",
+              "nextEventID": "S6-E7",
+              "EventDesc": "对话：嘴为何这么大——可以一口把你吃掉！",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "震惊失措。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                },
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "露出獠牙。",
+                  "CharacterImageURL": "/RefImage/character/狼_披着外婆的衣服.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S6-E7",
+              "preEventID": "S6-E6",
+              "nextEventID": "S6-E8",
+              "EventDesc": "狼从床上一跃而起，将小红帽吞入腹中。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "被吞。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                },
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "得意贪婪。",
+                  "CharacterImageURL": "/RefImage/character/狼_披着外婆的衣服.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S6-E8",
+              "preEventID": "S6-E7",
+              "nextEventID": "S6-E9",
+              "EventDesc": "猎人路过听见鼾声，进屋发现是狼，决定不用枪而是剪开狼肚。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C5",
+                  "CharacterName": "猎人",
+                  "CharacterDesc": "稳重机智。",
+                  "CharacterImageURL": "/RefImage/character/妈妈.png"
+                },
+                {
+                  "CharacterID": "C3",
+                  "CharacterName": "大灰狼",
+                  "CharacterDesc": "沉睡。",
+                  "CharacterImageURL": "/RefImage/character/狼_披着外婆的衣服.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S6-E9",
+              "preEventID": "S6-E8",
+              "nextEventID": "S6-E10",
+              "EventDesc": "小红帽与外婆先后被救出。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "获救。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                },
+                {
+                  "CharacterID": "C4",
+                  "CharacterName": "外婆",
+                  "CharacterDesc": "虚弱但平安。",
+                  "CharacterImageURL": "/RefImage/character/外婆.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S6-E10",
+              "preEventID": "S6-E9",
+              "nextEventID": "S6-E11",
+              "EventDesc": "三人把石头塞入狼肚，狼醒来跌倒身亡。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "机灵助力。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                },
+                {
+                  "CharacterID": "C4",
+                  "CharacterName": "外婆",
+                  "CharacterDesc": "获救后协助。",
+                  "CharacterImageURL": "/RefImage/character/外婆.png"
+                },
+                {
+                  "CharacterID": "C5",
+                  "CharacterName": "猎人",
+                  "CharacterDesc": "协助处置。",
+                  "CharacterImageURL": "/RefImage/character/妈妈.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S6-E11",
+              "preEventID": "S6-E10",
+              "nextEventID": "S6-E12",
+              "EventDesc": "尾声：猎人剥下狼皮离去；外婆进食恢复；小红帽立誓此后不再离开大路。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "汲取教训。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                },
+                {
+                  "CharacterID": "C4",
+                  "CharacterName": "外婆",
+                  "CharacterDesc": "精神转好。",
+                  "CharacterImageURL": "/RefImage/character/外婆.png"
+                },
+                {
+                  "CharacterID": "C5",
+                  "CharacterName": "猎人",
+                  "CharacterDesc": "离开。",
+                  "CharacterImageURL": "/RefImage/character/妈妈.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S6-E12",
+              "preEventID": "S6-E11",
+              "nextEventID": "S6-E13",
+              "EventDesc": "猎人检查屋外与窗下的脚印，确认再无同伴潜伏，又把门栓修好，叮嘱夜里务必关紧。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C5",
+                  "CharacterName": "猎人",
+                  "CharacterDesc": "谨慎收尾，确保安全。",
+                  "CharacterImageURL": "/RefImage/character/妈妈.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S6-E13",
+              "preEventID": "S6-E12",
+              "nextEventID": "S6-E14",
+              "EventDesc": "小红帽把散落的东西拾起，给外婆倒水喂食；外婆握住她的手，轻声说“遇见陌生人要多想一想”。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "听得脸红，认真点头。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                },
+                {
+                  "CharacterID": "C4",
+                  "CharacterName": "外婆",
+                  "CharacterDesc": "缓过劲来，语气温柔。",
+                  "CharacterImageURL": "/RefImage/character/外婆.png"
+                }
+              ]
+            },
+            {
+              "EventID": "S6-E14",
+              "preEventID": "S6-E13",
+              "nextEventID": "",
+              "EventDesc": "天色渐暗，小红帽把花束放在窗边，沿着大路回家；她一路默念母亲的叮嘱，决定把今天的一切都如实告诉母亲。",
+              "EventCharacters": [
+                {
+                  "CharacterID": "C1",
+                  "CharacterName": "小红帽",
+                  "CharacterDesc": "带着教训与勇气回到熟悉的路上。",
+                  "CharacterImageURL": "/RefImage/character/小红帽.png"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

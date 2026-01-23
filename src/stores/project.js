@@ -48,6 +48,14 @@ export const useProjectStore = defineStore('project', () => {
       thumbnail: 'https://placehold.co/600x400/81ecec/white?text=MontagePlanningSimulator',
       description: '模拟视频Montage规划，帮助用户优化视频组合。',
       color: "#81ecec"
+    },
+    {
+      id: 'storyline',
+      name: 'Storyline V3',
+      path: '/designs/storyline',
+      thumbnail: 'https://placehold.co/600x400/fab1a0/white?text=Storyline+V3',
+      description: 'Vue Flow based storyline editor.',
+      color: "#fab1a0"
     }
     // 您可以在此处添加更多项目
   ])

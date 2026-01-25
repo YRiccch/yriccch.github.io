@@ -20,6 +20,7 @@
         v-model:edges="edges"
         :node-types="nodeTypes"
         :default-viewport="{ zoom: 0.5 }"
+        :min-zoom="0.05"
         fit-view-on-init
         class="vue-flow-basic"
         @node-drag="onNodeDrag"
@@ -27,6 +28,7 @@
       >
         <Background pattern-color="#aaa" :gap="16" />
         <Controls />
+        <MiniMap position="top-right" />
       </VueFlow>
     </div>
   </div>
@@ -38,12 +40,15 @@ import { useRouter } from 'vue-router'
 import { VueFlow, useVueFlow, type Node, type Edge, type NodeDragEvent, type XYPosition } from '@vue-flow/core'
 import { Background } from '@vue-flow/background'
 import { Controls } from '@vue-flow/controls'
+import { MiniMap } from '@vue-flow/minimap'
 import '@vue-flow/core/dist/style.css'
 import '@vue-flow/core/dist/theme-default.css'
 import '@vue-flow/controls/dist/style.css'
+import '@vue-flow/minimap/dist/style.css'
 
 import StorySegmentNode from './components/StorySegmentNode.vue'
 import StoryEventNode from './components/StoryEventNode.vue'
+import StoryGroupNode from './components/StoryGroupNode.vue'
 import storyData from '@/data/story.json'
 
 // --- Setup ---
@@ -54,7 +59,8 @@ const { fitView, project, getNodes, addNodes, removeNodes } = useVueFlow()
 // Cast to any to bypass strict type checking for markRaw components
 const nodeTypes = {
   segment: markRaw(StorySegmentNode),
-  event: markRaw(StoryEventNode)
+  event: markRaw(StoryEventNode),
+  group: markRaw(StoryGroupNode)
 } as any
 
 // State
@@ -63,11 +69,17 @@ const edges = ref<Edge[]>([])
 
 // --- Constants ---
 const EVENT_WIDTH = 104 // Width of Event Node
+const EVENT_HEIGHT = 80 // Approx height of Event Node
 const EVENT_GAP = 20    // Visual gap between events
 const SEGMENT_PAD_X = 40
 const SEGMENT_MIN_W = 420
-const SEGMENT_HEIGHT = 160
+const SEGMENT_HEIGHT = 400 // Increased for Tension Y-axis
 const SEGMENT_GAP_Y = 50 // Minimum vertical gap between segments
+const GROUP_PADDING = 15
+
+// Mock Data for Enrichment
+const EMOTIONS = ['Joy', 'Fear', 'Hope', 'Anxiety', 'Anger', 'Surprise', 'Sadness'];
+const PURPOSES = ['Setup', 'Climax', 'Resolution', 'Character', 'Action', 'Theme', 'Plot Twist'];
 
 // --- Asset Resolution (Copied from V2) ---
 const locationImages = import.meta.glob('@/assets/StoryLineV3/locations/*.{png,jpg,jpeg,svg}', { eager: true, import: 'default' });
@@ -190,25 +202,97 @@ function buildGraph(data: Storyline) {
         }
       });
       
-      // 3. Create Event Nodes (Children)
+      // 3. Create Event Nodes (Children) & Groups
       const startX = (segWidth - contentW) / 2;
       
-      beats.forEach((beat, bIdx) => {
-        const bx = startX + bIdx * (EVENT_WIDTH + EVENT_GAP);
-        const by = (SEGMENT_HEIGHT - 130) / 2;
+      // Mock Data Generation and Grouping
+      const enrichedBeats = beats.map((beat, i) => {
+        // Mock Tension (0-100)
+        // Use hash-like or random to be deterministic if possible, or just random for demo
+        const tension = Math.floor(Math.random() * 80) + 10; // 10-90
+        
+        // Map Tension to Y (High Tension = Low Y value/Top)
+        // Range: Padding (50) to Height-Padding (350)
+        // Inverted: 100 -> 50, 0 -> 350
+        const yPos = 350 - (tension / 100) * 300; 
+        
+        return {
+          ...beat,
+          _tension: tension,
+          _x: startX + i * (EVENT_WIDTH + EVENT_GAP),
+          _y: yPos
+        };
+      });
 
-        newNodes.push({
-          id: beat.EventID,
-          type: 'event',
-          parentNode: seg.SegmentID, 
-          // Removed extent: 'parent' to allow dragging out
-          position: { x: bx, y: by },
-          class: 'event-node-transition', // Add transition class
-          data: {
-            label: beat.EventName,
-            characters: beat.Characters
+      // Simple grouping logic: Group pairs (0-1, 2-3) or triplets
+      let currentGroup: typeof enrichedBeats = [];
+      let groupCounter = 0;
+
+      enrichedBeats.forEach((beat, i) => {
+        currentGroup.push(beat);
+        
+        // Randomly decide to close group or if it's the last one
+        // For demo: group every 2 items, or keep single if odd
+        const shouldClose = currentGroup.length >= 2 || i === enrichedBeats.length - 1;
+        
+        if (shouldClose) {
+          if (currentGroup.length > 0) {
+            // Create Group Node
+            const groupId = `${seg.SegmentID}-G${groupCounter++}`;
+            
+            // Calculate Group Bounding Box (Relative to Segment)
+            const minX = Math.min(...currentGroup.map(b => b._x));
+            const maxX = Math.max(...currentGroup.map(b => b._x));
+            const minY = Math.min(...currentGroup.map(b => b._y));
+            const maxY = Math.max(...currentGroup.map(b => b._y));
+            
+            const groupX = minX - GROUP_PADDING;
+            const groupY = minY - GROUP_PADDING;
+            const groupW = (maxX + EVENT_WIDTH) - minX + GROUP_PADDING * 2;
+            const groupH = (maxY + EVENT_HEIGHT) - minY + GROUP_PADDING * 2;
+            
+            // Random Emotion/Purpose
+            const emotion = EMOTIONS[Math.floor(Math.random() * EMOTIONS.length)];
+            const purpose = PURPOSES[Math.floor(Math.random() * PURPOSES.length)];
+
+            newNodes.push({
+              id: groupId,
+              type: 'group',
+              parentNode: seg.SegmentID,
+              position: { x: groupX, y: groupY },
+              style: { width: `${groupW}px`, height: `${groupH}px` },
+              zIndex: 1, // Above segment, below events (events will be z-index 2 implicitly if children?)
+              // Actually Vue Flow renders children on top. 
+              // We will make events children of this Group.
+              data: {
+                emotion,
+                purpose
+              }
+            });
+
+            // Add Events as children of Group
+            currentGroup.forEach(beat => {
+              newNodes.push({
+                id: beat.EventID,
+                type: 'event',
+                parentNode: groupId, 
+                // Position relative to Group
+                position: { 
+                  x: beat._x - groupX, 
+                  y: beat._y - groupY 
+                },
+                class: 'event-node-transition', 
+                zIndex: 2,
+                data: {
+                  label: beat.EventName,
+                  characters: beat.Characters,
+                  tension: beat._tension // Optional: pass tension to event if needed
+                }
+              });
+            });
           }
-        });
+          currentGroup = [];
+        }
       });
       
       // 4. Create Edges
@@ -300,9 +384,11 @@ function getEventAbsolutePosition(node: Node): { x: number; y: number } {
   if (node.parentNode) {
     const parent = nodes.value.find(n => n.id === node.parentNode);
     if (parent) {
+      // Recursively get parent pos if needed, but for now 1 level deep or 2 levels (Seg->Group->Event)
+      const parentAbs = getEventAbsolutePosition(parent);
       return {
-        x: parent.position.x + node.position.x,
-        y: parent.position.y + node.position.y
+        x: parentAbs.x + node.position.x,
+        y: parentAbs.y + node.position.y
       };
     }
   }
@@ -312,7 +398,7 @@ function getEventAbsolutePosition(node: Node): { x: number; y: number } {
 function findHitSegment(node: Node): Node | null {
   const absPos = getEventAbsolutePosition(node);
   const nodeCenterX = absPos.x + EVENT_WIDTH / 2;
-  const nodeCenterY = absPos.y + (SEGMENT_HEIGHT - 130) / 2 + 50; // Approx center
+  const nodeCenterY = absPos.y + EVENT_HEIGHT / 2;
 
   // Check collision with all segments
   for (const seg of nodes.value) {
@@ -336,164 +422,34 @@ function findHitSegment(node: Node): Node | null {
 }
 
 function handleEventDrag(node: Node) {
-  const hitSegment = findHitSegment(node);
-  const parentId = hitSegment ? hitSegment.id : node.parentNode;
-  
-  if (!parentId) return; // Should not happen if dragging existing node
-  
-  // Calculate relative X in the target segment context
-  // Note: We are just previewing gaps here. 
-  // If we are hovering a NEW segment, we should ideally show gap there.
-  // But visually switching parent during drag is complex in Vue Flow without reparenting.
-  // For now, let's keep gap animation for the *current* parent. 
-  // If we want to support cross-segment preview, we'd need to simulate it.
-  
-  // Let's stick to simple gap logic for current parent, 
-  // and if user is dragging over another segment, maybe highlight it?
-  
-  if (parentId !== node.parentNode) {
-    // Hovering a different segment! 
-    // TODO: Add highlight logic here if desired
-    return;
-  }
-  
-  const parentNode = nodes.value.find(n => n.id === parentId);
-  if (!parentNode) return;
-  
-  // --- Gap Animation (Sort Preview) ---
-  const siblings = nodes.value.filter(n => n.parentNode === parentId && n.type === 'event' && n.id !== node.id);
-  
-  const currentX = node.position.x;
-  siblings.sort((a, b) => a.position.x - b.position.x);
-  
-  let insertIndex = siblings.length;
-  for (let i = 0; i < siblings.length; i++) {
-    // Check siblings[i] existence for safety
-    if (!siblings[i]) continue;
-    
-    const sibCenter = siblings[i].position.x + EVENT_WIDTH / 2;
-    if (currentX < sibCenter) {
-      insertIndex = i;
-      break;
-    }
-  }
-  
-  // Fix TS error: Cast style to any
-  const styleObj = parentNode.style as any;
-  const pWidth = parseFloat(styleObj?.width as string) || SEGMENT_MIN_W;
-  const count = siblings.length + 1; 
-  const contentW = count * EVENT_WIDTH + (count - 1) * EVENT_GAP;
-  const startX = (pWidth - contentW) / 2;
-  
-  siblings.forEach((sib, idx) => {
-    const effectiveIdx = idx >= insertIndex ? idx + 1 : idx;
-    const targetX = startX + effectiveIdx * (EVENT_WIDTH + EVENT_GAP);
-    sib.position.x = targetX;
-  });
+  // Simplified for V3 with Groups:
+  // Dragging events out of groups is complex to animate "gaps" for 
+  // because structure is nested (Seg -> Group -> Event).
+  // For now, we disable the complex gap animation during drag for stability in this new layout mode.
+  // We just highlight the segment we are over?
 }
 
 function handleEventDragStop(node: Node) {
-  const oldParentId = node.parentNode;
-  const oldParentNode = nodes.value.find(n => n.id === oldParentId);
+  // Logic to reparent event if dropped on a segment
+  // NOTE: With Groups, dropping on a Segment should probably attach it to the Segment directly 
+  // or create a new Group?
+  // For this iteration, let's keep it simple: If dropped on Segment, 
+  // make it child of Segment (orphan from group) or auto-create group.
   
   const hitSegment = findHitSegment(node);
   
   if (hitSegment) {
-    // Case 1: Dropped on a Segment (Same or Different)
-    const targetId = hitSegment.id;
+    // Reparent to Segment (remove from Group)
+    // We need to calculate position relative to Segment
+    const absPos = getEventAbsolutePosition(node);
+    const relX = absPos.x - hitSegment.position.x;
+    const relY = absPos.y - hitSegment.position.y;
     
-    if (targetId !== oldParentId) {
-      // Reparent to new Segment
-      // 1. Calculate new relative position
-      const absPos = getEventAbsolutePosition(node);
-      const relX = absPos.x - hitSegment.position.x;
-      const relY = absPos.y - hitSegment.position.y;
-      
-      // 2. Update Node
-      node.parentNode = targetId;
-      node.position = { x: relX, y: relY };
-      
-      // 3. Update both segments
-      snapEventsInSegment(targetId);
-      if (oldParentId) checkAndCleanupSegment(oldParentId);
-      
-    } else {
-      // Same parent, just snap
-      snapEventsInSegment(oldParentId);
-    }
-  } else {
-    // Case 2: Dropped on empty space -> Create New Segment
-    if (oldParentNode) {
-      createNewSegmentFromEvent(node, oldParentNode);
-    }
+    node.parentNode = hitSegment.id;
+    node.position = { x: relX, y: relY };
+    
+    // TODO: Cleanup empty groups if any
   }
-}
-
-function checkAndCleanupSegment(segId: string) {
-  const siblings = nodes.value.filter(n => n.parentNode === segId && n.type === 'event');
-  if (siblings.length === 0) {
-    removeNodes([segId]);
-  } else {
-    snapEventsInSegment(segId);
-  }
-}
-
-function snapEventsInSegment(parentId: string) {
-  const parentNode = nodes.value.find(n => n.id === parentId);
-  if (!parentNode) return;
-  
-  const siblings = nodes.value.filter(n => n.parentNode === parentId && n.type === 'event');
-  siblings.sort((a, b) => a.position.x - b.position.x);
-  
-  // Recalc Parent Width
-  const count = siblings.length;
-  const contentW = count > 0 ? count * EVENT_WIDTH + (count - 1) * EVENT_GAP : 0;
-  const segWidth = Math.max(SEGMENT_MIN_W, contentW + SEGMENT_PAD_X * 2);
-  
-  // Update Parent Width
-  parentNode.style = { ...parentNode.style, width: `${segWidth}px` };
-  
-  // Position Children
-  const startX = (segWidth - contentW) / 2;
-  siblings.forEach((sib, idx) => {
-    sib.position.x = startX + idx * (EVENT_WIDTH + EVENT_GAP);
-    sib.position.y = (SEGMENT_HEIGHT - 130) / 2;
-  });
-  
-  // Trigger reactivity
-  nodes.value = [...nodes.value];
-}
-
-function createNewSegmentFromEvent(eventNode: Node, oldParentNode: Node) {
-  const absX = oldParentNode.position.x + eventNode.position.x;
-  const absY = oldParentNode.position.y + eventNode.position.y;
-  
-  const phaseIdx = Math.round(absX / LAYOUT.phaseGapX);
-  const targetX = phaseIdx * LAYOUT.phaseGapX;
-  
-  const newSegID = `Seg-${Date.now()}`;
-  const newSeg: Node = {
-    id: newSegID,
-    type: 'segment',
-    position: { x: targetX, y: absY }, 
-    style: { width: `${SEGMENT_MIN_W}px`, height: `${SEGMENT_HEIGHT}px` },
-    data: {
-      label: newSegID,
-      locationName: 'New Location',
-      phaseIdx: phaseIdx
-    }
-  };
-  
-  eventNode.parentNode = newSegID;
-  eventNode.position = { x: 0, y: 0 }; 
-  
-  addNodes([newSeg]);
-  
-  setTimeout(() => {
-     snapEventsInSegment(newSegID);
-     checkAndCleanupSegment(oldParentNode.id);
-     nodes.value = [...nodes.value];
-  }, 50);
 }
 
 // --- Event Handlers ---

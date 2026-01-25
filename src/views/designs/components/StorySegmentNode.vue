@@ -6,8 +6,8 @@
       <div v-else class="fallback-bg"></div>
       
       <!-- Handles inside the visual bar -->
-      <Handle type="source" position="right" style="top: 50%; right: 0; transform: translate(50%, -50%)" />
-      <Handle type="target" position="left" style="top: 50%; left: 0; transform: translate(-50%, -50%)" />
+      <Handle type="source" :position="Position.Right" style="top: 50%; right: 0; transform: translate(50%, -50%)" />
+      <Handle type="target" :position="Position.Left" style="top: 50%; left: 0; transform: translate(-50%, -50%)" />
     </div>
 
     <!-- Footer Label -->

@@ -2,7 +2,6 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CameraControl from '../views/designs/CameraControl.vue'
 import SketchEdit from '../views/designs/SketchEdit.vue'
-import MontagePlanningSimulator from '../views/designs/MontagePlanningSimulator.vue'
 import Storyline from '../views/designs/Storyline.vue'
 
 const router = createRouter({
@@ -24,11 +23,6 @@ const router = createRouter({
       path: '/designs/sketch-edit',
       name: 'sketch-edit',
       component: SketchEdit
-    },
-    {
-      path: '/designs/MontagePlanningSimulator',
-      name: 'new-project',
-      component: MontagePlanningSimulator
     },
     {
       path: '/designs/storyline',

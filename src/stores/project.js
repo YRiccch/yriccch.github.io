@@ -26,14 +26,6 @@ export const useProjectStore = defineStore('project', () => {
       color: "#BBDEFB"
     },
     {
-      id: 'new-project',
-      name: 'Montage Planning Simulator',
-      path: '/designs/MontagePlanningSimulator',
-      thumbnail: 'https://placehold.co/600x400/81ecec/white?text=MontagePlanningSimulator',
-      description: '模拟视频Montage规划，帮助用户优化视频组合。',
-      color: "#81ecec"
-    },
-    {
       id: 'storyline',
       name: 'Storyline V3',
       path: '/designs/storyline',

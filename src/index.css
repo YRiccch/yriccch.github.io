@@ -51,7 +51,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: var(--text-primary);
   background-color: var(--bg-body);
-  transition: background-color 0.3s, color 0.3s;
 }
 
 a {
@@ -60,8 +59,42 @@ a {
   transition: color 0.2s;
 }
 
+/* 主题切换 fallback：不支持 View Transitions 的浏览器走"瞬间切换 + 临时禁过渡" */
+html.theme-switching,
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
+  animation-duration: 0s !important;
+}
+
+/* View Transitions API：圆形扩散切换主题（由 useTheme 用 WAAPI 接管 clip-path）
+   把所有相关伪元素的默认 cross-fade 都关掉，避免与 WAAPI 衔接时出现 1-2 帧闪 */
+::view-transition-group(root),
+::view-transition-image-pair(root),
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none !important;
+  mix-blend-mode: normal !important;
+}
+/* 默认（深 → 浅）：新画面在顶，圆形 0 → maxR 扩散 */
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* 切到深色（浅 → 深）：旧画面在顶，圆形 maxR → 0 收缩 */
+html.vt-going-dark::view-transition-old(root) {
+  z-index: 9999;
+}
+html.vt-going-dark::view-transition-new(root) {
+  z-index: 1;
+}
+
+/* 普通粗体文字保持继承色（蓝色专门留给 MBT 关键词） */
 b, strong {
-  color: var(--primary-color);
   font-weight: 700;
 }
 

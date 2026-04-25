@@ -132,25 +132,22 @@ export default function Navbar() {
 
   return (
     <nav>
-      {/* ============ Desktop（在内容左侧留白处浮动的胶囊导航）============ */}
+      {/* ============ Desktop（紧贴内容右上角的纵向无边框导航）============ */}
       <div
-        className={
-          'desktop-nav fixed top-1/2 -translate-y-1/2 z-50 ' +
-          'flex flex-col items-center gap-1 py-3 px-1.5 ' +
-          'bg-card/70 border border-line rounded-2xl shadow-sm backdrop-blur-md ' +
-          'max-[900px]:hidden'
-        }
+        className="desktop-nav fixed z-50 flex flex-col items-start gap-0.5 max-[900px]:hidden"
         style={{
-          // 永远在 max-w-640 内容列左边 100px 附近；窄屏 clamp 到 16px
-          left: 'max(16px, calc((100vw - 640px) / 2 - 100px))',
+          // 顶部对齐内容首屏（main 的 pt-12 = 48px）
+          top: '48px',
+          // 紧贴 max-w-640 内容列右边 30px；窄屏不让 nav 越过视口右边缘 56px 内
+          left: 'min(calc((100vw + 640px) / 2 + 30px), calc(100vw - 56px))',
         }}
       >
         {/* 工具区：主题 + 语言 */}
         <button
-          onClick={toggleTheme}
+          onClick={(e) => toggleTheme({ clientX: e.clientX, clientY: e.clientY })}
           title={themeTitle}
           aria-label={themeTitle}
-          className="flex items-center justify-center w-9 h-9 rounded-xl text-fg-secondary hover:bg-hover hover:text-fg-primary transition-colors active:scale-95"
+          className="flex items-center justify-center w-9 h-9 rounded-md text-fg-tertiary hover:text-accent transition-colors active:scale-95"
         >
           {isDark ? <Sun size={16} /> : <Moon size={16} />}
         </button>
@@ -158,23 +155,23 @@ export default function Navbar() {
           onClick={toggleLanguage}
           title={t('actions.switchLanguage')}
           aria-label={t('actions.switchLanguage')}
-          className="flex items-center justify-center w-9 h-9 rounded-xl text-fg-secondary hover:bg-hover hover:text-fg-primary transition-colors active:scale-95"
+          className="flex items-center justify-center w-9 h-9 rounded-md text-fg-tertiary hover:text-accent transition-colors active:scale-95"
         >
           <span className="text-[11px] font-semibold tracking-tight">
             {i18n.resolvedLanguage === 'en' ? '中' : 'En'}
           </span>
         </button>
 
-        {/* 分隔线 */}
-        <div className="w-5 h-px bg-line my-1.5" />
+        {/* 极淡分隔点 */}
+        <div className="w-1 h-1 rounded-full bg-line my-2 opacity-60 ml-4" />
 
-        {/* 垂直导航 —— 仅图标，hover 时右侧浮出文字 tooltip */}
-        <ul className="flex flex-col gap-0.5 m-0 p-0 list-none">
+        {/* 纵向导航 —— 默认仅图标，hover 时文字向右滑出（max-width / margin-left 平滑过渡）*/}
+        <ul className="flex flex-col items-start gap-0.5 m-0 p-0 list-none">
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon
             const active = activeId === item.id
             return (
-              <li key={item.key} className="relative">
+              <li key={item.key}>
                 <a
                   href={item.kind === 'route' ? `#${item.path}` : '#'}
                   onClick={(e) => {
@@ -184,22 +181,21 @@ export default function Navbar() {
                   aria-current={active ? 'page' : undefined}
                   aria-label={t(`nav.${item.key}`)}
                   className={
-                    'group relative flex items-center justify-center w-9 h-9 rounded-xl ' +
+                    'group inline-flex items-center h-9 px-2 rounded-md ' +
                     'transition-colors duration-200 ' +
                     (active
-                      ? 'text-accent bg-hover'
-                      : 'text-fg-secondary hover:text-accent hover:bg-hover/60')
+                      ? 'text-accent'
+                      : 'text-fg-tertiary hover:text-accent')
                   }
                 >
-                  <Icon size={18} />
-
-                  {/* hover tooltip：从右侧浮出 */}
+                  <Icon size={18} className="flex-shrink-0" />
+                  {/* 文字默认 max-w-0 隐藏；hover 展开到自然宽度 */}
                   <span
                     className={
-                      'absolute left-full ml-3 px-2.5 py-1 rounded-md ' +
-                      'bg-card border border-line text-xs text-fg-primary whitespace-nowrap ' +
-                      'opacity-0 -translate-x-1 pointer-events-none shadow-md ' +
-                      'group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200'
+                      'inline-block overflow-hidden whitespace-nowrap text-sm ' +
+                      'max-w-0 ml-0 group-hover:max-w-[160px] group-hover:ml-2 ' +
+                      'opacity-0 group-hover:opacity-100 ' +
+                      'transition-[max-width,margin-left,opacity] duration-300 ease-[cubic-bezier(0.22,0.9,0.3,1)]'
                     }
                   >
                     {t(`nav.${item.key}`)}
@@ -215,7 +211,7 @@ export default function Navbar() {
       <div className="hidden max-[900px]:flex flex-col sticky top-8 mx-4 gap-5 items-end z-[99]">
         <div className="flex flex-col items-end gap-2 pb-1.5 border-b border-dashed border-line mb-0.5">
           <button
-            onClick={toggleTheme}
+            onClick={(e) => toggleTheme({ clientX: e.clientX, clientY: e.clientY })}
             title={themeTitle}
             aria-label={themeTitle}
             className="flex items-center justify-center gap-1 bg-card border border-line rounded-[20px] px-3 py-2 shadow-sm text-fg-secondary text-xs hover:text-accent hover:border-accent transition-colors"

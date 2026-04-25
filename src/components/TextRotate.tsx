@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import type { LocaleText } from '../data/types'
-import { pickLocale } from '../data/types'
-import { currentLocale } from '../i18n'
-import { useTranslation } from 'react-i18next'
+import { useLocale } from '../hooks/useLocale'
 
 /**
- * Fancy 系列之二 —— 文本轮播。
- * 每 interval ms 换一条，走 popLayout 使容器不跳动。
- * 用户 hover 时暂停轮播，方便细看。
+ * Fancy 系列 —— 文本轮播。
+ * 每 interval ms 换一条；hover 时暂停。popLayout 让容器不跳动。
  */
 export function TextRotate({
   items,
@@ -21,8 +18,7 @@ export function TextRotate({
 }) {
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
-  useTranslation()
-  const locale = currentLocale()
+  const { L } = useLocale()
 
   useEffect(() => {
     if (paused || items.length <= 1) return
@@ -32,7 +28,6 @@ export function TextRotate({
     return () => clearInterval(tid)
   }, [items.length, interval, paused])
 
-  // reduced-motion：直接显示当前项，不做切换动画
   const reduced =
     typeof window !== 'undefined' &&
     window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
@@ -52,7 +47,7 @@ export function TextRotate({
           transition={{ duration: 0.3, ease: [0.22, 0.9, 0.3, 1] }}
           className="inline-block font-medium text-accent whitespace-nowrap"
         >
-          {pickLocale(items[index], locale)}
+          {L(items[index])}
         </motion.span>
       </AnimatePresence>
     </span>

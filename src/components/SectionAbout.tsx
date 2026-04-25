@@ -1,48 +1,25 @@
 import { useTranslation } from 'react-i18next'
+import { Mail, MapPin } from 'lucide-react'
 import { aboutIntro } from '../data/aboutIntro'
 import { interestsRotator } from '../data/interests'
 import { profile } from '../data/profile'
-import { pickLocale } from '../data/types'
-import { currentLocale } from '../i18n'
-import { MediaBetweenText } from './MediaBetweenText'
+import { useLocale } from '../hooks/useLocale'
 import { TextRotate } from './TextRotate'
-import type { ReactNode } from 'react'
+import { RichText } from './RichText'
+import { Letter3DSwap } from './Letter3DSwap'
+import { GithubIcon } from './icons'
 
 /**
- * About Section（liubruce 风格的 Hero + Bio 合并）：
- *   - 顶部：头像（圆形）+ 姓名 + 角色 / 机构
- *   - 标题问候：about.title
- *   - 正文：把 "...[id]..." 切成文字段 + MBT 组件；**文字** 会渲染成 <b>
- *   - 底部一行：Interests: [Text Rotate]
+ * About Section（liubruce 风的 Hero + Bio 合并）：
+ *   头像 → 姓名 → 角色/机构 → 联系信息 → 问候 → 含 MBT 的正文 → Interests 轮播
  */
-
-function renderBoldInline(s: string): ReactNode[] {
-  const out: ReactNode[] = []
-  const re = /\*\*(.*?)\*\*/g
-  let last = 0
-  let m: RegExpExecArray | null
-  let key = 0
-  while ((m = re.exec(s)) !== null) {
-    if (m.index > last) out.push(<span key={key++}>{s.slice(last, m.index)}</span>)
-    out.push(<b key={key++}>{m[1]}</b>)
-    last = m.index + m[0].length
-  }
-  if (last < s.length) out.push(<span key={key++}>{s.slice(last)}</span>)
-  return out
-}
-
 export default function SectionAbout() {
   const { t } = useTranslation()
-  const locale = currentLocale()
-  const L = (txt: { zh: string; en: string }) => pickLocale(txt, locale)
-  const intro = L(aboutIntro)
-
-  // 按 [xxx] 切分；偶数下标 = 文字段，奇数下标 = id
-  const segments = intro.split(/\[(\w+)\]/g)
+  const { L } = useLocale()
 
   return (
     <section id="about" className="mb-14">
-      {/* Hero：头像 + 姓名 + 角色 */}
+      {/* Hero */}
       <header className="mb-8">
         <div className="w-20 h-20 rounded-full overflow-hidden bg-hover mb-5 ring-1 ring-line">
           <img
@@ -55,32 +32,50 @@ export default function SectionAbout() {
           />
         </div>
         <h1 className="text-[1.65rem] font-bold text-fg-primary leading-tight m-0 min-h-[2.1rem]">
-          {L(profile.name)}
+          <Letter3DSwap text={L(profile.name)} />
         </h1>
         <p className="text-[0.95rem] text-fg-secondary mt-1.5 m-0 min-h-[1.4rem]">
-          {L(profile.role)} · {L(profile.affiliation)}
+          <Letter3DSwap text={`${L(profile.role)} · ${L(profile.affiliation)}`} />
         </p>
+
+        <div className="mt-3.5 flex flex-col gap-1.5 text-[0.85rem] text-fg-secondary">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <a
+              href={`mailto:${profile.email}`}
+              className="inline-flex items-center gap-1.5 hover:text-accent transition-colors"
+            >
+              <Mail size={14} />
+              {profile.email}
+            </a>
+            <a
+              href={profile.social.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 hover:text-accent transition-colors"
+            >
+              <GithubIcon size={14} />
+              GitHub
+            </a>
+          </div>
+          <div className="inline-flex items-center gap-1.5 text-fg-tertiary">
+            <MapPin size={14} />
+            <span>{L(profile.location)}</span>
+          </div>
+        </div>
       </header>
 
-      {/* 问候标题 */}
       <h2 className="text-[1.25rem] font-semibold text-fg-primary mb-3 min-h-[1.8rem]">
-        {t('about.title')}
+        <Letter3DSwap text={t('about.title')} />
       </h2>
 
-      {/* 正文 */}
       <p className="text-[1.02rem] leading-[1.75] text-fg-primary mb-5 min-h-[5.1em]">
-        {segments.map((seg, i) =>
-          i % 2 === 0 ? (
-            <span key={i}>{renderBoldInline(seg)}</span>
-          ) : (
-            <MediaBetweenText key={i} id={seg} />
-          ),
-        )}
+        <RichText text={L(aboutIntro)} />
       </p>
 
-      {/* Interests 轮播 */}
       <div className="flex items-baseline gap-2 flex-wrap text-[0.95rem]">
-        <span className="text-fg-secondary">{t('about.interestsLabel')}:</span>
+        <span className="text-fg-secondary">
+          <Letter3DSwap text={`${t('about.interestsLabel')}:`} />
+        </span>
         <TextRotate items={interestsRotator} />
       </div>
     </section>

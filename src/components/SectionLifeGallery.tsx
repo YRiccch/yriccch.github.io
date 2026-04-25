@@ -2,8 +2,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'motion/react'
 import { GALLERY_TAGS, GALLERY_CAPTIONS } from '../data/gallery'
-import { pickLocale } from '../data/types'
-import { currentLocale } from '../i18n'
+import { useLocale } from '../hooks/useLocale'
+import { Letter3DSwap } from './Letter3DSwap'
 
 /*
  * 使用说明：
@@ -44,7 +44,7 @@ allItems.sort((a, b) => {
 
 export default function SectionLifeGallery() {
   const { t } = useTranslation()
-  const locale = currentLocale()
+  const { L } = useLocale()
   const [activeTag, setActiveTag] = useState<string>('all')
   const [lightbox, setLightbox] = useState<Item | null>(null)
 
@@ -65,13 +65,13 @@ export default function SectionLifeGallery() {
   const tagLabelFor = (tagKey: string) => {
     if (tagKey === 'all') return t('life.all')
     const found = GALLERY_TAGS.find((t) => t.key === tagKey)
-    return found ? pickLocale(found.label, locale) : tagKey
+    return found ? L(found.label) : tagKey
   }
 
   const captionOf = (item: Item | null) => {
     if (!item) return ''
     const c = GALLERY_CAPTIONS[item.key]
-    return c ? pickLocale(c, locale) : ''
+    return c ? L(c) : ''
   }
 
   // ESC 关闭 lightbox
@@ -92,7 +92,7 @@ export default function SectionLifeGallery() {
         <span role="img" aria-label="life">
           🖼️
         </span>
-        {t('life.title')}
+        <Letter3DSwap text={t('life.title')} />
       </h2>
       <p className="text-[0.95rem] text-fg-tertiary mb-5 min-h-[1.5em]">
         {t('life.desc')}
@@ -139,7 +139,7 @@ export default function SectionLifeGallery() {
         <div className="columns-2 min-[900px]:columns-3 min-[1400px]:columns-4 gap-3">
           {visible.map((item) => {
             const tagInfo = GALLERY_TAGS.find((t) => t.key === item.tag)
-            const tagLabel = tagInfo ? pickLocale(tagInfo.label, locale) : item.tag
+            const tagLabel = tagInfo ? L(tagInfo.label) : item.tag
             return (
               <figure
                 key={item.key}

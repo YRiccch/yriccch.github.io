@@ -17,7 +17,6 @@ export default {
   },
   about: {
     title: '你好，我是虞瑞麒。',
-    researchTitle: '研究方向',
     interestsLabel: '兴趣',
   },
   timeline: {

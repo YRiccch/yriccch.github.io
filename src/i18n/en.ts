@@ -19,7 +19,6 @@ export default {
   },
   about: {
     title: "Hi, I'm Ruiqi.",
-    researchTitle: 'Research Interests',
     interestsLabel: 'Interests',
   },
   timeline: {

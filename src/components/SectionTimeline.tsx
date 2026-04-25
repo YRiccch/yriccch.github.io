@@ -1,45 +1,58 @@
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { timeline } from '../data/timeline'
-import { pickLocale } from '../data/types'
-import { currentLocale } from '../i18n'
+import type { TimelineItem } from '../data/timeline'
+import { useLocale } from '../hooks/useLocale'
+import { RichText } from './RichText'
+import { Letter3DSwap } from './Letter3DSwap'
 
 /**
- * 时间线 —— 方案 B"大年份编辑风"。
- * 左栏大号年份 / 右栏正文，正文顶边线在 hover 时变为 accent 色。
+ * Timeline —— 大年份编辑风。同年事件挂同一年份下，年份只显示一次。
+ * 关键字（学校 / 教授 / 实验室）通过 [id] 接入 MediaBetweenText。
  */
 
-// 注意：这里用 dangerouslySetInnerHTML 因为 body 含 <b> 标签。
-// 内容全部来自 src/data/timeline.ts（用户可控），没有 XSS 风险。
-function renderBold(s: string) {
-  return { __html: s.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>') }
+type YearGroup = { year: string; entries: TimelineItem[] }
+
+function groupByYear(items: TimelineItem[]): YearGroup[] {
+  const map = new Map<string, TimelineItem[]>()
+  for (const item of items) {
+    if (!map.has(item.year)) map.set(item.year, [])
+    map.get(item.year)!.push(item)
+  }
+  return Array.from(map.entries()).map(([year, entries]) => ({ year, entries }))
 }
 
 export default function SectionTimeline() {
   const { t } = useTranslation()
-  const locale = currentLocale()
+  const { L } = useLocale()
+  const groups = useMemo(() => groupByYear(timeline), [])
 
   return (
     <section id="timeline" className="mb-12">
       <h2 className="text-2xl font-bold text-fg-primary mb-8 flex items-center gap-2">
-        <span role="img" aria-label="timeline">
-          ⌛
-        </span>
-        {t('timeline.title')}
+        <span role="img" aria-label="timeline">⌛</span>
+        <Letter3DSwap text={t('timeline.title')} />
       </h2>
 
       <div className="flex flex-col gap-7">
-        {timeline.map((item) => (
+        {groups.map((group) => (
           <article
-            key={item.id}
-            className="group grid grid-cols-[110px_1fr] gap-7 items-baseline transition-transform duration-300 hover:translate-x-0.5 max-[600px]:grid-cols-[76px_1fr] max-[600px]:gap-4"
+            key={group.year}
+            className="grid grid-cols-[110px_1fr] gap-7 items-baseline max-[600px]:grid-cols-[76px_1fr] max-[600px]:gap-4"
           >
             <div className="text-[2.4rem] font-medium text-accent leading-none tabular-nums select-none max-[600px]:text-[1.85rem]">
-              {item.year}
+              {group.year}
             </div>
-            <div
-              className="pt-2 border-t border-line group-hover:border-accent transition-colors duration-300 text-fg-primary text-base leading-[1.65] max-[600px]:text-[0.95rem]"
-              dangerouslySetInnerHTML={renderBold(pickLocale(item.body, locale))}
-            />
+            <div className="flex flex-col gap-3.5">
+              {group.entries.map((entry) => (
+                <div
+                  key={entry.id}
+                  className="pt-2 border-t border-line text-fg-primary text-base leading-[1.65] max-[600px]:text-[0.95rem]"
+                >
+                  <RichText text={L(entry.body)} />
+                </div>
+              ))}
+            </div>
           </article>
         ))}
       </div>

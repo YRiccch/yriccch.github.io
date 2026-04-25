@@ -69,9 +69,8 @@ export default function Navbar() {
     }
     const el = document.getElementById(id)
     if (!el) return
-    const navbar = document.querySelector('.desktop-nav') as HTMLElement | null
-    const navH = navbar?.offsetHeight ?? 0
-    const top = el.getBoundingClientRect().top + window.pageYOffset - navH - 20
+    // 桌面没有顶栏，只留 20px 呼吸空间
+    const top = el.getBoundingClientRect().top + window.pageYOffset - 20
     window.scrollTo({ top, behavior: 'smooth' })
   }
 
@@ -132,69 +131,84 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="z-[100] sticky top-0 max-[900px]:static">
-      {/* ============ Desktop ============ */}
+    <nav>
+      {/* ============ Desktop（在内容左侧留白处浮动的胶囊导航）============ */}
       <div
         className={
-          'desktop-nav flex justify-between items-center py-4 mb-8 border-b border-line ' +
-          'bg-navbar backdrop-blur-[5px] transition-shadow duration-300 ' +
-          'max-[900px]:hidden ' +
-          (showBackTop ? 'shadow-[0_2px_12px_rgba(0,0,0,0.05)]' : '')
+          'desktop-nav fixed top-1/2 -translate-y-1/2 z-50 ' +
+          'flex flex-col items-center gap-1 py-3 px-1.5 ' +
+          'bg-card/70 border border-line rounded-2xl shadow-sm backdrop-blur-md ' +
+          'max-[900px]:hidden'
         }
+        style={{
+          // 永远在 max-w-640 内容列左边 100px 附近；窄屏 clamp 到 16px
+          left: 'max(16px, calc((100vw - 640px) / 2 - 100px))',
+        }}
       >
-        <ul className="flex gap-5 m-0 p-0 list-none">
+        {/* 工具区：主题 + 语言 */}
+        <button
+          onClick={toggleTheme}
+          title={themeTitle}
+          aria-label={themeTitle}
+          className="flex items-center justify-center w-9 h-9 rounded-xl text-fg-secondary hover:bg-hover hover:text-fg-primary transition-colors active:scale-95"
+        >
+          {isDark ? <Sun size={16} /> : <Moon size={16} />}
+        </button>
+        <button
+          onClick={toggleLanguage}
+          title={t('actions.switchLanguage')}
+          aria-label={t('actions.switchLanguage')}
+          className="flex items-center justify-center w-9 h-9 rounded-xl text-fg-secondary hover:bg-hover hover:text-fg-primary transition-colors active:scale-95"
+        >
+          <span className="text-[11px] font-semibold tracking-tight">
+            {i18n.resolvedLanguage === 'en' ? '中' : 'En'}
+          </span>
+        </button>
+
+        {/* 分隔线 */}
+        <div className="w-5 h-px bg-line my-1.5" />
+
+        {/* 垂直导航 —— 仅图标，hover 时右侧浮出文字 tooltip */}
+        <ul className="flex flex-col gap-0.5 m-0 p-0 list-none">
           {NAV_ITEMS.map((item) => {
+            const Icon = item.icon
             const active = activeId === item.id
             return (
-              <li key={item.key}>
+              <li key={item.key} className="relative">
                 <a
                   href={item.kind === 'route' ? `#${item.path}` : '#'}
                   onClick={(e) => {
                     e.preventDefault()
                     navigateTo(item)
                   }}
+                  aria-current={active ? 'page' : undefined}
+                  aria-label={t(`nav.${item.key}`)}
                   className={
-                    'inline-block min-w-[78px] text-center px-1 py-2 text-[0.95rem] font-medium ' +
-                    'transition-colors duration-300 ' +
-                    (active ? 'text-accent' : 'text-fg-secondary hover:text-accent')
+                    'group relative flex items-center justify-center w-9 h-9 rounded-xl ' +
+                    'transition-colors duration-200 ' +
+                    (active
+                      ? 'text-accent bg-hover'
+                      : 'text-fg-secondary hover:text-accent hover:bg-hover/60')
                   }
                 >
-                  <span className="relative inline-block pb-0.5">
+                  <Icon size={18} />
+
+                  {/* hover tooltip：从右侧浮出 */}
+                  <span
+                    className={
+                      'absolute left-full ml-3 px-2.5 py-1 rounded-md ' +
+                      'bg-card border border-line text-xs text-fg-primary whitespace-nowrap ' +
+                      'opacity-0 -translate-x-1 pointer-events-none shadow-md ' +
+                      'group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200'
+                    }
+                  >
                     {t(`nav.${item.key}`)}
-                    <span
-                      className={
-                        'absolute left-0 bottom-0 h-[2px] bg-accent transition-[width] duration-300 ease-out ' +
-                        (active ? 'w-full' : 'w-0 group-hover:w-full')
-                      }
-                    />
                   </span>
                 </a>
               </li>
             )
           })}
         </ul>
-
-        <div className="flex items-center gap-4">
-          <button
-            onClick={toggleTheme}
-            title={themeTitle}
-            aria-label={themeTitle}
-            className="flex items-center justify-center p-1.5 border border-line rounded-md text-fg-secondary hover:bg-hover hover:text-fg-primary transition-colors active:scale-95"
-          >
-            {isDark ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
-          <button
-            onClick={toggleLanguage}
-            title={t('actions.switchLanguage')}
-            aria-label={t('actions.switchLanguage')}
-            className="flex items-center gap-2 px-3 py-1.5 border border-line rounded-md text-fg-secondary hover:bg-hover hover:text-fg-primary text-[0.9rem] transition-colors active:scale-95"
-          >
-            <Languages size={18} />
-            <span className="min-w-[52px] inline-block text-center">
-              {i18n.resolvedLanguage === 'en' ? '中文' : 'English'}
-            </span>
-          </button>
-        </div>
       </div>
 
       {/* ============ Mobile ============ */}

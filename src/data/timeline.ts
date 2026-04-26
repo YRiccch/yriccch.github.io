@@ -2,11 +2,8 @@ import type { LocaleText } from './types'
 
 /**
  * 时间线条目。
- * - year：左栏大号年份（视觉锚点）
- * - body：右侧正文，支持两种行内标记：
- *     [id]    → 渲染成 <MediaBetweenText id={id} />（悬停浮图 / 视频，可外链）
- *     **xx**  → 渲染成 <b>xx</b>
- *   关键词配置在 src/data/mediaKeywords.ts
+ * - year：左栏大号年份
+ * - body：右侧正文，支持 [id]（媒体关键词）和 **text**（粗体）两种行内标记
  * - 添加新条目时放在数组最上方（时间倒序）
  */
 export type TimelineItem = {
@@ -28,8 +25,8 @@ export const timeline: TimelineItem[] = [
     id: 'masterStart',
     year: '2024',
     body: {
-      zh: '开始在 [hdu] 攻读硕士学位。',
-      en: "Started my Master's program at [hdu].",
+      zh: '开始在 [hdu] 攻读 [cs] 硕士学位。',
+      en: "Started my Master's program in [cs] at [hdu].",
     },
   },
   {

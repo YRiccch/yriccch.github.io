@@ -2,39 +2,42 @@ import { Fragment, type ReactNode } from 'react'
 import { MediaBetweenText } from './MediaBetweenText'
 
 /**
- * 通用富文本渲染：
- *   - "[id]" 占位 → <MediaBetweenText id={id} />
- *   - "**xx**"      → <b>xx</b>
- *
- * 同时被 SectionAbout / SectionTimeline 使用，方便保持一致的 markup 风格。
+ * 通用富文本渲染。三种行内标记按出现顺序解析：
+ *   [id]      → <MediaBetweenText id={id} />   悬停浮图、可放大、可外链
+ *   {text}    → 加粗 + 静态虚线下划线（仅装饰，无交互）
+ *   **text**  → <b>text</b>                    普通强调
  */
-export function RichText({ text }: { text: string }) {
-  // 先按 [id] 切；偶数下标 = 普通文字（再处理 bold），奇数下标 = mediaKeyword id
-  const segments = text.split(/\[(\w+)\]/g)
-  return (
-    <>
-      {segments.map((seg, i) =>
-        i % 2 === 0 ? (
-          <Fragment key={i}>{renderBold(seg)}</Fragment>
-        ) : (
-          <MediaBetweenText key={i} id={seg} />
-        ),
-      )}
-    </>
-  )
-}
+const TOKEN_RE = /\[(\w+)\]|\{([^{}]+)\}|\*\*([^*]+)\*\*/g
 
-function renderBold(s: string): ReactNode[] {
+export function RichText({ text }: { text: string }) {
   const out: ReactNode[] = []
-  const re = /\*\*(.*?)\*\*/g
   let last = 0
   let m: RegExpExecArray | null
   let key = 0
-  while ((m = re.exec(s)) !== null) {
-    if (m.index > last) out.push(<span key={key++}>{s.slice(last, m.index)}</span>)
-    out.push(<b key={key++}>{m[1]}</b>)
+
+  while ((m = TOKEN_RE.exec(text)) !== null) {
+    if (m.index > last) {
+      out.push(<Fragment key={key++}>{text.slice(last, m.index)}</Fragment>)
+    }
+    if (m[1] !== undefined) {
+      out.push(<MediaBetweenText key={key++} id={m[1]} />)
+    } else if (m[2] !== undefined) {
+      out.push(
+        <span
+          key={key++}
+          className="font-medium border-b border-dashed border-fg-tertiary/50"
+        >
+          {m[2]}
+        </span>,
+      )
+    } else if (m[3] !== undefined) {
+      out.push(<b key={key++}>{m[3]}</b>)
+    }
     last = m.index + m[0].length
   }
-  if (last < s.length) out.push(<span key={key++}>{s.slice(last)}</span>)
-  return out
+  if (last < text.length) {
+    out.push(<Fragment key={key++}>{text.slice(last)}</Fragment>)
+  }
+
+  return <>{out}</>
 }

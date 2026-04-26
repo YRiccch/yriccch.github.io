@@ -6,12 +6,10 @@ import type { LocaleText } from './types'
  * 字段：
  *   - id        SSoT，正文里用 [id] 占位
  *   - label     关键词的中英显示文字
- *   - media     悬停时浮出的媒体 URL（图片放 public/mbt/，视频放 public/mbt/）
+ *   - media     悬停时浮出的媒体 URL（图片放 public/mbt/，视频也是）
  *   - alt       无障碍描述
- *   - type?     'image'（默认）| 'video'。视频会用 <video autoplay muted loop> 播放
- *   - link?     可选外链。带 link 的关键词渲染成 <a target="_blank">，点击新标签打开
- *
- * 图片 / 视频先放占位，未来您把真实文件按同名覆盖即可。
+ *   - type?     'image'（默认）| 'video'
+ *   - link?     可选外链。带 link 的关键词渲染成 <a target="_blank">
  */
 export type MediaKeyword = {
   id: string
@@ -65,23 +63,21 @@ export const mediaKeywords: MediaKeyword[] = [
     label: { zh: 'VAI 实验室', en: 'VAI Lab' },
     media: '/mbt/vai.jpg',
     alt: { zh: 'VAI 实验室', en: 'VAI Lab' },
-    // 有官网就在这里加 link，例如 link: 'https://vai-lab.example/'
+    link: 'http://124.220.224.64:5000',
   },
   {
     id: 'zhou',
     label: { zh: '周志光教授', en: 'Prof. Zhiguang Zhou' },
     media: '/mbt/zhou.jpg',
     alt: { zh: '周志光教授', en: 'Prof. Zhiguang Zhou' },
-    // 有教授个人主页就在这里加 link
+    link: 'https://hdvis.net',
   },
-  // 视频示例（未启用）：把 type 改成 'video' 并提供 mp4 / webm 即可
-  // {
-  //   id: 'demo-video',
-  //   label: { zh: '演示视频', en: 'Demo Video' },
-  //   media: '/mbt/demo.mp4',
-  //   type: 'video',
-  //   alt: { zh: '演示视频', en: 'Demo video' },
-  // },
+  {
+    id: 'cs',
+    label: { zh: '计算机科学与技术', en: 'Computer Science' },
+    media: '/mbt/cs.jpg',
+    alt: { zh: '计算机科学与技术', en: 'Computer Science' },
+  },
 ]
 
 /** 方便根据 id 查 media 项 */

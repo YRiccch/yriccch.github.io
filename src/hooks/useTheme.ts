@@ -61,7 +61,6 @@ export function useTheme() {
       // 切到深色时，让 view-transition-old(root) 处于顶层（CSS 控制 z-index）
       if (goingToDark) html.classList.add('vt-going-dark')
 
-      // @ts-expect-error: View Transitions API 类型在部分 TS 版本里还不全
       const transition = document.startViewTransition(() => {
         applyTheme()
       })

@@ -188,7 +188,7 @@ export default function Navbar() {
                       : 'text-fg-tertiary hover:text-accent')
                   }
                 >
-                  <Icon size={18} className="flex-shrink-0" />
+                  <Icon size={18} />
                   {/* 文字默认 max-w-0 隐藏；hover 展开到自然宽度 */}
                   <span
                     className={

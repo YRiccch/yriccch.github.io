@@ -14,6 +14,9 @@ export type Publication = {
   /** 允许 <b> 标签来高亮本人姓名 */
   authorsHtml: string
   venue: string
+  /** 缩略图路径（可选）；约定放在 public/pubs/<id>.png。
+   *  没有 thumbnail 字段时，组件按 `/pubs/<id>.png` 自动找；图片缺失时显示占位 */
+  thumbnail?: string
   links: PubLink[]
 }
 

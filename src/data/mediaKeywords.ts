@@ -29,9 +29,10 @@ export const mediaKeywords: MediaKeyword[] = [
   },
   {
     id: 'ntu',
-    label: { zh: '新加坡南洋理工大学', en: 'Nanyang Technological University' },
+    // 把 CCDS（计算与数据科学学院）和 NTU 包在同一个关键词里，悬停浮一张图
+    label: { zh: '南洋理工大学计算与数据科学学院', en: 'CCDS, Nanyang Technological University' },
     media: '/mbt/ntu.jpg',
-    alt: { zh: '南洋理工大学校园', en: 'NTU campus' },
+    alt: { zh: '南洋理工大学计算与数据科学学院（CCDS）', en: 'CCDS, NTU campus' },
   },
   {
     id: 'dataviz',
@@ -47,9 +48,9 @@ export const mediaKeywords: MediaKeyword[] = [
   },
   {
     id: 'wang',
-    label: { zh: 'Wang 教授', en: 'Prof. Wang' },
+    label: { zh: '王勇教授', en: 'Prof. Wang' },
     media: '/mbt/wang.jpg',
-    alt: { zh: 'Wang 教授', en: 'Prof. Yong Wang' },
+    alt: { zh: '王勇教授', en: 'Prof. Yong Wang' },
     link: 'https://yong-wang.org',
   },
   {
@@ -67,8 +68,8 @@ export const mediaKeywords: MediaKeyword[] = [
   },
   {
     id: 'zhou',
-    label: { zh: '周志光教授', en: 'Prof. Zhiguang Zhou' },
-    media: '/mbt/zhou.jpg',
+    label: { zh: '周志光教授', en: 'Prof. Zhou' },
+    media: '/mbt/zhou.png',
     alt: { zh: '周志光教授', en: 'Prof. Zhiguang Zhou' },
     link: 'https://hdvis.net',
   },

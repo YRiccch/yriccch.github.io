@@ -10,8 +10,10 @@ import { useLocale } from '../hooks/useLocale'
  *
  * 视觉效果：
  *   - 默认：仅文字（accent 色），无下划线
- *   - Hover：accent 色圆角矩形从左滑出填满文字背景（Underline-to-Background），文字反白
- *   - 同时上方浮出预览小图
+ *   - Hover：accent 圆角矩形从左滑出填满文字背景（Underline-to-Background），文字反白
+ *   - 同时上方浮出预览：高度锚定 200px，宽度按图片原始比例自动计算
+ *     · 容器 w-fit 让它 shrink-to-fit
+ *     · 图片 max-w-none 解开 Tailwind preflight 默认的 max-width: 100% 限制
  *   - 单击：放大 Lightbox（无 link）；或外链跳转（有 link）
  */
 export function MediaBetweenText({ id }: { id: string }) {
@@ -21,7 +23,6 @@ export function MediaBetweenText({ id }: { id: string }) {
   const { L } = useLocale()
   const media = findMedia(id)
 
-  // Esc 关闭 Lightbox（hooks 必须在所有 return 之前调用）
   useEffect(() => {
     if (!zoomed) return
     const onKey = (e: KeyboardEvent) => {
@@ -38,7 +39,6 @@ export function MediaBetweenText({ id }: { id: string }) {
   const labelText = L(media.label)
   const altText = L(media.alt)
 
-  // 触发器外层（统一用普通 pointer 手型）
   const triggerClass =
     'group relative isolate inline-block font-medium align-baseline cursor-pointer'
 
@@ -49,7 +49,6 @@ export function MediaBetweenText({ id }: { id: string }) {
     onBlur: () => setHover(false),
   }
 
-  // Underline-to-Background：默认无装饰；hover 时一个 accent 圆角矩形从左滑出填满
   const innerVisual = (
     <>
       <span
@@ -62,17 +61,17 @@ export function MediaBetweenText({ id }: { id: string }) {
     </>
   )
 
-  // 悬停预览（小图，跟着关键词）
+  // 悬停预览：高度锁定 200px，宽度由图片自然比例决定
   const popup = (
     <AnimatePresence>
       {hover && !zoomed && (
         <motion.span
-          initial={{ opacity: 0, y: 10, scale: 0.85 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 10, scale: 0.85 }}
+          initial={{ opacity: 0, y: 10, scale: 0.85, x: '-50%' }}
+          animate={{ opacity: 1, y: 0, scale: 1, x: '-50%' }}
+          exit={{ opacity: 0, y: 10, scale: 0.85, x: '-50%' }}
           transition={{ duration: 0.22, ease: [0.22, 0.9, 0.3, 1] }}
-          className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 rounded-xl overflow-hidden shadow-2xl pointer-events-none z-50 bg-card"
-          style={{ width: 200 }}
+          className="absolute left-1/2 bottom-full mb-2 rounded-xl overflow-hidden shadow-2xl pointer-events-none z-50 bg-card w-fit"
+          style={{ height: 130 }}
         >
           {!broken ? (
             isVideo ? (
@@ -82,19 +81,19 @@ export function MediaBetweenText({ id }: { id: string }) {
                 muted
                 loop
                 playsInline
-                className="block w-full h-auto"
+                className="block h-full w-auto max-w-none"
                 onError={() => setBroken(true)}
               />
             ) : (
               <img
                 src={media.media}
                 alt={altText}
-                className="block w-full h-auto"
+                className="block h-full w-auto max-w-none"
                 onError={() => setBroken(true)}
               />
             )
           ) : (
-            <span className="block w-full min-h-[120px] flex items-center justify-center text-xs text-fg-tertiary p-3 text-center">
+            <span className="block h-full min-w-[160px] flex items-center justify-center text-xs text-fg-tertiary p-3 text-center">
               {altText}
               <br />
               <span className="text-[10px] opacity-60">
@@ -107,7 +106,6 @@ export function MediaBetweenText({ id }: { id: string }) {
     </AnimatePresence>
   )
 
-  // Lightbox（portal 到 body 避开 transform 容器）
   const lightbox =
     typeof document !== 'undefined'
       ? createPortal(
@@ -180,7 +178,6 @@ export function MediaBetweenText({ id }: { id: string }) {
         )
       : null
 
-  // 带外链 → <a>，单击跳转
   if (hasLink) {
     return (
       <>
@@ -200,7 +197,6 @@ export function MediaBetweenText({ id }: { id: string }) {
     )
   }
 
-  // 无外链 → <span>，单击放大
   return (
     <>
       <span

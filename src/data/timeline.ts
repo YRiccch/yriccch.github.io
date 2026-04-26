@@ -17,24 +17,24 @@ export const timeline: TimelineItem[] = [
     id: 'ntuVisit',
     year: '2026',
     body: {
-      zh: '在 [ntu] 进行为期三个月的访问研究，导师：[wang]。',
-      en: 'Three-month visiting research stay at [ntu], with [wang].',
+      zh: '在 [ntu] 进行为期三个月的访问研究，师从 [wang]。',
+      en: 'Three-month visiting research stay at [ntu], mentored by [wang].',
     },
   },
   {
     id: 'masterStart',
     year: '2024',
     body: {
-      zh: '开始在 [hdu] 攻读 [cs] 硕士学位。',
-      en: "Started my Master's program in [cs] at [hdu].",
+      zh: '开始在 [hdu] 攻读**计算机科学与技术**硕士学位。',
+      en: "Started my Master's program in **Computer Science** at [hdu].",
     },
   },
   {
     id: 'bachelor',
     year: '2023',
     body: {
-      zh: '在 [hdu] 获得 [dmt] 学士学位。',
-      en: "Earned my Bachelor's degree in [dmt] at [hdu].",
+      zh: '在 [hdu] 获得**数字媒体技术**学士学位。',
+      en: "Earned my Bachelor's degree in **Digital Media Technology** at [hdu].",
     },
   },
 ]

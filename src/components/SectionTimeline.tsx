@@ -29,8 +29,7 @@ export default function SectionTimeline() {
 
   return (
     <section id="timeline" className="mb-12">
-      <h2 className="text-2xl font-bold text-fg-primary mb-8 flex items-center gap-2">
-        <span role="img" aria-label="timeline">⌛</span>
+      <h2 className="text-2xl font-bold text-fg-primary mb-8">
         <Letter3DSwap text={t('timeline.title')} />
       </h2>
 

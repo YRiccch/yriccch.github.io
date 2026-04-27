@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
 import {
   Languages, Sun, Moon,
-  Home, User, Newspaper, BookOpen, Image as ImageIcon, ArrowUp,
+  User, Newspaper, BookOpen, Image as ImageIcon, ArrowUp,
 } from 'lucide-react'
 import { useTheme } from '../hooks/useTheme'
 import { Letter3DSwap } from './Letter3DSwap'
@@ -18,7 +18,6 @@ type NavItem = {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { key: 'home', id: 'home', icon: Home, kind: 'section' },
   { key: 'about', id: 'about', icon: User, kind: 'section' },
   { key: 'timeline', id: 'timeline', icon: Newspaper, kind: 'section' },
   { key: 'publications', id: 'publications', icon: BookOpen, kind: 'section' },
@@ -31,7 +30,7 @@ export default function Navbar() {
   const location = useLocation()
   const navigate = useNavigate()
 
-  const [activeId, setActiveId] = useState<string>('home')
+  const [activeId, setActiveId] = useState<string>('about')
   const [showBackTop, setShowBackTop] = useState(false)
   const observerRef = useRef<IntersectionObserver | null>(null)
 
@@ -64,10 +63,6 @@ export default function Navbar() {
   }
 
   const scrollToSection = (id: string) => {
-    if (id === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-      return
-    }
     const el = document.getElementById(id)
     if (!el) return
     // 桌面没有顶栏，只留 20px 呼吸空间
@@ -82,15 +77,15 @@ export default function Navbar() {
       observerRef.current = null
     }
     if (!onHomeRoute) {
-      setActiveId(location.pathname === '/life' ? 'life' : 'home')
+      setActiveId(location.pathname === '/life' ? 'life' : 'about')
       return
     }
-    setActiveId('home')
+    setActiveId('about')
 
     // 延迟到 DOM 就绪
     const setup = () => {
       const sections = NAV_ITEMS
-        .filter((n) => n.kind === 'section' && n.id !== 'home')
+        .filter((n) => n.kind === 'section')
         .map((n) => document.getElementById(n.id))
         .filter((e): e is HTMLElement => !!e)
 
@@ -115,11 +110,11 @@ export default function Navbar() {
     }
   }, [onHomeRoute, location.pathname])
 
-  /* ------- 滚动监听：是否显示"回到顶部"；接近顶部时 active = home ------- */
+  /* ------- 滚动监听：是否显示"回到顶部"；接近顶部时 active = about ------- */
   useEffect(() => {
     const onScroll = () => {
       setShowBackTop(window.scrollY > 480)
-      if (onHomeRoute && window.scrollY < 120) setActiveId('home')
+      if (onHomeRoute && window.scrollY < 120) setActiveId('about')
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     onScroll()

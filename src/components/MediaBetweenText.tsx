@@ -61,7 +61,7 @@ export function MediaBetweenText({ id }: { id: string }) {
     </>
   )
 
-  // 悬停预览：高度锁定 200px，宽度由图片自然比例决定
+  // 悬停预览：高度锁定 130px，宽度由图片自然比例决定
   const popup = (
     <AnimatePresence>
       {hover && !zoomed && (

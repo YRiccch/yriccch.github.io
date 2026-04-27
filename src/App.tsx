@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import Navbar from './components/Navbar'
 import { profile } from './data/profile'
 import { useLocale } from './hooks/useLocale'
+import { LocaleSwap } from './components/LocaleSwap'
 
 /**
  * 布局壳：单列 max-w-640，Navbar 桌面端 fixed 内容右上角，移动端浮右侧。
@@ -22,7 +23,9 @@ export default function App() {
 
             <footer className="mt-16 pt-8 border-t border-line">
               <p className="text-xs text-fg-quaternary m-0">
-                &copy; {new Date().getFullYear()} {L(profile.name)}. {t('footer.rights')}
+                <LocaleSwap>
+                  &copy; {new Date().getFullYear()} {L(profile.name)}. {t('footer.rights')}
+                </LocaleSwap>
               </p>
             </footer>
           </main>

@@ -7,6 +7,7 @@ import { useLocale } from '../hooks/useLocale'
 import { TextRotate } from './TextRotate'
 import { RichText } from './RichText'
 import { Letter3DSwap } from './Letter3DSwap'
+import { LocaleSwap } from './LocaleSwap'
 import { GithubIcon } from './icons'
 
 /**
@@ -69,7 +70,9 @@ export default function SectionAbout() {
       </h2>
 
       <p className="text-[1.02rem] leading-[1.75] text-fg-primary mb-5 min-h-[5.1em]">
-        <RichText text={L(aboutIntro)} />
+        <LocaleSwap>
+          <RichText text={L(aboutIntro)} />
+        </LocaleSwap>
       </p>
 
       <div className="flex items-baseline gap-2 flex-wrap text-[0.95rem]">

@@ -95,7 +95,7 @@ export default function SectionPubs() {
                         className="inline-flex items-center gap-1 text-xs px-2.5 py-0.5 border border-line rounded text-fg-secondary bg-card hover:border-accent hover:text-accent transition-colors active:scale-95"
                       >
                         <IconFor kind={link.kind} />
-                        {t(`pubs.links.${link.kind}`)}
+                        <Letter3DSwap text={t(`pubs.links.${link.kind}`)} />
                       </a>
                       {i < pub.links.length - 1 && (
                         <span className="text-line">|</span>

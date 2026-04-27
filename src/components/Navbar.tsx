@@ -6,6 +6,7 @@ import {
   Home, User, Newspaper, BookOpen, Image as ImageIcon, ArrowUp,
 } from 'lucide-react'
 import { useTheme } from '../hooks/useTheme'
+import { Letter3DSwap } from './Letter3DSwap'
 
 type NavKind = 'section' | 'route'
 type NavItem = {
@@ -158,7 +159,7 @@ export default function Navbar() {
           className="flex items-center justify-center w-9 h-9 rounded-md text-fg-tertiary hover:text-accent transition-colors active:scale-95"
         >
           <span className="text-[11px] font-semibold tracking-tight">
-            {i18n.resolvedLanguage === 'en' ? '中' : 'En'}
+            <Letter3DSwap text={i18n.resolvedLanguage === 'en' ? '中' : 'En'} />
           </span>
         </button>
 
@@ -198,7 +199,7 @@ export default function Navbar() {
                       'transition-[max-width,margin-left,opacity] duration-300 ease-[cubic-bezier(0.22,0.9,0.3,1)]'
                     }
                   >
-                    {t(`nav.${item.key}`)}
+                    <Letter3DSwap text={t(`nav.${item.key}`)} />
                   </span>
                 </a>
               </li>
@@ -225,7 +226,9 @@ export default function Navbar() {
             className="flex items-center justify-center gap-1 bg-card border border-line rounded-[20px] px-3 py-2 shadow-sm text-fg-secondary text-xs hover:text-accent hover:border-accent transition-colors"
           >
             <Languages size={16} />
-            <span>{i18n.resolvedLanguage === 'en' ? '中' : 'En'}</span>
+            <span>
+              <Letter3DSwap text={i18n.resolvedLanguage === 'en' ? '中' : 'En'} />
+            </span>
           </button>
         </div>
 
@@ -252,7 +255,11 @@ export default function Navbar() {
                 }
               >
                 <Icon size={18} />
-                {active && <span className="whitespace-nowrap">{t(`nav.${item.key}`)}</span>}
+                {active && (
+                  <span className="whitespace-nowrap">
+                    <Letter3DSwap text={t(`nav.${item.key}`)} />
+                  </span>
+                )}
               </a>
             )
           })}

@@ -14,10 +14,11 @@ type Theme = 'light' | 'dark'
  */
 export function useTheme() {
   const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === 'undefined') return 'light'
+    if (typeof window === 'undefined') return 'dark'
     const saved = localStorage.getItem('theme')
     if (saved === 'dark' || saved === 'light') return saved
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    // 默认深色主题；用户切换过之后 localStorage 会接管
+    return 'dark'
   })
 
   useEffect(() => {

@@ -5,6 +5,7 @@ import type { TimelineItem } from '../data/timeline'
 import { useLocale } from '../hooks/useLocale'
 import { RichText } from './RichText'
 import { Letter3DSwap } from './Letter3DSwap'
+import { LocaleSwap } from './LocaleSwap'
 
 /**
  * Timeline —— 大年份编辑风。同年事件挂同一年份下，年份只显示一次。
@@ -48,7 +49,9 @@ export default function SectionTimeline() {
                   key={entry.id}
                   className="pt-2 border-t border-line text-fg-primary text-base leading-[1.65] max-[600px]:text-[0.95rem]"
                 >
-                  <RichText text={L(entry.body)} />
+                  <LocaleSwap>
+                    <RichText text={L(entry.body)} />
+                  </LocaleSwap>
                 </div>
               ))}
             </div>

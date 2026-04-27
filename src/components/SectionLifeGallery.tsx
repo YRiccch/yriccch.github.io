@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'motion/react'
 import { GALLERY_TAGS, GALLERY_CAPTIONS } from '../data/gallery'
 import { useLocale } from '../hooks/useLocale'
 import { Letter3DSwap } from './Letter3DSwap'
+import { LocaleSwap } from './LocaleSwap'
 
 /*
  * 使用说明：
@@ -95,7 +96,7 @@ export default function SectionLifeGallery() {
         <Letter3DSwap text={t('life.title')} />
       </h2>
       <p className="text-[0.95rem] text-fg-tertiary mb-5 min-h-[1.5em]">
-        {t('life.desc')}
+        <LocaleSwap>{t('life.desc')}</LocaleSwap>
       </p>
 
       {/* 标签栏 */}
@@ -120,7 +121,7 @@ export default function SectionLifeGallery() {
                   : 'bg-card text-fg-secondary border-line hover:text-accent hover:border-accent')
               }
             >
-              {tagLabelFor(tg)}
+              <Letter3DSwap text={tagLabelFor(tg)} />
               <span
                 className={
                   'text-[0.72rem] tabular-nums ' +
@@ -162,7 +163,7 @@ export default function SectionLifeGallery() {
         </div>
       ) : (
         <p className="text-fg-tertiary text-[0.95rem] py-8 text-center">
-          {t('life.empty')}
+          <LocaleSwap>{t('life.empty')}</LocaleSwap>
         </p>
       )}
 

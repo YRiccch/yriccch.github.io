@@ -68,19 +68,19 @@ export default function SectionPubs() {
         {publications.map((pub) => (
           <article
             key={pub.id}
-            className="grid grid-cols-[120px_1fr] gap-4 items-start max-[600px]:grid-cols-[88px_1fr] max-[600px]:gap-3"
+            className="grid grid-cols-[200px_1fr] gap-5 items-start max-[600px]:grid-cols-[140px_1fr] max-[600px]:gap-4"
           >
             <PubThumb pub={pub} />
 
             <div className="min-w-0">
-              <h3 className="text-[1.05rem] font-semibold text-accent m-0 mb-1 leading-snug">
+              <h3 className="text-[0.98rem] font-semibold text-accent m-0 mb-1 leading-snug">
                 {pub.title}
               </h3>
               <p
-                className="text-[0.92rem] m-0 mb-1 text-fg-secondary leading-snug"
+                className="text-[0.86rem] m-0 mb-1 text-fg-secondary leading-snug"
                 dangerouslySetInnerHTML={{ __html: pub.authorsHtml }}
               />
-              <p className="text-[0.85rem] italic text-fg-tertiary m-0 mb-2">
+              <p className="text-[0.8rem] italic text-fg-tertiary m-0 mb-2">
                 {pub.venue}
               </p>
 

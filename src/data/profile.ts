@@ -42,8 +42,7 @@ export const profile = {
   },
 
   /**
-   * 头像路径：放在 src/assets/img/myPhoto1.jpg
-   * 之后您把真实照片丢进那个位置即可
+   * 头像路径：丢在 public/avatar.png 即可
    */
   avatar: '/avatar.png',
 }

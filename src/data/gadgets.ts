@@ -29,8 +29,8 @@ export const gadgets: Gadget[] = [
     },
     icon: '/gadgets/todoflow.png',
     platform: 'Windows',
-    version: 'v0.1.0',
+    version: 'v0.1.5',
     size: '≈ 1.5 MB',
-    downloadHref: '/gadgets/TodoFlow_0.1.0_x64-setup.exe',
+    downloadHref: '/gadgets/TodoFlow_0.1.5_x64-setup.exe',
   },
 ]

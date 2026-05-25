@@ -10,6 +10,7 @@ export default {
     timeline: 'Timeline',
     publications: 'Publications',
     life: 'Life',
+    gadgets: 'Gadgets',
   },
   actions: {
     switchToLight: 'Switch to light mode',
@@ -40,6 +41,11 @@ export default {
     empty: 'No photos yet — drop images into src/assets/gallery/<category>/ to see them here.',
     close: 'Close',
     all: 'All',
+  },
+  gadgets: {
+    title: 'Gadgets',
+    desc: 'Small apps and tools I designed and built — feel free to grab one.',
+    download: 'Download',
   },
   footer: {
     rights: 'All rights reserved.',

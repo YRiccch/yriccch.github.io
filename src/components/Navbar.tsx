@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
 import {
   Languages, Sun, Moon,
-  User, Newspaper, BookOpen, Image as ImageIcon, ArrowUp,
+  User, Newspaper, BookOpen, Image as ImageIcon, Boxes, ArrowUp,
 } from 'lucide-react'
 import { useTheme } from '../hooks/useTheme'
 import { Letter3DSwap } from './Letter3DSwap'
@@ -22,6 +22,7 @@ const NAV_ITEMS: NavItem[] = [
   { key: 'timeline', id: 'timeline', icon: Newspaper, kind: 'section' },
   { key: 'publications', id: 'publications', icon: BookOpen, kind: 'section' },
   { key: 'life', id: 'life', icon: ImageIcon, kind: 'route', path: '/life' },
+  { key: 'gadgets', id: 'gadgets', icon: Boxes, kind: 'route', path: '/gadgets' },
 ]
 
 export default function Navbar() {
@@ -77,7 +78,10 @@ export default function Navbar() {
       observerRef.current = null
     }
     if (!onHomeRoute) {
-      setActiveId(location.pathname === '/life' ? 'life' : 'about')
+      const routeItem = NAV_ITEMS.find(
+        (n) => n.kind === 'route' && n.path === location.pathname,
+      )
+      setActiveId(routeItem ? routeItem.id : 'about')
       return
     }
     setActiveId('about')

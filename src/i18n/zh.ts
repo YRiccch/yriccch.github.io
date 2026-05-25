@@ -8,6 +8,7 @@ export default {
     timeline: '时间线',
     publications: '发表论文',
     life: '生活',
+    gadgets: '小玩意儿',
   },
   actions: {
     switchToLight: '切换到浅色模式',
@@ -38,6 +39,11 @@ export default {
     empty: '还没有图片。把照片放进 src/assets/gallery/<分类>/ 下就会自动出现。',
     close: '关闭',
     all: '全部',
+  },
+  gadgets: {
+    title: '小玩意儿',
+    desc: '我自己设计的一些小程序与小工具，欢迎下载把玩。',
+    download: '下载',
   },
   footer: {
     rights: '保留所有权利。',

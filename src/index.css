@@ -132,3 +132,116 @@ b, strong {
     scroll-behavior: auto !important;
   }
 }
+
+/* ============================================================
+   小玩意儿 Gadgets —— 旗舰卡片：悬浮才亮的流光边框 + 背后光晕 + 3D 倾斜 + 酷炫下载键
+   颜色全部走主题变量，浅色 / 深色自适应。
+   ============================================================ */
+.gadget-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 卡片外层：露出底下旋转的 conic 渐变 = 流光细边框（默认隐藏，悬浮才出现） */
+.gadget-feat {
+  position: relative;
+  border-radius: 18px;
+  padding: 1.5px;
+  overflow: hidden;
+  transform: perspective(1000px);
+  transition: transform 0.25s cubic-bezier(0.22, 0.9, 0.3, 1), box-shadow 0.45s ease;
+  will-change: transform;
+}
+.gadget-feat::before {
+  content: '';
+  position: absolute;
+  inset: -65%;
+  background: conic-gradient(
+    from 0deg,
+    var(--primary-color),
+    transparent 22%,
+    color-mix(in srgb, var(--primary-color) 55%, #8e7bff) 50%,
+    transparent 78%,
+    var(--primary-color)
+  );
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  animation: gadget-spin 6s linear infinite;
+  animation-play-state: paused;
+  z-index: 0;
+}
+.gadget-feat:hover::before {
+  opacity: 1;
+  animation-play-state: running;
+}
+.gadget-feat:hover {
+  box-shadow: 0 12px 52px -12px color-mix(in srgb, var(--primary-color) 55%, transparent);
+}
+.gadget-feat-inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 16.5px;
+  background: var(--card-bg);
+  padding: 22px 24px;
+  overflow: hidden;
+}
+.gadget-glow {
+  position: absolute;
+  z-index: 0;
+  width: 160px;
+  height: 160px;
+  left: -10px;
+  top: -12px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--primary-color) 40%, transparent), transparent 65%);
+  filter: blur(12px);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+.gadget-feat:hover .gadget-glow { opacity: 1; }
+@keyframes gadget-spin { to { transform: rotate(360deg); } }
+
+/* 酷炫下载键：渐变底 + 悬浮微浮 + 高光扫过 + 图标下沉 */
+.gadget-dl {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 11px;
+  background: linear-gradient(120deg, var(--primary-color), color-mix(in srgb, var(--primary-color) 50%, #8e7bff));
+  box-shadow: 0 4px 14px -4px color-mix(in srgb, var(--primary-color) 60%, transparent);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.gadget-dl:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -6px color-mix(in srgb, var(--primary-color) 72%, transparent);
+}
+.gadget-dl::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+.gadget-dl:hover::after { left: 150%; }
+.gadget-dl svg { transition: transform 0.2s ease; }
+.gadget-dl:hover svg { transform: translateY(2px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .gadget-feat { transition: none; }
+  .gadget-feat::before { animation: none; }
+  .gadget-dl::after { display: none; }
+}

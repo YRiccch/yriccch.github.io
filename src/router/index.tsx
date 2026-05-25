@@ -2,6 +2,7 @@ import { createHashRouter } from 'react-router-dom'
 import App from '../App'
 import HomeView from '../views/HomeView'
 import LifeView from '../views/LifeView'
+import GadgetsView from '../views/GadgetsView'
 
 /**
  * 用 hash 路由（#/）以兼容 GitHub Pages 静态部署。
@@ -13,6 +14,7 @@ const router = createHashRouter([
     children: [
       { path: '/', element: <HomeView /> },
       { path: '/life', element: <LifeView /> },
+      { path: '/gadgets', element: <GadgetsView /> },
       // 兜底：任何未知路径回首页
       { path: '*', element: <HomeView /> },
     ],

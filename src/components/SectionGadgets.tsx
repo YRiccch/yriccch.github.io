@@ -1,9 +1,44 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Download, Monitor } from 'lucide-react'
 import { gadgets } from '../data/gadgets'
 import { useLocale } from '../hooks/useLocale'
 import { Letter3DSwap } from './Letter3DSwap'
+
+// TodoFlow 更新源（与博客同源）。以后每次发版只改这个 JSON，下载链接+版本号自动跟着变。
+const TODOFLOW_FEED = 'https://yriccch.github.io/gadgets/todoflow-latest.json'
+
+// 自动认出哪条是 TodoFlow（名称或下载链接含 "todoflow"），无需手填 id。
+function isTodoFlow(g: { name?: string; downloadHref?: string }): boolean {
+  return `${g.name ?? ''} ${g.downloadHref ?? ''}`
+    .toLowerCase()
+    .includes('todoflow')
+}
+
+// 读取 TodoFlow 最新版本与下载链接；拿不到就保持空，渲染时回退到 gadgets.ts 写死的值。
+function useLatestTodoFlow() {
+  const [info, setInfo] = useState<{ version: string; url: string }>({
+    version: '',
+    url: '',
+  })
+  useEffect(() => {
+    let alive = true
+    fetch(TODOFLOW_FEED, { cache: 'no-store' })
+      .then((r) => r.json())
+      .then((d) => {
+        if (alive && d && d.url) {
+          setInfo({ version: d.version || '', url: d.url })
+        }
+      })
+      .catch(() => {
+        /* 读取失败：静默，沿用写死的值 */
+      })
+    return () => {
+      alive = false
+    }
+  }, [])
+  return info
+}
 
 /**
  * 小玩意儿 Section —— 每个作品一张旗舰卡片：悬浮时背后亮起旋转流光边框 + 光晕，
@@ -14,6 +49,8 @@ export default function SectionGadgets() {
   const { t } = useTranslation()
   const { L } = useLocale()
   const reduceRef = useRef<boolean | null>(null)
+  // TodoFlow 的最新版本/链接（仅作用于 TodoFlow 那一条；其它条目不受影响）
+  const tf = useLatestTodoFlow()
 
   // 鼠标跟随 3D 倾斜（尊重 prefers-reduced-motion；用 currentTarget 支持任意张卡片，
   // 只改 DOM style，不触发重渲染）
@@ -43,7 +80,13 @@ export default function SectionGadgets() {
       <p className="text-sm text-fg-tertiary mb-6">{t('gadgets.desc')}</p>
 
       <div className="gadget-grid">
-        {gadgets.map((g) => (
+        {gadgets.map((g) => {
+          // 仅对 TodoFlow 且成功取到 feed 时，用动态链接/版本；否则沿用写死的值。
+          const isTF = isTodoFlow(g)
+          const href = isTF && tf.url ? tf.url : g.downloadHref
+          const version = isTF && tf.version ? `v${tf.version}` : g.version
+
+          return (
           <div
             key={g.id}
             className="gadget-feat"
@@ -76,19 +119,20 @@ export default function SectionGadgets() {
                 </div>
 
                 <div className="shrink-0 flex flex-col items-end gap-2 max-[560px]:items-start">
-                  <a href={g.downloadHref} download className="gadget-dl">
+                  <a href={href} download className="gadget-dl">
                     <Download size={15} />
                     <Letter3DSwap text={t('gadgets.download')} />
                   </a>
                   <span className="inline-flex items-center gap-1.5 text-xs text-fg-tertiary">
                     <Monitor size={13} />
-                    {g.platform} · {g.version}
+                    {g.platform} · {version}
                   </span>
                 </div>
               </div>
             </div>
           </div>
-        ))}
+          )
+        })}
       </div>
     </section>
   )

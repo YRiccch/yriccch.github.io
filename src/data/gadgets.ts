@@ -27,7 +27,7 @@ export const gadgets: Gadget[] = [
       zh: '把待办写成笔记，自动长成一张依赖关系图。',
       en: 'Jot to-dos like notes — they grow into a dependency graph.',
     },
-    icon: '/gadgets/todoflow.png',
+    icon: '/todoflow.png',
     platform: 'Windows',
     version: 'v0.3.0',
     size: '≈ 3.5 MB',

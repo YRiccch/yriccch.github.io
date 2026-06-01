@@ -31,6 +31,7 @@ export const gadgets: Gadget[] = [
     platform: 'Windows',
     version: 'v0.3.0',
     size: '≈ 3.5 MB',
-    downloadHref: '/gadgets/TodoFlow_0.3.0_x64-setup.exe',
+    downloadHref:
+      'https://gitee.com/Yriccch/gadgets/releases/download/v0.3.0/TodoFlow_0.3.0_x64-setup.exe',
   },
 ]

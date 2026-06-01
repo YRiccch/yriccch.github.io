@@ -35,7 +35,10 @@ const _publications: Publication[] = [
     venue: 'IEEE TVCG 2026',
     year: 2026,
     links: [
-      { kind: 'arxiv', url: 'https://arxiv.org/pdf/2512.06834' },
+      {
+        kind: 'paper',
+        url: 'https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=11520564',
+      },
     ],
   },
   {
@@ -46,7 +49,10 @@ const _publications: Publication[] = [
     venue: 'ACM CHI 2026',
     year: 2026,
     links: [
-      { kind: 'arxiv', url: 'https://arxiv.org/pdf/2509.08404' },
+      {
+        kind: 'paper',
+        url: 'https://dl.acm.org/doi/full/10.1145/3772318.3791377',
+      },
       { kind: 'project', url: 'https://hypermooc.github.io/HyperMOOC/' },
     ],
   },

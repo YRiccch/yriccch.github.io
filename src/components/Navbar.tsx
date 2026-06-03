@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
 import {
-  Languages, Sun, Moon,
+  Sun, Moon,
   User, Newspaper, BookOpen, Image as ImageIcon, Boxes, ArrowUp,
 } from 'lucide-react'
 import { useTheme } from '../hooks/useTheme'
@@ -66,8 +66,10 @@ export default function Navbar() {
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id)
     if (!el) return
-    // 桌面没有顶栏，只留 20px 呼吸空间
-    const top = el.getBoundingClientRect().top + window.pageYOffset - 20
+    // 桌面没有顶栏，只留 20px；移动端有 56px 吸顶栏，多让出空间避免标题被遮挡
+    const isMobile = window.matchMedia('(max-width: 900px)').matches
+    const offset = isMobile ? 72 : 20
+    const top = el.getBoundingClientRect().top + window.pageYOffset - offset
     window.scrollTo({ top, behavior: 'smooth' })
   }
 
@@ -207,61 +209,65 @@ export default function Navbar() {
         </ul>
       </div>
 
-      {/* ============ Mobile ============ */}
-      <div className="hidden max-[900px]:flex flex-col sticky top-8 mx-4 gap-5 items-end z-[99]">
-        <div className="flex flex-col items-end gap-2 pb-1.5 border-b border-dashed border-line mb-0.5">
-          <button
-            onClick={(e) => toggleTheme({ clientX: e.clientX, clientY: e.clientY })}
-            title={themeTitle}
-            aria-label={themeTitle}
-            className="flex items-center justify-center gap-1 bg-card border border-line rounded-[20px] px-3 py-2 shadow-sm text-fg-secondary text-xs hover:text-accent hover:border-accent transition-colors"
-          >
-            {isDark ? <Sun size={16} /> : <Moon size={16} />}
-          </button>
-          <button
-            onClick={toggleLanguage}
-            title={t('actions.switchLanguage')}
-            aria-label={t('actions.switchLanguage')}
-            className="flex items-center justify-center gap-1 bg-card border border-line rounded-[20px] px-3 py-2 shadow-sm text-fg-secondary text-xs hover:text-accent hover:border-accent transition-colors"
-          >
-            <Languages size={16} />
-            <span>
-              <Letter3DSwap text={i18n.resolvedLanguage === 'en' ? '中' : 'En'} />
-            </span>
-          </button>
-        </div>
+      {/* ============ Mobile（吸顶横向图标条）============ */}
+      <div className="hidden max-[900px]:block fixed top-0 inset-x-0 z-[100] bg-navbar backdrop-blur-md border-b border-line">
+        <div className="flex items-center gap-1 h-14 px-3 max-w-[640px] mx-auto">
+          {/* 导航图标：横向平铺，可横向滚动以防溢出 */}
+          <ul className="flex items-center gap-1 m-0 p-0 list-none flex-1 min-w-0 overflow-x-auto no-scrollbar">
+            {NAV_ITEMS.map((item) => {
+              const Icon = item.icon
+              const active = activeId === item.id
+              return (
+                <li key={item.key} className="shrink-0">
+                  <a
+                    href={item.kind === 'route' ? `#${item.path}` : '#'}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      navigateTo(item)
+                    }}
+                    aria-current={active ? 'page' : undefined}
+                    aria-label={t(`nav.${item.key}`)}
+                    className={
+                      'inline-flex items-center justify-center gap-1.5 h-10 min-w-[40px] box-border ' +
+                      'rounded-full text-[0.85rem] transition-colors duration-200 ' +
+                      (active
+                        ? 'text-white bg-accent px-3'
+                        : 'text-fg-tertiary px-2 hover:text-accent')
+                    }
+                  >
+                    <Icon size={18} />
+                    {active && (
+                      <span className="whitespace-nowrap">
+                        <Letter3DSwap text={t(`nav.${item.key}`)} />
+                      </span>
+                    )}
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
 
-        <div className="flex flex-col gap-2.5 items-end">
-          {NAV_ITEMS.map((item) => {
-            const Icon = item.icon
-            const active = activeId === item.id
-            return (
-              <a
-                key={item.key}
-                href={item.kind === 'route' ? `#${item.path}` : '#'}
-                onClick={(e) => {
-                  e.preventDefault()
-                  navigateTo(item)
-                }}
-                aria-current={active ? 'page' : undefined}
-                aria-label={t(`nav.${item.key}`)}
-                className={
-                  'inline-flex items-center justify-center gap-2 min-w-[44px] min-h-[44px] box-border ' +
-                  'rounded-full border shadow-sm text-[0.85rem] transition-all duration-300 ' +
-                  (active
-                    ? 'text-white bg-accent border-accent px-4'
-                    : 'text-fg-secondary bg-card border-line px-3 hover:text-accent hover:border-accent')
-                }
-              >
-                <Icon size={18} />
-                {active && (
-                  <span className="whitespace-nowrap">
-                    <Letter3DSwap text={t(`nav.${item.key}`)} />
-                  </span>
-                )}
-              </a>
-            )
-          })}
+          {/* 工具区：主题 + 语言，靠右 */}
+          <div className="flex items-center gap-0.5 shrink-0 pl-1 ml-1 border-l border-line">
+            <button
+              onClick={(e) => toggleTheme({ clientX: e.clientX, clientY: e.clientY })}
+              title={themeTitle}
+              aria-label={themeTitle}
+              className="flex items-center justify-center w-10 h-10 rounded-full text-fg-tertiary hover:text-accent transition-colors active:scale-95"
+            >
+              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+            <button
+              onClick={toggleLanguage}
+              title={t('actions.switchLanguage')}
+              aria-label={t('actions.switchLanguage')}
+              className="flex items-center justify-center w-10 h-10 rounded-full text-fg-tertiary hover:text-accent transition-colors active:scale-95"
+            >
+              <span className="text-[13px] font-semibold tracking-tight">
+                <Letter3DSwap text={i18n.resolvedLanguage === 'en' ? '中' : 'En'} />
+              </span>
+            </button>
+          </div>
         </div>
       </div>
 

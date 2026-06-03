@@ -18,7 +18,7 @@ export default function App() {
 
       <div className="min-h-screen">
         <div className="max-w-[640px] mx-auto px-6 max-[600px]:px-4">
-          <main className="pt-12 pb-16">
+          <main className="pt-12 pb-16 max-[900px]:pt-20">
             <Outlet />
 
             <footer className="mt-16 pt-8 border-t border-line">

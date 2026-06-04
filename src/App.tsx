@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import Navbar from './components/Navbar'
 import { profile } from './data/profile'
 import { useLocale } from './hooks/useLocale'
+import { useGoatcounter } from './hooks/useGoatcounter'
 import { LocaleSwap } from './components/LocaleSwap'
 
 /**
@@ -11,6 +12,7 @@ import { LocaleSwap } from './components/LocaleSwap'
 export default function App() {
   const { t } = useTranslation()
   const { L } = useLocale()
+  useGoatcounter()
 
   return (
     <>

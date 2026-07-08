@@ -27,6 +27,29 @@ export type Publication = {
 
 const _publications: Publication[] = [
   {
+    id: 'compovista',
+    title:
+      'CompoVista: A Composition-Graph-Based Visual Analytics System for Compositional Analysis of Traditional Chinese Paintings',
+    authorsHtml:
+      'Dekun Qian<sup>*</sup>, <b>Ruiqi Yu<sup>*</sup></b>, Fengling Zheng<sup>†</sup>, Li Ye, Yize Li, Weigui Zheng, Yigang Wang, Jinchang Li and Zhiguang Zhou<sup>†</sup>',
+    venue: 'arXiv preprint 2026',
+    year: 2026,
+    // Thumbnail placeholder: save the image as public/pubs/compovista.png.
+    // arXiv link placeholder: add { kind: 'arxiv', url: '...' } after it is ready.
+    links: [],
+  },
+  {
+    id: 'animaster',
+    title:
+      'AniMaster: From Story Texts to Animated Videos via Cinematic Script Generation and Interactive Authoring',
+    authorsHtml:
+      '<b>Ruiqi Yu<sup>*</sup></b>, Dekun Qian<sup>*</sup>, Jiale Xu, Sizhe Cheng, Yize Li, Xiangyang Wu, Zhiguang Zhou, Wei Chen and Yong Wang',
+    venue: 'Manuscript, revised after ACM UIST review 2026',
+    year: 2026,
+    // Thumbnail placeholder: save the image as public/pubs/animaster.png.
+    links: [],
+  },
+  {
     id: 'coivis',
     title:
       'COIVis: Eye-tracking-based Visual Exploration of Concept Learning in MOOC Videos',

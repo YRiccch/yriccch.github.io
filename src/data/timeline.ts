@@ -2,13 +2,19 @@ import type { LocaleText } from './types'
 
 /**
  * 时间线条目。
- * - year：左栏大号年份
+ * - year：用于排序和旧展示兼容
+ * - period：时间轴上的位置和展示标签，start/end 支持 YYYY-MM 或 YYYY-MM-DD
  * - body：右侧正文，支持 [id]（媒体关键词）和 **text**（粗体）两种行内标记
  * - 添加新条目时放在数组最上方（时间倒序）
  */
 export type TimelineItem = {
   id: string
   year: string
+  period: {
+    start: string
+    end?: string
+    label: LocaleText
+  }
   body: LocaleText
 }
 
@@ -16,6 +22,11 @@ export const timeline: TimelineItem[] = [
   {
     id: 'ntuVisit',
     year: '2026',
+    period: {
+      start: '2026-03',
+      end: '2026-05',
+      label: { zh: '2026 · 三个月访问', en: '2026 · 3-month visit' },
+    },
     body: {
       zh: '在 [ntu] 进行为期三个月的访问研究，师从 [wang]。',
       en: 'Three-month visiting research stay at [ntu], mentored by [wang].',
@@ -24,6 +35,11 @@ export const timeline: TimelineItem[] = [
   {
     id: 'masterStart',
     year: '2024',
+    period: {
+      start: '2024-09',
+      end: '2026-07',
+      label: { zh: '2024.09 - 至今', en: 'Sep 2024 - present' },
+    },
     body: {
       zh: '开始在 [hdu] 攻读**计算机科学与技术**硕士学位。',
       en: "Started my Master's program in **Computer Science** at [hdu].",
@@ -32,6 +48,10 @@ export const timeline: TimelineItem[] = [
   {
     id: 'bachelor',
     year: '2023',
+    period: {
+      start: '2023-06',
+      label: { zh: '2023.06', en: 'Jun 2023' },
+    },
     body: {
       zh: '在 [hdu] 获得**数字媒体技术**学士学位。',
       en: "Earned my Bachelor's degree in **Digital Media Technology** at [hdu].",

@@ -27,6 +27,18 @@ export type Publication = {
 
 const _publications: Publication[] = [
   {
+    id: 'graphqag',
+    title:
+      'GraphQAG: A Knowledge-Graph-Guided Visualization Framework for Question-Answer Pairs Generation',
+    authorsHtml:
+      'Yize Li<sup>*</sup>, <b>Ruiqi Yu<sup>*</sup></b>, Tianya Pan, Ningxin Li, Songyue Li, Xiangyang Wu and Zhiguang Zhou',
+    venue: 'arXiv preprint 2026',
+    year: 2026,
+    // Thumbnail placeholder: save the image as public/pubs/graphqag.png.
+    // arXiv link placeholder: add { kind: 'arxiv', url: '...' } after it is ready.
+    links: [],
+  },
+  {
     id: 'compovista',
     title:
       'CompoVista: A Composition-Graph-Based Visual Analytics System for Compositional Analysis of Traditional Chinese Paintings',

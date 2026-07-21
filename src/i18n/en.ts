@@ -27,6 +27,7 @@ export default {
   },
   pubs: {
     title: 'Publications',
+    underReview: 'Under Review',
     links: {
       journal: 'Journal',
       paper: 'Paper',

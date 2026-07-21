@@ -11,6 +11,8 @@ export type PubLink = {
   url: string
 }
 
+export type PublicationStatus = 'accepted' | 'underReview'
+
 export type Publication = {
   id: string
   title: string
@@ -19,6 +21,8 @@ export type Publication = {
   venue: string
   /** 用于排序的发表 / 会议年份（不会显示，显示用 venue 字段） */
   year: number
+  /** 已录用 / 已发表论文优先展示，投稿或修改中的稿件归入 Under Review。 */
+  status: PublicationStatus
   /** 缩略图路径（可选）；约定放在 public/pubs/<id>.png。
    *  没有 thumbnail 字段时，组件按 `/pubs/<id>.png` 自动找；图片缺失时显示占位 */
   thumbnail?: string
@@ -34,6 +38,7 @@ const _publications: Publication[] = [
       'Yize Li<sup>*</sup>, <b>Ruiqi Yu<sup>*</sup></b>, Tianya Pan, Ningxin Li, Songyue Li, Xiangyang Wu and Zhiguang Zhou',
     venue: 'arXiv preprint 2026',
     year: 2026,
+    status: 'underReview',
     // Thumbnail placeholder: save the image as public/pubs/graphqag.png.
     // arXiv link placeholder: add { kind: 'arxiv', url: '...' } after it is ready.
     links: [],
@@ -46,6 +51,7 @@ const _publications: Publication[] = [
       'Dekun Qian<sup>*</sup>, <b>Ruiqi Yu<sup>*</sup></b>, Fengling Zheng<sup>†</sup>, Li Ye, Yize Li, Weigui Zheng, Yigang Wang, Jinchang Li and Zhiguang Zhou<sup>†</sup>',
     venue: 'arXiv preprint 2026',
     year: 2026,
+    status: 'underReview',
     // Thumbnail placeholder: save the image as public/pubs/compovista.png.
     // arXiv link placeholder: add { kind: 'arxiv', url: '...' } after it is ready.
     links: [],
@@ -58,6 +64,7 @@ const _publications: Publication[] = [
       '<b>Ruiqi Yu<sup>*</sup></b>, Dekun Qian<sup>*</sup>, Jiale Xu, Sizhe Cheng, Yize Li, Xiangyang Wu, Zhiguang Zhou, Wei Chen and Yong Wang',
     venue: 'Manuscript, revised after ACM UIST review 2026',
     year: 2026,
+    status: 'underReview',
     // Thumbnail placeholder: save the image as public/pubs/animaster.png.
     links: [],
   },
@@ -69,6 +76,7 @@ const _publications: Publication[] = [
       'Zhiguang Zhou, <b>Ruiqi Yu</b>, Yuming Ma, Hao Ni, Guojun Li, Li Ye, Xiaoying Wang, Yize Li, Yigang Wang, Yong Wang',
     venue: 'IEEE TVCG 2026',
     year: 2026,
+    status: 'accepted',
     links: [
       {
         kind: 'paper',
@@ -83,6 +91,7 @@ const _publications: Publication[] = [
       'Li Ye, Lei Wang, Lihong Cai, <b>Ruiqi Yu</b>, Yong Wang, Yigang Wang, Wei Chen, Zhiguang Zhou',
     venue: 'ACM CHI 2026',
     year: 2026,
+    status: 'accepted',
     links: [
       {
         kind: 'paper',
@@ -99,6 +108,7 @@ const _publications: Publication[] = [
       'Hang Yin, Yize Li, Ning Xu, <b>Ruiqi Yu</b>, Ningxin Li, Wei Xu, Xiangyang Wu, Jie Xu, Yongheng Wang, Zhiguang Zhou',
     venue: 'ChinaVis 2025',
     year: 2025,
+    status: 'accepted',
     links: [
       {
         kind: 'paper',
@@ -112,6 +122,7 @@ const _publications: Publication[] = [
     authorsHtml: '<b>虞瑞麒</b>，刘玉华，沈禧龙，翟如钰，张翔，周志光',
     venue: 'Journal of Zhejiang University – SCIENCE 2022',
     year: 2022,
+    status: 'accepted',
     links: [
       {
         kind: 'journal',
@@ -121,6 +132,14 @@ const _publications: Publication[] = [
   },
 ]
 
-export const publications: Publication[] = [..._publications].sort(
-  (a, b) => b.year - a.year,
+function sortByYear(publications: Publication[]) {
+  return [...publications].sort((a, b) => b.year - a.year)
+}
+
+export const acceptedPublications = sortByYear(
+  _publications.filter((publication) => publication.status === 'accepted'),
+)
+
+export const underReviewPublications = sortByYear(
+  _publications.filter((publication) => publication.status === 'underReview'),
 )

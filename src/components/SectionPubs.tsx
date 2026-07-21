@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FileText, BookOpen, Link2, Image as ImageIcon } from 'lucide-react'
-import { publications } from '../data/publications'
+import { acceptedPublications, underReviewPublications } from '../data/publications'
 import type { Publication, PubLink } from '../data/publications'
 import { Letter3DSwap } from './Letter3DSwap'
 import { GithubIcon } from './icons'
@@ -55,6 +55,57 @@ function PubThumb({ pub }: { pub: Publication }) {
   )
 }
 
+function PublicationList({ items }: { items: Publication[] }) {
+  const { t } = useTranslation()
+
+  return (
+    <div className="flex flex-col gap-6">
+      {items.map((pub) => (
+        <article
+          key={pub.id}
+          className="grid grid-cols-[200px_1fr] gap-5 items-start max-[600px]:grid-cols-[140px_1fr] max-[600px]:gap-4"
+        >
+          <PubThumb pub={pub} />
+
+          <div className="min-w-0">
+            <h3 className="text-[0.98rem] font-semibold text-accent m-0 mb-1 leading-snug">
+              {pub.title}
+            </h3>
+            <p
+              className="text-[0.86rem] m-0 mb-1 text-fg-secondary leading-snug"
+              dangerouslySetInnerHTML={{ __html: pub.authorsHtml }}
+            />
+            <p className="text-[0.8rem] italic text-fg-tertiary m-0 mb-2">
+              {pub.venue}
+            </p>
+
+            {pub.links.length > 0 && (
+              <div className="flex gap-2 items-center flex-wrap">
+                {pub.links.map((link, i) => (
+                  <span key={link.url} className="flex items-center gap-2">
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs px-2.5 py-0.5 border border-line rounded text-fg-secondary bg-card hover:border-accent hover:text-accent transition-colors active:scale-95"
+                    >
+                      <IconFor kind={link.kind} />
+                      <Letter3DSwap text={t(`pubs.links.${link.kind}`)} />
+                    </a>
+                    {i < pub.links.length - 1 && (
+                      <span className="text-line">|</span>
+                    )}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  )
+}
+
 export default function SectionPubs() {
   const { t } = useTranslation()
 
@@ -64,50 +115,22 @@ export default function SectionPubs() {
         <Letter3DSwap text={t('pubs.title')} />
       </h2>
 
-      <div className="flex flex-col gap-6">
-        {publications.map((pub) => (
-          <article
-            key={pub.id}
-            className="grid grid-cols-[200px_1fr] gap-5 items-start max-[600px]:grid-cols-[140px_1fr] max-[600px]:gap-4"
+      <PublicationList items={acceptedPublications} />
+
+      {underReviewPublications.length > 0 && (
+        <>
+          <div
+            className="flex items-center gap-3 my-8 text-xs font-semibold text-fg-tertiary"
+            role="separator"
+            aria-label={t('pubs.underReview')}
           >
-            <PubThumb pub={pub} />
-
-            <div className="min-w-0">
-              <h3 className="text-[0.98rem] font-semibold text-accent m-0 mb-1 leading-snug">
-                {pub.title}
-              </h3>
-              <p
-                className="text-[0.86rem] m-0 mb-1 text-fg-secondary leading-snug"
-                dangerouslySetInnerHTML={{ __html: pub.authorsHtml }}
-              />
-              <p className="text-[0.8rem] italic text-fg-tertiary m-0 mb-2">
-                {pub.venue}
-              </p>
-
-              {pub.links.length > 0 && (
-                <div className="flex gap-2 items-center flex-wrap">
-                  {pub.links.map((link, i) => (
-                    <span key={link.url} className="flex items-center gap-2">
-                      <a
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs px-2.5 py-0.5 border border-line rounded text-fg-secondary bg-card hover:border-accent hover:text-accent transition-colors active:scale-95"
-                      >
-                        <IconFor kind={link.kind} />
-                        <Letter3DSwap text={t(`pubs.links.${link.kind}`)} />
-                      </a>
-                      {i < pub.links.length - 1 && (
-                        <span className="text-line">|</span>
-                      )}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-          </article>
-        ))}
-      </div>
+            <span className="h-px flex-1 bg-line" />
+            <span className="whitespace-nowrap">{t('pubs.underReview')}</span>
+            <span className="h-px flex-1 bg-line" />
+          </div>
+          <PublicationList items={underReviewPublications} />
+        </>
+      )}
     </section>
   )
 }

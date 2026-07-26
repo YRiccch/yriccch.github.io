@@ -55,6 +55,28 @@ function PubThumb({ pub }: { pub: Publication }) {
   )
 }
 
+function PubTitle({ pub }: { pub: Publication }) {
+  const logo = pub.titleLogo
+  const canReplace = logo && pub.title.startsWith(logo.replaces)
+  const remainingTitle = canReplace
+    ? pub.title.slice(logo.replaces.length)
+    : pub.title
+
+  return (
+    <h3 className="text-[0.98rem] font-semibold text-accent m-0 mb-1 leading-snug">
+      {canReplace && (
+        <img
+          src={logo.src}
+          alt={logo.alt}
+          decoding="async"
+          className="publication-title-logo"
+        />
+      )}
+      {remainingTitle}
+    </h3>
+  )
+}
+
 function PublicationList({ items }: { items: Publication[] }) {
   const { t } = useTranslation()
 
@@ -68,9 +90,7 @@ function PublicationList({ items }: { items: Publication[] }) {
           <PubThumb pub={pub} />
 
           <div className="min-w-0">
-            <h3 className="text-[0.98rem] font-semibold text-accent m-0 mb-1 leading-snug">
-              {pub.title}
-            </h3>
+            <PubTitle pub={pub} />
             <p
               className="text-[0.86rem] m-0 mb-1 text-fg-secondary leading-snug"
               dangerouslySetInnerHTML={{ __html: pub.authorsHtml }}

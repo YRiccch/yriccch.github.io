@@ -13,9 +13,17 @@ export type PubLink = {
 
 export type PublicationStatus = 'accepted' | 'underReview'
 
+export type PublicationTitleLogo = {
+  src: string
+  alt: string
+  replaces: string
+}
+
 export type Publication = {
   id: string
   title: string
+  /** Replaces the leading system name in the displayed title with its logo. */
+  titleLogo?: PublicationTitleLogo
   /** 允许 <b> 标签来高亮本人姓名 */
   authorsHtml: string
   venue: string
@@ -47,6 +55,11 @@ const _publications: Publication[] = [
     id: 'compovista',
     title:
       'CompoVista: A Composition-Graph-Based Visual Analytics System for Compositional Analysis of Traditional Chinese Paintings',
+    titleLogo: {
+      src: '/pubslogo/compovistalogo.svg',
+      alt: 'CompoVista',
+      replaces: 'CompoVista',
+    },
     authorsHtml:
       'Dekun Qian<sup>*</sup>, <b>Ruiqi Yu<sup>*</sup></b>, Fengling Zheng<sup>†</sup>, Li Ye, Yize Li, Weigui Zheng, Yigang Wang, Jinchang Li and Zhiguang Zhou<sup>†</sup>',
     venue: 'arXiv preprint 2026',
@@ -60,6 +73,11 @@ const _publications: Publication[] = [
     id: 'animaster',
     title:
       'AniMaster: From Story Texts to Animated Videos via Cinematic Script Generation and Interactive Authoring',
+    titleLogo: {
+      src: '/pubslogo/animasterlogo.svg',
+      alt: 'AniMaster',
+      replaces: 'AniMaster',
+    },
     authorsHtml:
       '<b>Ruiqi Yu<sup>*</sup></b>, Dekun Qian<sup>*</sup>, Jiale Xu, Sizhe Cheng, Yize Li, Xiangyang Wu, Zhiguang Zhou, Wei Chen and Yong Wang',
     venue: 'Manuscript, revised after ACM UIST review 2026',
@@ -72,6 +90,11 @@ const _publications: Publication[] = [
     id: 'coivis',
     title:
       'COIVis: Eye-tracking-based Visual Exploration of Concept Learning in MOOC Videos',
+    titleLogo: {
+      src: '/pubslogo/coivislogo.svg',
+      alt: 'COIVis',
+      replaces: 'COIVis',
+    },
     authorsHtml:
       'Zhiguang Zhou, <b>Ruiqi Yu</b>, Yuming Ma, Hao Ni, Guojun Li, Li Ye, Xiaoying Wang, Yize Li, Yigang Wang, Yong Wang',
     venue: 'IEEE TVCG 2026',

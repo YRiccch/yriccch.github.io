@@ -89,10 +89,7 @@ export default function SectionLifeGallery() {
 
   return (
     <section className="mb-12">
-      <h2 className="text-2xl font-bold text-fg-primary mb-2 flex items-center gap-2 min-h-[2rem]">
-        <span role="img" aria-label="life">
-          🖼️
-        </span>
+      <h2 className="text-2xl font-bold text-fg-primary mb-2 min-h-[2rem]">
         <Letter3DSwap text={t('life.title')} />
       </h2>
       <p className="text-[0.95rem] text-fg-tertiary mb-5 min-h-[1.5em]">

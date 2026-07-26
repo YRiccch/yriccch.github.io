@@ -59,6 +59,15 @@ a {
   transition: color 0.2s;
 }
 
+.publication-title-logo {
+  display: inline-block;
+  width: auto;
+  height: 1.16em;
+  max-width: min(9rem, 42vw);
+  margin-right: 0.22em;
+  vertical-align: -0.22em;
+}
+
 /* 主题切换 fallback：不支持 View Transitions 的浏览器走"瞬间切换 + 临时禁过渡" */
 html.theme-switching,
 html.theme-switching *,

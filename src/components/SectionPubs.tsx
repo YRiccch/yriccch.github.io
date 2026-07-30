@@ -85,7 +85,7 @@ function PublicationList({ items }: { items: Publication[] }) {
       {items.map((pub) => (
         <article
           key={pub.id}
-          className="grid grid-cols-[200px_1fr] gap-5 items-start max-[600px]:grid-cols-[140px_1fr] max-[600px]:gap-4"
+          className="grid grid-cols-[minmax(0,382fr)_minmax(0,618fr)] gap-5 items-start max-[600px]:gap-4"
         >
           <PubThumb pub={pub} />
 

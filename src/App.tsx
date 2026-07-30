@@ -7,7 +7,7 @@ import { useGoatcounter } from './hooks/useGoatcounter'
 import { LocaleSwap } from './components/LocaleSwap'
 
 /**
- * 布局壳：单列 max-w-640，Navbar 桌面端 fixed 内容右上角，移动端浮右侧。
+ * 布局壳：单列 max-w-850，Navbar 桌面端 fixed 内容右上角，移动端浮右侧。
  */
 export default function App() {
   const { t } = useTranslation()
@@ -19,7 +19,7 @@ export default function App() {
       <Navbar />
 
       <div className="min-h-screen">
-        <div className="max-w-[640px] mx-auto px-6 max-[600px]:px-4">
+        <div className="max-w-[850px] mx-auto px-6 max-[600px]:px-4">
           <main className="pt-12 pb-16 max-[900px]:pt-20">
             <Outlet />
 

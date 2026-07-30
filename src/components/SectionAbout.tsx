@@ -21,8 +21,8 @@ export default function SectionAbout() {
   return (
     <section id="about" className="mb-14">
       {/* Hero */}
-      <header className="mb-8">
-        <div className="w-28 h-28 rounded-full overflow-hidden bg-hover mb-5 ring-1 ring-line">
+      <header className="mb-10 flex items-center gap-7 max-[600px]:mb-8 max-[600px]:flex-col max-[600px]:items-start max-[600px]:gap-5">
+        <div className="w-36 h-36 shrink-0 rounded-full overflow-hidden bg-hover ring-1 ring-line max-[600px]:w-28 max-[600px]:h-28">
           <img
             src={profile.avatar}
             alt={L(profile.name)}
@@ -32,35 +32,46 @@ export default function SectionAbout() {
             }}
           />
         </div>
-        <h1 className="text-[1.65rem] font-bold text-fg-primary leading-tight m-0 min-h-[2.1rem]">
-          <Letter3DSwap text={L(profile.name)} />
-        </h1>
-        <p className="text-[0.95rem] text-fg-secondary mt-1.5 m-0 min-h-[1.4rem]">
-          <Letter3DSwap text={`${L(profile.role)} · ${L(profile.affiliation)}`} />
-        </p>
+        <div className="min-w-0">
+          <h1 className="text-[2rem] font-bold text-fg-primary leading-tight m-0 min-h-[2.5rem] max-[600px]:text-[1.65rem] max-[600px]:min-h-[2.1rem]">
+            <Letter3DSwap text={L(profile.name)} />
+          </h1>
+          <p className="text-[1.05rem] text-fg-secondary mt-2 m-0 min-h-[1.5rem] max-[600px]:text-[0.95rem] max-[600px]:mt-1.5 max-[600px]:min-h-[1.4rem]">
+            <Letter3DSwap text={`${L(profile.role)} · ${L(profile.affiliation)}`} />
+          </p>
 
-        <div className="mt-3.5 flex flex-col gap-1.5 text-[0.85rem] text-fg-secondary">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-            <a
-              href={`mailto:${profile.email}`}
-              className="inline-flex items-center gap-1.5 hover:text-accent transition-colors"
-            >
-              <Mail size={14} />
-              {profile.email}
-            </a>
-            <a
-              href={profile.social.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 hover:text-accent transition-colors"
-            >
-              <GithubIcon size={14} />
-              GitHub
-            </a>
-          </div>
-          <div className="inline-flex items-center gap-1.5 text-fg-tertiary">
-            <MapPin size={14} />
-            <span>{L(profile.location)}</span>
+          <div className="mt-4 flex flex-col gap-2 text-[0.95rem] text-fg-secondary max-[600px]:mt-3.5 max-[600px]:gap-1.5 max-[600px]:text-[0.85rem]">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+              <a
+                href={`mailto:${profile.email}`}
+                className="inline-flex items-center gap-1.5 hover:text-accent transition-colors"
+              >
+                <Mail
+                  size={16}
+                  className="max-[600px]:w-3.5 max-[600px]:h-3.5"
+                />
+                {profile.email}
+              </a>
+              <a
+                href={profile.social.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 hover:text-accent transition-colors"
+              >
+                <GithubIcon
+                  size={16}
+                  className="max-[600px]:w-3.5 max-[600px]:h-3.5"
+                />
+                GitHub
+              </a>
+            </div>
+            <div className="inline-flex items-center gap-1.5 text-fg-tertiary">
+              <MapPin
+                size={16}
+                className="max-[600px]:w-3.5 max-[600px]:h-3.5"
+              />
+              <span>{L(profile.location)}</span>
+            </div>
           </div>
         </div>
       </header>

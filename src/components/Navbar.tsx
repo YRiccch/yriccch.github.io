@@ -140,8 +140,8 @@ export default function Navbar() {
         style={{
           // 顶部对齐内容首屏（main 的 pt-12 = 48px）
           top: '48px',
-          // 紧贴 max-w-640 内容列右边 30px；窄屏不让 nav 越过视口右边缘 56px 内
-          left: 'min(calc((100vw + 640px) / 2 + 30px), calc(100vw - 56px))',
+          // 紧贴 max-w-850 内容列右边 30px；窄屏不让 nav 越过视口右边缘 56px 内
+          left: 'min(calc((100vw + 850px) / 2 + 30px), calc(100vw - 56px))',
         }}
       >
         {/* 工具区：主题 + 语言 */}
@@ -211,7 +211,7 @@ export default function Navbar() {
 
       {/* ============ Mobile（吸顶横向图标条）============ */}
       <div className="hidden max-[900px]:block fixed top-0 inset-x-0 z-[100] bg-navbar backdrop-blur-md border-b border-line">
-        <div className="flex items-center gap-1 h-14 px-3 max-w-[640px] mx-auto">
+        <div className="flex items-center gap-1 h-14 px-3 max-w-[850px] mx-auto">
           {/* 导航图标：横向平铺，可横向滚动以防溢出 */}
           <ul className="flex items-center gap-1 m-0 p-0 list-none flex-1 min-w-0 overflow-x-auto no-scrollbar">
             {NAV_ITEMS.map((item) => {

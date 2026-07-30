@@ -12,7 +12,7 @@ import { GithubIcon } from './icons'
 
 /**
  * About Section（liubruce 风的 Hero + Bio 合并）：
- *   头像 → 姓名 → 角色/机构 → 联系信息 → 问候 → 含 MBT 的正文 → Interests 轮播
+ *   头像 → 姓名 → 角色/机构 → 联系信息 → 含问候和 MBT 的正文 → Interests 轮播
  */
 export default function SectionAbout() {
   const { t } = useTranslation()
@@ -75,10 +75,6 @@ export default function SectionAbout() {
           </div>
         </div>
       </header>
-
-      <h2 className="mb-3 text-[1.15rem] font-semibold text-fg-strong">
-        <Letter3DSwap text={t('about.title')} />
-      </h2>
 
       <p className="mb-5 max-w-[68ch] text-[1rem] leading-[1.75] text-fg-primary">
         <LocaleSwap>

@@ -1,3 +1,5 @@
+import type { LocaleText } from './types'
+
 /**
  * 论文数据。
  * 论文的标题 / 作者 / 会议名按学术惯例保留原貌（中文论文用中文、英文论文用英文），
@@ -29,7 +31,7 @@ export type Publication = {
   titleLogo?: PublicationTitleLogo
   /** 允许 <b> 标签来高亮本人姓名 */
   authorsHtml: string
-  venue: string
+  venue: string | LocaleText
   /** 用于排序的发表 / 会议年份（不会显示，显示用 venue 字段） */
   year: number
   /** 已录用 / 已发表论文优先展示，投稿或修改中的稿件归入 Under Review。 */
@@ -51,8 +53,12 @@ const _publications: Publication[] = [
     year: 2026,
     status: 'underReview',
     // Thumbnail placeholder: save the image as public/pubs/graphqag.png.
-    // arXiv link placeholder: add { kind: 'arxiv', url: '...' } after it is ready.
-    links: [],
+    links: [
+      {
+        kind: 'arxiv',
+        url: 'https://arxiv.org/abs/2607.27182',
+      },
+    ],
   },
   {
     id: 'compovista',
@@ -71,8 +77,12 @@ const _publications: Publication[] = [
     year: 2026,
     status: 'underReview',
     // Thumbnail placeholder: save the image as public/pubs/compovista.png.
-    // arXiv link placeholder: add { kind: 'arxiv', url: '...' } after it is ready.
-    links: [],
+    links: [
+      {
+        kind: 'arxiv',
+        url: 'https://arxiv.org/abs/2607.07105',
+      },
+    ],
   },
   {
     id: 'animaster',
@@ -138,7 +148,7 @@ const _publications: Publication[] = [
       'A Hierarchical Electricity Consumption Forecasting Visualization System based on Multi-scale LSTM-KAN Model',
     authorsHtml:
       'Hang Yin, Yize Li, Ning Xu, <b>Ruiqi Yu</b>, Ningxin Li, Wei Xu, Xiangyang Wu, Jie Xu, Yongheng Wang, Zhiguang Zhou',
-    venue: 'ChinaVis 2025',
+    venue: 'JoV · ChinaVis 2025',
     year: 2025,
     status: 'accepted',
     links: [
@@ -152,7 +162,10 @@ const _publications: Publication[] = [
     id: 'multi-network-graph-sampling',
     title: '表征学习驱动的多重网络图采样',
     authorsHtml: '<b>虞瑞麒</b>，刘玉华，沈禧龙，翟如钰，张翔，周志光',
-    venue: 'Journal of Zhejiang University – SCIENCE 2022',
+    venue: {
+      zh: '浙江大学学报（理学版）',
+      en: 'Journal of Zhejiang University – SCIENCE 2022',
+    },
     year: 2022,
     status: 'accepted',
     links: [

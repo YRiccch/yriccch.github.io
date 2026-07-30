@@ -5,6 +5,7 @@ import { acceptedPublications, underReviewPublications } from '../data/publicati
 import type { Publication, PubLink } from '../data/publications'
 import { Letter3DSwap } from './Letter3DSwap'
 import { GithubIcon } from './icons'
+import { useLocale } from '../hooks/useLocale'
 
 /**
  * Publications Section：每条论文左侧缩略图（按图原始比例渲染、白底无裁剪、垂直居中），
@@ -36,13 +37,13 @@ function PubThumb({ pub }: { pub: Publication }) {
 
   if (broken) {
     return (
-      <div className="aspect-video w-full overflow-hidden rounded-md bg-white ring-1 ring-line flex items-center justify-center text-fg-tertiary">
+      <div className="aspect-video w-full overflow-hidden rounded-md bg-white flex items-center justify-center text-fg-tertiary">
         <ImageIcon size={20} />
       </div>
     )
   }
   return (
-    <div className="aspect-video w-full overflow-hidden rounded-md bg-white ring-1 ring-line">
+    <div className="aspect-video w-full overflow-hidden rounded-md bg-white">
       <img
         src={src}
         alt={pub.title}
@@ -83,6 +84,7 @@ function PubTitle({ pub }: { pub: Publication }) {
 
 function PublicationList({ items }: { items: Publication[] }) {
   const { t } = useTranslation()
+  const { L } = useLocale()
 
   return (
     <div className="flex flex-col gap-10">
@@ -99,7 +101,7 @@ function PublicationList({ items }: { items: Publication[] }) {
             />
             <div className="mt-3 flex flex-wrap items-center gap-2.5">
               <span className="text-[0.78rem] italic text-fg-tertiary">
-                {pub.venue}
+                {typeof pub.venue === 'string' ? pub.venue : L(pub.venue)}
               </span>
               {pub.links.map((link) => (
                 <a

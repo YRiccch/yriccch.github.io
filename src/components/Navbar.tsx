@@ -16,7 +16,11 @@ type NavKind = 'section' | 'route'
 type NavItem = {
   key: string
   id: string
-  icon: React.ComponentType<{ size?: number }>
+  icon: React.ComponentType<{
+    size?: number
+    className?: string
+    style?: React.CSSProperties
+  }>
   kind: NavKind
   path?: string
 }
@@ -191,7 +195,15 @@ export default function Navbar() {
                       : 'text-fg-tertiary hover:text-accent')
                   }
                 >
-                  <Icon size={18} />
+                  <Icon
+                    size={18}
+                    className="transition-colors duration-200 group-hover:text-highlight"
+                    style={
+                      active
+                        ? { color: 'var(--highlight-color)' }
+                        : undefined
+                    }
+                  />
                   {/* 文字默认 max-w-0 隐藏；hover 展开到自然宽度 */}
                   <span
                     className={
@@ -233,14 +245,22 @@ export default function Navbar() {
                     aria-current={active ? 'page' : undefined}
                     aria-label={t(`nav.${item.key}`)}
                     className={
-                      'inline-flex items-center justify-center gap-1.5 h-10 min-w-[40px] box-border ' +
+                      'group inline-flex items-center justify-center gap-1.5 h-10 min-w-[40px] box-border ' +
                       'rounded-full text-[0.85rem] transition-colors duration-200 ' +
                       (active
                         ? 'text-accent px-2'
                         : 'text-fg-tertiary px-2 hover:text-accent')
                     }
                   >
-                    <Icon size={18} />
+                    <Icon
+                      size={18}
+                      className="transition-colors duration-200 group-hover:text-highlight"
+                      style={
+                        active
+                          ? { color: 'var(--highlight-color)' }
+                          : undefined
+                      }
+                    />
                     {active && (
                       <span className="whitespace-nowrap">
                         <Letter3DSwap text={t(`nav.${item.key}`)} />

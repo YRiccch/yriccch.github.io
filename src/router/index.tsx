@@ -3,6 +3,7 @@ import App from '../App'
 import HomeView from '../views/HomeView'
 import LifeView from '../views/LifeView'
 import GadgetsView from '../views/GadgetsView'
+import { ROUTES } from '../config/site'
 
 /**
  * 用 hash 路由（#/）以兼容 GitHub Pages 静态部署。
@@ -12,11 +13,11 @@ const router = createHashRouter([
   {
     element: <App />,
     children: [
-      { path: '/', element: <HomeView /> },
-      { path: '/life', element: <LifeView /> },
-      { path: '/gadgets', element: <GadgetsView /> },
+      { path: ROUTES.home, element: <HomeView /> },
+      { path: ROUTES.life, element: <LifeView /> },
+      { path: ROUTES.gadgets, element: <GadgetsView /> },
       // 兜底：任何未知路径回首页
-      { path: '*', element: <HomeView /> },
+      { path: ROUTES.fallback, element: <HomeView /> },
     ],
   },
 ])

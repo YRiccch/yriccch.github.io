@@ -1,5 +1,5 @@
-import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { SECTION_IDS } from '../config/site'
 import { timeline } from '../data/timeline'
 import type { TimelineItem } from '../data/timeline'
 import { useLocale } from '../hooks/useLocale'
@@ -17,34 +17,39 @@ type YearGroup = { year: string; entries: TimelineItem[] }
 function groupByYear(items: TimelineItem[]): YearGroup[] {
   const map = new Map<string, TimelineItem[]>()
   for (const item of items) {
-    if (!map.has(item.year)) map.set(item.year, [])
-    map.get(item.year)!.push(item)
+    const entries = map.get(item.year)
+    if (entries) {
+      entries.push(item)
+    } else {
+      map.set(item.year, [item])
+    }
   }
   return Array.from(map.entries()).map(([year, entries]) => ({ year, entries }))
 }
 
+const timelineGroups = groupByYear(timeline)
+const timelineYearRange =
+  timelineGroups.length > 0
+    ? `${timelineGroups[timelineGroups.length - 1].year} — ${timelineGroups[0].year}`
+    : ''
+
 export default function SectionTimeline() {
   const { t } = useTranslation()
   const { L } = useLocale()
-  const groups = useMemo(() => groupByYear(timeline), [])
-  const yearRange =
-    groups.length > 0
-      ? `${groups[groups.length - 1].year} — ${groups[0].year}`
-      : ''
 
   return (
-    <section id="timeline" className="mb-16">
+    <section id={SECTION_IDS.timeline} className="mb-16">
       <header className="mb-7 flex items-center justify-between gap-6">
         <h2 className="m-0 text-[1.35rem] font-semibold text-fg-strong">
           <Letter3DSwap text={t('timeline.title')} />
         </h2>
-        {yearRange && (
+        {timelineYearRange && (
           <div
             aria-hidden
             className="flex items-center gap-3 text-[0.72rem] font-medium text-fg-tertiary tabular-nums max-[600px]:hidden"
           >
             <span className="h-px w-6 bg-line" />
-            <span>{yearRange}</span>
+            <span>{timelineYearRange}</span>
           </div>
         )}
       </header>
@@ -56,7 +61,7 @@ export default function SectionTimeline() {
         />
 
         <div className="flex flex-col">
-          {groups.map((group, groupIndex) => (
+          {timelineGroups.map((group, groupIndex) => (
             <article
               key={group.year}
               className="relative grid grid-cols-[72px_12px_minmax(0,1fr)] gap-x-4 pb-8 last:pb-0 max-[600px]:grid-cols-[48px_10px_minmax(0,1fr)] max-[600px]:gap-x-3 max-[600px]:pb-6"

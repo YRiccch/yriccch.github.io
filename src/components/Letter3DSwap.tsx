@@ -1,4 +1,13 @@
+import { memo } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
+import { MEDIA_QUERIES, MOTION_EASING } from '../config/site'
+
+type Letter3DSwapProps = {
+  text: string
+  className?: string
+  staggerMs?: number
+  duration?: number
+}
 
 /**
  * Fancy 系列 —— Letter 3D Swap。
@@ -13,20 +22,15 @@ import { motion, AnimatePresence } from 'motion/react'
  *
  * 当 text 没变（同一帧重新渲染）时不会重新动画，靠 React key={text} 实现。
  */
-export function Letter3DSwap({
+function Letter3DSwapComponent({
   text,
   className = '',
   staggerMs = 35,
   duration = 0.45,
-}: {
-  text: string
-  className?: string
-  staggerMs?: number
-  duration?: number
-}) {
+}: Letter3DSwapProps) {
   const reduced =
     typeof window !== 'undefined' &&
-    window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+    window.matchMedia?.(MEDIA_QUERIES.reducedMotion).matches
 
   if (reduced) {
     return <span className={className}>{text}</span>
@@ -54,7 +58,7 @@ export function Letter3DSwap({
               transition={{
                 duration,
                 delay: (i * staggerMs) / 1000,
-                ease: [0.22, 0.9, 0.3, 1],
+                ease: MOTION_EASING.standard,
               }}
             >
               {ch === ' ' ? '\u00A0' : ch}
@@ -65,3 +69,5 @@ export function Letter3DSwap({
     </span>
   )
 }
+
+export const Letter3DSwap = memo(Letter3DSwapComponent)

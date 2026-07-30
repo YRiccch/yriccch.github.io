@@ -1,6 +1,9 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
+const SCRIPT_RETRY_LIMIT = 50
+const SCRIPT_RETRY_DELAY_MS = 100
+
 /**
  * GoatCounter 路由上报。
  *
@@ -45,14 +48,14 @@ export function useGoatcounter() {
         return
       }
       // 统计脚本还没到，稍后重试（最多 ~5s）
-      if (tries++ < 50) {
-        timer = window.setTimeout(send, 100)
+      if (tries++ < SCRIPT_RETRY_LIMIT) {
+        timer = window.setTimeout(send, SCRIPT_RETRY_DELAY_MS)
       }
     }
 
     send()
     return () => {
-      if (timer) window.clearTimeout(timer)
+      if (timer !== undefined) window.clearTimeout(timer)
     }
   }, [pathname, search])
 }

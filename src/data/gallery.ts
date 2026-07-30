@@ -17,14 +17,24 @@ export type GalleryTag = {
   label: LocaleText
 }
 
+export const ALL_GALLERY_TAG = 'all'
+
 export const GALLERY_TAGS: GalleryTag[] = [
-  { key: 'travel',      label: { zh: '旅行', en: 'Travel' } },
-  { key: 'campus',      label: { zh: '校园', en: 'Campus' } },
-  { key: 'friends',     label: { zh: '朋友', en: 'Friends' } },
+  { key: 'travel', label: { zh: '旅行', en: 'Travel' } },
+  { key: 'campus', label: { zh: '校园', en: 'Campus' } },
+  { key: 'friends', label: { zh: '朋友', en: 'Friends' } },
   { key: 'performance', label: { zh: '演出', en: 'Performance' } },
-  { key: 'daily',       label: { zh: '日常', en: 'Daily' } },
-  { key: 'scenery',     label: { zh: '风景', en: 'Scenery' } },
+  { key: 'daily', label: { zh: '日常', en: 'Daily' } },
+  { key: 'scenery', label: { zh: '风景', en: 'Scenery' } },
 ]
+
+const galleryTagByKey = new Map(
+  GALLERY_TAGS.map((tag) => [tag.key, tag]),
+)
+
+export function findGalleryTag(key: string): GalleryTag | undefined {
+  return galleryTagByKey.get(key)
+}
 
 /**
  * 图片说明。key 格式："<tag>/<文件名不带扩展>"

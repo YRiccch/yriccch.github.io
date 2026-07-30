@@ -1,11 +1,25 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'motion/react'
-import { GALLERY_TAGS, GALLERY_CAPTIONS } from '../data/gallery'
-import { galleryItems, type GalleryItem } from '../data/galleryItems'
+import {
+  ALL_GALLERY_TAG,
+  GALLERY_CAPTIONS,
+  findGalleryTag,
+} from '../data/gallery'
+import {
+  availableGalleryTags,
+  getGalleryItemCount,
+  getGalleryItems,
+  type GalleryItem,
+} from '../data/galleryItems'
 import { useLocale } from '../hooks/useLocale'
 import { Letter3DSwap } from './Letter3DSwap'
 import { LocaleSwap } from './LocaleSwap'
+
+const galleryTabs = [
+  ALL_GALLERY_TAG,
+  ...availableGalleryTags.map((tag) => tag.key),
+]
 
 /*
  * 使用说明：
@@ -17,39 +31,24 @@ import { LocaleSwap } from './LocaleSwap'
 export default function SectionLifeGallery() {
   const { t } = useTranslation()
   const { L } = useLocale()
-  const [activeTag, setActiveTag] = useState<string>('all')
+  const [activeTag, setActiveTag] = useState<string>(ALL_GALLERY_TAG)
   const [lightbox, setLightbox] = useState<GalleryItem | null>(null)
 
-  // 可用的标签 —— 只显示真正有图片的
-  const availableTags = useMemo(() => {
-    const set = new Set(galleryItems.map((i) => i.tag))
-    return GALLERY_TAGS.filter((t) => set.has(t.key))
-  }, [])
-
-  const visible = useMemo(
-    () =>
-      activeTag === 'all'
-        ? galleryItems
-        : galleryItems.filter((i) => i.tag === activeTag),
-    [activeTag],
-  )
-
-  const countFor = (tag: string) =>
-    tag === 'all'
-      ? galleryItems.length
-      : galleryItems.filter((i) => i.tag === tag).length
+  const visible = getGalleryItems(activeTag)
 
   const tagLabelFor = (tagKey: string) => {
-    if (tagKey === 'all') return t('life.all')
-    const found = GALLERY_TAGS.find((t) => t.key === tagKey)
-    return found ? L(found.label) : tagKey
+    if (tagKey === ALL_GALLERY_TAG) return t('life.all')
+    const tag = findGalleryTag(tagKey)
+    return tag ? L(tag.label) : tagKey
   }
 
   const captionOf = (item: GalleryItem | null) => {
     if (!item) return ''
-    const c = GALLERY_CAPTIONS[item.key]
-    return c ? L(c) : ''
+    const caption = GALLERY_CAPTIONS[item.key]
+    return caption ? L(caption) : ''
   }
+
+  const lightboxCaption = captionOf(lightbox)
 
   // ESC 关闭 lightbox
   useEffect(() => {
@@ -60,8 +59,6 @@ export default function SectionLifeGallery() {
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [lightbox])
-
-  const tabs: string[] = ['all', ...availableTags.map((t) => t.key)]
 
   return (
     <section className="mb-12">
@@ -78,14 +75,14 @@ export default function SectionLifeGallery() {
         aria-label={t('life.filterLabel')}
         className="flex flex-wrap gap-2 mb-5"
       >
-        {tabs.map((tg) => {
-          const active = activeTag === tg
+        {galleryTabs.map((tagKey) => {
+          const active = activeTag === tagKey
           return (
             <button
-              key={tg}
+              key={tagKey}
               role="tab"
               aria-selected={active}
-              onClick={() => setActiveTag(tg)}
+              onClick={() => setActiveTag(tagKey)}
               className={
                 'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[0.85rem] ' +
                 'transition-colors active:scale-95 font-sans ' +
@@ -94,14 +91,14 @@ export default function SectionLifeGallery() {
                   : 'bg-card text-fg-secondary border-line hover:text-accent hover:border-accent')
               }
             >
-              <Letter3DSwap text={tagLabelFor(tg)} />
+              <Letter3DSwap text={tagLabelFor(tagKey)} />
               <span
                 className={
                   'text-[0.72rem] tabular-nums ' +
                   (active ? 'text-fg-secondary' : 'text-fg-tertiary')
                 }
               >
-                {countFor(tg)}
+                {getGalleryItemCount(tagKey)}
               </span>
             </button>
           )
@@ -112,7 +109,7 @@ export default function SectionLifeGallery() {
       {visible.length > 0 ? (
         <div className="columns-2 min-[900px]:columns-3 min-[1400px]:columns-4 gap-3">
           {visible.map((item) => {
-            const tagInfo = GALLERY_TAGS.find((t) => t.key === item.tag)
+            const tagInfo = findGalleryTag(item.tag)
             const tagLabel = tagInfo ? L(tagInfo.label) : item.tag
             return (
               <figure
@@ -173,12 +170,12 @@ export default function SectionLifeGallery() {
             >
               <img
                 src={lightbox.url}
-                alt={captionOf(lightbox)}
+                alt={lightboxCaption}
                 className="max-w-full max-h-[78vh] w-auto h-auto rounded-lg shadow-2xl"
               />
-              {captionOf(lightbox) && (
+              {lightboxCaption && (
                 <figcaption className="text-white/85 text-sm text-center">
-                  {captionOf(lightbox)}
+                  {lightboxCaption}
                 </figcaption>
               )}
             </motion.figure>

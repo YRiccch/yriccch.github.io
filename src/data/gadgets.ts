@@ -10,7 +10,6 @@ export interface Gadget {
   icon: string
   platform: string
   version: string
-  size: string
   /** 安装包下载路径（public/ 下的静态文件） */
   downloadHref: string
 }
@@ -30,7 +29,6 @@ export const gadgets: Gadget[] = [
     icon: '/todoflow.png',
     platform: 'Windows',
     version: 'v0.4.0',
-    size: '≈ 3.5 MB',
     downloadHref:
       'https://gitee.com/Yriccch/gadgets/releases/download/v0.4.0/TodoFlow_0.4.0_x64-setup.exe',
   },

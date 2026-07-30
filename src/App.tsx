@@ -5,7 +5,7 @@ import { profile } from './data/profile'
 import { useLocale } from './hooks/useLocale'
 import { useGoatcounter } from './hooks/useGoatcounter'
 import { LocaleSwap } from './components/LocaleSwap'
-import { PAGE_CONTAINER_CLASS } from './config/layout'
+import { PAGE_CONTAINER_CLASS } from './config/site'
 
 /**
  * 布局壳：单列 max-w-750，Navbar 桌面端 fixed 内容右上角，移动端浮右侧。

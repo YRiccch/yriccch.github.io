@@ -1,4 +1,10 @@
 import { useEffect, useState, useCallback } from 'react'
+import {
+  MEDIA_QUERIES,
+  MOTION_EASING,
+  STORAGE_KEYS,
+  THEME_TRANSITION,
+} from '../config/site'
 
 type Theme = 'light' | 'dark'
 
@@ -15,7 +21,7 @@ type Theme = 'light' | 'dark'
 export function useTheme() {
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window === 'undefined') return 'dark'
-    const saved = localStorage.getItem('theme')
+    const saved = localStorage.getItem(STORAGE_KEYS.theme)
     if (saved === 'dark' || saved === 'light') return saved
     // 默认深色主题；用户切换过之后 localStorage 会接管
     return 'dark'
@@ -23,7 +29,7 @@ export function useTheme() {
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark')
-    localStorage.setItem('theme', theme)
+    localStorage.setItem(STORAGE_KEYS.theme, theme)
   }, [theme])
 
   const toggle = useCallback(
@@ -34,7 +40,7 @@ export function useTheme() {
 
       const applyTheme = () => {
         html.classList.toggle('dark', goingToDark)
-        localStorage.setItem('theme', next)
+        localStorage.setItem(STORAGE_KEYS.theme, next)
         setTheme(next)
       }
 
@@ -42,15 +48,18 @@ export function useTheme() {
         typeof document !== 'undefined' &&
         'startViewTransition' in document
       if (!supportsVT) {
-        html.classList.add('theme-switching')
+        html.classList.add(THEME_TRANSITION.switchingClass)
         applyTheme()
-        window.setTimeout(() => html.classList.remove('theme-switching'), 60)
+        window.setTimeout(
+          () => html.classList.remove(THEME_TRANSITION.switchingClass),
+          THEME_TRANSITION.fallbackMs,
+        )
         return
       }
 
       const reduced =
         window.matchMedia &&
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        window.matchMedia(MEDIA_QUERIES.reducedMotion).matches
 
       const x = origin?.clientX ?? window.innerWidth - 40
       const y = origin?.clientY ?? 40
@@ -60,7 +69,9 @@ export function useTheme() {
       )
 
       // 切到深色时，让 view-transition-old(root) 处于顶层（CSS 控制 z-index）
-      if (goingToDark) html.classList.add('vt-going-dark')
+      if (goingToDark) {
+        html.classList.add(THEME_TRANSITION.goingDarkClass)
+      }
 
       const transition = document.startViewTransition(() => {
         applyTheme()
@@ -80,9 +91,9 @@ export function useTheme() {
                 ],
               },
               {
-                duration: 480,
+                duration: THEME_TRANSITION.durationMs,
                 fill: 'both',
-                easing: 'cubic-bezier(0.22, 0.9, 0.3, 1)',
+                easing: MOTION_EASING.standardCss,
                 pseudoElement: '::view-transition-old(root)',
               },
             )
@@ -96,9 +107,9 @@ export function useTheme() {
                 ],
               },
               {
-                duration: 480,
+                duration: THEME_TRANSITION.durationMs,
                 fill: 'both',
-                easing: 'cubic-bezier(0.22, 0.9, 0.3, 1)',
+                easing: MOTION_EASING.standardCss,
                 pseudoElement: '::view-transition-new(root)',
               },
             )
@@ -107,7 +118,7 @@ export function useTheme() {
         .catch(() => {})
 
       transition.finished.finally(() => {
-        html.classList.remove('vt-going-dark')
+        html.classList.remove(THEME_TRANSITION.goingDarkClass)
       })
     },
     [theme],

@@ -1,4 +1,4 @@
-import { GALLERY_CAPTIONS, GALLERY_TAGS } from '../data/gallery'
+import { GALLERY_CAPTIONS, findGalleryTag } from '../data/gallery'
 import { galleryItems } from '../data/galleryItems'
 import { useLocale } from '../hooks/useLocale'
 import { SimpleMarquee } from './SimpleMarquee'
@@ -12,7 +12,7 @@ export default function SectionPhotoMarquee() {
     const caption = GALLERY_CAPTIONS[key]
     if (caption) return L(caption)
 
-    const tagInfo = GALLERY_TAGS.find((item) => item.key === tag)
+    const tagInfo = findGalleryTag(tag)
     return tagInfo ? L(tagInfo.label) : 'Life photo'
   }
 

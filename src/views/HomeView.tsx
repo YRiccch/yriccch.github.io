@@ -3,10 +3,7 @@ import SectionPhotoMarquee from '../components/SectionPhotoMarquee'
 import SectionTimeline from '../components/SectionTimeline'
 import SectionPubs from '../components/SectionPubs'
 
-/**
- * Home 页 —— Phase 2。
- * Section 进入视口时淡入上移；尊重 prefers-reduced-motion。
- */
+/** 首页依次组合个人介绍、时间线、论文和底部照片墙。 */
 export default function HomeView() {
   return (
     <div id="home">

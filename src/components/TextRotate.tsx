@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
+import { MOTION_EASING } from '../config/site'
 import type { LocaleText } from '../data/types'
 import { useLocale } from '../hooks/useLocale'
 
@@ -23,10 +24,10 @@ export function TextRotate({
 
   useEffect(() => {
     if (paused || items.length <= 1) return
-    const tid = setInterval(() => {
+    const intervalId = setInterval(() => {
       setIndex((i) => (i + 1) % items.length)
     }, interval)
-    return () => clearInterval(tid)
+    return () => clearInterval(intervalId)
   }, [items.length, interval, paused])
 
   const activeText = L(items[index])
@@ -51,7 +52,7 @@ export function TextRotate({
           exit={reduced ? undefined : { y: '-100%' }}
           transition={{
             duration: reduced ? 0 : 0.34,
-            ease: [0.22, 1, 0.36, 1],
+            ease: MOTION_EASING.verticalSwap,
           }}
           className="col-start-1 row-start-1 inline-block font-medium leading-[1.5] text-accent whitespace-nowrap"
         >

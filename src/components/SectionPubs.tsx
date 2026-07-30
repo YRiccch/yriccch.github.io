@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { FileText, BookOpen, Link2, Image as ImageIcon } from 'lucide-react'
 import { acceptedPublications, underReviewPublications } from '../data/publications'
 import type { Publication, PubLink } from '../data/publications'
+import { SECTION_IDS } from '../config/site'
 import { Letter3DSwap } from './Letter3DSwap'
 import { GithubIcon } from './icons'
 import { useLocale } from '../hooks/useLocale'
@@ -129,7 +130,7 @@ export default function SectionPubs() {
   const { t } = useTranslation()
 
   return (
-    <section id="publications" className="mb-16">
+    <section id={SECTION_IDS.publications} className="mb-16">
       <h2 className="mb-8 text-[1.35rem] font-semibold text-fg-strong">
         <Letter3DSwap text={t('pubs.title')} />
       </h2>

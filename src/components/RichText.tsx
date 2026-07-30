@@ -7,37 +7,40 @@ import { MediaBetweenText } from './MediaBetweenText'
  *   {text}    → 加粗 + 静态虚线下划线（仅装饰，无交互）
  *   **text**  → <b>text</b>                    普通强调
  */
-const TOKEN_RE = /\[(\w+)\]|\{([^{}]+)\}|\*\*([^*]+)\*\*/g
+const TOKEN_PATTERN = /\[(\w+)\]|\{([^{}]+)\}|\*\*([^*]+)\*\*/g
 
 export function RichText({ text }: { text: string }) {
-  const out: ReactNode[] = []
-  let last = 0
-  let m: RegExpExecArray | null
+  const nodes: ReactNode[] = []
+  let lastIndex = 0
   let key = 0
 
-  while ((m = TOKEN_RE.exec(text)) !== null) {
-    if (m.index > last) {
-      out.push(<Fragment key={key++}>{text.slice(last, m.index)}</Fragment>)
+  for (const match of text.matchAll(TOKEN_PATTERN)) {
+    if (match.index > lastIndex) {
+      nodes.push(
+        <Fragment key={key++}>
+          {text.slice(lastIndex, match.index)}
+        </Fragment>,
+      )
     }
-    if (m[1] !== undefined) {
-      out.push(<MediaBetweenText key={key++} id={m[1]} />)
-    } else if (m[2] !== undefined) {
-      out.push(
+    if (match[1] !== undefined) {
+      nodes.push(<MediaBetweenText key={key++} id={match[1]} />)
+    } else if (match[2] !== undefined) {
+      nodes.push(
         <span
           key={key++}
           className="font-medium text-fg-primary"
         >
-          {m[2]}
+          {match[2]}
         </span>,
       )
-    } else if (m[3] !== undefined) {
-      out.push(<b key={key++}>{m[3]}</b>)
+    } else if (match[3] !== undefined) {
+      nodes.push(<b key={key++}>{match[3]}</b>)
     }
-    last = m.index + m[0].length
+    lastIndex = match.index + match[0].length
   }
-  if (last < text.length) {
-    out.push(<Fragment key={key}>{text.slice(last)}</Fragment>)
+  if (lastIndex < text.length) {
+    nodes.push(<Fragment key={key}>{text.slice(lastIndex)}</Fragment>)
   }
 
-  return <>{out}</>
+  return <>{nodes}</>
 }

@@ -35,29 +35,11 @@ export const mediaKeywords: MediaKeyword[] = [
     alt: { zh: '南洋理工大学计算与数据科学学院（CCDS）', en: 'CCDS, NTU campus' },
   },
   {
-    id: 'dataviz',
-    label: { zh: '数据可视化', en: 'Data Visualization' },
-    media: '/mbt/dataviz.jpg',
-    alt: { zh: '数据可视化作品截图', en: 'Data visualization project' },
-  },
-  {
-    id: 'hci',
-    label: { zh: '人机交互', en: 'Human–Computer Interaction' },
-    media: '/mbt/hci.jpg',
-    alt: { zh: '人机交互项目截图', en: 'HCI project' },
-  },
-  {
     id: 'wang',
     label: { zh: '王勇教授', en: 'Prof. Yong Wang' },
     media: '/mbt/wang.jpg',
     alt: { zh: '王勇教授', en: 'Prof. Yong Wang' },
     link: 'https://yong-wang.org',
-  },
-  {
-    id: 'dmt',
-    label: { zh: '数字媒体技术', en: 'Digital Media Technology' },
-    media: '/mbt/dmt.jpg',
-    alt: { zh: '数字媒体技术专业', en: 'Digital Media Technology' },
   },
   {
     id: 'vai',
@@ -80,15 +62,13 @@ export const mediaKeywords: MediaKeyword[] = [
     alt: { zh: '刘玉华老师', en: 'Prof. Yuhua Liu' },
     link: 'https://faculty.hdu.edu.cn/rwys/lyh2/main.htm',
   },
-  {
-    id: 'cs',
-    label: { zh: '计算机科学与技术', en: 'Computer Science' },
-    media: '/mbt/cs.jpg',
-    alt: { zh: '计算机科学与技术', en: 'Computer Science' },
-  },
 ]
+
+const mediaKeywordById = new Map(
+  mediaKeywords.map((keyword) => [keyword.id, keyword]),
+)
 
 /** 方便根据 id 查 media 项 */
 export function findMedia(id: string): MediaKeyword | undefined {
-  return mediaKeywords.find((m) => m.id === id)
+  return mediaKeywordById.get(id)
 }

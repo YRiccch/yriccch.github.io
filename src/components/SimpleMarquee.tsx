@@ -38,6 +38,7 @@ export function SimpleMarquee({
   const isDragging = useRef(false)
   const lastPointerX = useRef(0)
   const dragVelocity = useRef(0)
+  const dragGroupWidth = useRef(0)
   const baseX = useMotionValue(-0.01)
   const hoverFactor = useMotionValue(1)
   const smoothHoverFactor = useSpring(hoverFactor, {
@@ -75,12 +76,14 @@ export function SimpleMarquee({
     isDragging.current = true
     lastPointerX.current = event.clientX
     dragVelocity.current = 0
+    dragGroupWidth.current =
+      firstGroupRef.current?.getBoundingClientRect().width ?? 0
   }
 
   const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
     if (!canDrag || !isDragging.current) return
 
-    const groupWidth = firstGroupRef.current?.getBoundingClientRect().width
+    const groupWidth = dragGroupWidth.current
     if (!groupWidth) return
 
     const deltaPercent =
@@ -93,6 +96,7 @@ export function SimpleMarquee({
   const finishDragging = (event: PointerEvent<HTMLDivElement>) => {
     if (!canDrag) return
     isDragging.current = false
+    dragGroupWidth.current = 0
     if (event.currentTarget.hasPointerCapture(event.pointerId)) {
       event.currentTarget.releasePointerCapture(event.pointerId)
     }

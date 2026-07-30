@@ -3,6 +3,7 @@ import { Mail, MapPin } from 'lucide-react'
 import { aboutIntro } from '../data/aboutIntro'
 import { interestsRotator } from '../data/interests'
 import { profile } from '../data/profile'
+import { SECTION_IDS } from '../config/site'
 import { useLocale } from '../hooks/useLocale'
 import { TextRotate } from './TextRotate'
 import { RichText } from './RichText'
@@ -19,7 +20,7 @@ export default function SectionAbout() {
   const { L } = useLocale()
 
   return (
-    <section id="about" className="mb-16">
+    <section id={SECTION_IDS.about} className="mb-16">
       {/* Hero */}
       <header className="mb-11 flex items-center gap-7 max-[600px]:mb-9 max-[600px]:flex-col max-[600px]:items-start max-[600px]:gap-5">
         <div className="w-36 h-36 shrink-0 rounded-full overflow-hidden bg-hover ring-1 ring-line max-[600px]:w-28 max-[600px]:h-28">
@@ -86,7 +87,7 @@ export default function SectionAbout() {
         <span className="text-fg-secondary">
           <Letter3DSwap text={`${t('about.interestsLabel')}:`} />
         </span>
-        <TextRotate items={interestsRotator} interval={4800} />
+        <TextRotate items={interestsRotator} />
       </div>
     </section>
   )

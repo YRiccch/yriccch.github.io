@@ -5,33 +5,83 @@ import {
   Sun, Moon,
   User, Newspaper, BookOpen, Image as ImageIcon, Boxes, ArrowUp,
 } from 'lucide-react'
-import { useTheme } from '../hooks/useTheme'
-import { Letter3DSwap } from './Letter3DSwap'
 import {
+  MEDIA_QUERIES,
+  NAVIGATION,
   PAGE_CONTAINER_CLASS,
   PAGE_MAX_WIDTH_CLASS,
-} from '../config/layout'
+  ROUTES,
+  SECTION_IDS,
+} from '../config/site'
+import { useTheme } from '../hooks/useTheme'
+import { Letter3DSwap } from './Letter3DSwap'
 
-type NavKind = 'section' | 'route'
-type NavItem = {
+type NavIcon = React.ComponentType<{
+  size?: number
+  className?: string
+  style?: React.CSSProperties
+}>
+
+type NavItemBase = {
   key: string
   id: string
-  icon: React.ComponentType<{
-    size?: number
-    className?: string
-    style?: React.CSSProperties
-  }>
-  kind: NavKind
-  path?: string
+  icon: NavIcon
 }
 
-const NAV_ITEMS: NavItem[] = [
-  { key: 'about', id: 'about', icon: User, kind: 'section' },
-  { key: 'timeline', id: 'timeline', icon: Newspaper, kind: 'section' },
-  { key: 'publications', id: 'publications', icon: BookOpen, kind: 'section' },
-  { key: 'life', id: 'life', icon: ImageIcon, kind: 'route', path: '/life' },
-  { key: 'gadgets', id: 'gadgets', icon: Boxes, kind: 'route', path: '/gadgets' },
-]
+type NavItem =
+  | (NavItemBase & { kind: 'section' })
+  | (NavItemBase & { kind: 'route'; path: string })
+
+const NAV_ITEMS = [
+  {
+    key: 'about',
+    id: SECTION_IDS.about,
+    icon: User,
+    kind: 'section',
+  },
+  {
+    key: 'timeline',
+    id: SECTION_IDS.timeline,
+    icon: Newspaper,
+    kind: 'section',
+  },
+  {
+    key: 'publications',
+    id: SECTION_IDS.publications,
+    icon: BookOpen,
+    kind: 'section',
+  },
+  {
+    key: 'life',
+    id: 'life',
+    icon: ImageIcon,
+    kind: 'route',
+    path: ROUTES.life,
+  },
+  {
+    key: 'gadgets',
+    id: SECTION_IDS.gadgets,
+    icon: Boxes,
+    kind: 'route',
+    path: ROUTES.gadgets,
+  },
+] satisfies readonly NavItem[]
+
+function scrollToSection(id: string) {
+  const element = document.getElementById(id)
+  if (!element) return
+
+  const isMobile = window.matchMedia(
+    MEDIA_QUERIES.mobileNavigation,
+  ).matches
+  const offset = isMobile
+    ? NAVIGATION.mobileScrollOffset
+    : NAVIGATION.desktopScrollOffset
+  const top =
+    element.getBoundingClientRect().top + window.pageYOffset - offset
+
+  window.scrollTo({ top, behavior: 'smooth' })
+}
 
 export default function Navbar() {
   const { t, i18n } = useTranslation()
@@ -39,7 +89,7 @@ export default function Navbar() {
   const location = useLocation()
   const navigate = useNavigate()
 
-  const [activeId, setActiveId] = useState<string>('about')
+  const [activeId, setActiveId] = useState<string>(SECTION_IDS.about)
   const [showBackTop, setShowBackTop] = useState(false)
   const observerRef = useRef<IntersectionObserver | null>(null)
 
@@ -48,13 +98,13 @@ export default function Navbar() {
   }
 
   const themeTitle = isDark ? t('actions.switchToLight') : t('actions.switchToDark')
-  const onHomeRoute = location.pathname === '/'
+  const onHomeRoute = location.pathname === ROUTES.home
 
   /* ------- 跳转逻辑 ------- */
-  const navigateTo = async (item: NavItem) => {
+  const navigateTo = (item: NavItem) => {
     if (item.kind === 'route') {
       if (location.pathname !== item.path) {
-        navigate(item.path!)
+        navigate(item.path)
       } else {
         window.scrollTo({ top: 0, behavior: 'smooth' })
       }
@@ -63,22 +113,12 @@ export default function Navbar() {
 
     // section：如果不在 home，先跳回 home
     if (!onHomeRoute) {
-      navigate('/')
+      navigate(ROUTES.home)
       // 等下一帧 DOM 渲染再滚动
       requestAnimationFrame(() => requestAnimationFrame(() => scrollToSection(item.id)))
       return
     }
     scrollToSection(item.id)
-  }
-
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id)
-    if (!el) return
-    // 桌面没有顶栏，只留 20px；移动端有 56px 吸顶栏，多让出空间避免标题被遮挡
-    const isMobile = window.matchMedia('(max-width: 900px)').matches
-    const offset = isMobile ? 72 : 20
-    const top = el.getBoundingClientRect().top + window.pageYOffset - offset
-    window.scrollTo({ top, behavior: 'smooth' })
   }
 
   /* ------- Scroll spy：只在 home 路由生效 ------- */
@@ -92,54 +132,77 @@ export default function Navbar() {
         (n) => n.kind === 'route' && n.path === location.pathname,
       )
       const routeFrame = requestAnimationFrame(() => {
-        setActiveId(routeItem ? routeItem.id : 'about')
+        setActiveId(routeItem ? routeItem.id : SECTION_IDS.about)
       })
       return () => cancelAnimationFrame(routeFrame)
     }
-    const homeFrame = requestAnimationFrame(() => setActiveId('about'))
+    const homeFrame = requestAnimationFrame(() =>
+      setActiveId(SECTION_IDS.about),
+    )
 
     // 延迟到 DOM 就绪
     const setup = () => {
       const sections = NAV_ITEMS
-        .filter((n) => n.kind === 'section')
-        .map((n) => document.getElementById(n.id))
-        .filter((e): e is HTMLElement => !!e)
+        .filter((item) => item.kind === 'section')
+        .map((item) => document.getElementById(item.id))
+        .filter((element): element is HTMLElement => !!element)
 
-      const io = new IntersectionObserver(
+      const observer = new IntersectionObserver(
         (entries) => {
           const visible = entries
-            .filter((e) => e.isIntersecting)
+            .filter((entry) => entry.isIntersecting)
             .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
           if (visible.length > 0) setActiveId(visible[0].target.id)
         },
-        { rootMargin: '-100px 0px -55% 0px', threshold: 0 },
+        { rootMargin: NAVIGATION.observerRootMargin, threshold: 0 },
       )
-      sections.forEach((s) => io.observe(s))
-      observerRef.current = io
+      sections.forEach((section) => observer.observe(section))
+      observerRef.current = observer
     }
 
     // 等 route 切换 + DOM 渲染
-    const tid = setTimeout(setup, 50)
+    const setupTimerId = setTimeout(
+      setup,
+      NAVIGATION.observerSetupDelayMs,
+    )
     return () => {
       cancelAnimationFrame(homeFrame)
-      clearTimeout(tid)
+      clearTimeout(setupTimerId)
       observerRef.current?.disconnect()
     }
   }, [onHomeRoute, location.pathname])
 
   /* ------- 滚动监听：是否显示"回到顶部"；接近顶部时 active = about ------- */
   useEffect(() => {
+    let frameId: number | null = null
+
+    const updateScrollState = () => {
+      frameId = null
+      const scrollY = window.scrollY
+      setShowBackTop(scrollY > NAVIGATION.backToTopThreshold)
+      if (
+        onHomeRoute &&
+        scrollY < NAVIGATION.homeActivationThreshold
+      ) {
+        setActiveId(SECTION_IDS.about)
+      }
+    }
+
     const onScroll = () => {
-      setShowBackTop(window.scrollY > 480)
-      if (onHomeRoute && window.scrollY < 120) setActiveId('about')
+      if (frameId === null) {
+        frameId = requestAnimationFrame(updateScrollState)
+      }
     }
     window.addEventListener('scroll', onScroll, { passive: true })
-    onScroll()
-    return () => window.removeEventListener('scroll', onScroll)
+    updateScrollState()
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      if (frameId !== null) cancelAnimationFrame(frameId)
+    }
   }, [onHomeRoute])
 
   const backToTop = () => {
-    if (!onHomeRoute) navigate('/')
+    if (!onHomeRoute) navigate(ROUTES.home)
     else window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 

@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react'
 import type { ReactNode } from 'react'
+import { MEDIA_QUERIES, MOTION_EASING } from '../config/site'
 import { useLocale } from '../hooks/useLocale'
 
 /**
@@ -36,7 +37,7 @@ export function LocaleSwap({
 
   const reduced =
     typeof window !== 'undefined' &&
-    window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+    window.matchMedia?.(MEDIA_QUERIES.reducedMotion).matches
 
   if (reduced) {
     return <span className={className}>{children}</span>
@@ -50,7 +51,7 @@ export function LocaleSwap({
           initial={{ opacity: 0, y }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -y }}
-          transition={{ duration, ease: [0.22, 0.9, 0.3, 1] }}
+          transition={{ duration, ease: MOTION_EASING.standard }}
           className="inline-block"
         >
           {children}

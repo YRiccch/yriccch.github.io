@@ -5,9 +5,10 @@ import { profile } from './data/profile'
 import { useLocale } from './hooks/useLocale'
 import { useGoatcounter } from './hooks/useGoatcounter'
 import { LocaleSwap } from './components/LocaleSwap'
+import { PAGE_CONTAINER_CLASS } from './config/layout'
 
 /**
- * 布局壳：单列 max-w-850，Navbar 桌面端 fixed 内容右上角，移动端浮右侧。
+ * 布局壳：单列 max-w-750，Navbar 桌面端 fixed 内容右上角，移动端浮右侧。
  */
 export default function App() {
   const { t } = useTranslation()
@@ -19,11 +20,11 @@ export default function App() {
       <Navbar />
 
       <div className="min-h-screen">
-        <div className="max-w-[850px] mx-auto px-6 max-[600px]:px-4">
+        <div className={PAGE_CONTAINER_CLASS}>
           <main className="pt-12 pb-16 max-[900px]:pt-20">
             <Outlet />
 
-            <footer className="mt-16 pt-8 border-t border-line">
+            <footer className="mt-10 pt-6 border-t border-line">
               <p className="text-xs text-fg-quaternary m-0">
                 <LocaleSwap>
                   &copy; {new Date().getFullYear()} {L(profile.name)}. {t('footer.rights')}

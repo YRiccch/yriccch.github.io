@@ -25,7 +25,7 @@ export function RichText({ text }: { text: string }) {
       out.push(
         <span
           key={key++}
-          className="font-medium border-b border-dashed border-fg-tertiary/50"
+          className="font-medium text-fg-primary"
         >
           {m[2]}
         </span>,
@@ -36,7 +36,7 @@ export function RichText({ text }: { text: string }) {
     last = m.index + m[0].length
   }
   if (last < text.length) {
-    out.push(<Fragment key={key++}>{text.slice(last)}</Fragment>)
+    out.push(<Fragment key={key}>{text.slice(last)}</Fragment>)
   }
 
   return <>{out}</>

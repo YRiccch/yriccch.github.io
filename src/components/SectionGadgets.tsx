@@ -74,7 +74,7 @@ export default function SectionGadgets() {
 
   return (
     <section id="gadgets" className="mb-12">
-      <h2 className="text-2xl font-bold text-fg-primary mb-1.5">
+      <h2 className="text-2xl font-bold text-fg-strong mb-1.5">
         <Letter3DSwap text={t('gadgets.title')} />
       </h2>
       <p className="text-sm text-fg-tertiary mb-6">{t('gadgets.desc')}</p>

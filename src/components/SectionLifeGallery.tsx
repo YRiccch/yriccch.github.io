@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'motion/react'
 import { GALLERY_TAGS, GALLERY_CAPTIONS } from '../data/gallery'
+import { galleryItems, type GalleryItem } from '../data/galleryItems'
 import { useLocale } from '../hooks/useLocale'
 import { Letter3DSwap } from './Letter3DSwap'
 import { LocaleSwap } from './LocaleSwap'
@@ -13,55 +14,30 @@ import { LocaleSwap } from './LocaleSwap'
  *   3. 想给某张图加说明：在 src/data/gallery.ts 的 GALLERY_CAPTIONS 里加条目
  */
 
-type Item = {
-  id: string
-  tag: string
-  url: string
-  key: string
-}
-
-// Vite 构建时静态注入所有匹配的图片 URL
-const modules = import.meta.glob<string>(
-  '../assets/gallery/**/*.{svg,jpg,jpeg,png,webp,gif,avif}',
-  { eager: true, import: 'default' },
-)
-
-const allItems: Item[] = Object.entries(modules).map(([path, url]) => {
-  const parts = path.split('/')
-  const file = parts[parts.length - 1]
-  const tag = parts[parts.length - 2]
-  const id = file.replace(/\.[^.]+$/, '')
-  const key = `${tag}/${id}`
-  return { id, tag, url, key }
-})
-
-const TAG_ORDER = GALLERY_TAGS.map((t) => t.key)
-allItems.sort((a, b) => {
-  const ai = TAG_ORDER.indexOf(a.tag)
-  const bi = TAG_ORDER.indexOf(b.tag)
-  if (ai !== bi) return ai - bi
-  return a.id.localeCompare(b.id)
-})
-
 export default function SectionLifeGallery() {
   const { t } = useTranslation()
   const { L } = useLocale()
   const [activeTag, setActiveTag] = useState<string>('all')
-  const [lightbox, setLightbox] = useState<Item | null>(null)
+  const [lightbox, setLightbox] = useState<GalleryItem | null>(null)
 
   // 可用的标签 —— 只显示真正有图片的
   const availableTags = useMemo(() => {
-    const set = new Set(allItems.map((i) => i.tag))
+    const set = new Set(galleryItems.map((i) => i.tag))
     return GALLERY_TAGS.filter((t) => set.has(t.key))
   }, [])
 
   const visible = useMemo(
-    () => (activeTag === 'all' ? allItems : allItems.filter((i) => i.tag === activeTag)),
+    () =>
+      activeTag === 'all'
+        ? galleryItems
+        : galleryItems.filter((i) => i.tag === activeTag),
     [activeTag],
   )
 
   const countFor = (tag: string) =>
-    tag === 'all' ? allItems.length : allItems.filter((i) => i.tag === tag).length
+    tag === 'all'
+      ? galleryItems.length
+      : galleryItems.filter((i) => i.tag === tag).length
 
   const tagLabelFor = (tagKey: string) => {
     if (tagKey === 'all') return t('life.all')
@@ -69,7 +45,7 @@ export default function SectionLifeGallery() {
     return found ? L(found.label) : tagKey
   }
 
-  const captionOf = (item: Item | null) => {
+  const captionOf = (item: GalleryItem | null) => {
     if (!item) return ''
     const c = GALLERY_CAPTIONS[item.key]
     return c ? L(c) : ''
@@ -89,7 +65,7 @@ export default function SectionLifeGallery() {
 
   return (
     <section className="mb-12">
-      <h2 className="text-2xl font-bold text-fg-primary mb-2 min-h-[2rem]">
+      <h2 className="text-2xl font-bold text-fg-strong mb-2 min-h-[2rem]">
         <Letter3DSwap text={t('life.title')} />
       </h2>
       <p className="text-[0.95rem] text-fg-tertiary mb-5 min-h-[1.5em]">
@@ -114,7 +90,7 @@ export default function SectionLifeGallery() {
                 'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[0.85rem] ' +
                 'transition-colors active:scale-95 font-sans ' +
                 (active
-                  ? 'bg-accent text-white border-accent'
+                  ? 'bg-hover text-accent border-accent'
                   : 'bg-card text-fg-secondary border-line hover:text-accent hover:border-accent')
               }
             >
@@ -122,7 +98,7 @@ export default function SectionLifeGallery() {
               <span
                 className={
                   'text-[0.72rem] tabular-nums ' +
-                  (active ? 'text-white/80' : 'text-fg-tertiary')
+                  (active ? 'text-fg-secondary' : 'text-fg-tertiary')
                 }
               >
                 {countFor(tg)}

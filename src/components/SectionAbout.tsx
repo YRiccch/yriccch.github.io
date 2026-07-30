@@ -19,9 +19,9 @@ export default function SectionAbout() {
   const { L } = useLocale()
 
   return (
-    <section id="about" className="mb-14">
+    <section id="about" className="mb-16">
       {/* Hero */}
-      <header className="mb-10 flex items-center gap-7 max-[600px]:mb-8 max-[600px]:flex-col max-[600px]:items-start max-[600px]:gap-5">
+      <header className="mb-11 flex items-center gap-7 max-[600px]:mb-9 max-[600px]:flex-col max-[600px]:items-start max-[600px]:gap-5">
         <div className="w-36 h-36 shrink-0 rounded-full overflow-hidden bg-hover ring-1 ring-line max-[600px]:w-28 max-[600px]:h-28">
           <img
             src={profile.avatar}
@@ -33,10 +33,10 @@ export default function SectionAbout() {
           />
         </div>
         <div className="min-w-0">
-          <h1 className="text-[2rem] font-bold text-fg-primary leading-tight m-0 min-h-[2.5rem] max-[600px]:text-[1.65rem] max-[600px]:min-h-[2.1rem]">
+          <h1 className="m-0 text-[2rem] font-bold leading-tight text-fg-strong max-[600px]:text-[1.65rem]">
             <Letter3DSwap text={L(profile.name)} />
           </h1>
-          <p className="text-[1.05rem] text-fg-secondary mt-2 m-0 min-h-[1.5rem] max-[600px]:text-[0.95rem] max-[600px]:mt-1.5 max-[600px]:min-h-[1.4rem]">
+          <p className="m-0 mt-2 text-[1.05rem] text-fg-secondary max-[600px]:mt-1.5 max-[600px]:text-[0.95rem]">
             <Letter3DSwap text={`${L(profile.role)} · ${L(profile.affiliation)}`} />
           </p>
 
@@ -76,11 +76,11 @@ export default function SectionAbout() {
         </div>
       </header>
 
-      <h2 className="text-[1.25rem] font-semibold text-fg-primary mb-3 min-h-[1.8rem]">
+      <h2 className="mb-3 text-[1.15rem] font-semibold text-fg-strong">
         <Letter3DSwap text={t('about.title')} />
       </h2>
 
-      <p className="text-[1.02rem] leading-[1.75] text-fg-primary mb-5 min-h-[5.1em]">
+      <p className="mb-5 max-w-[68ch] text-[1rem] leading-[1.75] text-fg-primary">
         <LocaleSwap>
           <RichText text={L(aboutIntro)} />
         </LocaleSwap>
@@ -90,7 +90,7 @@ export default function SectionAbout() {
         <span className="text-fg-secondary">
           <Letter3DSwap text={`${t('about.interestsLabel')}:`} />
         </span>
-        <TextRotate items={interestsRotator} />
+        <TextRotate items={interestsRotator} interval={4800} />
       </div>
     </section>
   )

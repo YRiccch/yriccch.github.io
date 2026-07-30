@@ -1,5 +1,4 @@
 import { motion, AnimatePresence } from 'motion/react'
-import { useEffect, useState } from 'react'
 
 /**
  * Fancy 系列 —— Letter 3D Swap。
@@ -25,12 +24,6 @@ export function Letter3DSwap({
   staggerMs?: number
   duration?: number
 }) {
-  // 跳过首次渲染（避免页面打开时所有标题都"飞"进来）
-  const [hasMounted, setHasMounted] = useState(false)
-  useEffect(() => {
-    setHasMounted(true)
-  }, [])
-
   const reduced =
     typeof window !== 'undefined' &&
     window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
@@ -55,7 +48,7 @@ export function Letter3DSwap({
               key={`${i}-${ch}`}
               className="inline-block"
               style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden' }}
-              initial={hasMounted ? { rotateX: -90, opacity: 0, y: '-0.2em' } : false}
+              initial={{ rotateX: -90, opacity: 0, y: '-0.2em' }}
               animate={{ rotateX: 0, opacity: 1, y: 0 }}
               exit={{ rotateX: 90, opacity: 0, y: '0.2em' }}
               transition={{

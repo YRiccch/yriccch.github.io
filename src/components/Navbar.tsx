@@ -7,6 +7,10 @@ import {
 } from 'lucide-react'
 import { useTheme } from '../hooks/useTheme'
 import { Letter3DSwap } from './Letter3DSwap'
+import {
+  PAGE_CONTAINER_CLASS,
+  PAGE_MAX_WIDTH_CLASS,
+} from '../config/layout'
 
 type NavKind = 'section' | 'route'
 type NavItem = {
@@ -83,10 +87,12 @@ export default function Navbar() {
       const routeItem = NAV_ITEMS.find(
         (n) => n.kind === 'route' && n.path === location.pathname,
       )
-      setActiveId(routeItem ? routeItem.id : 'about')
-      return
+      const routeFrame = requestAnimationFrame(() => {
+        setActiveId(routeItem ? routeItem.id : 'about')
+      })
+      return () => cancelAnimationFrame(routeFrame)
     }
-    setActiveId('about')
+    const homeFrame = requestAnimationFrame(() => setActiveId('about'))
 
     // 延迟到 DOM 就绪
     const setup = () => {
@@ -111,6 +117,7 @@ export default function Navbar() {
     // 等 route 切换 + DOM 渲染
     const tid = setTimeout(setup, 50)
     return () => {
+      cancelAnimationFrame(homeFrame)
       clearTimeout(tid)
       observerRef.current?.disconnect()
     }
@@ -135,15 +142,9 @@ export default function Navbar() {
   return (
     <nav>
       {/* ============ Desktop（紧贴内容右上角的纵向无边框导航）============ */}
-      <div
-        className="desktop-nav fixed z-50 flex flex-col items-start gap-0.5 max-[900px]:hidden"
-        style={{
-          // 顶部对齐内容首屏（main 的 pt-12 = 48px）
-          top: '48px',
-          // 紧贴 max-w-850 内容列右边 30px；窄屏不让 nav 越过视口右边缘 56px 内
-          left: 'min(calc((100vw + 850px) / 2 + 30px), calc(100vw - 56px))',
-        }}
-      >
+      <div className="pointer-events-none fixed inset-x-0 top-12 z-50 max-[900px]:hidden">
+        <div className={`${PAGE_CONTAINER_CLASS} relative`}>
+          <div className="desktop-nav pointer-events-auto absolute left-full top-0 ml-[30px] flex flex-col items-start gap-0.5">
         {/* 工具区：主题 + 语言 */}
         <button
           onClick={(e) => toggleTheme({ clientX: e.clientX, clientY: e.clientY })}
@@ -207,11 +208,15 @@ export default function Navbar() {
             )
           })}
         </ul>
+          </div>
+        </div>
       </div>
 
       {/* ============ Mobile（吸顶横向图标条）============ */}
       <div className="hidden max-[900px]:block fixed top-0 inset-x-0 z-[100] bg-navbar backdrop-blur-md border-b border-line">
-        <div className="flex items-center gap-1 h-14 px-3 max-w-[850px] mx-auto">
+        <div
+          className={`${PAGE_MAX_WIDTH_CLASS} mx-auto flex h-14 items-center gap-1 px-3`}
+        >
           {/* 导航图标：横向平铺，可横向滚动以防溢出 */}
           <ul className="flex items-center gap-1 m-0 p-0 list-none flex-1 min-w-0 overflow-x-auto no-scrollbar">
             {NAV_ITEMS.map((item) => {
@@ -231,7 +236,7 @@ export default function Navbar() {
                       'inline-flex items-center justify-center gap-1.5 h-10 min-w-[40px] box-border ' +
                       'rounded-full text-[0.85rem] transition-colors duration-200 ' +
                       (active
-                        ? 'text-white bg-accent px-3'
+                        ? 'text-accent px-2'
                         : 'text-fg-tertiary px-2 hover:text-accent')
                     }
                   >

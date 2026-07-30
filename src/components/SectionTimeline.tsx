@@ -27,36 +27,86 @@ export default function SectionTimeline() {
   const { t } = useTranslation()
   const { L } = useLocale()
   const groups = useMemo(() => groupByYear(timeline), [])
+  const yearRange =
+    groups.length > 0
+      ? `${groups[groups.length - 1].year} — ${groups[0].year}`
+      : ''
 
   return (
-    <section id="timeline" className="mb-12">
-      <h2 className="text-2xl font-bold text-fg-primary mb-8">
-        <Letter3DSwap text={t('timeline.title')} />
-      </h2>
-
-      <div className="flex flex-col gap-7">
-        {groups.map((group) => (
-          <article
-            key={group.year}
-            className="grid grid-cols-[110px_1fr] gap-7 items-baseline max-[600px]:grid-cols-[76px_1fr] max-[600px]:gap-4"
+    <section id="timeline" className="mb-16">
+      <header className="mb-7 flex items-center justify-between gap-6">
+        <h2 className="m-0 text-[1.35rem] font-semibold text-fg-strong">
+          <Letter3DSwap text={t('timeline.title')} />
+        </h2>
+        {yearRange && (
+          <div
+            aria-hidden
+            className="flex items-center gap-3 text-[0.72rem] font-medium text-fg-tertiary tabular-nums max-[600px]:hidden"
           >
-            <div className="text-[2.4rem] font-medium text-accent leading-none tabular-nums select-none max-[600px]:text-[1.85rem]">
-              {group.year}
-            </div>
-            <div className="flex flex-col gap-3.5">
-              {group.entries.map((entry) => (
-                <div
-                  key={entry.id}
-                  className="pt-2 border-t border-line text-fg-primary text-base leading-[1.65] max-[600px]:text-[0.95rem]"
-                >
-                  <LocaleSwap>
-                    <RichText text={L(entry.body)} />
-                  </LocaleSwap>
-                </div>
-              ))}
-            </div>
-          </article>
-        ))}
+            <span className="h-px w-6 bg-line" />
+            <span>{yearRange}</span>
+          </div>
+        )}
+      </header>
+
+      <div className="relative">
+        <div
+          aria-hidden
+          className="absolute bottom-1 left-[94px] top-1 w-px bg-line max-[600px]:left-[65px]"
+        />
+
+        <div className="flex flex-col">
+          {groups.map((group, groupIndex) => (
+            <article
+              key={group.year}
+              className="relative grid grid-cols-[72px_12px_minmax(0,1fr)] gap-x-4 pb-8 last:pb-0 max-[600px]:grid-cols-[48px_10px_minmax(0,1fr)] max-[600px]:gap-x-3 max-[600px]:pb-6"
+            >
+              <time
+                dateTime={group.year}
+                className="select-none text-right text-[1.75rem] font-semibold leading-none text-fg-strong tabular-nums max-[600px]:text-[1.25rem]"
+              >
+                {group.year}
+              </time>
+
+              <div
+                aria-hidden
+                className="relative z-10 flex justify-center pt-1"
+              >
+                <span
+                  className={
+                    'h-2.5 w-2.5 rounded-full border-[1.5px] border-accent ' +
+                    (groupIndex === 0 ? 'bg-accent' : 'bg-body')
+                  }
+                />
+              </div>
+
+              <div className="max-w-[68ch] pb-1">
+                {group.entries.map((entry, entryIndex) => (
+                  <div
+                    key={entry.id}
+                    className={
+                      entryIndex === 0
+                        ? ''
+                        : 'mt-4 pt-1'
+                    }
+                  >
+                    <time
+                      dateTime={entry.period.start}
+                      className="block text-[0.75rem] font-medium leading-none text-fg-tertiary tabular-nums"
+                    >
+                      {L(entry.period.label)}
+                    </time>
+                    <div className="mt-2 text-[0.96rem] leading-[1.65] text-fg-primary max-[600px]:text-[0.92rem]">
+                      <LocaleSwap>
+                        <RichText text={L(entry.body)} />
+                      </LocaleSwap>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   )

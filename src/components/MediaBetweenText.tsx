@@ -1,27 +1,135 @@
-import { useEffect, useState } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type FocusEvent,
+  type MouseEvent,
+  type PointerEvent,
+} from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import { findMedia } from '../data/mediaKeywords'
 import { useLocale } from '../hooks/useLocale'
 
+const PREVIEW_MAX_WIDTH = 240
+const PREVIEW_MAX_HEIGHT = 220
+const PREVIEW_GAP = 12
+const VIEWPORT_PADDING = 12
+
+type PreviewPosition = {
+  centerX: number
+  anchorY: number
+  placement: 'top' | 'bottom'
+  maxWidth: number
+  maxHeight: number
+}
+
 /**
- * Fancy 系列 —— 文字里的"关键词"在悬停时浮出图片或视频，
- * 单击可放大到 Lightbox 全屏查看（带 link 的关键词除外，链接优先）。
- *
- * 视觉效果：
- *   - 默认：仅文字（accent 色），无下划线
- *   - Hover：accent 圆角矩形从左滑出填满文字背景（Underline-to-Background），文字反白
- *   - 同时上方浮出预览：高度锚定 200px，宽度按图片原始比例自动计算
- *     · 容器 w-fit 让它 shrink-to-fit
- *     · 图片 max-w-none 解开 Tailwind preflight 默认的 max-width: 100% 限制
- *   - 单击：放大 Lightbox（无 link）；或外链跳转（有 link）
+ * Fancy Components inspired interaction:
+ * the keyword receives an underline-to-background highlight while its media
+ * preview floats above the text. The preview is portaled to avoid clipping.
  */
 export function MediaBetweenText({ id }: { id: string }) {
-  const [hover, setHover] = useState(false)
+  const [active, setActive] = useState(false)
   const [zoomed, setZoomed] = useState(false)
   const [broken, setBroken] = useState(false)
+  const [previewPosition, setPreviewPosition] =
+    useState<PreviewPosition | null>(null)
+  const triggerRef = useRef<HTMLAnchorElement | HTMLSpanElement | null>(null)
+  const anchorRectIndexRef = useRef(0)
   const { L } = useLocale()
   const media = findMedia(id)
+
+  const updatePreviewPosition = useCallback(() => {
+    const trigger = triggerRef.current
+    if (!trigger) return
+
+    const clientRects = Array.from(trigger.getClientRects()).filter(
+      (rect) => rect.width > 0 && rect.height > 0,
+    )
+    const rect =
+      clientRects[
+        Math.min(anchorRectIndexRef.current, clientRects.length - 1)
+      ] ?? trigger.getBoundingClientRect()
+    const maxWidth = Math.min(
+      PREVIEW_MAX_WIDTH,
+      window.innerWidth - VIEWPORT_PADDING * 2,
+    )
+    const idealCenterX = rect.left + rect.width / 2
+    const centerX = Math.min(
+      window.innerWidth - VIEWPORT_PADDING - maxWidth / 2,
+      Math.max(VIEWPORT_PADDING + maxWidth / 2, idealCenterX),
+    )
+    const availableAbove = Math.max(
+      1,
+      rect.top - PREVIEW_GAP - VIEWPORT_PADDING,
+    )
+    const availableBelow = Math.max(
+      1,
+      window.innerHeight - rect.bottom - PREVIEW_GAP - VIEWPORT_PADDING,
+    )
+    const placement =
+      availableAbove >= Math.min(PREVIEW_MAX_HEIGHT, availableBelow)
+        ? 'top'
+        : 'bottom'
+    const maxHeight = Math.min(
+      PREVIEW_MAX_HEIGHT,
+      placement === 'top' ? availableAbove : availableBelow,
+    )
+    const anchorY =
+      placement === 'top'
+        ? rect.top - PREVIEW_GAP
+        : rect.bottom + PREVIEW_GAP
+
+    setPreviewPosition({
+      centerX,
+      anchorY,
+      placement,
+      maxWidth,
+      maxHeight,
+    })
+  }, [])
+
+  const showPreview = (
+    event:
+      | PointerEvent<HTMLElement>
+      | MouseEvent<HTMLElement>
+      | FocusEvent<HTMLElement>,
+  ) => {
+    const currentTarget = event.currentTarget as
+      | HTMLAnchorElement
+      | HTMLSpanElement
+    const focusedElement = document.activeElement
+
+    if (
+      focusedElement !== currentTarget &&
+      focusedElement?.getAttribute('data-media-trigger') === 'true' &&
+      'blur' in focusedElement
+    ) {
+      ;(focusedElement as HTMLElement).blur()
+    }
+
+    triggerRef.current = currentTarget
+    const clientRects = Array.from(currentTarget.getClientRects()).filter(
+      (rect) => rect.width > 0 && rect.height > 0,
+    )
+    if ('clientX' in event && 'clientY' in event) {
+      const hoveredRectIndex = clientRects.findIndex(
+        (rect) =>
+          event.clientX >= rect.left &&
+          event.clientX <= rect.right &&
+          event.clientY >= rect.top &&
+          event.clientY <= rect.bottom,
+      )
+      anchorRectIndexRef.current =
+        hoveredRectIndex >= 0 ? hoveredRectIndex : 0
+    } else {
+      anchorRectIndexRef.current = 0
+    }
+    updatePreviewPosition()
+    setActive(true)
+  }
 
   useEffect(() => {
     if (!zoomed) return
@@ -32,6 +140,33 @@ export function MediaBetweenText({ id }: { id: string }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [zoomed])
 
+  useEffect(() => {
+    if (!active) return
+
+    const closeOutsideTrigger = (
+      event: globalThis.MouseEvent | globalThis.PointerEvent,
+    ) => {
+      const trigger = triggerRef.current
+      const target = event.target
+
+      if (trigger && target instanceof Node && trigger.contains(target)) return
+      setActive(false)
+    }
+
+    updatePreviewPosition()
+    window.addEventListener('resize', updatePreviewPosition)
+    window.addEventListener('scroll', updatePreviewPosition, true)
+    document.addEventListener('mousemove', closeOutsideTrigger)
+    document.addEventListener('pointermove', closeOutsideTrigger)
+
+    return () => {
+      window.removeEventListener('resize', updatePreviewPosition)
+      window.removeEventListener('scroll', updatePreviewPosition, true)
+      document.removeEventListener('mousemove', closeOutsideTrigger)
+      document.removeEventListener('pointermove', closeOutsideTrigger)
+    }
+  }, [active, updatePreviewPosition])
+
   if (!media) return <span className="text-fg-tertiary">[{id}]</span>
 
   const isVideo = media.type === 'video'
@@ -40,71 +175,123 @@ export function MediaBetweenText({ id }: { id: string }) {
   const altText = L(media.alt)
 
   const triggerClass =
-    'group relative isolate inline-block font-medium align-baseline cursor-pointer'
+    'group relative isolate inline cursor-pointer align-baseline font-medium outline-none'
 
   const handlers = {
-    onMouseEnter: () => setHover(true),
-    onMouseLeave: () => setHover(false),
-    onFocus: () => setHover(true),
-    onBlur: () => setHover(false),
+    onPointerEnter: showPreview,
+    onPointerLeave: () => setActive(false),
+    onMouseEnter: showPreview,
+    onMouseMove: (event: MouseEvent<HTMLElement>) => {
+      if (!active) showPreview(event)
+    },
+    onMouseLeave: () => setActive(false),
+    onFocus: showPreview,
+    onBlur: () => setActive(false),
   }
 
   const innerVisual = (
-    <>
-      <span
-        aria-hidden
-        className="absolute inset-x-[-3px] inset-y-[-1px] z-0 bg-accent rounded-md origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-[cubic-bezier(0.22,0.9,0.3,1)]"
-      />
-      <span className="relative z-10 text-accent transition-colors duration-300 group-hover:text-white">
-        {labelText}
-      </span>
-    </>
+    <span
+      className={
+        'relative z-10 -mx-[3px] -my-px rounded-[3px] px-[3px] py-px text-accent ' +
+        '[background-image:linear-gradient(var(--highlight-color),var(--highlight-color))] ' +
+        '[background-position:0_0] [background-repeat:no-repeat] [background-size:0%_100%] ' +
+        '[box-decoration-break:clone] [-webkit-box-decoration-break:clone] ' +
+        'transition-[background-size,color] duration-500 ease-[cubic-bezier(0.22,0.9,0.3,1)] ' +
+        'group-hover:[background-size:100%_100%] group-hover:text-onHighlight ' +
+        'group-focus-visible:[background-size:100%_100%] group-focus-visible:text-onHighlight ' +
+        (active ? '[background-size:100%_100%] text-onHighlight' : '')
+      }
+    >
+      {labelText}
+    </span>
   )
 
-  // 悬停预览：高度锁定 130px，宽度由图片自然比例决定
-  const popup = (
-    <AnimatePresence>
-      {hover && !zoomed && (
-        <motion.span
-          initial={{ opacity: 0, y: 10, scale: 0.85, x: '-50%' }}
-          animate={{ opacity: 1, y: 0, scale: 1, x: '-50%' }}
-          exit={{ opacity: 0, y: 10, scale: 0.85, x: '-50%' }}
-          transition={{ duration: 0.22, ease: [0.22, 0.9, 0.3, 1] }}
-          className="absolute left-1/2 bottom-full mb-2 rounded-xl overflow-hidden shadow-2xl pointer-events-none z-50 bg-card w-fit"
-          style={{ height: 130 }}
-        >
-          {!broken ? (
-            isVideo ? (
-              <video
-                src={media.media}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="block h-full w-auto max-w-none"
-                onError={() => setBroken(true)}
-              />
-            ) : (
-              <img
-                src={media.media}
-                alt={altText}
-                className="block h-full w-auto max-w-none"
-                onError={() => setBroken(true)}
-              />
-            )
-          ) : (
-            <span className="block h-full min-w-[160px] flex items-center justify-center text-xs text-fg-tertiary p-3 text-center">
-              {altText}
-              <br />
-              <span className="text-[10px] opacity-60">
-                (add: public{media.media})
-              </span>
-            </span>
-          )}
-        </motion.span>
-      )}
-    </AnimatePresence>
-  )
+  const preview =
+    typeof document !== 'undefined'
+      ? createPortal(
+          <AnimatePresence>
+            {active && !zoomed && previewPosition && (
+              <div
+                data-media-preview
+                aria-hidden="true"
+                className="pointer-events-none fixed z-[900]"
+                style={{
+                  left: previewPosition.centerX,
+                  top: previewPosition.anchorY,
+                  transform:
+                    previewPosition.placement === 'top'
+                      ? 'translate(-50%, -100%)'
+                      : 'translateX(-50%)',
+                }}
+              >
+                <motion.figure
+                  initial={{
+                    opacity: 0,
+                    y: previewPosition.placement === 'top' ? 12 : -12,
+                    scale: 0.9,
+                  }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{
+                    opacity: 0,
+                    y: previewPosition.placement === 'top' ? 8 : -8,
+                    scale: 0.94,
+                  }}
+                  transition={{
+                    type: 'spring',
+                    stiffness: 360,
+                    damping: 28,
+                    mass: 0.62,
+                  }}
+                  className="m-0 w-fit overflow-hidden rounded-[10px] border border-line bg-card shadow-[0_18px_45px_rgba(0,0,0,0.24)]"
+                >
+                  {!broken ? (
+                    isVideo ? (
+                      <video
+                        src={media.media}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="block h-auto w-auto"
+                        style={{
+                          maxWidth: previewPosition.maxWidth,
+                          maxHeight: previewPosition.maxHeight,
+                        }}
+                        onError={() => setBroken(true)}
+                      />
+                    ) : (
+                      <img
+                        src={media.media}
+                        alt=""
+                        className="block h-auto w-auto"
+                        style={{
+                          maxWidth: previewPosition.maxWidth,
+                          maxHeight: previewPosition.maxHeight,
+                        }}
+                        onError={() => setBroken(true)}
+                      />
+                    )
+                  ) : (
+                    <span
+                      className="flex flex-col items-center justify-center p-3 text-center text-xs text-fg-tertiary"
+                      style={{
+                        width: Math.min(220, previewPosition.maxWidth),
+                        height: Math.min(140, previewPosition.maxHeight),
+                      }}
+                    >
+                      {altText}
+                      <span className="mt-1 text-[10px] opacity-60">
+                        (add: public{media.media})
+                      </span>
+                    </span>
+                  )}
+                </motion.figure>
+              </div>
+            )}
+          </AnimatePresence>,
+          document.body,
+        )
+      : null
 
   const lightbox =
     typeof document !== 'undefined'
@@ -186,12 +373,13 @@ export function MediaBetweenText({ id }: { id: string }) {
           target="_blank"
           rel="noopener noreferrer"
           className={triggerClass}
+          data-media-trigger="true"
           title={media.link}
           {...handlers}
         >
           {innerVisual}
-          {popup}
         </a>
+        {preview}
         {lightbox}
       </>
     )
@@ -201,6 +389,7 @@ export function MediaBetweenText({ id }: { id: string }) {
     <>
       <span
         className={triggerClass}
+        data-media-trigger="true"
         tabIndex={0}
         role="button"
         onClick={() => setZoomed(true)}
@@ -213,8 +402,8 @@ export function MediaBetweenText({ id }: { id: string }) {
         {...handlers}
       >
         {innerVisual}
-        {popup}
       </span>
+      {preview}
       {lightbox}
     </>
   )

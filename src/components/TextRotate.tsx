@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
 import type { LocaleText } from '../data/types'
 import { useLocale } from '../hooks/useLocale'
 
 /**
  * Fancy 系列 —— 文本轮播。
- * 每 interval ms 换一条；hover 时暂停。popLayout 让容器不跳动。
+ * 每 interval ms 向上滚动一条；hover 时暂停。
  */
 export function TextRotate({
   items,
-  interval = 2400,
+  interval = 4800,
   className = '',
 }: {
   items: LocaleText[]
@@ -19,6 +19,7 @@ export function TextRotate({
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
   const { L } = useLocale()
+  const reduced = useReducedMotion()
 
   useEffect(() => {
     if (paused || items.length <= 1) return
@@ -28,26 +29,33 @@ export function TextRotate({
     return () => clearInterval(tid)
   }, [items.length, interval, paused])
 
-  const reduced =
-    typeof window !== 'undefined' &&
-    window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+  const activeText = L(items[index])
 
   return (
     <span
-      className={`relative inline-block align-baseline ${className}`}
+      className={`relative inline-grid overflow-hidden align-baseline ${className}`}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <AnimatePresence mode="popLayout">
+      <span
+        aria-hidden="true"
+        className="invisible col-start-1 row-start-1 inline-block font-medium leading-[1.5] whitespace-nowrap"
+      >
+        {activeText}
+      </span>
+      <AnimatePresence mode="popLayout" initial={false}>
         <motion.span
-          key={index}
-          initial={reduced ? {} : { opacity: 0, y: 14 }}
-          animate={reduced ? {} : { opacity: 1, y: 0 }}
-          exit={reduced ? {} : { opacity: 0, y: -14 }}
-          transition={{ duration: 0.3, ease: [0.22, 0.9, 0.3, 1] }}
-          className="inline-block font-medium text-accent whitespace-nowrap"
+          key={`${index}-${activeText}`}
+          initial={reduced ? false : { y: '100%' }}
+          animate={{ y: 0 }}
+          exit={reduced ? undefined : { y: '-100%' }}
+          transition={{
+            duration: reduced ? 0 : 0.34,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="col-start-1 row-start-1 inline-block font-medium leading-[1.5] text-accent whitespace-nowrap"
         >
-          {L(items[index])}
+          {activeText}
         </motion.span>
       </AnimatePresence>
     </span>

@@ -48,7 +48,7 @@ export const mediaKeywords: MediaKeyword[] = [
   },
   {
     id: 'wang',
-    label: { zh: '王勇教授', en: 'Prof. Wang' },
+    label: { zh: '王勇教授', en: 'Prof. Yong Wang' },
     media: '/mbt/wang.jpg',
     alt: { zh: '王勇教授', en: 'Prof. Yong Wang' },
     link: 'https://yong-wang.org',
@@ -68,10 +68,17 @@ export const mediaKeywords: MediaKeyword[] = [
   },
   {
     id: 'zhou',
-    label: { zh: '周志光教授', en: 'Prof. Zhou' },
+    label: { zh: '周志光教授', en: 'Prof. Zhiguang Zhou' },
     media: '/mbt/zhou.png',
     alt: { zh: '周志光教授', en: 'Prof. Zhiguang Zhou' },
-    link: 'https://hdvis.net',
+    link: 'https://faculty.hdu.edu.cn/rwys/zzg2/main.htm',
+  },
+  {
+    id: 'liu',
+    label: { zh: '刘玉华老师', en: 'Prof. Yuhua Liu' },
+    media: '/mbt/liu.png',
+    alt: { zh: '刘玉华老师', en: 'Prof. Yuhua Liu' },
+    link: 'https://faculty.hdu.edu.cn/rwys/lyh2/main.htm',
   },
   {
     id: 'cs',

@@ -17,6 +17,9 @@ export type PublicationTitleLogo = {
   src: string
   alt: string
   replaces: string
+  /** Per-logo optical sizing keeps the visible wordmark aligned with title text. */
+  heightEm?: number
+  baselineEm?: number
 }
 
 export type Publication = {
@@ -59,6 +62,8 @@ const _publications: Publication[] = [
       src: '/pubslogo/compovistalogo.svg',
       alt: 'CompoVista',
       replaces: 'CompoVista',
+      heightEm: 1.62,
+      baselineEm: -0.28,
     },
     authorsHtml:
       'Dekun Qian<sup>*</sup>, <b>Ruiqi Yu<sup>*</sup></b>, Fengling Zheng<sup>†</sup>, Li Ye, Yize Li, Weigui Zheng, Yigang Wang, Jinchang Li and Zhiguang Zhou<sup>†</sup>',
@@ -77,6 +82,8 @@ const _publications: Publication[] = [
       src: '/pubslogo/animasterlogo.svg',
       alt: 'AniMaster',
       replaces: 'AniMaster',
+      heightEm: 1.72,
+      baselineEm: -0.53,
     },
     authorsHtml:
       '<b>Ruiqi Yu<sup>*</sup></b>, Dekun Qian<sup>*</sup>, Jiale Xu, Sizhe Cheng, Yize Li, Xiangyang Wu, Zhiguang Zhou, Wei Chen and Yong Wang',
@@ -94,6 +101,8 @@ const _publications: Publication[] = [
       src: '/pubslogo/coivislogo.svg',
       alt: 'COIVis',
       replaces: 'COIVis',
+      heightEm: 1.15,
+      baselineEm: -0.13,
     },
     authorsHtml:
       'Zhiguang Zhou, <b>Ruiqi Yu</b>, Yuming Ma, Hao Ni, Guojun Li, Li Ye, Xiaoying Wang, Yize Li, Yigang Wang, Yong Wang',

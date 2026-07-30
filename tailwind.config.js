@@ -15,7 +15,12 @@ export default {
         hover: "var(--hover-bg)",
         line: "var(--border-color)",
         accent: "var(--primary-color)",
+        accentVivid: "var(--accent-vivid)",
+        onAccent: "var(--accent-foreground)",
+        highlight: "var(--highlight-color)",
+        onHighlight: "var(--highlight-foreground)",
         fg: {
+          strong: "var(--text-strong)",
           primary: "var(--text-primary)",
           secondary: "var(--text-secondary)",
           tertiary: "var(--text-tertiary)",

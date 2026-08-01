@@ -10,9 +10,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex, nofollow, noarchive">
-  <meta name="theme-color" content="#f47d35">
-  <title>青岛 × 威海｜五日海风计划</title>
-  <style>
+  <meta name="theme-color" content="#17384a">
+  <meta name="description" content="以真实地图为主舞台的青岛与威海五日情侣旅行导览图。">
+  <title>青岛 × 威海｜五日导游地图</title>
+  <style id="legacy-mobile-shell" media="not all">
     :root {
       color-scheme: light;
       --orange: oklch(0.72 0.18 56.6);
@@ -46,6 +47,7 @@
     body {
       width: 100%;
       height: 100%;
+      min-height: 100dvh;
       margin: 0;
       overflow: hidden;
       overscroll-behavior: none;
@@ -1064,12 +1066,1275 @@
       }
     }
   </style>
+  <style id="guide-map-redesign">
+    :root {
+      color-scheme: light;
+      --atlas-ink: oklch(0.27 0.055 229);
+      --atlas-ink-strong: oklch(0.2 0.045 229);
+      --atlas-sea: oklch(0.53 0.105 213);
+      --atlas-sea-soft: oklch(0.89 0.045 211);
+      --atlas-orange: oklch(0.7 0.17 52);
+      --atlas-orange-strong: oklch(0.52 0.17 47);
+      --atlas-orange-soft: oklch(0.93 0.05 63);
+      --atlas-surface: oklch(0.985 0.006 215);
+      --atlas-surface-muted: oklch(0.95 0.014 215);
+      --atlas-land: oklch(0.93 0.02 154);
+      --atlas-water: oklch(0.86 0.052 210);
+      --atlas-copy: oklch(0.43 0.035 225);
+      --atlas-line: oklch(0.81 0.025 215);
+      --atlas-focus: oklch(0.66 0.18 52);
+      --atlas-panel-radius: 10px;
+      --atlas-control-radius: 7px;
+      --atlas-transition: 200ms cubic-bezier(0.22, 1, 0.36, 1);
+      --atlas-safe-top: env(safe-area-inset-top, 0px);
+      --atlas-safe-bottom: env(safe-area-inset-bottom, 0px);
+      font-family: "PingFang SC", "Microsoft YaHei UI", "Noto Sans CJK SC", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      min-height: 100dvh;
+      margin: 0;
+      overflow: hidden;
+      background: var(--atlas-water);
+      color: var(--atlas-ink-strong);
+    }
+
+    body {
+      display: block;
+      place-items: initial;
+      overscroll-behavior: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button,
+    input,
+    a { font: inherit; }
+
+    button { color: inherit; }
+
+    button,
+    a { touch-action: manipulation; }
+
+    :focus-visible {
+      outline: 3px solid var(--atlas-focus);
+      outline-offset: 3px;
+    }
+
+    .app {
+      position: fixed;
+      z-index: 10;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      overflow: hidden;
+      isolation: isolate;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+      pointer-events: none;
+    }
+
+    .map-shell {
+      position: fixed;
+      z-index: 0;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      overflow: hidden;
+      background: var(--atlas-water);
+    }
+
+    #amap,
+    .fallback-map {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #amap { z-index: 2; }
+
+    .fallback-map {
+      z-index: 1;
+      overflow: hidden;
+      background: linear-gradient(116deg, var(--atlas-land) 0 48%, var(--atlas-water) 48% 100%);
+    }
+
+    .fallback-map svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .fallback-grid {
+      stroke: oklch(0.48 0.045 214 / 0.18);
+      stroke-width: 0.35;
+    }
+
+    .fallback-route {
+      fill: none;
+      stroke: var(--atlas-orange);
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .fallback-label {
+      position: absolute;
+      z-index: 3;
+      left: 20px;
+      bottom: 18px;
+      top: auto;
+      padding: 6px 8px;
+      border: 1px solid var(--atlas-ink);
+      border-radius: 4px;
+      background: var(--atlas-surface);
+      color: var(--atlas-ink);
+      box-shadow: none;
+      font-size: 0.68rem;
+      font-weight: 750;
+    }
+
+    .fallback-marker {
+      position: absolute;
+      z-index: 5;
+      width: 38px;
+      height: 38px;
+      translate: -50% -50%;
+      rotate: 0deg;
+      border: 2px solid var(--atlas-ink);
+      border-radius: 50%;
+      background: var(--atlas-surface);
+      box-shadow: 0 3px 6px oklch(0.2 0.045 229 / 0.2);
+      cursor: pointer;
+      transition: transform var(--atlas-transition), background var(--atlas-transition), color var(--atlas-transition);
+    }
+
+    .fallback-marker span {
+      display: grid;
+      width: 100%;
+      height: 100%;
+      place-items: center;
+      rotate: 0deg;
+      color: var(--atlas-ink);
+      font-size: 0.78rem;
+      font-weight: 850;
+    }
+
+    .fallback-marker:hover { transform: translateY(-2px); }
+
+    .fallback-marker.is-selected {
+      z-index: 6;
+      border-color: var(--atlas-ink);
+      background: var(--atlas-orange);
+      box-shadow: 0 0 0 4px oklch(0.985 0.006 215 / 0.9);
+    }
+
+    .fallback-marker.is-selected span { color: var(--atlas-ink-strong); }
+
+    .fallback-marker small {
+      position: absolute;
+      top: 50%;
+      left: calc(100% + 6px);
+      translate: 0 -50%;
+      padding: 6px 8px;
+      border-radius: 4px;
+      background: var(--atlas-ink);
+      color: var(--atlas-surface);
+      font-size: 0.68rem;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    .map-toolbar {
+      position: absolute;
+      z-index: 10;
+      top: 82px;
+      right: 20px;
+      left: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 7px;
+      pointer-events: none;
+    }
+
+    .map-status,
+    .map-tool {
+      min-height: 44px;
+      border: 1px solid var(--atlas-ink);
+      border-radius: var(--atlas-control-radius);
+      background: var(--atlas-surface);
+      box-shadow: none;
+      color: var(--atlas-ink);
+      pointer-events: auto;
+      cursor: pointer;
+      transition: background var(--atlas-transition), color var(--atlas-transition), transform var(--atlas-transition);
+    }
+
+    .map-status:hover,
+    .map-tool:hover { background: var(--atlas-orange-soft); }
+
+    .map-status:active,
+    .map-tool:active { transform: translateY(1px); }
+
+    .map-status {
+      max-width: 240px;
+      padding: 7px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-align: left;
+    }
+
+    .map-status-dot {
+      width: 9px;
+      height: 9px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--atlas-orange);
+      box-shadow: none;
+    }
+
+    .map-status.is-ready .map-status-dot { background: var(--atlas-sea); }
+
+    .map-status strong {
+      display: block;
+      font-size: 0.72rem;
+      line-height: 1.15;
+    }
+
+    .map-status small {
+      display: block;
+      margin-top: 2px;
+      max-width: 190px;
+      overflow: hidden;
+      color: var(--atlas-copy);
+      font-size: 0.62rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .map-tool {
+      width: 44px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+    }
+
+    .map-tool svg { width: 20px; height: 20px; }
+
+    .amap-marker-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .amap-marker-badge {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      rotate: 0deg;
+      border: 2px solid var(--atlas-ink);
+      border-radius: 50%;
+      background: var(--atlas-surface);
+      color: var(--atlas-ink);
+      box-shadow: 0 3px 6px oklch(0.2 0.045 229 / 0.22);
+      font: 850 0.78rem/1 system-ui, sans-serif;
+    }
+
+    .amap-marker-badge span { rotate: 0deg; }
+
+    .amap-marker-label {
+      display: none;
+      padding: 6px 8px;
+      border-radius: 4px;
+      background: var(--atlas-ink);
+      color: var(--atlas-surface);
+      font-size: 0.7rem;
+      font-weight: 750;
+    }
+
+    .amap-marker-wrap.is-selected .amap-marker-badge {
+      background: var(--atlas-orange);
+      box-shadow: 0 0 0 4px oklch(0.985 0.006 215 / 0.9);
+    }
+
+    .amap-marker-wrap.is-selected .amap-marker-label { display: block; }
+
+    .app-header {
+      position: fixed;
+      z-index: 40;
+      top: calc(18px + var(--atlas-safe-top));
+      left: 20px;
+      right: auto;
+      width: min(590px, calc(100vw - 300px));
+      height: 58px;
+      padding: 8px 12px;
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 10px;
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--atlas-ink);
+      color: var(--atlas-surface);
+      pointer-events: none;
+    }
+
+    .app-header::before,
+    .app-header::after { display: none; }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      color: var(--atlas-orange);
+    }
+
+    .brand-mark svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    .brand,
+    .header-weather { position: static; z-index: auto; }
+
+    .brand { min-width: 0; }
+
+    .brand-kicker {
+      margin: 0 0 2px;
+      overflow: hidden;
+      color: oklch(0.88 0.022 218);
+      font-size: 0.67rem;
+      font-weight: 650;
+      letter-spacing: 0.02em;
+      text-overflow: ellipsis;
+      text-transform: none;
+      white-space: nowrap;
+    }
+
+    .brand h1 {
+      margin: 0;
+      max-width: none;
+      overflow: hidden;
+      color: var(--atlas-surface);
+      font-size: 1.05rem;
+      font-weight: 780;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      text-overflow: ellipsis;
+      text-wrap: balance;
+      white-space: nowrap;
+    }
+
+    .header-weather {
+      min-width: 86px;
+      padding: 2px 0 2px 12px;
+      border: 0;
+      border-left: 1px solid oklch(0.9 0.01 220 / 0.35);
+      border-radius: 0;
+      background: transparent;
+      text-align: left;
+    }
+
+    .header-weather strong {
+      display: block;
+      font-size: 0.76rem;
+    }
+
+    .header-weather span {
+      display: block;
+      margin-top: 2px;
+      color: oklch(0.86 0.02 218);
+      font-size: 0.63rem;
+    }
+
+    .day-tabs {
+      position: fixed;
+      z-index: 32;
+      top: calc(84px + var(--atlas-safe-top));
+      left: 20px;
+      right: auto;
+      width: min(720px, calc(100vw - 340px));
+      height: 50px;
+      padding: 4px;
+      display: flex;
+      gap: 3px;
+      border: 1px solid var(--atlas-ink);
+      border-radius: 8px;
+      background: var(--atlas-surface);
+      pointer-events: auto;
+    }
+
+    .day-tab {
+      min-width: 0;
+      min-height: 40px;
+      flex: 1 1 0;
+      padding: 0 7px;
+      border: 0;
+      border-radius: 5px;
+      background: transparent;
+      color: var(--atlas-ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      line-height: 1;
+      cursor: pointer;
+      transition: background var(--atlas-transition), color var(--atlas-transition);
+    }
+
+    .day-tab:hover { background: var(--atlas-surface-muted); }
+
+    .day-tab strong {
+      font-size: 0.76rem;
+      letter-spacing: 0;
+    }
+
+    .day-tab span {
+      margin: 0;
+      overflow: hidden;
+      color: var(--atlas-copy);
+      font-size: 0.68rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .day-tab[aria-pressed="true"] {
+      background: var(--atlas-orange);
+      color: var(--atlas-ink-strong);
+      box-shadow: none;
+    }
+
+    .day-tab[aria-pressed="true"] span { color: var(--atlas-ink-strong); }
+
+    .workspace {
+      position: fixed;
+      z-index: 15;
+      inset: 0;
+      overflow: visible;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .view {
+      position: fixed;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--atlas-transition), transform var(--atlas-transition);
+    }
+
+    .view.is-active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .map-view { inset: 0; background: transparent; }
+    .map-view.is-active { pointer-events: none; }
+
+    .timeline-view,
+    .prepare-view {
+      top: calc(150px + var(--atlas-safe-top));
+      bottom: calc(20px + var(--atlas-safe-bottom));
+      left: 20px;
+      width: 320px;
+      transform: translateX(-12px);
+      background: transparent;
+    }
+
+    .timeline-view.is-active,
+    .prepare-view.is-active {
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    .timeline-panel,
+    .prepare-shell {
+      position: relative;
+      inset: auto;
+      width: 100%;
+      height: 100%;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border: 1px solid var(--atlas-ink);
+      border-radius: var(--atlas-panel-radius);
+      background: var(--atlas-surface);
+      box-shadow: none;
+    }
+
+    .timeline-head {
+      min-width: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--atlas-line);
+    }
+
+    .timeline-title { min-width: 0; }
+
+    .timeline-title strong {
+      display: block;
+      overflow: hidden;
+      color: var(--atlas-ink-strong);
+      font-size: 0.9rem;
+      line-height: 1.25;
+      text-overflow: ellipsis;
+      text-wrap: balance;
+      white-space: nowrap;
+    }
+
+    .timeline-title span {
+      display: -webkit-box;
+      margin-top: 4px;
+      overflow: hidden;
+      color: var(--atlas-copy);
+      font-size: 0.65rem;
+      line-height: 1.35;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .page-count {
+      flex: 0 0 auto;
+      padding: 5px 7px;
+      border-radius: 4px;
+      background: var(--atlas-sea-soft);
+      color: var(--atlas-ink);
+      font-size: 0.62rem;
+      font-weight: 800;
+    }
+
+    .timeline-list {
+      position: relative;
+      min-height: 0;
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .timeline-list::before {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      top: 24px;
+      bottom: 24px;
+      left: 61px;
+      width: 2px;
+      background: var(--atlas-line);
+      pointer-events: none;
+    }
+
+    .timeline-item {
+      position: relative;
+      z-index: 1;
+      min-height: 54px;
+      padding: 6px 7px;
+      display: grid;
+      grid-template-columns: 43px 23px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 7px;
+      border: 0;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--atlas-ink);
+      cursor: pointer;
+      text-align: left;
+      transition: background var(--atlas-transition), color var(--atlas-transition);
+    }
+
+    .timeline-item:hover { background: var(--atlas-surface-muted); }
+
+    .timeline-item.is-selected {
+      border-color: transparent;
+      background: var(--atlas-orange-soft);
+    }
+
+    .timeline-item time {
+      color: var(--atlas-orange-strong);
+      font-size: 0.64rem;
+      font-weight: 800;
+    }
+
+    .timeline-dot {
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--atlas-ink);
+      border-radius: 50%;
+      background: var(--atlas-surface);
+      color: var(--atlas-ink);
+      font-size: 0.58rem;
+      font-weight: 850;
+    }
+
+    .timeline-item.is-selected .timeline-dot { background: var(--atlas-orange); }
+
+    .timeline-copy { min-width: 0; }
+
+    .timeline-copy strong,
+    .timeline-copy span {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .timeline-copy strong { font-size: 0.76rem; }
+    .timeline-copy span { margin-top: 2px; color: var(--atlas-copy); font-size: 0.62rem; }
+
+    .saved-dot {
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--atlas-orange-strong);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--atlas-orange-strong);
+      font-size: 0.6rem;
+      font-weight: 850;
+    }
+
+    .timeline-pager,
+    .prepare-pager { display: none; }
+
+    .stop-card {
+      position: fixed;
+      z-index: 22;
+      right: 20px;
+      bottom: calc(20px + var(--atlas-safe-bottom));
+      left: auto;
+      width: 430px;
+      height: auto;
+      min-height: 196px;
+      max-height: min(250px, calc(100dvh - 180px));
+      padding: 10px;
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1fr);
+      grid-template-rows: auto 1fr auto;
+      gap: 8px 11px;
+      overflow: hidden;
+      border: 1px solid var(--atlas-ink);
+      border-radius: var(--atlas-panel-radius);
+      background: var(--atlas-surface);
+      box-shadow: none;
+      pointer-events: auto;
+      transition: opacity var(--atlas-transition), transform var(--atlas-transition);
+    }
+
+    .stop-photo {
+      grid-row: 1 / 4;
+      position: relative;
+      min-width: 0;
+      overflow: hidden;
+      border-radius: 6px;
+      background: var(--atlas-surface-muted);
+    }
+
+    .stop-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .photo-credit {
+      position: absolute;
+      right: 5px;
+      bottom: 5px;
+      left: 5px;
+      padding: 4px 5px;
+      border-radius: 3px;
+      background: oklch(0.2 0.045 229 / 0.9);
+      color: var(--atlas-surface);
+      font-size: 0.53rem;
+      line-height: 1.25;
+      text-align: center;
+    }
+
+    .stop-heading {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .stop-time {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      color: var(--atlas-orange-strong);
+      font-size: 0.68rem;
+      font-weight: 850;
+    }
+
+    .stop-time::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--atlas-orange);
+    }
+
+    .stop-name {
+      margin: 4px 0 0;
+      overflow: hidden;
+      color: var(--atlas-ink-strong);
+      font-size: 1.2rem;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      text-overflow: ellipsis;
+      text-wrap: balance;
+      white-space: nowrap;
+    }
+
+    .stop-index {
+      min-width: 36px;
+      height: 30px;
+      padding: 0 7px;
+      display: grid;
+      place-items: center;
+      border-radius: 4px;
+      background: var(--atlas-orange-soft);
+      color: var(--atlas-orange-strong);
+      font-size: 0.68rem;
+      font-weight: 850;
+    }
+
+    .stop-body {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .stop-summary {
+      margin: 0;
+      display: -webkit-box;
+      overflow: hidden;
+      color: var(--atlas-copy);
+      font-size: 0.74rem;
+      line-height: 1.48;
+      text-wrap: pretty;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    }
+
+    .tag-row {
+      margin-top: 7px;
+      display: flex;
+      gap: 5px;
+      overflow: hidden;
+    }
+
+    .tag {
+      flex: 0 0 auto;
+      max-width: 102px;
+      padding: 4px 6px;
+      overflow: hidden;
+      border: 1px solid var(--atlas-line);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--atlas-copy);
+      font-size: 0.58rem;
+      font-weight: 750;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .tag.favorite {
+      border-color: var(--atlas-orange-strong);
+      background: var(--atlas-orange-soft);
+      color: var(--atlas-orange-strong);
+    }
+
+    .stop-actions {
+      display: grid;
+      grid-template-columns: 44px 1fr 44px;
+      gap: 6px;
+    }
+
+    .icon-button,
+    .nav-button {
+      min-height: 44px;
+      border-radius: var(--atlas-control-radius);
+      cursor: pointer;
+      transition: background var(--atlas-transition), color var(--atlas-transition), transform var(--atlas-transition);
+    }
+
+    .icon-button {
+      padding: 0;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--atlas-line);
+      background: transparent;
+      color: var(--atlas-sea);
+    }
+
+    .icon-button:hover { background: var(--atlas-sea-soft); }
+    .icon-button:active,
+    .nav-button:active { transform: translateY(1px); }
+    .icon-button:disabled { opacity: 0.45; cursor: default; }
+    .icon-button svg { width: 19px; height: 19px; }
+
+    .nav-button {
+      padding: 0 12px;
+      border: 0;
+      background: var(--atlas-orange);
+      color: var(--atlas-ink-strong);
+      font-size: 0.75rem;
+      font-weight: 850;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .nav-button:hover { background: oklch(0.75 0.16 58); }
+    .nav-button svg { width: 18px; height: 18px; }
+
+    .prepare-view {
+      width: 390px;
+      padding: 0;
+      background: transparent;
+    }
+
+    .prepare-tabs {
+      flex: 0 0 auto;
+      display: flex;
+      gap: 2px;
+      padding: 0 0 8px;
+      border: 0;
+      border-bottom: 1px solid var(--atlas-line);
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .prepare-tab {
+      min-height: 40px;
+      flex: 1 1 0;
+      padding: 0 6px;
+      border: 0;
+      border-radius: 5px;
+      background: transparent;
+      color: var(--atlas-copy);
+      font-size: 0.68rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background var(--atlas-transition), color var(--atlas-transition);
+    }
+
+    .prepare-tab:hover { background: var(--atlas-surface-muted); }
+
+    .prepare-tab[aria-pressed="true"] {
+      background: var(--atlas-sea-soft);
+      color: var(--atlas-ink);
+      box-shadow: none;
+    }
+
+    .prepare-card {
+      min-height: 0;
+      flex: 1 1 auto;
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding: 2px 2px 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .prepare-kicker {
+      margin: 6px 0 0;
+      color: var(--atlas-orange-strong);
+      font-size: 0.62rem;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+    }
+
+    .prepare-card h2 {
+      margin: 5px 0 5px;
+      color: var(--atlas-ink-strong);
+      font-size: 1.14rem;
+      line-height: 1.22;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+
+    .prepare-lead {
+      margin: 0 0 9px;
+      color: var(--atlas-copy);
+      font-size: 0.7rem;
+      line-height: 1.45;
+      text-wrap: pretty;
+    }
+
+    .check-list {
+      margin: 0;
+      padding: 0;
+      display: block;
+      list-style: none;
+    }
+
+    .check-list li {
+      min-height: 42px;
+      padding: 8px 2px;
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr);
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--atlas-line);
+      border-radius: 0;
+      background: transparent;
+      color: var(--atlas-copy);
+      font-size: 0.68rem;
+      line-height: 1.4;
+    }
+
+    .check-list b {
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--atlas-sea);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--atlas-sea);
+      font-size: 0.58rem;
+    }
+
+    .source-row {
+      margin-top: 10px;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .source-link {
+      min-height: 38px;
+      padding: 0 9px;
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--atlas-line);
+      border-radius: 5px;
+      color: var(--atlas-sea);
+      background: transparent;
+      font-size: 0.61rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .source-link:hover { background: var(--atlas-sea-soft); }
+
+    .map-form {
+      margin-top: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .field { display: grid; gap: 4px; }
+
+    .field span {
+      color: var(--atlas-copy);
+      font-size: 0.62rem;
+      font-weight: 750;
+    }
+
+    .field input {
+      width: 100%;
+      height: 44px;
+      padding: 0 10px;
+      border: 1px solid var(--atlas-line);
+      border-radius: 6px;
+      color: var(--atlas-ink-strong);
+      background: var(--atlas-surface-muted);
+      font-size: 0.72rem;
+    }
+
+    .field input::placeholder { color: oklch(0.42 0.025 225); }
+
+    .form-actions {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+    }
+
+    .primary-action,
+    .secondary-action {
+      min-height: 44px;
+      border: 0;
+      border-radius: 6px;
+      font-size: 0.69rem;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .primary-action { padding: 0 13px; background: var(--atlas-orange); color: var(--atlas-ink-strong); }
+    .secondary-action { width: 76px; background: var(--atlas-surface-muted); color: var(--atlas-copy); }
+
+    .privacy-note {
+      margin: 7px 0 0;
+      color: var(--atlas-copy);
+      font-size: 0.59rem;
+      line-height: 1.4;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      z-index: 42;
+      top: calc(18px + var(--atlas-safe-top));
+      right: 20px;
+      bottom: auto;
+      left: auto;
+      width: auto;
+      height: 58px;
+      padding: 4px;
+      display: flex;
+      gap: 3px;
+      border: 1px solid var(--atlas-ink);
+      border-radius: 8px;
+      background: var(--atlas-surface);
+      pointer-events: auto;
+    }
+
+    .nav-tab {
+      min-width: 66px;
+      min-height: 48px;
+      padding: 0 9px;
+      border: 0;
+      border-radius: 5px;
+      background: transparent;
+      color: var(--atlas-copy);
+      display: flex;
+      place-content: initial;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: background var(--atlas-transition), color var(--atlas-transition);
+    }
+
+    .nav-tab:hover { background: var(--atlas-surface-muted); color: var(--atlas-ink); }
+    .nav-tab svg { width: 18px; height: 18px; }
+    .nav-tab span { font-size: 0.67rem; font-weight: 850; }
+
+    .nav-tab[aria-current="page"] {
+      background: var(--atlas-orange);
+      color: var(--atlas-ink-strong);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 1099px) {
+      .app-header {
+        top: calc(14px + var(--atlas-safe-top));
+        left: 16px;
+        width: min(500px, calc(100vw - 250px));
+      }
+
+      .bottom-nav { top: calc(14px + var(--atlas-safe-top)); right: 16px; }
+
+      .day-tabs {
+        top: calc(82px + var(--atlas-safe-top));
+        left: 16px;
+        width: calc(100vw - 32px);
+      }
+
+      .map-toolbar { top: calc(142px + var(--atlas-safe-top)); right: 16px; }
+
+      .timeline-view,
+      .prepare-view {
+        top: calc(146px + var(--atlas-safe-top));
+        bottom: calc(16px + var(--atlas-safe-bottom));
+        left: 16px;
+        width: 286px;
+      }
+
+      .prepare-view { width: 350px; }
+
+      .stop-card {
+        right: 16px;
+        bottom: calc(16px + var(--atlas-safe-bottom));
+        width: 370px;
+        grid-template-columns: 96px minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 719px) {
+      .app-header {
+        top: calc(10px + var(--atlas-safe-top));
+        right: 10px;
+        left: 10px;
+        width: auto;
+        height: 60px;
+        grid-template-columns: 34px minmax(0, 1fr) auto;
+        padding: 8px 10px;
+      }
+
+      .brand-mark { width: 32px; height: 32px; }
+      .brand-kicker { font-size: 0.61rem; }
+      .brand h1 { font-size: 0.92rem; }
+      .header-weather { min-width: 54px; padding-left: 9px; }
+      .header-weather span { display: none; }
+
+      .bottom-nav {
+        top: calc(78px + var(--atlas-safe-top));
+        right: 10px;
+        height: 50px;
+      }
+
+      .nav-tab {
+        min-width: 54px;
+        min-height: 40px;
+        padding-inline: 7px;
+      }
+
+      .nav-tab svg { width: 16px; height: 16px; }
+      .nav-tab span { font-size: 0.62rem; }
+
+      .day-tabs {
+        top: calc(136px + var(--atlas-safe-top));
+        right: 10px;
+        left: 10px;
+        width: auto;
+        height: 48px;
+      }
+
+      .day-tab { min-height: 38px; padding-inline: 3px; gap: 3px; }
+      .day-tab strong { font-size: 0.68rem; }
+      .day-tab span { font-size: 0.61rem; }
+
+      .map-toolbar {
+        top: calc(192px + var(--atlas-safe-top));
+        right: 10px;
+      }
+
+      .map-status { max-width: 124px; }
+      .map-status small { display: none; }
+
+      .timeline-view,
+      .prepare-view {
+        top: calc(192px + var(--atlas-safe-top));
+        right: 64px;
+        bottom: calc(208px + var(--atlas-safe-bottom));
+        left: 10px;
+        width: auto;
+      }
+
+      .prepare-view {
+        right: 10px;
+        bottom: calc(10px + var(--atlas-safe-bottom));
+      }
+
+      .app[data-view="prepare"] .stop-card {
+        opacity: 0;
+        transform: translateY(12px);
+        pointer-events: none;
+      }
+
+      .timeline-panel,
+      .prepare-shell { padding: 10px; }
+
+      .timeline-item { min-height: 50px; grid-template-columns: 40px 22px minmax(0, 1fr) auto; }
+      .timeline-list::before { left: 57px; }
+
+      .stop-card {
+        right: 10px;
+        bottom: calc(10px + var(--atlas-safe-bottom));
+        left: 10px;
+        width: auto;
+        min-height: 184px;
+        max-height: 184px;
+        grid-template-columns: 84px minmax(0, 1fr);
+      }
+
+      .stop-name { font-size: 1.05rem; }
+      .stop-summary { font-size: 0.7rem; -webkit-line-clamp: 2; }
+      .fallback-label { display: none; }
+    }
+
+    @media (max-height: 640px) {
+      .timeline-view,
+      .prepare-view { bottom: calc(160px + var(--atlas-safe-bottom)); }
+      .prepare-view { bottom: calc(10px + var(--atlas-safe-bottom)); }
+
+      .stop-card {
+        min-height: 142px;
+        max-height: 142px;
+        grid-template-columns: 1fr;
+      }
+
+      .stop-photo { display: none; }
+      .stop-heading,
+      .stop-body,
+      .stop-actions { grid-column: 1; }
+      .stop-summary { -webkit-line-clamp: 1; }
+      .tag-row { display: none; }
+    }
+
+    @media (max-height: 620px) and (min-width: 720px) {
+      .app-header { top: 10px; height: 52px; }
+      .bottom-nav { top: 10px; height: 52px; }
+      .day-tabs { top: 70px; height: 44px; }
+      .map-toolbar { top: 122px; }
+      .timeline-view,
+      .prepare-view { top: 122px; bottom: 12px; }
+      .stop-card { right: 12px; bottom: 12px; width: 350px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="app" id="app">
     <header class="app-header">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20"/><path d="m29.5 18.5-3.1 7.9-7.9 3.1 3.1-7.9 7.9-3.1Z"/><circle cx="24" cy="24" r="2.2"/></svg>
+      </div>
       <div class="brand">
-        <p class="brand-kicker">ORANGE TIDE · 5 DAYS</p>
+        <p class="brand-kicker">青岛 × 威海 · 五日海岸路线</p>
         <h1 id="dayTitle">青岛老城 · 她想去的街巷</h1>
       </div>
       <div class="header-weather" aria-label="行程概览">
@@ -1081,42 +2346,9 @@
     <nav class="day-tabs" aria-label="选择行程日期" id="dayTabs"></nav>
 
     <main class="workspace">
-      <section class="view map-view is-active" id="mapView" aria-label="地图攻略">
-        <div class="map-stage" id="mapStage"></div>
+      <section class="view map-view" id="mapView" aria-label="纯地图视图"></section>
 
-        <article class="stop-card" id="stopCard" aria-live="polite">
-          <div class="stop-photo">
-            <img id="stopImage" alt="">
-            <span class="photo-credit" id="photoCredit">来自收藏帖子</span>
-          </div>
-          <div class="stop-heading">
-            <div>
-              <div class="stop-time" id="stopTime">09:00 · 建议 45 分钟</div>
-              <h2 class="stop-name" id="stopName">栈桥</h2>
-            </div>
-            <span class="stop-index" id="stopIndex">1 / 7</span>
-          </div>
-          <div class="stop-body">
-            <p class="stop-summary" id="stopSummary"></p>
-            <div class="tag-row" id="tagRow"></div>
-          </div>
-          <div class="stop-actions">
-            <button class="icon-button" id="previousStop" type="button" aria-label="上一站">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
-            </button>
-            <a class="nav-button" id="navigateStop" href="#" target="_blank" rel="noreferrer">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 3 9 15"/><path d="m21 3-7 18-5-6-6-5 18-7Z"/></svg>
-              高德导航
-            </a>
-            <button class="icon-button" id="nextStop" type="button" aria-label="下一站">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-            </button>
-          </div>
-        </article>
-      </section>
-
-      <section class="view timeline-view" id="timelineView" aria-label="时间轴行程">
-        <div class="timeline-map-host" id="timelineMapHost"></div>
+      <section class="view timeline-view is-active" id="timelineView" aria-label="当天路线图例">
         <div class="timeline-panel">
           <div class="timeline-head">
             <div class="timeline-title">
@@ -1155,18 +2387,48 @@
       </section>
     </main>
 
+    <article class="stop-card" id="stopCard" aria-live="polite">
+      <div class="stop-photo">
+        <img id="stopImage" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="当前站点参考图片">
+        <span class="photo-credit" id="photoCredit">来自收藏帖子</span>
+      </div>
+      <div class="stop-heading">
+        <div>
+          <div class="stop-time" id="stopTime">09:00 · 建议 45 分钟</div>
+          <h2 class="stop-name" id="stopName">栈桥</h2>
+        </div>
+        <span class="stop-index" id="stopIndex">1 / 7</span>
+      </div>
+      <div class="stop-body">
+        <p class="stop-summary" id="stopSummary"></p>
+        <div class="tag-row" id="tagRow"></div>
+      </div>
+      <div class="stop-actions">
+        <button class="icon-button" id="previousStop" type="button" aria-label="上一站">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <a class="nav-button" id="navigateStop" href="#" target="_blank" rel="noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 3 9 15"/><path d="m21 3-7 18-5-6-6-5 18-7Z"/></svg>
+          高德导航
+        </a>
+        <button class="icon-button" id="nextStop" type="button" aria-label="下一站">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </article>
+
     <nav class="bottom-nav" aria-label="主要功能">
-      <button class="nav-tab" type="button" data-view="map" aria-current="page">
+      <button class="nav-tab" type="button" data-view="map">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Z"/><path d="M9 3v15M15 6v15"/></svg>
-        <span>地图</span>
+        <span>全图</span>
       </button>
-      <button class="nav-tab" type="button" data-view="timeline">
+      <button class="nav-tab" type="button" data-view="timeline" aria-current="page">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>
-        <span>行程</span>
+        <span>路线</span>
       </button>
       <button class="nav-tab" type="button" data-view="prepare">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 4h4a2 2 0 0 1 2 2v2h3a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3V6a2 2 0 0 1 2-2Z"/><path d="M8 8h8M3 13h18"/></svg>
-        <span>准备</span>
+        <span>须知</span>
       </button>
     </nav>
 
@@ -1363,7 +2625,7 @@
     const state = {
       day: 0,
       stop: 0,
-      view: "map",
+      view: "timeline",
       timelinePage: 0,
       prepare: 0,
       mapReady: false,
@@ -1375,7 +2637,6 @@
     let mapPolyline = null;
 
     const el = (id) => document.getElementById(id);
-    const mapShell = el("mapShell");
     const liveStatus = el("liveStatus");
 
     function iconCheck(index) {
@@ -1383,7 +2644,7 @@
     }
 
     function timelinePageSize() {
-      return window.innerHeight <= 720 ? 3 : 4;
+      return days[state.day].stops.length;
     }
 
     function announce(text) {
@@ -1477,8 +2738,8 @@
       el("fallbackRoute").setAttribute("points", points.map((point) => `${point.x},${point.y}`).join(" "));
       el("fallbackMarkers").innerHTML = points.map((point, index) => `
         <button class="fallback-marker ${index === state.stop ? "is-selected" : ""}" type="button"
-          style="left:${point.x}%;top:${point.y}%" data-stop="${index}" aria-label="${index + 1}，${stops[index].name}">
-          <span>${index + 1}</span>
+          style="left:${point.x}%;top:${point.y}%" data-stop="${index}" aria-label="${index + 1}，${stops[index].name}" aria-pressed="${index === state.stop}">
+          <span>${index + 1}</span>${index === state.stop ? `<small>${stops[index].name}</small>` : ""}
         </button>
       `).join("");
       el("fallbackMarkers").querySelectorAll("button").forEach((button) => {
@@ -1488,20 +2749,19 @@
 
     function renderTimeline() {
       const day = days[state.day];
-      const pageSize = timelinePageSize();
-      const pageTotal = Math.max(1, Math.ceil(day.stops.length / pageSize));
-      state.timelinePage = Math.max(0, Math.min(pageTotal - 1, state.timelinePage));
-      const start = state.timelinePage * pageSize;
-      const visible = day.stops.slice(start, start + pageSize);
+      const pageTotal = 1;
+      const start = 0;
+      const visible = day.stops;
+      state.timelinePage = 0;
       el("timelineTitle").textContent = day.routeTitle;
-      el("timelineSubtitle").textContent = `共 ${day.stops.length} 站 · 点击同步定位`;
-      el("timelinePageCount").textContent = `${state.timelinePage + 1} / ${pageTotal}`;
+      el("timelineSubtitle").textContent = day.hint;
+      el("timelinePageCount").textContent = `${day.stops.length} 站`;
       el("timelineHint").textContent = day.hint;
-      el("timelineList").style.gridTemplateRows = `repeat(${pageSize}, minmax(0, 1fr))`;
+      el("timelineList").style.removeProperty("grid-template-rows");
       el("timelineList").innerHTML = visible.map((stop, visibleIndex) => {
         const index = start + visibleIndex;
         return `
-          <button class="timeline-item ${index === state.stop ? "is-selected" : ""}" type="button" data-stop="${index}">
+          <button class="timeline-item ${index === state.stop ? "is-selected" : ""}" type="button" data-stop="${index}" aria-pressed="${index === state.stop}">
             <time>${stop.time}</time>
             <span class="timeline-dot">${index + 1}</span>
             <span class="timeline-copy"><strong>${stop.name}</strong><span>${stop.short}</span></span>
@@ -1511,6 +2771,8 @@
       el("timelineList").querySelectorAll("button").forEach((button) => {
         button.addEventListener("click", () => selectStop(Number(button.dataset.stop)));
       });
+      const selectedItem = el("timelineList").querySelector(".timeline-item.is-selected");
+      if (selectedItem) selectedItem.scrollIntoView({ block: "nearest" });
       el("timelinePrevious").disabled = pageTotal === 1;
       el("timelineNext").disabled = pageTotal === 1;
     }
@@ -1590,20 +2852,16 @@
       state.view = view;
       document.querySelectorAll(".view").forEach((section) => section.classList.remove("is-active"));
       document.querySelectorAll(".nav-tab").forEach((button) => button.removeAttribute("aria-current"));
-      document.querySelector(`.nav-tab[data-view="${view}"]`).setAttribute("aria-current", "page");
+      const activeButton = document.querySelector(`.nav-tab[data-view="${view}"]`);
+      if (activeButton) activeButton.setAttribute("aria-current", "page");
+      el("app").dataset.view = view;
       if (view === "map") {
         el("mapView").classList.add("is-active");
-        el("mapStage").appendChild(mapShell);
-        mapShell.classList.remove("compact");
       } else if (view === "timeline") {
         el("timelineView").classList.add("is-active");
-        el("timelineMapHost").appendChild(mapShell);
-        mapShell.classList.add("compact");
         renderTimeline();
       } else {
         el("prepareView").classList.add("is-active");
-        el("mapStage").appendChild(mapShell);
-        mapShell.classList.remove("compact");
         renderPrepare();
       }
       if (map && state.mapReady) {
@@ -1612,7 +2870,7 @@
           fitCurrentRoute();
         });
       }
-      announce(view === "map" ? "地图视图" : view === "timeline" ? "时间轴视图" : "出发准备");
+      announce(view === "map" ? "全图视图" : view === "timeline" ? "路线图例" : "旅行须知");
     }
 
     function outOfChina(lng, lat) {
@@ -1654,12 +2912,16 @@
       return stop.coord === "gcj" ? [stop.lng, stop.lat] : wgsToGcj(stop.lng, stop.lat);
     }
 
-    function markerContent(index, selected) {
-      return `<div class="amap-marker-badge ${selected ? "is-selected" : ""}"><span>${index + 1}</span></div>`;
+    function markerContent(index, selected, stop) {
+      return `<div class="amap-marker-wrap ${selected ? "is-selected" : ""}"><span class="amap-marker-badge"><span>${index + 1}</span></span><span class="amap-marker-label">${stop.name}</span></div>`;
     }
 
     function refreshMarkerStyles() {
-      mapMarkers.forEach((marker, index) => marker.setContent(markerContent(index, index === state.stop)));
+      const stops = days[state.day].stops;
+      mapMarkers.forEach((marker, index) => {
+        marker.setContent(markerContent(index, index === state.stop, stops[index]));
+        if (typeof marker.setzIndex === "function") marker.setzIndex(index === state.stop ? 130 : 110);
+      });
     }
 
     function renderAmapRoute() {
@@ -1672,8 +2934,8 @@
       mapMarkers = stops.map((stop, index) => {
         const marker = new AMap.Marker({
           position: getMapCoord(stop),
-          content: markerContent(index, index === state.stop),
-          offset: new AMap.Pixel(-21, -39),
+          content: markerContent(index, index === state.stop, stop),
+          offset: new AMap.Pixel(-18, -18),
           zIndex: index === state.stop ? 130 : 110
         });
         marker.on("click", () => selectStop(index));
@@ -1682,9 +2944,12 @@
       });
       mapPolyline = new AMap.Polyline({
         path,
-        strokeColor: "#187e96",
-        strokeWeight: 5,
-        strokeOpacity: 0.9,
+        strokeColor: "#ef7d3c",
+        strokeWeight: 6,
+        strokeOpacity: 0.96,
+        isOutline: true,
+        outlineColor: "#fffdf8",
+        borderWeight: 2,
         lineJoin: "round",
         lineCap: "round",
         showDir: true,
@@ -1694,10 +2959,22 @@
       fitCurrentRoute();
     }
 
+    function getMapInsets() {
+      if (window.innerWidth >= 1100) {
+        const left = state.view === "timeline" ? 370 : state.view === "prepare" ? 440 : 80;
+        return [145, 470, 80, left];
+      }
+      if (window.innerWidth >= 720) {
+        const left = state.view === "timeline" ? 330 : state.view === "prepare" ? 390 : 60;
+        return [145, 410, 70, left];
+      }
+      const bottom = window.innerHeight <= 640 ? 165 : 215;
+      return [190, 24, bottom, 24];
+    }
+
     function fitCurrentRoute() {
       if (!map || !state.mapReady || !mapMarkers.length) return;
-      const bottom = state.view === "map" ? Math.min(280, Math.round(window.innerHeight * 0.32)) : 50;
-      map.setFitView([...mapMarkers, mapPolyline], false, [74, 36, bottom, 36], 15);
+      map.setFitView([...mapMarkers, mapPolyline], false, getMapInsets(), 15);
     }
 
     function updateMapStatus(title, text, ready = false) {
@@ -1712,12 +2989,13 @@
           viewMode: "2D",
           zoom: 12,
           center: getMapCoord(days[0].stops[0]),
-          mapStyle: "amap://styles/normal",
+          mapStyle: "amap://styles/fresh",
           resizeEnable: true,
           showBuildingBlock: false
         });
         map.on("complete", () => {
           state.mapReady = true;
+          state.mapFailed = false;
           el("amap").setAttribute("aria-hidden", "false");
           el("fallbackMap").hidden = true;
           updateMapStatus("高德真实地图", "已连接 · 点标记查看攻略", true);
@@ -1778,14 +3056,21 @@
       document.querySelectorAll(".nav-tab").forEach((button) => {
         button.addEventListener("click", () => setView(button.dataset.view));
       });
+      let resizeFrame = null;
       window.addEventListener("resize", () => {
-        renderTimeline();
-        if (map && state.mapReady) {
-          map.resize();
-          fitCurrentRoute();
-        }
+        if (resizeFrame !== null) cancelAnimationFrame(resizeFrame);
+        resizeFrame = requestAnimationFrame(() => {
+          resizeFrame = null;
+          renderTimeline();
+          if (map && state.mapReady) {
+            map.resize();
+            fitCurrentRoute();
+          }
+        });
       });
       document.addEventListener("keydown", (event) => {
+        const target = event.target;
+        if (target instanceof HTMLElement && (target.matches("input, textarea, select") || target.isContentEditable)) return;
         if (event.key === "ArrowLeft") selectStop(state.stop - 1);
         if (event.key === "ArrowRight") selectStop(state.stop + 1);
         if (/^[1-5]$/.test(event.key)) setDay(Number(event.key) - 1);
@@ -1797,9 +3082,9 @@
       makeDayTabs();
       makePrepareTabs();
       bindEvents();
-      el("mapStage").appendChild(mapShell);
       renderAll();
       renderPrepare();
+      setView(state.view);
       loadAmap();
     }
 

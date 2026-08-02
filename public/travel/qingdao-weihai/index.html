@@ -2326,6 +2326,220 @@
       }
     }
   </style>
+  <style id="atlas-overview-map">
+    /* Final presentation: a single, direct map canvas rather than an app shell. */
+    html,
+    body,
+    .map-shell {
+      width: 100%;
+      height: 100%;
+      min-height: 100dvh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .app,
+    .map-toolbar,
+    .fallback-label {
+      display: none !important;
+    }
+
+    .map-shell,
+    #amap,
+    .fallback-map {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .map-shell {
+      z-index: 1;
+      background: #bfe1e6;
+    }
+
+    #amap { z-index: 2; }
+    .fallback-map { z-index: 1; }
+    .fallback-map[hidden] { display: none; }
+
+    .fallback-hull {
+      stroke-width: 0.42;
+      stroke-linejoin: round;
+    }
+
+    .fallback-route-day {
+      fill: none;
+      stroke-width: 0.72;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .fallback-transfer {
+      fill: none;
+      stroke: #244c62;
+      stroke-width: 0.48;
+      stroke-dasharray: 1.5 1.1;
+      opacity: 0.75;
+    }
+
+    .fallback-marker {
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border: 2px solid #fffdf7;
+      border-radius: 50%;
+      background: var(--route-color, #e66d45);
+      box-shadow: 0 2px 7px rgb(19 49 62 / 0.34);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .fallback-marker span {
+      color: inherit;
+      font-size: 0.68rem;
+      font-weight: 850;
+    }
+
+    .fallback-marker.is-favorite {
+      border-color: #fff5d9;
+      box-shadow: 0 0 0 3px rgb(255 153 59 / 0.48), 0 2px 7px rgb(19 49 62 / 0.34);
+    }
+
+    .fallback-marker.is-favorite::after {
+      content: "♥";
+      position: absolute;
+      right: -6px;
+      top: -8px;
+      color: #ed6c35;
+      font-size: 0.9rem;
+      line-height: 1;
+      text-shadow: 0 1px 0 #fff;
+    }
+
+    #fallbackLabels { position: absolute; inset: 0; z-index: 7; pointer-events: none; }
+
+    .fallback-day-label {
+      position: absolute;
+      translate: -50% -50%;
+      border: 1.5px solid var(--route-color, #e66d45);
+      border-radius: 999px;
+      background: rgb(255 253 247 / 0.91);
+      box-shadow: 0 2px 8px rgb(19 49 62 / 0.22);
+      color: #17313f;
+      font-size: clamp(0.62rem, 1.1vw, 0.78rem);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      padding: 4px 7px 4px 6px;
+      pointer-events: auto;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .overview-marker {
+      position: relative;
+      display: grid;
+      width: 31px;
+      height: 31px;
+      place-items: center;
+      border: 2px solid #fffdf7;
+      border-radius: 50%;
+      background: var(--route-color, #e66d45);
+      box-shadow: 0 2px 8px rgb(19 49 62 / 0.34);
+      color: #fff;
+      cursor: pointer;
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .overview-marker:hover {
+      transform: translateY(-2px) scale(1.08);
+      box-shadow: 0 4px 12px rgb(19 49 62 / 0.38);
+    }
+
+    .overview-marker span {
+      font: 850 0.7rem/1 "Avenir Next", "PingFang SC", sans-serif;
+    }
+
+    .overview-marker.is-favorite {
+      box-shadow: 0 0 0 3px rgb(255 153 59 / 0.52), 0 2px 8px rgb(19 49 62 / 0.34);
+    }
+
+    .overview-marker i {
+      position: absolute;
+      right: -7px;
+      top: -9px;
+      color: #ed6c35;
+      font-size: 0.92rem;
+      font-style: normal;
+      line-height: 1;
+      text-shadow: 0 1px 0 #fff;
+    }
+
+    .overview-day-label,
+    .overview-transfer-label {
+      display: inline-flex;
+      align-items: center;
+      border: 1.5px solid var(--route-color, #e66d45);
+      border-radius: 999px;
+      background: rgb(255 253 247 / 0.94);
+      box-shadow: 0 2px 9px rgb(19 49 62 / 0.22);
+      color: #17313f;
+      font: 850 12px/1.25 "Avenir Next", "PingFang SC", sans-serif;
+      letter-spacing: 0.02em;
+      padding: 5px 8px 5px 7px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .overview-transfer-label {
+      --route-color: #244c62;
+      font-size: 11px;
+      font-weight: 750;
+    }
+
+    .amap-overview-popup {
+      min-width: 164px;
+      max-width: 230px;
+      color: #17313f;
+      font-family: "PingFang SC", "Microsoft YaHei UI", sans-serif;
+      padding: 2px 1px;
+    }
+
+    .amap-overview-popup p {
+      margin: 0 0 3px;
+      color: var(--route-color, #e66d45);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .amap-overview-popup strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .amap-overview-popup span {
+      display: block;
+      margin-top: 4px;
+      color: #58717e;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .amap-overview-popup a {
+      display: inline-block;
+      margin-top: 7px;
+      color: #d95f2f;
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .overview-marker { width: 28px; height: 28px; }
+      .overview-day-label { font-size: 11px; padding: 4px 6px; }
+    }
+  </style>
 </head>
 <body>
   <div class="app" id="app">
@@ -2440,9 +2654,11 @@
     <div class="fallback-map" id="fallbackMap">
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
         <g class="fallback-grid" id="fallbackGrid"></g>
-        <polyline class="fallback-route" id="fallbackRoute" points=""></polyline>
+        <g id="fallbackHulls"></g>
+        <g id="fallbackRoutes"></g>
       </svg>
       <span class="fallback-label">离线点位图 · 按真实经纬度投影</span>
+      <div id="fallbackLabels"></div>
       <div id="fallbackMarkers"></div>
     </div>
     <div class="map-toolbar">
@@ -2622,6 +2838,14 @@
       }
     ];
 
+    const DAY_VISUALS = [
+      { color: "#d95f45", label: "D1 · 青岛老城" },
+      { color: "#287fb5", label: "D2 · 青岛东岸" },
+      { color: "#458b63", label: "D3 · 威海西岸" },
+      { color: "#8464b4", label: "D4 · 威海环海" },
+      { color: "#c88921", label: "D5 · 威海东海" }
+    ];
+
     const state = {
       day: 0,
       stop: 0,
@@ -2635,6 +2859,9 @@
     let map = null;
     let mapMarkers = [];
     let mapPolyline = null;
+    let overviewLayers = [];
+    let overviewDayLayers = [];
+    let overviewInfoWindow = null;
 
     const el = (id) => document.getElementById(id);
     const liveStatus = el("liveStatus");
@@ -2912,6 +3139,233 @@
       return stop.coord === "gcj" ? [stop.lng, stop.lat] : wgsToGcj(stop.lng, stop.lat);
     }
 
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, (character) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#39;"
+      })[character]);
+    }
+
+    function navigationUrl(stop) {
+      return `https://uri.amap.com/search?keyword=${encodeURIComponent(stop.nav || stop.name)}&city=${encodeURIComponent(stop.city)}&callnative=1`;
+    }
+
+    function cross(origin, pointA, pointB) {
+      return (pointA[0] - origin[0]) * (pointB[1] - origin[1]) - (pointA[1] - origin[1]) * (pointB[0] - origin[0]);
+    }
+
+    function convexHull(points) {
+      const unique = [...new Map(points.map((point) => [`${point[0].toFixed(6)},${point[1].toFixed(6)}`, point])).values()];
+      if (unique.length <= 2) return unique;
+      const sorted = unique.slice().sort((pointA, pointB) => pointA[0] - pointB[0] || pointA[1] - pointB[1]);
+      const lower = [];
+      sorted.forEach((point) => {
+        while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], point) <= 0) lower.pop();
+        lower.push(point);
+      });
+      const upper = [];
+      sorted.slice().reverse().forEach((point) => {
+        while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], point) <= 0) upper.pop();
+        upper.push(point);
+      });
+      return lower.slice(0, -1).concat(upper.slice(0, -1));
+    }
+
+    function polygonCenter(points) {
+      const total = points.reduce((result, point) => [result[0] + point[0], result[1] + point[1]], [0, 0]);
+      return [total[0] / points.length, total[1] / points.length];
+    }
+
+    function buildOverviewProjection(points) {
+      const lngs = points.map((point) => point[0]);
+      const lats = points.map((point) => point[1]);
+      const minLng = Math.min(...lngs);
+      const maxLng = Math.max(...lngs);
+      const minLat = Math.min(...lats);
+      const maxLat = Math.max(...lats);
+      const lngRange = Math.max(maxLng - minLng, 0.01);
+      const latRange = Math.max(maxLat - minLat, 0.01);
+      return ([lng, lat]) => ({
+        x: 7 + ((lng - minLng) / lngRange) * 86,
+        y: 91 - ((lat - minLat) / latRange) * 82
+      });
+    }
+
+    function overviewGeometries() {
+      return days.map((day, dayIndex) => {
+        const path = day.stops.map(getMapCoord);
+        return {
+          day,
+          dayIndex,
+          visual: DAY_VISUALS[dayIndex],
+          path,
+          hull: convexHull(path),
+          center: polygonCenter(convexHull(path))
+        };
+      });
+    }
+
+    function renderFallbackOverview() {
+      renderGrid();
+      const geometries = overviewGeometries();
+      const project = buildOverviewProjection(geometries.flatMap((geometry) => geometry.path));
+      const pointString = (points) => points.map((point) => {
+        const projected = project(point);
+        return `${projected.x},${projected.y}`;
+      }).join(" ");
+      const d2Last = geometries[1].path[geometries[1].path.length - 1];
+      const d3First = geometries[2].path[0];
+
+      el("fallbackHulls").innerHTML = geometries.map((geometry) => `
+        <polygon class="fallback-hull" points="${pointString(geometry.hull)}" fill="${geometry.visual.color}" fill-opacity="0.14" stroke="${geometry.visual.color}"></polygon>
+      `).join("");
+      el("fallbackRoutes").innerHTML = `${geometries.map((geometry) => `
+        <polyline class="fallback-route-day" points="${pointString(geometry.path)}" stroke="${geometry.visual.color}"></polyline>
+      `).join("")}
+        <polyline class="fallback-transfer" points="${pointString([d2Last, d3First])}"></polyline>`;
+
+      el("fallbackLabels").innerHTML = geometries.map((geometry) => {
+        const point = project(geometry.center);
+        return `<span class="fallback-day-label" style="left:${point.x}%;top:${point.y}%;--route-color:${geometry.visual.color}">${geometry.visual.label}</span>`;
+      }).join("");
+
+      el("fallbackMarkers").innerHTML = geometries.flatMap((geometry) => geometry.day.stops.map((stop, stopIndex) => {
+        const point = project(geometry.path[stopIndex]);
+        const favorite = stop.favorite ? " is-favorite" : "";
+        const label = `${geometry.visual.label} · ${stop.name}${stop.favorite ? " · 她想去" : ""}`;
+        return `<a class="fallback-marker${favorite}" style="left:${point.x}%;top:${point.y}%;--route-color:${geometry.visual.color}" href="${navigationUrl(stop)}" target="_blank" rel="noreferrer" title="${escapeHtml(label)}" aria-label="${escapeHtml(label)}"><span>${stopIndex + 1}</span></a>`;
+      })).join("");
+    }
+
+    function overviewMarkerContent(stopIndex, stop, visual) {
+      return `<div class="overview-marker${stop.favorite ? " is-favorite" : ""}" style="--route-color:${visual.color}" title="${escapeHtml(stop.name)}"><span>${stopIndex + 1}</span>${stop.favorite ? "<i>♥</i>" : ""}</div>`;
+    }
+
+    function clearAmapOverview() {
+      if (map && overviewLayers.length) map.remove(overviewLayers);
+      overviewLayers = [];
+      overviewDayLayers = [];
+      mapMarkers = [];
+      mapPolyline = null;
+      if (overviewInfoWindow) overviewInfoWindow.close();
+    }
+
+    function createAmapLabel(position, text, color, className, onClick) {
+      const marker = new AMap.Marker({
+        position,
+        content: `<span class="${className}" style="--route-color:${color}">${escapeHtml(text)}</span>`,
+        offset: new AMap.Pixel(-31, -14),
+        zIndex: 180
+      });
+      if (onClick) marker.on("click", onClick);
+      marker.setMap(map);
+      overviewLayers.push(marker);
+      return marker;
+    }
+
+    function showStopInfo(dayIndex, stopIndex) {
+      const day = days[dayIndex];
+      const stop = day.stops[stopIndex];
+      const visual = DAY_VISUALS[dayIndex];
+      if (!overviewInfoWindow) {
+        overviewInfoWindow = new AMap.InfoWindow({
+          offset: new AMap.Pixel(0, -24),
+          closeWhenClickMap: true
+        });
+      }
+      const saved = stop.favorite ? " · 她想去" : "";
+      overviewInfoWindow.setContent(`<div class="amap-overview-popup" style="--route-color:${visual.color}"><p>${visual.label} · ${escapeHtml(stop.time)}${saved}</p><strong>${escapeHtml(stop.name)}</strong><span>${escapeHtml(stop.short || stop.summary)}</span><a href="${navigationUrl(stop)}" target="_blank" rel="noreferrer">去高德导航 →</a></div>`);
+      overviewInfoWindow.open(map, getMapCoord(stop));
+    }
+
+    function focusOverviewDay(dayIndex) {
+      if (!map || !state.mapReady) return;
+      const layers = overviewDayLayers[dayIndex] || [];
+      if (layers.length) map.setFitView(layers, false, [70, 70, 70, 70], 14);
+    }
+
+    function fitAllRoutes() {
+      if (!map || !state.mapReady || !overviewLayers.length) return;
+      map.setFitView(overviewLayers, false, [68, 68, 68, 68], 11);
+    }
+
+    function renderAmapOverview() {
+      if (!map || !state.mapReady) return;
+      clearAmapOverview();
+      const geometries = overviewGeometries();
+      geometries.forEach((geometry) => {
+        const dayLayers = [];
+        const polygon = new AMap.Polygon({
+          path: geometry.hull,
+          strokeColor: geometry.visual.color,
+          strokeWeight: 2,
+          strokeOpacity: 0.82,
+          fillColor: geometry.visual.color,
+          fillOpacity: 0.12,
+          zIndex: 40 + geometry.dayIndex
+        });
+        polygon.on("click", () => focusOverviewDay(geometry.dayIndex));
+        polygon.setMap(map);
+        overviewLayers.push(polygon);
+        dayLayers.push(polygon);
+
+        const route = new AMap.Polyline({
+          path: geometry.path,
+          strokeColor: geometry.visual.color,
+          strokeWeight: 5,
+          strokeOpacity: 0.94,
+          isOutline: true,
+          outlineColor: "#fffdf7",
+          borderWeight: 2,
+          lineJoin: "round",
+          lineCap: "round",
+          showDir: true,
+          zIndex: 90 + geometry.dayIndex
+        });
+        route.on("click", () => focusOverviewDay(geometry.dayIndex));
+        route.setMap(map);
+        overviewLayers.push(route);
+        dayLayers.push(route);
+
+        const label = createAmapLabel(geometry.center, geometry.visual.label, geometry.visual.color, "overview-day-label", () => focusOverviewDay(geometry.dayIndex));
+        dayLayers.push(label);
+
+        geometry.day.stops.forEach((stop, stopIndex) => {
+          const marker = new AMap.Marker({
+            position: geometry.path[stopIndex],
+            content: overviewMarkerContent(stopIndex, stop, geometry.visual),
+            offset: new AMap.Pixel(-15, -15),
+            zIndex: stop.favorite ? 155 : 125
+          });
+          marker.on("click", () => showStopInfo(geometry.dayIndex, stopIndex));
+          marker.setMap(map);
+          overviewLayers.push(marker);
+          mapMarkers.push(marker);
+          dayLayers.push(marker);
+        });
+        overviewDayLayers[geometry.dayIndex] = dayLayers;
+      });
+
+      const d2Last = geometries[1].path[geometries[1].path.length - 1];
+      const d3First = geometries[2].path[0];
+      const transfer = new AMap.Polyline({
+        path: [d2Last, d3First],
+        strokeColor: "#244c62",
+        strokeWeight: 3,
+        strokeOpacity: 0.66,
+        strokeStyle: "dashed",
+        zIndex: 72
+      });
+      transfer.setMap(map);
+      overviewLayers.push(transfer);
+      const transferCenter = [(d2Last[0] + d3First[0]) / 2, (d2Last[1] + d3First[1]) / 2];
+      createAmapLabel(transferCenter, "高铁 · 青岛 → 威海", "#244c62", "overview-transfer-label");
+      fitAllRoutes();
+    }
+
     function markerContent(index, selected, stop) {
       return `<div class="amap-marker-wrap ${selected ? "is-selected" : ""}"><span class="amap-marker-badge"><span>${index + 1}</span></span><span class="amap-marker-label">${stop.name}</span></div>`;
     }
@@ -2999,7 +3453,7 @@
           el("amap").setAttribute("aria-hidden", "false");
           el("fallbackMap").hidden = true;
           updateMapStatus("高德真实地图", "已连接 · 点标记查看攻略", true);
-          renderAmapRoute();
+          renderAmapOverview();
         });
         map.on("error", () => failAmap("高德地图加载失败"));
       } catch (error) {
@@ -3011,6 +3465,7 @@
       state.mapFailed = true;
       state.mapReady = false;
       el("fallbackMap").hidden = false;
+      renderFallbackOverview();
       updateMapStatus("离线点位可用", `${message} · 已切换示意地图`);
     }
 
@@ -3078,13 +3533,7 @@
     }
 
     function start() {
-      renderGrid();
-      makeDayTabs();
-      makePrepareTabs();
-      bindEvents();
-      renderAll();
-      renderPrepare();
-      setView(state.view);
+      renderFallbackOverview();
       loadAmap();
     }
 

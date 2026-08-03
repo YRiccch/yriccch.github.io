@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Download, Monitor } from 'lucide-react'
+import { Download, ExternalLink, Monitor } from 'lucide-react'
 import { MEDIA_QUERIES, SECTION_IDS } from '../config/site'
 import { gadgets } from '../data/gadgets'
 import { useLocale } from '../hooks/useLocale'
@@ -81,11 +81,15 @@ export default function SectionGadgets() {
           const href =
             isTodoFlow && todoFlowRelease.url
               ? todoFlowRelease.url
-              : gadget.downloadHref
+              : gadget.action.href
           const version =
             isTodoFlow && todoFlowRelease.version
               ? `v${todoFlowRelease.version}`
               : gadget.version
+          const isWebGadget = gadget.action.kind === 'web'
+          const actionLabel = t(
+            isWebGadget ? 'gadgets.tryItNow' : 'gadgets.download',
+          )
 
           return (
             <div
@@ -120,9 +124,24 @@ export default function SectionGadgets() {
                   </div>
 
                   <div className="shrink-0 flex flex-col items-end gap-2 max-[560px]:items-start">
-                    <a href={href} download className="gadget-dl">
-                      <Download size={15} />
-                      <Letter3DSwap text={t('gadgets.download')} />
+                    <a
+                      href={href}
+                      download={isWebGadget ? undefined : true}
+                      target={isWebGadget ? '_blank' : undefined}
+                      rel={isWebGadget ? 'noopener noreferrer' : undefined}
+                      aria-label={
+                        isWebGadget
+                          ? `${gadget.name}: ${actionLabel} (${t('gadgets.opensInNewTab')})`
+                          : `${gadget.name}: ${actionLabel}`
+                      }
+                      className="gadget-dl"
+                    >
+                      {isWebGadget ? (
+                        <ExternalLink size={15} />
+                      ) : (
+                        <Download size={15} />
+                      )}
+                      <Letter3DSwap text={actionLabel} />
                     </a>
                     <span className="inline-flex items-center gap-1.5 text-xs text-fg-tertiary">
                       <Monitor size={13} />

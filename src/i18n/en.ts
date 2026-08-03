@@ -47,6 +47,8 @@ export default {
     title: 'Gadgets',
     desc: 'Small apps and tools I designed and built — feel free to grab one.',
     download: 'Download',
+    tryItNow: 'Try it now',
+    opensInNewTab: 'opens in a new tab',
   },
   footer: {
     rights: 'All rights reserved.',

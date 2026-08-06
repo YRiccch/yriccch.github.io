@@ -1,7 +1,6 @@
 import SectionAbout from '../components/SectionAbout'
-import SectionPhotoMarquee from '../components/SectionPhotoMarquee'
+import PublicationLifeStage from '../components/PublicationLifeStage'
 import SectionTimeline from '../components/SectionTimeline'
-import SectionPubs from '../components/SectionPubs'
 
 /** 首页依次组合个人介绍、时间线、论文和底部照片墙。 */
 export default function HomeView() {
@@ -9,8 +8,7 @@ export default function HomeView() {
     <div id="home">
       <SectionAbout />
       <SectionTimeline />
-      <SectionPubs />
-      <SectionPhotoMarquee />
+      <PublicationLifeStage />
     </div>
   )
 }

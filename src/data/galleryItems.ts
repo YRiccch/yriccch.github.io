@@ -17,7 +17,7 @@ export type GalleryItem = {
 }
 
 const modules = import.meta.glob<string>(
-  '../assets/gallery/*.{svg,jpg,jpeg,png,webp,gif,avif}',
+  '../assets/gallery/*.{svg,SVG,jpg,JPG,jpeg,JPEG,png,PNG,webp,WEBP,gif,GIF,avif,AVIF}',
   { eager: true, import: 'default' },
 )
 

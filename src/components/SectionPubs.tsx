@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import { FileText, BookOpen, Link2, Image as ImageIcon } from 'lucide-react'
 import { acceptedPublications, underReviewPublications } from '../data/publications'
 import type { Publication, PubLink } from '../data/publications'
-import { SECTION_IDS } from '../config/site'
 import { Letter3DSwap } from './Letter3DSwap'
 import { GithubIcon } from './icons'
 import { useLocale } from '../hooks/useLocale'
@@ -128,16 +127,17 @@ function PublicationList({ items }: { items: Publication[] }) {
 
 export default function SectionPubs() {
   const { t } = useTranslation()
+  const hasUnderReview = underReviewPublications.length > 0
 
   return (
-    <section id={SECTION_IDS.publications} className="mb-16">
+    <>
       <h2 className="mb-8 text-[1.35rem] font-semibold text-fg-strong">
         <Letter3DSwap text={t('pubs.title')} />
       </h2>
 
       <PublicationList items={acceptedPublications} />
 
-      {underReviewPublications.length > 0 && (
+      {hasUnderReview && (
         <>
           <div
             className="my-10 flex items-center gap-4 text-xs font-medium text-fg-tertiary"
@@ -151,6 +151,6 @@ export default function SectionPubs() {
           <PublicationList items={underReviewPublications} />
         </>
       )}
-    </section>
+    </>
   )
 }

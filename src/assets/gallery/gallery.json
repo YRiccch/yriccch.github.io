@@ -1,20 +1,118 @@
 {
   "tags": [
-    { "key": "travel", "label": { "zh": "旅行", "en": "Travel" } },
-    { "key": "campus", "label": { "zh": "校园", "en": "Campus" } },
-    { "key": "friends", "label": { "zh": "朋友", "en": "Friends" } },
-    { "key": "performance", "label": { "zh": "演出", "en": "Performance" } },
-    { "key": "daily", "label": { "zh": "日常", "en": "Daily" } },
-    { "key": "scenery", "label": { "zh": "风景", "en": "Scenery" } }
+    {
+      "key": "travel",
+      "label": { "zh": "旅行", "en": "Travel" },
+      "description": {
+        "zh": "旅途中留下的片段。",
+        "en": "Frames kept from the road."
+      }
+    },
+    {
+      "key": "campus",
+      "label": { "zh": "校园", "en": "Campus" },
+      "description": {
+        "zh": "学习与校园生活的片段。",
+        "en": "Moments from study and campus life."
+      }
+    },
+    {
+      "key": "friends",
+      "label": { "zh": "朋友", "en": "Friends" },
+      "description": {
+        "zh": "和朋友一起留下的瞬间。",
+        "en": "Moments kept with friends."
+      }
+    },
+    {
+      "key": "performance",
+      "label": { "zh": "演出", "en": "Performance" },
+      "description": {
+        "zh": "舞台、音乐与现场的片段。",
+        "en": "Scenes from stages, music, and live moments."
+      }
+    },
+    {
+      "key": "daily",
+      "label": { "zh": "日常", "en": "Daily" },
+      "description": {
+        "zh": "平常日子里的小片段。",
+        "en": "Small fragments of ordinary days."
+      }
+    },
+    {
+      "key": "scenery",
+      "label": { "zh": "风景", "en": "Scenery" },
+      "description": {
+        "zh": "光线、天气与路上的风景。",
+        "en": "Light, weather, and scenery along the way."
+      }
+    },
+     {
+      "key": "ntu",
+      "label": { "zh": "在NTU的日子", "en": "Daily life at NTU" },
+      "description": {
+        "zh": "在南洋理工大学的日常生活。",
+        "en": "Daily life at Nanyang Technological University."
+      }
+    }
   ],
   "photos": {
     "me-1.jpg": {
       "takenAt": null,
-      "tags": ["campus"]
+      "tags": ["daily"],
+      "caption": {
+        "zh": "眼前的这个人名叫小帅",
+        "en": "The person in front of you is a handsome guy."
+      }
     },
     "me-2.jpg": {
       "takenAt": null,
-      "tags": ["daily"]
+      "tags": ["daily"],
+      "caption": {
+        "zh": "和我对视？",
+        "en": "Looking at me?"
+      }
+    },
+    "mala-durian.JPG": {
+      "takenAt": null,
+      "tags": ["travel", "ntu"],
+      "caption": {
+        "zh": "在马来爽吃榴莲",
+        "en": "Durian feast in Malaysia."
+      }
+    },
+    "mala-seafood.JPG": {
+      "takenAt": null,
+      "tags": ["travel", "ntu"],
+      "caption": {
+        "zh": "在马来吃海鲜大餐",
+        "en": "Seafood feast in Malaysia."
+      }
+    },
+    "ntu-chickenrice.JPG": {
+      "takenAt": null,
+      "tags": ["ntu"],
+      "caption": {
+        "zh": "南洋理工大学的鸡饭真好吃！",
+        "en": "Chicken rice at NTU is delicious."
+      }
+    },
+    "sing-newyeareve.JPG": {
+      "takenAt": null,
+      "tags": ["ntu"],
+      "caption": {
+        "zh": "过年啦！除夕夜Lab里空无一人...",
+        "en": "Happy New Year! The lab was empty on New Year's Eve..."
+      }
+    },
+    "yiwu-eveningGlow.JPG": {
+      "takenAt": null,
+      "tags": ["travel", "scenery"],
+      "caption": {
+        "zh": "义乌的傍晚美丽的晚霞",
+        "en": "An evening in Yiwu with beautiful sunset."
+      }
     }
   }
 }

@@ -4,6 +4,7 @@ import type { LocaleText } from './types'
 export type GalleryTag = {
   key: string
   label: LocaleText
+  description: LocaleText
 }
 
 export type GalleryTagKey = GalleryTag['key']

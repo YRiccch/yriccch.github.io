@@ -26,6 +26,7 @@
   --timeline-line: #ddd;
   --timeline-body-bg: #f8f9fa;
   --timeline-body-border: #e9ecef;
+  --life-stack-pin-top: calc(50vh - 10rem);
 }
 
 html.dark {
@@ -92,6 +93,23 @@ p {
   width: auto;
   max-width: min(7.5rem, 38vw);
   margin-right: 0.14em;
+}
+
+@media (max-width: 700px) {
+  :root {
+    --life-stack-pin-top: calc(50vh - 13.5rem);
+  }
+}
+
+/* The publication section stays in place while the Life stack collapses. */
+@media (min-width: 701px) {
+  .publication-life-stage-content {
+    position: sticky;
+    top: calc(
+      var(--life-stack-pin-top) - 2.5rem - var(--publication-stage-height, 0px)
+    );
+    z-index: 10;
+  }
 }
 
 /* 主题切换 fallback：不支持 View Transitions 的浏览器走"瞬间切换 + 临时禁过渡" */

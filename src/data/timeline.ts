@@ -25,7 +25,7 @@ export const timeline: TimelineItem[] = [
     period: {
       start: '2026-03',
       end: '2026-05',
-      label: { zh: '2026 · 三个月访问', en: '2026 · 3-month visit' },
+      label: { zh: '2026.01 - 2026.04', en: 'Jan 2026 - Apr 2026' },
     },
     body: {
       zh: '在 [ntu] 进行为期三个月的访问研究，师从 [wang]。',
@@ -50,7 +50,7 @@ export const timeline: TimelineItem[] = [
     year: '2023',
     period: {
       start: '2023-06',
-      label: { zh: '2023.06', en: 'Jun 2023' },
+      label: { zh: '2019.09 - 2023.06', en: 'Jun 2023' },
     },
     body: {
       zh: '在 [hdu] 获得数字媒体技术学士学位，本科期间师从 [liu]。',

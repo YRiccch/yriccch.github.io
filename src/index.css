@@ -27,6 +27,14 @@
   --timeline-body-bg: #f8f9fa;
   --timeline-body-border: #e9ecef;
   --life-stack-pin-top: calc(50vh - 10rem);
+  --life-stack-heading-offset: 2.6rem;
+  --life-stack-publication-gap: 4rem;
+  --life-photo-wall-base: #f8f0ec;
+  --life-photo-wall-glow-a: #e9a083;
+  --life-photo-wall-glow-b: #c76950;
+  --life-photo-wall-glow-c: #f6c7b6;
+  --life-photo-wall-sheen-start: rgba(255, 255, 255, 0.42);
+  --life-photo-wall-sheen-end: rgba(225, 112, 79, 0.16);
 }
 
 html.dark {
@@ -51,6 +59,12 @@ html.dark {
   --timeline-line: #303030;
   --timeline-body-bg: #151515;
   --timeline-body-border: #303030;
+  --life-photo-wall-base: #17110f;
+  --life-photo-wall-glow-a: #d96f4e;
+  --life-photo-wall-glow-b: #8e392b;
+  --life-photo-wall-glow-c: #f2b18d;
+  --life-photo-wall-sheen-start: rgba(255, 224, 205, 0.08);
+  --life-photo-wall-sheen-end: rgba(15, 7, 5, 0.28);
 }
 
 html { color-scheme: light dark; }
@@ -102,11 +116,17 @@ p {
 }
 
 /* The publication section stays in place while the Life stack collapses. */
+.life-stack-heading {
+  position: sticky;
+  top: calc(var(--life-stack-pin-top) - var(--life-stack-heading-offset));
+  z-index: 20;
+}
+
 @media (min-width: 701px) {
   .publication-life-stage-content {
     position: sticky;
     top: calc(
-      var(--life-stack-pin-top) - 2.5rem - var(--publication-stage-height, 0px)
+      var(--life-stack-pin-top) - var(--life-stack-publication-gap) - var(--publication-stage-height, 0px)
     );
     z-index: 10;
   }

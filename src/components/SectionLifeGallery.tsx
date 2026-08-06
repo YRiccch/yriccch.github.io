@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { AnimatePresence, motion } from 'motion/react'
 import { ALL_GALLERY_TAG, findGalleryTag } from '../data/gallery'
 import {
   availableGalleryTags,
@@ -9,6 +8,7 @@ import {
   type GalleryItem,
 } from '../data/galleryItems'
 import { useLocale } from '../hooks/useLocale'
+import GalleryLightbox from './GalleryLightbox'
 import { Letter3DSwap } from './Letter3DSwap'
 import { LocaleSwap } from './LocaleSwap'
 
@@ -38,17 +38,6 @@ export default function SectionLifeGallery() {
     item?.caption ? L(item.caption) : ''
 
   const lightboxCaption = captionOf(lightbox)
-
-  useEffect(() => {
-    if (!lightbox) return
-
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setLightbox(null)
-    }
-
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [lightbox])
 
   return (
     <section className="mb-12">
@@ -124,50 +113,12 @@ export default function SectionLifeGallery() {
         </p>
       )}
 
-      <AnimatePresence>
-        {lightbox && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={() => setLightbox(null)}
-            role="dialog"
-            aria-modal="true"
-            className="fixed inset-0 bg-black/80 z-[1000] flex items-center justify-center p-6 backdrop-blur-sm"
-          >
-            <button
-              onClick={(event) => {
-                event.stopPropagation()
-                setLightbox(null)
-              }}
-              aria-label={t('life.close')}
-              className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/30 bg-black/40 text-white text-xl leading-none flex items-center justify-center hover:bg-white/15 hover:border-white/60 transition-colors"
-            >
-              &times;
-            </button>
-            <motion.figure
-              initial={{ scale: 0.92 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.92 }}
-              transition={{ duration: 0.22, ease: 'easeOut' }}
-              onClick={(event) => event.stopPropagation()}
-              className="max-w-[min(900px,92vw)] max-h-[86vh] flex flex-col items-center gap-3 m-0"
-            >
-              <img
-                src={lightbox.url}
-                alt={lightboxCaption}
-                className="max-w-full max-h-[78vh] w-auto h-auto rounded-lg shadow-2xl"
-              />
-              {lightboxCaption && (
-                <figcaption className="text-white/85 text-sm text-center">
-                  {lightboxCaption}
-                </figcaption>
-              )}
-            </motion.figure>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <GalleryLightbox
+        item={lightbox}
+        caption={lightboxCaption}
+        closeLabel={t('life.close')}
+        onClose={() => setLightbox(null)}
+      />
     </section>
   )
 }

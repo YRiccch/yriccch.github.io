@@ -1,5 +1,5 @@
-import { GALLERY_CAPTIONS, findGalleryTag } from '../data/gallery'
-import { galleryItems } from '../data/galleryItems'
+import { findGalleryTag } from '../data/gallery'
+import { galleryItems, type GalleryItem } from '../data/galleryItems'
 import { useLocale } from '../hooks/useLocale'
 import { SimpleMarquee } from './SimpleMarquee'
 
@@ -8,22 +8,21 @@ export default function SectionPhotoMarquee() {
 
   if (galleryItems.length === 0) return null
 
-  const altFor = (key: string, tag: string) => {
-    const caption = GALLERY_CAPTIONS[key]
-    if (caption) return L(caption)
+  const altFor = (item: GalleryItem) => {
+    if (item.caption) return L(item.caption)
 
-    const tagInfo = findGalleryTag(tag)
+    const tagInfo = findGalleryTag(item.tags[0] ?? '')
     return tagInfo ? L(tagInfo.label) : 'Life photo'
   }
 
   const photos = galleryItems.map((item) => (
     <figure
-      key={item.key}
+      key={item.fileName}
       className="m-0 h-[110px] w-fit shrink-0 overflow-hidden rounded-md bg-card ring-1 ring-line max-[600px]:h-[84px]"
     >
       <img
         src={item.url}
-        alt={altFor(item.key, item.tag)}
+        alt={altFor(item)}
         loading="lazy"
         decoding="async"
         draggable={false}

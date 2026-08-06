@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { motion, AnimatePresence } from 'motion/react'
-import {
-  ALL_GALLERY_TAG,
-  GALLERY_CAPTIONS,
-  findGalleryTag,
-} from '../data/gallery'
+import { AnimatePresence, motion } from 'motion/react'
+import { ALL_GALLERY_TAG, findGalleryTag } from '../data/gallery'
 import {
   availableGalleryTags,
   getGalleryItemCount,
@@ -21,13 +17,6 @@ const galleryTabs = [
   ...availableGalleryTags.map((tag) => tag.key),
 ]
 
-/*
- * 使用说明：
- *   1. 图片丢进 src/assets/gallery/<tag>/ 即可，Vite 构建时自动扫描注入
- *   2. 支持 svg / jpg / jpeg / png / webp / gif / avif
- *   3. 想给某张图加说明：在 src/data/gallery.ts 的 GALLERY_CAPTIONS 里加条目
- */
-
 export default function SectionLifeGallery() {
   const { t } = useTranslation()
   const { L } = useLocale()
@@ -42,20 +31,21 @@ export default function SectionLifeGallery() {
     return tag ? L(tag.label) : tagKey
   }
 
-  const captionOf = (item: GalleryItem | null) => {
-    if (!item) return ''
-    const caption = GALLERY_CAPTIONS[item.key]
-    return caption ? L(caption) : ''
-  }
+  const tagsLabelFor = (item: GalleryItem) =>
+    item.tags.map(tagLabelFor).join(' · ')
+
+  const captionOf = (item: GalleryItem | null) =>
+    item?.caption ? L(item.caption) : ''
 
   const lightboxCaption = captionOf(lightbox)
 
-  // ESC 关闭 lightbox
   useEffect(() => {
     if (!lightbox) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setLightbox(null)
+
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setLightbox(null)
     }
+
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [lightbox])
@@ -69,7 +59,6 @@ export default function SectionLifeGallery() {
         <LocaleSwap>{t('life.desc')}</LocaleSwap>
       </p>
 
-      {/* 标签栏 */}
       <div
         role="tablist"
         aria-label={t('life.filterLabel')}
@@ -105,15 +94,13 @@ export default function SectionLifeGallery() {
         })}
       </div>
 
-      {/* Masonry —— CSS columns 实现 */}
       {visible.length > 0 ? (
         <div className="columns-2 min-[900px]:columns-3 min-[1400px]:columns-4 gap-3">
           {visible.map((item) => {
-            const tagInfo = findGalleryTag(item.tag)
-            const tagLabel = tagInfo ? L(tagInfo.label) : item.tag
+            const tagLabel = tagsLabelFor(item)
             return (
               <figure
-                key={item.key}
+                key={item.fileName}
                 onClick={() => setLightbox(item)}
                 className="group break-inside-avoid mb-3 relative rounded-[10px] overflow-hidden cursor-zoom-in bg-card transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.99]"
               >
@@ -124,7 +111,7 @@ export default function SectionLifeGallery() {
                   decoding="async"
                   className="block w-full h-auto transition-transform duration-500 group-hover:scale-[1.03]"
                 />
-                <figcaption className="absolute left-2 bottom-2 px-2.5 py-0.5 rounded-full text-[0.72rem] bg-black/55 text-white opacity-0 translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 pointer-events-none [@media(hover:none)]:opacity-100 [@media(hover:none)]:translate-y-0">
+                <figcaption className="absolute left-2 bottom-2 max-w-[calc(100%-1rem)] truncate px-2.5 py-0.5 rounded-full text-[0.72rem] bg-black/55 text-white opacity-0 translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 pointer-events-none [@media(hover:none)]:opacity-100 [@media(hover:none)]:translate-y-0">
                   {tagLabel}
                 </figcaption>
               </figure>
@@ -137,7 +124,6 @@ export default function SectionLifeGallery() {
         </p>
       )}
 
-      {/* Lightbox */}
       <AnimatePresence>
         {lightbox && (
           <motion.div
@@ -151,21 +137,21 @@ export default function SectionLifeGallery() {
             className="fixed inset-0 bg-black/80 z-[1000] flex items-center justify-center p-6 backdrop-blur-sm"
           >
             <button
-              onClick={(e) => {
-                e.stopPropagation()
+              onClick={(event) => {
+                event.stopPropagation()
                 setLightbox(null)
               }}
               aria-label={t('life.close')}
               className="absolute top-4 right-4 w-10 h-10 rounded-full border border-white/30 bg-black/40 text-white text-xl leading-none flex items-center justify-center hover:bg-white/15 hover:border-white/60 transition-colors"
             >
-              ×
+              &times;
             </button>
             <motion.figure
               initial={{ scale: 0.92 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.92 }}
               transition={{ duration: 0.22, ease: 'easeOut' }}
-              onClick={(e) => e.stopPropagation()}
+              onClick={(event) => event.stopPropagation()}
               className="max-w-[min(900px,92vw)] max-h-[86vh] flex flex-col items-center gap-3 m-0"
             >
               <img

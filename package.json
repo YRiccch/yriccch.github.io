@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "validate:gallery": "node scripts/validate-gallery.mjs",
+    "build": "npm run validate:gallery && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },

@@ -1,0 +1,20 @@
+{
+  "tags": [
+    { "key": "travel", "label": { "zh": "旅行", "en": "Travel" } },
+    { "key": "campus", "label": { "zh": "校园", "en": "Campus" } },
+    { "key": "friends", "label": { "zh": "朋友", "en": "Friends" } },
+    { "key": "performance", "label": { "zh": "演出", "en": "Performance" } },
+    { "key": "daily", "label": { "zh": "日常", "en": "Daily" } },
+    { "key": "scenery", "label": { "zh": "风景", "en": "Scenery" } }
+  ],
+  "photos": {
+    "me-1.jpg": {
+      "takenAt": null,
+      "tags": ["campus"]
+    },
+    "me-2.jpg": {
+      "takenAt": null,
+      "tags": ["daily"]
+    }
+  }
+}

@@ -1,49 +1,71 @@
+import galleryData from '../assets/gallery/gallery.json'
 import type { LocaleText } from './types'
 
-/**
- * Life 页的标签配置 + 图片 caption。
- *
- * 标签：
- *   - key 用作文件夹名 (src/assets/gallery/<key>/)
- *   - label 对应中英双语显示
- *   - 增删标签：改 TAGS 数组 + 在 assets/gallery/ 下加 / 删对应目录
- *
- * 图片：
- *   - 无需在此登记。Life 页会自动扫描 src/assets/gallery/<tag>/ 下的图
- *   - 如需给某张图加说明，在 CAPTIONS 里加一条 "<tag>/<文件名不带扩展>" 即可
- */
 export type GalleryTag = {
   key: string
   label: LocaleText
 }
 
-export const ALL_GALLERY_TAG = 'all'
+export type GalleryTagKey = GalleryTag['key']
 
-export const GALLERY_TAGS: GalleryTag[] = [
-  { key: 'travel', label: { zh: '旅行', en: 'Travel' } },
-  { key: 'campus', label: { zh: '校园', en: 'Campus' } },
-  { key: 'friends', label: { zh: '朋友', en: 'Friends' } },
-  { key: 'performance', label: { zh: '演出', en: 'Performance' } },
-  { key: 'daily', label: { zh: '日常', en: 'Daily' } },
-  { key: 'scenery', label: { zh: '风景', en: 'Scenery' } },
-]
+export type GalleryMetadata = {
+  /** Use YYYY-MM-DD when known. Keep null rather than guessing a date. */
+  takenAt: string | null
+  tags: readonly GalleryTagKey[]
+  caption?: LocaleText
+}
+
+type GalleryData = {
+  tags: readonly GalleryTag[]
+  photos: Readonly<Record<string, GalleryMetadata>>
+}
+
+const data: GalleryData = galleryData
+
+export const ALL_GALLERY_TAG = 'all'
+export const GALLERY_TAGS = data.tags
+export const GALLERY_METADATA = data.photos
 
 const galleryTagByKey = new Map(
   GALLERY_TAGS.map((tag) => [tag.key, tag]),
 )
 
-export function findGalleryTag(key: string): GalleryTag | undefined {
-  return galleryTagByKey.get(key)
+function validateGalleryMetadata() {
+  const knownTagKeys = new Set(GALLERY_TAGS.map((tag) => tag.key))
+
+  for (const [fileName, metadata] of Object.entries(GALLERY_METADATA)) {
+    if (!fileName || fileName.includes('/') || fileName.includes('\\')) {
+      throw new Error(`Invalid Life gallery file name: ${fileName}`)
+    }
+
+    if (
+      metadata.takenAt !== null &&
+      !/^\d{4}-\d{2}-\d{2}$/.test(metadata.takenAt)
+    ) {
+      throw new Error(
+        `Life gallery date must use YYYY-MM-DD: ${fileName}`,
+      )
+    }
+
+    if (metadata.tags.length === 0) {
+      throw new Error(`Life gallery image needs at least one tag: ${fileName}`)
+    }
+
+    const uniqueTags = new Set(metadata.tags)
+    if (uniqueTags.size !== metadata.tags.length) {
+      throw new Error(`Life gallery image has duplicate tags: ${fileName}`)
+    }
+
+    for (const tag of metadata.tags) {
+      if (!knownTagKeys.has(tag)) {
+        throw new Error(`Unknown Life gallery tag "${tag}" for ${fileName}`)
+      }
+    }
+  }
 }
 
-/**
- * 图片说明。key 格式："<tag>/<文件名不带扩展>"
- * 未登记的图片不显示 caption，这是刻意的 —— 大多数照片不需要文字解释。
- */
-export const GALLERY_CAPTIONS: Record<string, LocaleText> = {
-  // 示例（请按需替换为真实内容）：
-  // 'travel/xihu-sunset': {
-  //   zh: '2025 · 西湖的黄昏',
-  //   en: '2025 · Dusk at West Lake',
-  // },
+validateGalleryMetadata()
+
+export function findGalleryTag(key: string): GalleryTag | undefined {
+  return galleryTagByKey.get(key)
 }

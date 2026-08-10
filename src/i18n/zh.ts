@@ -50,5 +50,6 @@ export default {
   },
   footer: {
     rights: '保留所有权利。',
+    lastUpdated: '最近更新：{{date}}',
   },
 } as const

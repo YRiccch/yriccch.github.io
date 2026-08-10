@@ -23,6 +23,13 @@ export const PAGE_MAX_WIDTH_CLASS = 'max-w-[750px]'
 export const PAGE_CONTAINER_CLASS =
   `${PAGE_MAX_WIDTH_CLASS} mx-auto px-6 max-[600px]:px-4`
 
+/**
+ * Injected by Vite from the current Git HEAD during each build.
+ */
+export const SITE_BUILD = {
+  lastCommitAt: __GIT_LAST_UPDATED__,
+} as const
+
 export const MEDIA_QUERIES = {
   mobileNavigation: '(max-width: 900px)',
   reducedMotion: '(prefers-reduced-motion: reduce)',

@@ -52,5 +52,6 @@ export default {
   },
   footer: {
     rights: 'All rights reserved.',
+    lastUpdated: 'Last updated: {{date}}',
   },
 } as const

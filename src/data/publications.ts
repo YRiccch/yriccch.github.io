@@ -72,7 +72,7 @@ const _publications: Publication[] = [
       baselineEm: -0.28,
     },
     authorsHtml:
-      'Dekun Qian<sup>*</sup>, <b>Ruiqi Yu<sup>*</sup></b>, Fengling Zheng<sup>†</sup>, Li Ye, Yize Li, Weigui Zheng, Yigang Wang, Jinchang Li and Zhiguang Zhou<sup>†</sup>',
+      'Dekun Qian<sup>*</sup>, <b>Ruiqi Yu<sup>*</sup></b>, Li Ye, Yize Li, Fengling Zheng, Caihong Wang, Yigang Wang, Jinchang Li and Zhiguang Zhou',
     venue: 'arXiv preprint 2026',
     year: 2026,
     status: 'underReview',

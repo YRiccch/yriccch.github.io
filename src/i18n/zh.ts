@@ -45,7 +45,7 @@ export default {
     title: '小玩意儿',
     desc: '我自己设计的一些小程序与小工具，欢迎下载把玩。',
     download: '下载',
-    tryItNow: 'Try it now',
+    tryItNow: '立即体验',
     opensInNewTab: '在新标签页打开',
   },
   footer: {

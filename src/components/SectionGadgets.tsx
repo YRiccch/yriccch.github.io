@@ -145,7 +145,9 @@ export default function SectionGadgets() {
                     </a>
                     <span className="inline-flex items-center gap-1.5 text-xs text-fg-tertiary">
                       <Monitor size={13} />
-                      {gadget.platform} · {version}
+                      {isWebGadget
+                        ? gadget.platform
+                        : `${gadget.platform} · ${version}`}
                     </span>
                   </div>
                 </div>

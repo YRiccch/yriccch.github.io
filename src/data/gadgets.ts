@@ -40,7 +40,7 @@ export const gadgets: Gadget[] = [
   },
   {
     id: 'travel-map-studio',
-    name: 'Travel Map Studio',
+    name: 'TravelGo',
     tagline: {
       zh: '把旅行计划放回一张地图里',
       en: 'Plan your trip on one map.',
@@ -55,6 +55,25 @@ export const gadgets: Gadget[] = [
     action: {
       kind: 'web',
       href: 'https://yriccch.github.io/gadgets/travel-map-studio/',
+    },
+  },
+  {
+    id: 'spatial-deck-studio',
+    name: 'MySlides',
+    tagline: {
+      zh: '在空间画布上编辑会移动的演示文稿',
+      en: 'Design spatial presentations on an infinite canvas.',
+    },
+    description: {
+      zh: '自由排布文字、图片和页面，在总览与单页之间切换，并导出带相机运动的独立 HTML。',
+      en: 'Arrange text, images, and slides on a spatial canvas, then export a standalone HTML deck with camera transitions.',
+    },
+    icon: '/spatial-deck-studio.svg',
+    platform: 'Web',
+    version: 'Preview',
+    action: {
+      kind: 'web',
+      href: 'https://yriccch.github.io/gadgets/spatial-deck-studio/',
     },
   },
 ]

@@ -85,25 +85,6 @@ const _publications: Publication[] = [
     ],
   },
   {
-    id: 'animaster',
-    title:
-      'AniMaster: From Story Texts to Animated Videos via Cinematic Script Generation and Interactive Authoring',
-    titleLogo: {
-      src: '/pubslogo/animasterlogo.svg',
-      alt: 'AniMaster',
-      replaces: 'AniMaster',
-      heightEm: 1.72,
-      baselineEm: -0.53,
-    },
-    authorsHtml:
-      '<b>Ruiqi Yu<sup>*</sup></b>, Dekun Qian<sup>*</sup>, Jiale Xu, Sizhe Cheng, Yize Li, Xiangyang Wu, Zhiguang Zhou, Wei Chen and Yong Wang',
-    venue: 'Manuscript, revised after ACM UIST review 2026',
-    year: 2026,
-    status: 'underReview',
-    // Thumbnail placeholder: save the image as public/pubs/animaster.png.
-    links: [],
-  },
-  {
     id: 'coivis',
     title:
       'COIVis: Eye-tracking-based Visual Exploration of Concept Learning in MOOC Videos',

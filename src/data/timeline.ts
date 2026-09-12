@@ -23,8 +23,8 @@ export const timeline: TimelineItem[] = [
     id: 'ntuVisit',
     year: '2026',
     period: {
-      start: '2026-03',
-      end: '2026-05',
+      start: '2026-01',
+      end: '2026-04',
       label: { zh: '2026.01 - 2026.04', en: 'Jan 2026 - Apr 2026' },
     },
     body: {

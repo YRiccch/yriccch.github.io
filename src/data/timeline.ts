@@ -53,7 +53,7 @@ export const timeline: TimelineItem[] = [
       label: { zh: '2019.09 - 2023.06', en: 'Jun 2023' },
     },
     body: {
-      zh: '在 [hdu] 获得数字媒体技术学士学位，本科期间师从 [liu]。',
+      zh: '在 [hdu] 获得数字媒体技术学士学位。',
       en: "Earned my Bachelor's degree in Digital Media Technology at [hdu], where I was advised by [liu].",
     },
   },

@@ -74,7 +74,10 @@ html.dark {
   --life-photo-wall-sheen-end: rgba(15, 7, 5, 0.28);
 }
 
-html { color-scheme: light dark; }
+html {
+  color-scheme: light dark;
+  font-size: 93.75%; /* 15px：全站字号整体缩小 6.25% */
+}
 
 body {
   margin: 0;

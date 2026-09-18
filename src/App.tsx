@@ -31,7 +31,7 @@ const lastUpdatedFormatters = {
 } as const
 
 /**
- * 布局壳：单列 max-w-750，Navbar 桌面端 fixed 内容右上角，移动端浮右侧。
+ * 布局壳：单列 max-w-650，Navbar 桌面端 fixed 内容右上角，移动端浮右侧。
  */
 export default function App() {
   const { t } = useTranslation()

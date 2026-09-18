@@ -1,9 +1,10 @@
+import * as m from 'motion/react-m'
 // 引入 React 核心钩子
 import { useState } from "react";
 // 引入国际化翻译钩子
 import { useTranslation } from "react-i18next";
 // 引入 motion 动画库及其减少动画偏好检测钩子
-import { motion, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react"
 // 引入相册标签数据及其类型
 import { GALLERY_TAGS, type GalleryTag } from "../data/gallery";
 // 引入相册数据获取函数及其数据类型
@@ -19,6 +20,8 @@ import { LocaleSwap } from "./LocaleSwap";
 // 引入堆叠卡片容器组件及卡片项组件
 import StackingCards, { StackingCardItem } from "./fancy/StackingCards";
 import AnimatedAlbumBackdrop from "./fancy/AnimatedAlbumBackdrop";
+import { useAnimationActivity } from "../hooks/useAnimationActivity";
+import AlbumHoverSurface from "./fancy/AlbumHoverSurface";
 
 // 每个相册预览最多显示的照片数量
 const PREVIEW_PHOTO_LIMIT = 4;
@@ -134,6 +137,7 @@ function getPhotoComposition(album: AlbumPreview): PhotoComposition {
  * 展示带有浮动动画效果的照片，点击可打开灯箱
  */
 function PhotoTile({
+  active,
   item,        // 照片数据对象
   alt,         // 图片替代文本（无障碍访问）
   layout,      // 布局配置参数
@@ -141,6 +145,7 @@ function PhotoTile({
   className,   // 自定义类名（可选）
   onOpen,      // 点击照片时的回调函数
 }: {
+  active: boolean;
   item: GalleryItem;
   alt: string;
   layout: PhotoLayout;
@@ -154,7 +159,7 @@ function PhotoTile({
   const floatDuration = 11 + index * 1.8;
 
   return (
-    <motion.button
+    <m.button
       type="button"
       onClick={() => onOpen(item)}  // 点击时触发打开灯箱回调
       aria-label={alt}              // 无障碍标签
@@ -163,7 +168,7 @@ function PhotoTile({
       initial={{ opacity: 0, y: 12, rotate: layout.rotate }}
       // 动画目标状态
       animate={
-        reduceMotion
+        reduceMotion || !active
           // 如果用户偏好减少动画：只做简单的淡入和复位
           ? { opacity: 1, x: 0, y: 0, rotate: layout.rotate }
           // 否则：持续循环的浮动动画
@@ -180,9 +185,9 @@ function PhotoTile({
       }
       // 动画过渡配置
       transition={
-        reduceMotion
+        reduceMotion || !active
           // 减少动画模式：快速淡入
-          ? { duration: 0.2 }
+          ? { duration: 0 }
           // 正常模式：各属性独立配置动画参数
           : {
               opacity: { duration: 0.28, delay: index * 0.08 }, // 淡入，依次延迟
@@ -208,7 +213,8 @@ function PhotoTile({
       style={{ zIndex: index + 1 }}  // 层级随索引递增，后渲染的在上层
     >
       <img
-        src={item.url}
+        {...item.preview}
+        sizes="(max-width: 700px) 45vw, 272px"
         alt={alt}
         loading="lazy"          // 懒加载，优化页面性能
         decoding="async"        // 异步解码，避免阻塞主线程
@@ -216,7 +222,7 @@ function PhotoTile({
         // 圆角 + 阴影样式，指针事件透传给父 button
         className="pointer-events-none block h-auto w-full rounded-md shadow-[0_16px_36px_-18px_rgba(0,0,0,0.62)]"
       />
-    </motion.button>
+    </m.button>
   );
 }
 
@@ -225,9 +231,11 @@ function PhotoTile({
  * 根据相册照片数量决定使用单图居中模式还是多图散落拼贴模式
  */
 function PhotoWall({
+  active,
   album,    // 相册预览数据
   onOpen,   // 照片打开回调
 }: {
+  active: boolean;
   album: AlbumPreview;
   onOpen: (item: GalleryItem) => void;
 }) {
@@ -244,6 +252,7 @@ function PhotoWall({
     return (
       <div className="flex min-h-[18rem] items-center justify-center px-5 py-6 max-[700px]:min-h-[15rem]">
         <PhotoTile
+          active={active}
           item={singlePhoto}
           alt={altFor(singlePhoto)}
           index={0}
@@ -265,6 +274,7 @@ function PhotoWall({
 
         return (
           <PhotoTile
+            active={active}
             key={item.fileName}
             item={item}
             alt={altFor(item)}
@@ -291,6 +301,7 @@ function AlbumCard({
   onOpen: (item: GalleryItem) => void;
 }) {
   const { L, locale } = useLocale();
+  const { ref, active } = useAnimationActivity<HTMLElement>();
   const photoCount = album.photos.length;
   // 根据语言环境生成照片数量标签文本
   const countLabel =
@@ -300,6 +311,7 @@ function AlbumCard({
 
   return (
     <article
+      ref={ref}
       aria-labelledby={`life-album-${album.tag.key}`}  // 无障碍关联标题
       // 网格布局：左栏信息（0.82fr），右栏照片（1.18fr），小屏幕改为单列
       className="grid min-h-[20rem] grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] overflow-hidden rounded-lg border border-line bg-card max-[700px]:grid-cols-1"
@@ -335,9 +347,9 @@ function AlbumCard({
       <div
         className="relative isolate overflow-hidden border-l border-line max-[700px]:border-l-0 max-[700px]:border-t"
       >
-        <AnimatedAlbumBackdrop />
+        <AnimatedAlbumBackdrop active={active} />
         <div className="relative z-10">
-          <PhotoWall album={album} onOpen={onOpen} />
+          <PhotoWall active={active} album={album} onOpen={onOpen} />
         </div>
       </div>
     </article>
@@ -379,7 +391,9 @@ export default function SectionPhotoMarquee() {
             className="life-stack-item !h-[20rem] max-[700px]:!h-[28rem]"
           >
             {/* 渲染相册卡片内容 */}
-            <AlbumCard album={album} onOpen={setLightbox} />
+            <AlbumHoverSurface>
+              <AlbumCard album={album} onOpen={setLightbox} />
+            </AlbumHoverSurface>
           </StackingCardItem>
         ))}
         {/* 底部占位元素：为堆叠卡片提供足够的滚动空间 */}

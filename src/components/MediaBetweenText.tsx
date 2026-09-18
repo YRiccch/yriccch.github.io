@@ -1,3 +1,4 @@
+import * as m from 'motion/react-m'
 import {
   useCallback,
   useEffect,
@@ -8,9 +9,10 @@ import {
   type PointerEvent,
 } from 'react'
 import { createPortal } from 'react-dom'
-import { motion, AnimatePresence } from 'motion/react'
+import { AnimatePresence } from 'motion/react'
 import { findMedia } from '../data/mediaKeywords'
 import { useLocale } from '../hooks/useLocale'
+import { imageSource } from '../data/imageSources'
 
 const PREVIEW_MAX_WIDTH = 240
 const PREVIEW_MAX_HEIGHT = 220
@@ -82,12 +84,11 @@ export function MediaBetweenText({ id }: { id: string }) {
         ? rect.top - PREVIEW_GAP
         : rect.bottom + PREVIEW_GAP
 
-    setPreviewPosition({
-      centerX,
-      anchorY,
-      placement,
-      maxWidth,
-      maxHeight,
+    setPreviewPosition((current) => {
+      if (current && current.centerX === centerX && current.anchorY === anchorY &&
+        current.placement === placement && current.maxWidth === maxWidth &&
+        current.maxHeight === maxHeight) return current
+      return { centerX, anchorY, placement, maxWidth, maxHeight }
     })
   }, [])
 
@@ -153,16 +154,23 @@ export function MediaBetweenText({ id }: { id: string }) {
       setActive(false)
     }
 
+    let frame: number | undefined
+    const schedulePosition = () => {
+      if (frame !== undefined) return
+      frame = requestAnimationFrame(() => {
+        frame = undefined
+        updatePreviewPosition()
+      })
+    }
     updatePreviewPosition()
-    window.addEventListener('resize', updatePreviewPosition)
-    window.addEventListener('scroll', updatePreviewPosition, true)
-    document.addEventListener('mousemove', closeOutsideTrigger)
+    window.addEventListener('resize', schedulePosition)
+    window.addEventListener('scroll', schedulePosition, { capture: true, passive: true })
     document.addEventListener('pointermove', closeOutsideTrigger)
 
     return () => {
-      window.removeEventListener('resize', updatePreviewPosition)
-      window.removeEventListener('scroll', updatePreviewPosition, true)
-      document.removeEventListener('mousemove', closeOutsideTrigger)
+      window.removeEventListener('resize', schedulePosition)
+      if (frame !== undefined) cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', schedulePosition, true)
       document.removeEventListener('pointermove', closeOutsideTrigger)
     }
   }, [active, updatePreviewPosition])
@@ -180,11 +188,9 @@ export function MediaBetweenText({ id }: { id: string }) {
   const handlers = {
     onPointerEnter: showPreview,
     onPointerLeave: () => setActive(false),
-    onMouseEnter: showPreview,
-    onMouseMove: (event: MouseEvent<HTMLElement>) => {
+    onPointerMove: (event: PointerEvent<HTMLElement>) => {
       if (!active) showPreview(event)
     },
-    onMouseLeave: () => setActive(false),
     onFocus: showPreview,
     onBlur: () => setActive(false),
   }
@@ -224,7 +230,7 @@ export function MediaBetweenText({ id }: { id: string }) {
                       : 'translateX(-50%)',
                 }}
               >
-                <motion.figure
+                <m.figure
                   initial={{
                     opacity: 0,
                     y: previewPosition.placement === 'top' ? 12 : -12,
@@ -261,7 +267,9 @@ export function MediaBetweenText({ id }: { id: string }) {
                       />
                     ) : (
                       <img
-                        src={media.media}
+                        {...imageSource(media.media)}
+                        sizes="240px"
+                        decoding="async"
                         alt=""
                         className="block h-auto w-auto"
                         style={{
@@ -285,7 +293,7 @@ export function MediaBetweenText({ id }: { id: string }) {
                       </span>
                     </span>
                   )}
-                </motion.figure>
+                </m.figure>
               </div>
             )}
           </AnimatePresence>,
@@ -298,7 +306,7 @@ export function MediaBetweenText({ id }: { id: string }) {
       ? createPortal(
           <AnimatePresence>
             {zoomed && (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -319,7 +327,7 @@ export function MediaBetweenText({ id }: { id: string }) {
                 >
                   ×
                 </button>
-                <motion.figure
+                <m.figure
                   initial={{ scale: 0.92 }}
                   animate={{ scale: 1 }}
                   exit={{ scale: 0.92 }}
@@ -357,8 +365,8 @@ export function MediaBetweenText({ id }: { id: string }) {
                       {altText}
                     </figcaption>
                   )}
-                </motion.figure>
-              </motion.div>
+                </m.figure>
+              </m.div>
             )}
           </AnimatePresence>,
           document.body,

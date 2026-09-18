@@ -10,6 +10,7 @@ import { RichText } from './RichText'
 import { Letter3DSwap } from './Letter3DSwap'
 import { LocaleSwap } from './LocaleSwap'
 import { GithubIcon } from './icons'
+import { imageSource } from '../data/imageSources'
 
 /**
  * About Section（liubruce 风的 Hero + Bio 合并）：
@@ -25,7 +26,10 @@ export default function SectionAbout() {
       <header className="mb-11 flex items-center gap-7 max-[600px]:mb-9 max-[600px]:flex-col max-[600px]:items-start max-[600px]:gap-5">
         <div className="w-36 h-36 shrink-0 rounded-full overflow-hidden bg-hover ring-1 ring-line max-[600px]:w-28 max-[600px]:h-28">
           <img
-            src={profile.avatar}
+            {...imageSource(profile.avatar)}
+            sizes="(max-width: 600px) 112px, 144px"
+            fetchPriority="high"
+            decoding="async"
             alt={L(profile.name)}
             className="w-full h-full object-cover"
             onError={(e) => {

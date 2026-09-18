@@ -6,11 +6,13 @@ import {
   type GalleryTagKey,
 } from './gallery'
 import type { LocaleText } from './types'
+import { imageSource } from './imageSources'
 
 export type GalleryItem = {
   id: string
   fileName: string
   url: string
+  preview: ReturnType<typeof imageSource>
   takenAt: string | null
   tags: readonly GalleryTagKey[]
   caption?: LocaleText
@@ -67,10 +69,13 @@ function toGalleryItem(
   const url = imageUrlByFileName.get(fileName)
   if (!url) throw new Error(`Missing Life gallery image: ${fileName}`)
 
+  const preview = imageSource(`gallery/${fileName}`)
+
   return {
     id: fileName.replace(/\.[^.]+$/, ''),
     fileName,
     url,
+    preview: { ...preview, src: preview.src.startsWith('gallery/') ? url : preview.src },
     takenAt: metadata.takenAt,
     tags: metadata.tags,
     caption: metadata.caption,

@@ -28,10 +28,6 @@ function groupByYear(items: TimelineItem[]): YearGroup[] {
 }
 
 const timelineGroups = groupByYear(timeline)
-const timelineYearRange =
-  timelineGroups.length > 0
-    ? `${timelineGroups[timelineGroups.length - 1].year} — ${timelineGroups[0].year}`
-    : ''
 
 export default function SectionTimeline() {
   const { t } = useTranslation()
@@ -39,19 +35,10 @@ export default function SectionTimeline() {
 
   return (
     <section id={SECTION_IDS.timeline} className="mb-16">
-      <header className="mb-7 flex items-center justify-between gap-6">
+      <header className="mb-7">
         <h2 className="m-0 text-[1.35rem] font-semibold text-fg-strong">
           <Letter3DSwap text={t('timeline.title')} />
         </h2>
-        {timelineYearRange && (
-          <div
-            aria-hidden
-            className="flex items-center gap-3 text-[0.72rem] font-medium text-fg-tertiary tabular-nums max-[600px]:hidden"
-          >
-            <span className="h-px w-6 bg-line" />
-            <span>{timelineYearRange}</span>
-          </div>
-        )}
       </header>
 
       <div className="relative">

@@ -6,6 +6,7 @@ import type { Publication, PubLink } from '../data/publications'
 import { Letter3DSwap } from './Letter3DSwap'
 import { GithubIcon } from './icons'
 import { useLocale } from '../hooks/useLocale'
+import { imageSource } from '../data/imageSources'
 
 /**
  * Publications Section：每条论文左侧缩略图（按图原始比例渲染、白底无裁剪、垂直居中），
@@ -45,7 +46,8 @@ function PubThumb({ pub }: { pub: Publication }) {
   return (
     <div className="aspect-video w-full overflow-hidden rounded-md bg-white">
       <img
-        src={src}
+        {...imageSource(src)}
+        sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 700px) calc(100vw - 48px), (max-width: 750px) calc((100vw - 76px) * 0.382), 258px"
         alt={pub.title}
         loading="lazy"
         decoding="async"

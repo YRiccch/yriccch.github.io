@@ -94,7 +94,8 @@ export default function SectionLifeGallery() {
                 className="group break-inside-avoid mb-3 relative rounded-[10px] overflow-hidden cursor-zoom-in bg-card transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.99]"
               >
                 <img
-                  src={item.url}
+                  {...item.preview}
+                  sizes="(min-width: 1400px) 167px, (min-width: 900px) 226px, (min-width: 750px) 345px, (max-width: 600px) calc((100vw - 44px) / 2), calc((100vw - 60px) / 2)"
                   alt={captionOf(item) || tagLabel}
                   loading="lazy"
                   decoding="async"

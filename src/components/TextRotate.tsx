@@ -1,8 +1,10 @@
+import * as m from 'motion/react-m'
 import { useEffect, useState } from 'react'
-import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
+import { AnimatePresence, useReducedMotion } from 'motion/react'
 import { MOTION_EASING } from '../config/site'
 import type { LocaleText } from '../data/types'
 import { useLocale } from '../hooks/useLocale'
+import { useAnimationActivity } from '../hooks/useAnimationActivity'
 
 /**
  * Fancy 系列 —— 文本轮播。
@@ -21,31 +23,37 @@ export function TextRotate({
   const [paused, setPaused] = useState(false)
   const { L } = useLocale()
   const reduced = useReducedMotion()
+  const { ref, active } = useAnimationActivity<HTMLSpanElement>()
 
   useEffect(() => {
-    if (paused || items.length <= 1) return
+    if (paused || !active || items.length <= 1) return
     const intervalId = setInterval(() => {
       setIndex((i) => (i + 1) % items.length)
     }, interval)
     return () => clearInterval(intervalId)
-  }, [items.length, interval, paused])
+  }, [items.length, interval, paused, active])
 
   const activeText = L(items[index])
 
   return (
     <span
+      ref={ref}
       className={`relative inline-grid overflow-hidden align-baseline ${className}`}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
       <span
         aria-hidden="true"
-        className="invisible col-start-1 row-start-1 inline-block font-medium leading-[1.5] whitespace-nowrap"
+        className="invisible col-start-1 row-start-1 inline-grid font-medium leading-[1.5] whitespace-nowrap"
       >
-        {activeText}
+        {items.map((item, itemIndex) => (
+          <span key={itemIndex} className="col-start-1 row-start-1">
+            {L(item)}
+          </span>
+        ))}
       </span>
       <AnimatePresence mode="popLayout" initial={false}>
-        <motion.span
+        <m.span
           key={`${index}-${activeText}`}
           initial={reduced ? false : { y: '100%' }}
           animate={{ y: 0 }}
@@ -57,7 +65,7 @@ export function TextRotate({
           className="col-start-1 row-start-1 inline-block font-medium leading-[1.5] text-accent whitespace-nowrap"
         >
           {activeText}
-        </motion.span>
+        </m.span>
       </AnimatePresence>
     </span>
   )

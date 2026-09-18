@@ -1,14 +1,7 @@
+import * as m from 'motion/react-m'
 import { useRef, type PointerEvent, type ReactNode } from 'react'
 import { wrap } from 'motion'
-import {
-  motion,
-  useAnimationFrame,
-  useInView,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-  useTransform,
-} from 'motion/react'
+import { useAnimationFrame, useInView, useMotionValue, useReducedMotion, useSpring, useTransform } from 'motion/react'
 
 type SimpleMarqueeProps = {
   children: ReactNode
@@ -103,7 +96,7 @@ export function SimpleMarquee({
   }
 
   return (
-    <motion.div
+    <m.div
       ref={containerRef}
       className={`overflow-hidden ${canDrag ? 'cursor-grab active:cursor-grabbing' : ''} ${className}`}
       style={{ touchAction: canDrag ? 'pan-y' : undefined }}
@@ -118,7 +111,7 @@ export function SimpleMarquee({
     >
       <div className="flex w-max">
         {Array.from({ length: copies }, (_, index) => (
-          <motion.div
+          <m.div
             ref={index === 0 ? firstGroupRef : undefined}
             key={index}
             aria-hidden={index > 0}
@@ -126,9 +119,9 @@ export function SimpleMarquee({
             style={{ x }}
           >
             {children}
-          </motion.div>
+          </m.div>
         ))}
       </div>
-    </motion.div>
+    </m.div>
   )
 }

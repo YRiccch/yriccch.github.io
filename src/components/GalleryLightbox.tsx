@@ -1,5 +1,6 @@
+import * as m from 'motion/react-m'
 import { useEffect } from 'react'
-import { AnimatePresence, motion } from 'motion/react'
+import { AnimatePresence } from 'motion/react'
 import type { GalleryItem } from '../data/galleryItems'
 import { LocaleSwap } from './LocaleSwap'
 
@@ -31,7 +32,7 @@ export default function GalleryLightbox({
   return (
     <AnimatePresence>
       {item && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -51,7 +52,7 @@ export default function GalleryLightbox({
           >
             &times;
           </button>
-          <motion.figure
+          <m.figure
             initial={{ scale: 0.92 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0.92 }}
@@ -61,6 +62,9 @@ export default function GalleryLightbox({
           >
             <img
               src={item.url}
+              width={item.preview.width}
+              height={item.preview.height}
+              decoding="async"
               alt={caption}
               className="h-auto max-h-[78vh] w-auto max-w-full rounded-lg shadow-2xl"
             />
@@ -69,8 +73,8 @@ export default function GalleryLightbox({
                 <LocaleSwap>{caption}</LocaleSwap>
               </figcaption>
             )}
-          </motion.figure>
-        </motion.div>
+          </m.figure>
+        </m.div>
       )}
     </AnimatePresence>
   )

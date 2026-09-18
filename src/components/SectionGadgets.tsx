@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Download, ExternalLink, Monitor } from 'lucide-react'
-import { MEDIA_QUERIES, SECTION_IDS } from '../config/site'
+import { SECTION_IDS } from '../config/site'
 import { gadgets } from '../data/gadgets'
 import { useLocale } from '../hooks/useLocale'
 import { Letter3DSwap } from './Letter3DSwap'
+import { imageSource } from '../data/imageSources'
+import { useReducedMotion } from 'motion/react'
 
 // TodoFlow 更新源（与博客同源）。以后每次发版只改这个 JSON，下载链接+版本号自动跟着变。
 const TODOFLOW_FEED = 'https://yriccch.github.io/gadgets/todoflow-latest.json'
@@ -17,11 +19,14 @@ function useLatestTodoFlow() {
     url: '',
   })
   useEffect(() => {
-    let alive = true
-    fetch(TODOFLOW_FEED, { cache: 'no-store' })
-      .then((response) => response.json())
+    const controller = new AbortController()
+    fetch(TODOFLOW_FEED, { cache: 'no-cache', signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error('Release feed unavailable')
+        return response.json()
+      })
       .then((data) => {
-        if (alive && data && data.url) {
+        if (!controller.signal.aborted && data && data.url) {
           setInfo({ version: data.version || '', url: data.url })
         }
       })
@@ -29,7 +34,7 @@ function useLatestTodoFlow() {
         /* 读取失败：静默，沿用写死的值 */
       })
     return () => {
-      alive = false
+      controller.abort()
     }
   }, [])
   return info
@@ -43,28 +48,46 @@ function useLatestTodoFlow() {
 export default function SectionGadgets() {
   const { t } = useTranslation()
   const { L } = useLocale()
-  const reduceRef = useRef<boolean | null>(null)
+  const reduced = useReducedMotion()
+  const frameRef = useRef<number | null>(null)
+  const boundsRef = useRef<{ element: HTMLDivElement; left: number; top: number; width: number; height: number } | null>(null)
+  const pointerRef = useRef({ x: 0, y: 0 })
   // TodoFlow 的最新版本/链接（仅作用于 TodoFlow 那一条；其它条目不受影响）
   const todoFlowRelease = useLatestTodoFlow()
 
-  // 鼠标跟随 3D 倾斜（尊重 prefers-reduced-motion；用 currentTarget 支持任意张卡片，
-  // 只改 DOM style，不触发重渲染）
-  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (reduceRef.current === null) {
-      reduceRef.current =
-        typeof window !== 'undefined' &&
-        !!window.matchMedia?.(MEDIA_QUERIES.reducedMotion).matches
+  useEffect(() => {
+    const invalidateBounds = () => { boundsRef.current = null }
+    window.addEventListener('resize', invalidateBounds)
+    return () => {
+      window.removeEventListener('resize', invalidateBounds)
+      if (frameRef.current !== null) cancelAnimationFrame(frameRef.current)
     }
-    if (reduceRef.current) return
-    const el = e.currentTarget
-    const rect = el.getBoundingClientRect()
-    const px = (e.clientX - rect.left) / rect.width - 0.5
-    const py = (e.clientY - rect.top) / rect.height - 0.5
-    el.style.transform = `perspective(1000px) rotateY(${(px * 5).toFixed(2)}deg) rotateX(${(-py * 5).toFixed(2)}deg) scale(1.006)`
+  }, [])
+
+  // Measure once per entry/resize; coalesce pointer writes to one per frame.
+  const onMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (reduced) return
+    const element = event.currentTarget
+    if (boundsRef.current?.element !== element) {
+      const rect = element.getBoundingClientRect()
+      boundsRef.current = { element, left: rect.left + window.scrollX, top: rect.top + window.scrollY, width: rect.width, height: rect.height }
+    }
+    pointerRef.current = { x: event.clientX, y: event.clientY }
+    if (frameRef.current !== null) return
+    frameRef.current = requestAnimationFrame(() => {
+      frameRef.current = null
+      const bounds = boundsRef.current
+      if (!bounds?.width || !bounds.height) return
+      const px = (pointerRef.current.x + window.scrollX - bounds.left) / bounds.width - 0.5
+      const py = (pointerRef.current.y + window.scrollY - bounds.top) / bounds.height - 0.5
+      bounds.element.style.transform = 'perspective(1000px) rotateY(' + (px * 5).toFixed(2) + 'deg) rotateX(' + (-py * 5).toFixed(2) + 'deg) scale(1.006)'
+    })
   }
-  const onLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.currentTarget.style.transform =
-      'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)'
+  const onLeave = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (frameRef.current !== null) cancelAnimationFrame(frameRef.current)
+    frameRef.current = null
+    boundsRef.current = null
+    event.currentTarget.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)'
   }
 
   return (
@@ -103,7 +126,8 @@ export default function SectionGadgets() {
                 <div className="relative z-10 flex items-center gap-5 max-[560px]:flex-col max-[560px]:items-start">
                   <div className="shrink-0 w-20 h-20 rounded-2xl overflow-hidden ring-1 ring-line bg-white">
                     <img
-                      src={gadget.icon}
+                      {...imageSource(gadget.icon)}
+                      sizes="80px"
                       alt={gadget.name}
                       loading="lazy"
                       decoding="async"

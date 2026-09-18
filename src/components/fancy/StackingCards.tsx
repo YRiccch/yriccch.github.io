@@ -1,3 +1,4 @@
+import * as m from 'motion/react-m'
 // Source: https://github.com/danielpetho/fancy/blob/main/src/fancy/components/blocks/stacking-cards.tsx
 // Original author: Khoa Phan <https://www.pldkhoa.dev>
 
@@ -8,13 +9,7 @@ import {
   type HTMLAttributes,
   type PropsWithChildren,
 } from 'react'
-import {
-  motion,
-  useScroll,
-  useTransform,
-  type MotionValue,
-  type UseScrollOptions,
-} from 'motion/react'
+import { useReducedMotion, useScroll, useTransform, type MotionValue, type UseScrollOptions } from 'motion/react'
 
 interface StackingCardsProps
   extends PropsWithChildren,
@@ -70,6 +65,7 @@ const StackingCardItem = ({
     scaleMultiplier,
     totalCards = 0,
   } = useStackingCardsContext()
+  const reduced = useReducedMotion()
   const scaleTo = 1 - (totalCards - index) * (scaleMultiplier ?? 0.03)
   const rangeScale = [index * (1 / totalCards), 1]
   const scale = useTransform(progress, rangeScale, [1, scaleTo])
@@ -81,9 +77,9 @@ const StackingCardItem = ({
       style={{ ...style, top }}
       {...props}
     >
-      <motion.div className="origin-top relative" style={{ scale }}>
+      <m.div className="origin-top relative" style={{ scale: reduced ? 1 : scale }}>
         {children}
-      </motion.div>
+      </m.div>
     </div>
   )
 }

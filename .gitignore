@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Recreated from the original images by npm run images (also runs before dev/build).
+public/optimized/
+src/data/generatedImages.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

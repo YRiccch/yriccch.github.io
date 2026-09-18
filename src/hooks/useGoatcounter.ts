@@ -1,9 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
-const SCRIPT_RETRY_LIMIT = 50
-const SCRIPT_RETRY_DELAY_MS = 100
-
 /**
  * GoatCounter 路由上报。
  *
@@ -15,7 +12,7 @@ const SCRIPT_RETRY_DELAY_MS = 100
  * 而不是带 `#` 的真实 URL，这样面板里的页面统计才干净可读。
  *
  * window.goatcounter.count 由 //gc.zgo.at/count.js 异步注入；
- * 脚本可能晚于首屏 effect 到达，这里做最多 ~5s 的轮询等待。
+ * 脚本可能晚于首屏 effect 到达，监听 load 后上报，避免定时轮询。
  */
 type GoatcounterCount = (vars?: {
   path?: string
@@ -38,24 +35,14 @@ export function useGoatcounter() {
     if (import.meta.env.DEV) return
 
     const path = pathname + search
-    let tries = 0
-    let timer: number | undefined
-
-    const send = () => {
-      const count = window.goatcounter?.count
-      if (count) {
-        count({ path })
-        return
-      }
-      // 统计脚本还没到，稍后重试（最多 ~5s）
-      if (tries++ < SCRIPT_RETRY_LIMIT) {
-        timer = window.setTimeout(send, SCRIPT_RETRY_DELAY_MS)
-      }
+    const send = () => window.goatcounter?.count?.({ path })
+    if (window.goatcounter?.count) {
+      send()
+      return
     }
+    const script = document.querySelector<HTMLScriptElement>('script[data-goatcounter]')
+    script?.addEventListener('load', send, { once: true })
+    return () => script?.removeEventListener('load', send)
 
-    send()
-    return () => {
-      if (timer !== undefined) window.clearTimeout(timer)
-    }
   }, [pathname, search])
 }

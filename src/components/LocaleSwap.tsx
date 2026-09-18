@@ -1,4 +1,5 @@
-import { motion, AnimatePresence } from 'motion/react'
+import * as m from 'motion/react-m'
+import { AnimatePresence } from 'motion/react'
 import type { ReactNode } from 'react'
 import { MEDIA_QUERIES, MOTION_EASING } from '../config/site'
 import { useLocale } from '../hooks/useLocale'
@@ -46,7 +47,7 @@ export function LocaleSwap({
   return (
     <span className={className}>
       <AnimatePresence mode="wait" initial={false}>
-        <motion.span
+        <m.span
           key={locale}
           initial={{ opacity: 0, y }}
           animate={{ opacity: 1, y: 0 }}
@@ -55,7 +56,7 @@ export function LocaleSwap({
           className="inline-block"
         >
           {children}
-        </motion.span>
+        </m.span>
       </AnimatePresence>
     </span>
   )

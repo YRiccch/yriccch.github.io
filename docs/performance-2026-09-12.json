@@ -1,0 +1,1404 @@
+{
+  "date": "2026-09-12",
+  "method": {
+    "build": "production",
+    "browser": "Codex in-app Chromium browser on Windows",
+    "viewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 1.5,
+    "locale": "zh",
+    "theme": "dark",
+    "serverCache": "no-store",
+    "compression": "none",
+    "network": "loopback; no throttling",
+    "sample": "2.5 seconds after DOMContentLoaded, then a 5-second idle observation",
+    "resourceBytes": "sum of PerformanceResourceTiming.encodedBodySize; cross-origin resources without Timing-Allow-Origin are not included",
+    "scope": "initial page load at scrollY=0, including native lazy-image prefetch; this is not Lighthouse or field Web Vitals"
+  },
+  "samples": {
+    "before": {
+      "home": {
+        "route": "#/",
+        "width": 1280,
+        "height": 720,
+        "dpr": 1.5,
+        "elapsedMs": 7879,
+        "fcpMs": 388,
+        "lcpMs": 560,
+        "lcpElement": "SPAN",
+        "cls": 0.019339320227881412,
+        "longTasks": 2,
+        "blockingMs": 258,
+        "maxObservedEventMs": 0,
+        "idleAlbumMutations": 32542,
+        "idleWindowMs": 5004,
+        "runningAnimations": 0,
+        "elements": 590,
+        "resources": [
+          {
+            "name": "/assets/index-CGVPJTH3.js",
+            "type": "script",
+            "bytes": 532984,
+            "ms": 6
+          },
+          {
+            "name": "/assets/index-BDWpCirq.css",
+            "type": "link",
+            "bytes": 30871,
+            "ms": 5
+          },
+          {
+            "name": "http://gc.zgo.at/count.js",
+            "type": "script",
+            "bytes": 0,
+            "ms": 255
+          },
+          {
+            "name": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
+            "type": "css",
+            "bytes": 742,
+            "ms": 310
+          },
+          {
+            "name": "/avatar.png",
+            "type": "img",
+            "bytes": 7951972,
+            "ms": 25
+          },
+          {
+            "name": "/pubslogo/coivislogo.svg",
+            "type": "img",
+            "bytes": 36220,
+            "ms": 3
+          },
+          {
+            "name": "/pubslogo/compovistalogo.svg",
+            "type": "img",
+            "bytes": 49326,
+            "ms": 3
+          },
+          {
+            "name": "/pubs/multi-network-graph-sampling.png",
+            "type": "img",
+            "bytes": 625171,
+            "ms": 10
+          },
+          {
+            "name": "/pubs/electricity-forecasting.png",
+            "type": "img",
+            "bytes": 577759,
+            "ms": 9
+          },
+          {
+            "name": "/pubs/coivis.png",
+            "type": "img",
+            "bytes": 1101805,
+            "ms": 11
+          },
+          {
+            "name": "/pubs/hypermooc.png",
+            "type": "img",
+            "bytes": 3430690,
+            "ms": 19
+          },
+          {
+            "name": "/pubs/graphqag.png",
+            "type": "img",
+            "bytes": 4293855,
+            "ms": 28
+          },
+          {
+            "name": "/pubs/compovista.png",
+            "type": "img",
+            "bytes": 2511454,
+            "ms": 31
+          },
+          {
+            "name": "/favicon-32x32.png?v=2",
+            "type": "other",
+            "bytes": 2358,
+            "ms": 2
+          }
+        ],
+        "images": [
+          {
+            "src": "/avatar.png",
+            "loaded": true,
+            "natural": [
+              5572,
+              8388
+            ],
+            "displayed": [
+              144,
+              144
+            ],
+            "top": 48
+          },
+          {
+            "src": "/pubslogo/coivislogo.svg",
+            "loaded": true,
+            "natural": [
+              1227,
+              425
+            ],
+            "displayed": [
+              54,
+              19
+            ],
+            "top": 800
+          },
+          {
+            "src": "/pubs/coivis.png",
+            "loaded": true,
+            "natural": [
+              1931,
+              903
+            ],
+            "displayed": [
+              257,
+              145
+            ],
+            "top": 800
+          },
+          {
+            "src": "/pubs/hypermooc.png",
+            "loaded": true,
+            "natural": [
+              10841,
+              3217
+            ],
+            "displayed": [
+              257,
+              145
+            ],
+            "top": 984
+          },
+          {
+            "src": "/pubs/electricity-forecasting.png",
+            "loaded": true,
+            "natural": [
+              1422,
+              794
+            ],
+            "displayed": [
+              257,
+              145
+            ],
+            "top": 1169
+          },
+          {
+            "src": "/pubs/multi-network-graph-sampling.png",
+            "loaded": true,
+            "natural": [
+              1747,
+              744
+            ],
+            "displayed": [
+              257,
+              145
+            ],
+            "top": 1364
+          },
+          {
+            "src": "/pubs/graphqag.png",
+            "loaded": true,
+            "natural": [
+              10332,
+              3577
+            ],
+            "displayed": [
+              257,
+              145
+            ],
+            "top": 1605
+          },
+          {
+            "src": "/pubslogo/compovistalogo.svg",
+            "loaded": true,
+            "natural": [
+              161,
+              46
+            ],
+            "displayed": [
+              93,
+              26
+            ],
+            "top": 1799
+          },
+          {
+            "src": "/pubs/compovista.png",
+            "loaded": true,
+            "natural": [
+              3027,
+              1116
+            ],
+            "displayed": [
+              257,
+              145
+            ],
+            "top": 1799
+          },
+          {
+            "src": "",
+            "loaded": false,
+            "natural": [
+              0,
+              0
+            ],
+            "displayed": [
+              165,
+              0
+            ],
+            "top": 2105
+          },
+          {
+            "src": "",
+            "loaded": false,
+            "natural": [
+              0,
+              0
+            ],
+            "displayed": [
+              173,
+              0
+            ],
+            "top": 2089
+          },
+          {
+            "src": "",
+            "loaded": false,
+            "natural": [
+              0,
+              0
+            ],
+            "displayed": [
+              153,
+              0
+            ],
+            "top": 2332
+          },
+          {
+            "src": "",
+            "loaded": false,
+            "natural": [
+              0,
+              0
+            ],
+            "displayed": [
+              169,
+              0
+            ],
+            "top": 2412
+          },
+          {
+            "src": "",
+            "loaded": false,
+            "natural": [
+              0,
+              0
+            ],
+            "displayed": [
+              173,
+              0
+            ],
+            "top": 2644
+          },
+          {
+            "src": "",
+            "loaded": false,
+            "natural": [
+              0,
+              0
+            ],
+            "displayed": [
+              268,
+              0
+            ],
+            "top": 2843
+          },
+          {
+            "src": "",
+            "loaded": false,
+            "natural": [
+              0,
+              0
+            ],
+            "displayed": [
+              149,
+              0
+            ],
+            "top": 3057
+          },
+          {
+            "src": "",
+            "loaded": false,
+            "natural": [
+              0,
+              0
+            ],
+            "displayed": [
+              161,
+              0
+            ],
+            "top": 3045
+          },
+          {
+            "src": "",
+            "loaded": false,
+            "natural": [
+              0,
+              0
+            ],
+            "displayed": [
+              124,
+              0
+            ],
+            "top": 3288
+          },
+          {
+            "src": "",
+            "loaded": false,
+            "natural": [
+              0,
+              0
+            ],
+            "displayed": [
+              120,
+              0
+            ],
+            "top": 3291
+          }
+        ]
+      },
+      "life": {
+        "route": "#/life",
+        "width": 1280,
+        "height": 720,
+        "dpr": 1.5,
+        "elapsedMs": 7589,
+        "fcpMs": 80,
+        "lcpMs": 300,
+        "lcpElement": "IMG",
+        "cls": 0,
+        "longTasks": 0,
+        "blockingMs": 0,
+        "maxObservedEventMs": 0,
+        "idleAlbumMutations": 0,
+        "idleWindowMs": 5016,
+        "runningAnimations": 0,
+        "elements": 233,
+        "resources": [
+          {
+            "name": "/assets/index-CGVPJTH3.js",
+            "type": "script",
+            "bytes": 532984,
+            "ms": 6
+          },
+          {
+            "name": "/assets/index-BDWpCirq.css",
+            "type": "link",
+            "bytes": 30871,
+            "ms": 7
+          },
+          {
+            "name": "http://gc.zgo.at/count.js",
+            "type": "script",
+            "bytes": 0,
+            "ms": 18
+          },
+          {
+            "name": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
+            "type": "css",
+            "bytes": 742,
+            "ms": 1
+          },
+          {
+            "name": "/assets/mala-durian-Bg4wzH7I.JPG",
+            "type": "img",
+            "bytes": 3093124,
+            "ms": 12
+          },
+          {
+            "name": "/assets/mala-seafood-Cz7jAOtF.JPG",
+            "type": "img",
+            "bytes": 2949717,
+            "ms": 20
+          },
+          {
+            "name": "/assets/me-2-AsbXpHBv.jpg",
+            "type": "img",
+            "bytes": 244266,
+            "ms": 12
+          },
+          {
+            "name": "/assets/ntu-chickenrice-CiZaqYWJ.JPG",
+            "type": "img",
+            "bytes": 487515,
+            "ms": 13
+          },
+          {
+            "name": "/assets/me-1-B9op58eK.jpg",
+            "type": "img",
+            "bytes": 101746,
+            "ms": 18
+          },
+          {
+            "name": "/assets/sing-newyeareve-BuVeSk-E.JPG",
+            "type": "img",
+            "bytes": 1368946,
+            "ms": 14
+          },
+          {
+            "name": "/assets/yiwu-eveningGlow-Ck0mEwcI.JPG",
+            "type": "img",
+            "bytes": 1925891,
+            "ms": 19
+          }
+        ],
+        "images": [
+          {
+            "src": "/assets/mala-durian-Bg4wzH7I.JPG",
+            "loaded": true,
+            "natural": [
+              3213,
+              5712
+            ],
+            "displayed": [
+              226,
+              402
+            ],
+            "top": 185
+          },
+          {
+            "src": "/assets/mala-seafood-Cz7jAOtF.JPG",
+            "loaded": true,
+            "natural": [
+              5712,
+              3213
+            ],
+            "displayed": [
+              226,
+              127
+            ],
+            "top": 598
+          },
+          {
+            "src": "/assets/me-1-B9op58eK.jpg",
+            "loaded": true,
+            "natural": [
+              720,
+              1280
+            ],
+            "displayed": [
+              226,
+              402
+            ],
+            "top": 185
+          },
+          {
+            "src": "/assets/me-2-AsbXpHBv.jpg",
+            "loaded": true,
+            "natural": [
+              1279,
+              1792
+            ],
+            "displayed": [
+              226,
+              317
+            ],
+            "top": 598
+          },
+          {
+            "src": "/assets/ntu-chickenrice-CiZaqYWJ.JPG",
+            "loaded": true,
+            "natural": [
+              1920,
+              1080
+            ],
+            "displayed": [
+              226,
+              127
+            ],
+            "top": 185
+          },
+          {
+            "src": "/assets/sing-newyeareve-BuVeSk-E.JPG",
+            "loaded": true,
+            "natural": [
+              4032,
+              2268
+            ],
+            "displayed": [
+              226,
+              127
+            ],
+            "top": 324
+          },
+          {
+            "src": "/assets/yiwu-eveningGlow-Ck0mEwcI.JPG",
+            "loaded": true,
+            "natural": [
+              5712,
+              3213
+            ],
+            "displayed": [
+              226,
+              127
+            ],
+            "top": 463
+          }
+        ]
+      },
+      "gadgets": {
+        "route": "#/gadgets",
+        "width": 1280,
+        "height": 720,
+        "dpr": 1.5,
+        "elapsedMs": 7591,
+        "fcpMs": 84,
+        "lcpMs": 220,
+        "lcpElement": "P",
+        "cls": 0,
+        "longTasks": 1,
+        "blockingMs": 32,
+        "maxObservedEventMs": 0,
+        "idleAlbumMutations": 0,
+        "idleWindowMs": 5002,
+        "runningAnimations": 0,
+        "elements": 258,
+        "resources": [
+          {
+            "name": "/assets/index-CGVPJTH3.js",
+            "type": "script",
+            "bytes": 532984,
+            "ms": 10
+          },
+          {
+            "name": "/assets/index-BDWpCirq.css",
+            "type": "link",
+            "bytes": 30871,
+            "ms": 9
+          },
+          {
+            "name": "http://gc.zgo.at/count.js",
+            "type": "script",
+            "bytes": 0,
+            "ms": 20
+          },
+          {
+            "name": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
+            "type": "css",
+            "bytes": 742,
+            "ms": 1
+          },
+          {
+            "name": "/travel-map-studio.svg",
+            "type": "img",
+            "bytes": 385,
+            "ms": 3
+          },
+          {
+            "name": "/todoflow.png",
+            "type": "img",
+            "bytes": 58994,
+            "ms": 3
+          },
+          {
+            "name": "/spatial-deck-studio.svg",
+            "type": "img",
+            "bytes": 1040,
+            "ms": 4
+          },
+          {
+            "name": "https://yriccch.github.io/gadgets/todoflow-latest.json",
+            "type": "fetch",
+            "bytes": 0,
+            "ms": 3271
+          }
+        ],
+        "images": [
+          {
+            "src": "/todoflow.png",
+            "loaded": true,
+            "natural": [
+              512,
+              512
+            ],
+            "displayed": [
+              80,
+              80
+            ],
+            "top": 155
+          },
+          {
+            "src": "/travel-map-studio.svg",
+            "loaded": true,
+            "natural": [
+              150,
+              150
+            ],
+            "displayed": [
+              80,
+              80
+            ],
+            "top": 300
+          },
+          {
+            "src": "/spatial-deck-studio.svg",
+            "loaded": true,
+            "natural": [
+              150,
+              150
+            ],
+            "displayed": [
+              80,
+              80
+            ],
+            "top": 457
+          }
+        ]
+      }
+    },
+    "after": {
+      "home": {
+        "route": "#/",
+        "width": 1280,
+        "height": 720,
+        "dpr": 1.5,
+        "elapsedMs": 7579,
+        "fcpMs": 76,
+        "lcpMs": 232,
+        "lcpElement": "SPAN",
+        "cls": 0,
+        "longTasks": 1,
+        "blockingMs": 89,
+        "maxObservedEventMs": 0,
+        "idleAlbumMutations": 0,
+        "idleWindowMs": 5003,
+        "runningAnimations": 0,
+        "elements": 597,
+        "resources": [
+          {
+            "name": "/assets/index-BYSb6xLM.js",
+            "type": "script",
+            "bytes": 426580,
+            "ms": 8
+          },
+          {
+            "name": "/assets/rolldown-runtime-B0Z9INg1.js",
+            "type": "other",
+            "bytes": 901,
+            "ms": 11
+          },
+          {
+            "name": "/assets/imageSources-C5pndjyh.js",
+            "type": "other",
+            "bytes": 63988,
+            "ms": 11
+          },
+          {
+            "name": "/assets/index-Tkz7J1Mr.css",
+            "type": "link",
+            "bytes": 31250,
+            "ms": 11
+          },
+          {
+            "name": "http://gc.zgo.at/count.js",
+            "type": "script",
+            "bytes": 0,
+            "ms": 19
+          },
+          {
+            "name": "/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+            "type": "css",
+            "bytes": 48256,
+            "ms": 113
+          },
+          {
+            "name": "/pubslogo/coivislogo.svg",
+            "type": "img",
+            "bytes": 36220,
+            "ms": 3
+          },
+          {
+            "name": "/optimized/-avatar-288-0ce69afa67f3.webp",
+            "type": "img",
+            "bytes": 10538,
+            "ms": 3
+          },
+          {
+            "name": "/pubslogo/compovistalogo.svg",
+            "type": "img",
+            "bytes": 49326,
+            "ms": 4
+          },
+          {
+            "name": "/optimized/-pubs-coivis-640-4edaf6f5f49e.webp",
+            "type": "img",
+            "bytes": 43152,
+            "ms": 4
+          },
+          {
+            "name": "/optimized/-pubs-hypermooc-640-84ed37053bff.webp",
+            "type": "img",
+            "bytes": 21934,
+            "ms": 4
+          },
+          {
+            "name": "/optimized/-pubs-electricity-forecasting-640-b173b554d3e6.webp",
+            "type": "img",
+            "bytes": 41918,
+            "ms": 5
+          },
+          {
+            "name": "/optimized/-pubs-multi-network-graph-sampling-640-12534cc30a79.webp",
+            "type": "img",
+            "bytes": 29008,
+            "ms": 5
+          },
+          {
+            "name": "/optimized/-pubs-graphqag-640-cba6339c312a.webp",
+            "type": "img",
+            "bytes": 29806,
+            "ms": 6
+          },
+          {
+            "name": "/optimized/-pubs-compovista-640-dc3f253d0046.webp",
+            "type": "img",
+            "bytes": 25430,
+            "ms": 6
+          },
+          {
+            "name": "/optimized/gallery-mala-durian-640-7427d9c3fb42.webp",
+            "type": "img",
+            "bytes": 133558,
+            "ms": 7
+          },
+          {
+            "name": "/optimized/gallery-mala-seafood-640-00386e9269d1.webp",
+            "type": "img",
+            "bytes": 42718,
+            "ms": 7
+          },
+          {
+            "name": "/optimized/gallery-yiwu-eveningGlow-640-b0edc65f12c1.webp",
+            "type": "img",
+            "bytes": 24006,
+            "ms": 8
+          },
+          {
+            "name": "/optimized/gallery-me-1-640-48e7e0c5fbb2.webp",
+            "type": "img",
+            "bytes": 17318,
+            "ms": 8
+          },
+          {
+            "name": "/optimized/gallery-me-2-640-efceaeda1bf8.webp",
+            "type": "img",
+            "bytes": 79146,
+            "ms": 9
+          },
+          {
+            "name": "/optimized/gallery-sing-newyeareve-640-bdf17cf536f4.webp",
+            "type": "img",
+            "bytes": 40926,
+            "ms": 9
+          },
+          {
+            "name": "/optimized/gallery-ntu-chickenrice-640-63ab777e55ff.webp",
+            "type": "img",
+            "bytes": 33826,
+            "ms": 3
+          }
+        ],
+        "images": [
+          {
+            "src": "/optimized/-avatar-288-0ce69afa67f3.webp",
+            "loaded": true,
+            "natural": [
+              144,
+              217
+            ],
+            "displayed": [
+              144,
+              144
+            ],
+            "top": 48
+          },
+          {
+            "src": "/pubslogo/coivislogo.svg",
+            "loaded": true,
+            "natural": [
+              1227,
+              425
+            ],
+            "displayed": [
+              54,
+              19
+            ],
+            "top": 800
+          },
+          {
+            "src": "/optimized/-pubs-coivis-640-4edaf6f5f49e.webp",
+            "loaded": true,
+            "natural": [
+              258,
+              120
+            ],
+            "displayed": [
+              257,
+              145
+            ],
+            "top": 800
+          },
+          {
+            "src": "/optimized/-pubs-hypermooc-640-84ed37053bff.webp",
+            "loaded": true,
+            "natural": [
+              258,
+              76
+            ],
+            "displayed": [
+              257,
+              145
+            ],
+            "top": 984
+          },
+          {
+            "src": "/optimized/-pubs-electricity-forecasting-640-b173b554d3e6.webp",
+            "loaded": true,
+            "natural": [
+              258,
+              143
+            ],
+            "displayed": [
+              257,
+              145
+            ],
+            "top": 1169
+          },
+          {
+            "src": "/optimized/-pubs-multi-network-graph-sampling-640-12534cc30a79.webp",
+            "loaded": true,
+            "natural": [
+              258,
+              110
+            ],
+            "displayed": [
+              257,
+              145
+            ],
+            "top": 1364
+          },
+          {
+            "src": "/optimized/-pubs-graphqag-640-cba6339c312a.webp",
+            "loaded": true,
+            "natural": [
+              258,
+              89
+            ],
+            "displayed": [
+              257,
+              145
+            ],
+            "top": 1605
+          },
+          {
+            "src": "/pubslogo/compovistalogo.svg",
+            "loaded": true,
+            "natural": [
+              161,
+              46
+            ],
+            "displayed": [
+              93,
+              26
+            ],
+            "top": 1799
+          },
+          {
+            "src": "/optimized/-pubs-compovista-640-dc3f253d0046.webp",
+            "loaded": true,
+            "natural": [
+              258,
+              95
+            ],
+            "displayed": [
+              257,
+              145
+            ],
+            "top": 1799
+          },
+          {
+            "src": "/optimized/gallery-mala-durian-640-7427d9c3fb42.webp",
+            "loaded": true,
+            "natural": [
+              272,
+              483
+            ],
+            "displayed": [
+              165,
+              294
+            ],
+            "top": 2107
+          },
+          {
+            "src": "/optimized/gallery-mala-seafood-640-00386e9269d1.webp",
+            "loaded": true,
+            "natural": [
+              272,
+              153
+            ],
+            "displayed": [
+              173,
+              98
+            ],
+            "top": 2082
+          },
+          {
+            "src": "/optimized/gallery-yiwu-eveningGlow-640-b0edc65f12c1.webp",
+            "loaded": true,
+            "natural": [
+              272,
+              153
+            ],
+            "displayed": [
+              153,
+              86
+            ],
+            "top": 2249
+          },
+          {
+            "src": "/optimized/gallery-me-1-640-48e7e0c5fbb2.webp",
+            "loaded": true,
+            "natural": [
+              272,
+              483
+            ],
+            "displayed": [
+              169,
+              301
+            ],
+            "top": 2413
+          },
+          {
+            "src": "/optimized/gallery-me-2-640-efceaeda1bf8.webp",
+            "loaded": true,
+            "natural": [
+              272,
+              381
+            ],
+            "displayed": [
+              173,
+              243
+            ],
+            "top": 2395
+          },
+          {
+            "src": "/optimized/gallery-yiwu-eveningGlow-640-b0edc65f12c1.webp",
+            "loaded": true,
+            "natural": [
+              272,
+              153
+            ],
+            "displayed": [
+              268,
+              151
+            ],
+            "top": 2769
+          },
+          {
+            "src": "/optimized/gallery-mala-durian-640-7427d9c3fb42.webp",
+            "loaded": true,
+            "natural": [
+              272,
+              483
+            ],
+            "displayed": [
+              149,
+              264
+            ],
+            "top": 3059
+          },
+          {
+            "src": "/optimized/gallery-mala-seafood-640-00386e9269d1.webp",
+            "loaded": true,
+            "natural": [
+              272,
+              153
+            ],
+            "displayed": [
+              161,
+              91
+            ],
+            "top": 3039
+          },
+          {
+            "src": "/optimized/gallery-ntu-chickenrice-640-63ab777e55ff.webp",
+            "loaded": true,
+            "natural": [
+              272,
+              153
+            ],
+            "displayed": [
+              124,
+              70
+            ],
+            "top": 3223
+          },
+          {
+            "src": "/optimized/gallery-sing-newyeareve-640-bdf17cf536f4.webp",
+            "loaded": true,
+            "natural": [
+              272,
+              153
+            ],
+            "displayed": [
+              120,
+              67
+            ],
+            "top": 3217
+          }
+        ]
+      },
+      "life": {
+        "route": "#/life",
+        "width": 1280,
+        "height": 720,
+        "dpr": 1.5,
+        "elapsedMs": 7564,
+        "fcpMs": 64,
+        "lcpMs": 112,
+        "lcpElement": "IMG",
+        "cls": 0,
+        "longTasks": 0,
+        "blockingMs": 0,
+        "maxObservedEventMs": 0,
+        "idleAlbumMutations": 0,
+        "idleWindowMs": 5001,
+        "runningAnimations": 0,
+        "elements": 233,
+        "resources": [
+          {
+            "name": "/assets/index-Tkz7J1Mr.css",
+            "type": "link",
+            "bytes": 31250,
+            "ms": 8
+          },
+          {
+            "name": "/assets/rolldown-runtime-B0Z9INg1.js",
+            "type": "other",
+            "bytes": 901,
+            "ms": 8
+          },
+          {
+            "name": "/assets/imageSources-C5pndjyh.js",
+            "type": "other",
+            "bytes": 63988,
+            "ms": 8
+          },
+          {
+            "name": "/assets/index-BYSb6xLM.js",
+            "type": "script",
+            "bytes": 426580,
+            "ms": 6
+          },
+          {
+            "name": "http://gc.zgo.at/count.js",
+            "type": "script",
+            "bytes": 0,
+            "ms": 17
+          },
+          {
+            "name": "/assets/LifeView-BNm6HQyX.js",
+            "type": "script",
+            "bytes": 2799,
+            "ms": 3
+          },
+          {
+            "name": "/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+            "type": "css",
+            "bytes": 48256,
+            "ms": 4
+          },
+          {
+            "name": "/favicon-32x32.png?v=2",
+            "type": "other",
+            "bytes": 2358,
+            "ms": 2
+          },
+          {
+            "name": "/optimized/gallery-mala-durian-640-7427d9c3fb42.webp",
+            "type": "img",
+            "bytes": 133558,
+            "ms": 4
+          },
+          {
+            "name": "/optimized/gallery-mala-seafood-640-00386e9269d1.webp",
+            "type": "img",
+            "bytes": 42718,
+            "ms": 5
+          },
+          {
+            "name": "/optimized/gallery-me-1-640-48e7e0c5fbb2.webp",
+            "type": "img",
+            "bytes": 17318,
+            "ms": 5
+          },
+          {
+            "name": "/optimized/gallery-me-2-640-efceaeda1bf8.webp",
+            "type": "img",
+            "bytes": 79146,
+            "ms": 5
+          },
+          {
+            "name": "/optimized/gallery-ntu-chickenrice-640-63ab777e55ff.webp",
+            "type": "img",
+            "bytes": 33826,
+            "ms": 6
+          },
+          {
+            "name": "/optimized/gallery-sing-newyeareve-640-bdf17cf536f4.webp",
+            "type": "img",
+            "bytes": 40926,
+            "ms": 6
+          },
+          {
+            "name": "/optimized/gallery-yiwu-eveningGlow-640-b0edc65f12c1.webp",
+            "type": "img",
+            "bytes": 24006,
+            "ms": 7
+          }
+        ],
+        "images": [
+          {
+            "src": "/optimized/gallery-mala-durian-640-7427d9c3fb42.webp",
+            "loaded": true,
+            "natural": [
+              226,
+              401
+            ],
+            "displayed": [
+              226,
+              402
+            ],
+            "top": 185
+          },
+          {
+            "src": "/optimized/gallery-mala-seafood-640-00386e9269d1.webp",
+            "loaded": true,
+            "natural": [
+              226,
+              127
+            ],
+            "displayed": [
+              226,
+              127
+            ],
+            "top": 598
+          },
+          {
+            "src": "/optimized/gallery-me-1-640-48e7e0c5fbb2.webp",
+            "loaded": true,
+            "natural": [
+              226,
+              401
+            ],
+            "displayed": [
+              226,
+              402
+            ],
+            "top": 185
+          },
+          {
+            "src": "/optimized/gallery-me-2-640-efceaeda1bf8.webp",
+            "loaded": true,
+            "natural": [
+              226,
+              316
+            ],
+            "displayed": [
+              226,
+              317
+            ],
+            "top": 598
+          },
+          {
+            "src": "/optimized/gallery-ntu-chickenrice-640-63ab777e55ff.webp",
+            "loaded": true,
+            "natural": [
+              226,
+              127
+            ],
+            "displayed": [
+              226,
+              127
+            ],
+            "top": 185
+          },
+          {
+            "src": "/optimized/gallery-sing-newyeareve-640-bdf17cf536f4.webp",
+            "loaded": true,
+            "natural": [
+              226,
+              127
+            ],
+            "displayed": [
+              226,
+              127
+            ],
+            "top": 324
+          },
+          {
+            "src": "/optimized/gallery-yiwu-eveningGlow-640-b0edc65f12c1.webp",
+            "loaded": true,
+            "natural": [
+              226,
+              127
+            ],
+            "displayed": [
+              226,
+              127
+            ],
+            "top": 463
+          }
+        ]
+      },
+      "gadgets": {
+        "route": "#/gadgets",
+        "width": 1280,
+        "height": 720,
+        "dpr": 1.5,
+        "elapsedMs": 7577,
+        "fcpMs": 68,
+        "lcpMs": 108,
+        "lcpElement": "P",
+        "cls": 0,
+        "longTasks": 0,
+        "blockingMs": 0,
+        "maxObservedEventMs": 0,
+        "idleAlbumMutations": 0,
+        "idleWindowMs": 5014,
+        "runningAnimations": 0,
+        "elements": 258,
+        "resources": [
+          {
+            "name": "/assets/index-BYSb6xLM.js",
+            "type": "script",
+            "bytes": 426580,
+            "ms": 7
+          },
+          {
+            "name": "/assets/index-Tkz7J1Mr.css",
+            "type": "link",
+            "bytes": 31250,
+            "ms": 9
+          },
+          {
+            "name": "/assets/rolldown-runtime-B0Z9INg1.js",
+            "type": "other",
+            "bytes": 901,
+            "ms": 10
+          },
+          {
+            "name": "/assets/imageSources-C5pndjyh.js",
+            "type": "other",
+            "bytes": 63988,
+            "ms": 9
+          },
+          {
+            "name": "http://gc.zgo.at/count.js",
+            "type": "script",
+            "bytes": 0,
+            "ms": 18
+          },
+          {
+            "name": "/assets/GadgetsView-mGWJrHr2.js",
+            "type": "script",
+            "bytes": 5871,
+            "ms": 2
+          },
+          {
+            "name": "/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+            "type": "css",
+            "bytes": 48256,
+            "ms": 4
+          },
+          {
+            "name": "/favicon-32x32.png?v=2",
+            "type": "other",
+            "bytes": 2358,
+            "ms": 2
+          },
+          {
+            "name": "/optimized/-todoflow-144-0f3596cb1eac.webp",
+            "type": "img",
+            "bytes": 4012,
+            "ms": 3
+          },
+          {
+            "name": "/spatial-deck-studio.svg",
+            "type": "img",
+            "bytes": 1040,
+            "ms": 3
+          },
+          {
+            "name": "/travel-map-studio.svg",
+            "type": "img",
+            "bytes": 385,
+            "ms": 4
+          },
+          {
+            "name": "https://yriccch.github.io/gadgets/todoflow-latest.json",
+            "type": "fetch",
+            "bytes": 0,
+            "ms": 99
+          }
+        ],
+        "images": [
+          {
+            "src": "/optimized/-todoflow-144-0f3596cb1eac.webp",
+            "loaded": true,
+            "natural": [
+              80,
+              80
+            ],
+            "displayed": [
+              80,
+              80
+            ],
+            "top": 155
+          },
+          {
+            "src": "/travel-map-studio.svg",
+            "loaded": true,
+            "natural": [
+              150,
+              150
+            ],
+            "displayed": [
+              80,
+              80
+            ],
+            "top": 300
+          },
+          {
+            "src": "/spatial-deck-studio.svg",
+            "loaded": true,
+            "natural": [
+              150,
+              150
+            ],
+            "displayed": [
+              80,
+              80
+            ],
+            "top": 457
+          }
+        ]
+      }
+    }
+  }
+}

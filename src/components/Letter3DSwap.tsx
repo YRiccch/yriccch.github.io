@@ -1,5 +1,6 @@
+import * as m from 'motion/react-m'
 import { memo } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
+import { AnimatePresence } from 'motion/react'
 import { MEDIA_QUERIES, MOTION_EASING } from '../config/site'
 
 type Letter3DSwapProps = {
@@ -42,13 +43,13 @@ function Letter3DSwapComponent({
       style={{ perspective: '700px' }}
     >
       <AnimatePresence mode="popLayout" initial={false}>
-        <motion.span
+        <m.span
           key={text}
           className="inline-block"
           style={{ transformStyle: 'preserve-3d' }}
         >
           {Array.from(text).map((ch, i) => (
-            <motion.span
+            <m.span
               key={`${i}-${ch}`}
               className="inline-block"
               style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden' }}
@@ -62,9 +63,9 @@ function Letter3DSwapComponent({
               }}
             >
               {ch === ' ' ? '\u00A0' : ch}
-            </motion.span>
+            </m.span>
           ))}
-        </motion.span>
+        </m.span>
       </AnimatePresence>
     </span>
   )

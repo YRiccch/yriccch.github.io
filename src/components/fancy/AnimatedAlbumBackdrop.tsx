@@ -1,6 +1,7 @@
+import * as m from 'motion/react-m'
 // Adapted from Fancy Components' Animated Gradient With SVG pattern.
 import { useId } from 'react'
-import { motion, useReducedMotion } from 'motion/react'
+import { useReducedMotion } from 'motion/react'
 
 const glowPaths = [
   {
@@ -29,7 +30,7 @@ const glowPaths = [
   },
 ] as const
 
-export default function AnimatedAlbumBackdrop() {
+export default function AnimatedAlbumBackdrop({ active }: { active: boolean }) {
   const reduceMotion = useReducedMotion()
   const filterId = useId().replace(/:/g, '')
   const sheen =
@@ -53,10 +54,10 @@ export default function AnimatedAlbumBackdrop() {
         </defs>
         <g filter={`url(#${filterId})`}>
           {glowPaths.map((glow, index) => (
-            <motion.circle
+            <m.circle
               key={glow.fill}
               animate={
-                reduceMotion
+                reduceMotion || !active
                   ? { cx: glow.cx[0], cy: glow.cy[0] }
                   : { cx: [...glow.cx], cy: [...glow.cy] }
               }
@@ -65,7 +66,7 @@ export default function AnimatedAlbumBackdrop() {
               fill={glow.fill}
               opacity={glow.opacity}
               r={glow.radius}
-              transition={{
+              transition={reduceMotion || !active ? { duration: 0 } : {
                 delay: index * -6,
                 duration: glow.duration,
                 ease: 'easeInOut',

@@ -6,7 +6,7 @@ import { execFileSync } from 'node:child_process'
 function getLatestCommitTimestamp() {
   try {
     const timestamp = execFileSync('git', ['log', '-1', '--format=%cI'], {
-      cwd: __dirname,
+      cwd: import.meta.dirname,
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'ignore'],
     }).trim()
@@ -26,7 +26,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      '@': path.resolve(import.meta.dirname, 'src'),
     },
   },
 })

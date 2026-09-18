@@ -80,7 +80,10 @@ function scrollToSection(id: string) {
   const top =
     element.getBoundingClientRect().top + window.pageYOffset - offset
 
-  window.scrollTo({ top, behavior: 'smooth' })
+  window.scrollTo({
+    top,
+    behavior: window.matchMedia(MEDIA_QUERIES.reducedMotion).matches ? 'auto' : 'smooth',
+  })
 }
 
 export default function Navbar() {
@@ -92,6 +95,7 @@ export default function Navbar() {
   const [activeId, setActiveId] = useState<string>(SECTION_IDS.about)
   const [showBackTop, setShowBackTop] = useState(false)
   const observerRef = useRef<IntersectionObserver | null>(null)
+  const pendingSectionRef = useRef<string | null>(null)
 
   const toggleLanguage = () => {
     i18n.changeLanguage(i18n.resolvedLanguage === 'en' ? 'zh' : 'en')
@@ -113,13 +117,23 @@ export default function Navbar() {
 
     // section：如果不在 home，先跳回 home
     if (!onHomeRoute) {
-      navigate(ROUTES.home)
-      // 等下一帧 DOM 渲染再滚动
-      requestAnimationFrame(() => requestAnimationFrame(() => scrollToSection(item.id)))
+      pendingSectionRef.current = item.id
+      void navigate(ROUTES.home)
       return
     }
     scrollToSection(item.id)
   }
+
+  // Wait for the new route's DOM commit, including lazy route transitions.
+  useEffect(() => {
+    if (!onHomeRoute || !pendingSectionRef.current) return
+    const id = pendingSectionRef.current
+    const frame = requestAnimationFrame(() => {
+      scrollToSection(id)
+      pendingSectionRef.current = null
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [onHomeRoute, location.key])
 
   /* ------- Scroll spy：只在 home 路由生效 ------- */
   useEffect(() => {

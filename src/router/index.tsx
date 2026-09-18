@@ -1,8 +1,6 @@
 import { createHashRouter } from 'react-router-dom'
 import App from '../App'
 import HomeView from '../views/HomeView'
-import LifeView from '../views/LifeView'
-import GadgetsView from '../views/GadgetsView'
 import { ROUTES } from '../config/site'
 
 /**
@@ -12,10 +10,17 @@ import { ROUTES } from '../config/site'
 const router = createHashRouter([
   {
     element: <App />,
+    hydrateFallbackElement: <span className="sr-only" role="status">Loading…</span>,
     children: [
       { path: ROUTES.home, element: <HomeView /> },
-      { path: ROUTES.life, element: <LifeView /> },
-      { path: ROUTES.gadgets, element: <GadgetsView /> },
+      {
+        path: ROUTES.life,
+        lazy: async () => ({ Component: (await import('../views/LifeView')).default }),
+      },
+      {
+        path: ROUTES.gadgets,
+        lazy: async () => ({ Component: (await import('../views/GadgetsView')).default }),
+      },
       // 兜底：任何未知路径回首页
       { path: ROUTES.fallback, element: <HomeView /> },
     ],

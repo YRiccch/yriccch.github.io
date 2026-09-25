@@ -44,7 +44,7 @@
       "key": "scenery",
       "label": { "zh": "风景", "en": "Scenery" },
       "description": {
-        "zh": "光线、天气与路上的风景。",
+        "zh": "光、天气与路上的风景。",
         "en": "Light, weather, and scenery along the way."
       }
     },

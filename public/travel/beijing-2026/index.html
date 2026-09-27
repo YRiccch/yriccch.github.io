@@ -2607,6 +2607,14 @@ body{padding-bottom:100px}.day{scroll-margin-top:16px}
 }
 @media print{.trip-nav{display:none}body{padding-bottom:0}.page{margin:0 auto}}
 </style>
+<style id="daily-weather-style">
+.day-date-context{text-align:right;max-width:65%}
+.daily-weather{display:flex;flex-direction:column;gap:3px;margin-top:8px;font-size:11px;line-height:1.5}
+.weather-condition{font-weight:600;color:var(--ink)}
+.weather-rain{color:var(--secondary)}
+.daily-weather small{font-size:9px;font-weight:400;color:var(--muted);line-height:1.5}
+@media(max-width:650px){.daily-weather{font-size:10px}.daily-weather small{font-size:8px}}
+</style>
 </head>
 
 <body>
@@ -2644,7 +2652,7 @@ body{padding-bottom:100px}.day{scroll-margin-top:16px}
 				<article class="day" id="day-04" aria-labelledby="title-04">
 					<div class="day-heading">
 						<div class="day-number">04<small>十月</small></div>
-						<div class="day-meta">周日<br>第 01 天</div>
+						<div class="day-date-context"><div class="day-meta">周日<br>第 01 天</div><div class="daily-weather" data-date="2026-10-04" aria-label="2026年10月4日北京市参考天气"><span class="weather-condition">局部多云 · 10–23°C</span><span class="weather-rain">日降水概率 0%</span><small>Apple 天气 · 北京市参考<br>9/27 16:22 查询 · 非实时</small></div></div>
 					</div>
 					<h3 id="title-04">抵京，先慢下来</h3>
 					<p class="day-description">落地、安顿、吃顿好的。<br>今天的任务，就是进入假期。</p>
@@ -2703,7 +2711,7 @@ body{padding-bottom:100px}.day{scroll-margin-top:16px}
 				<article class="day" id="day-05" aria-labelledby="title-05">
 					<div class="day-heading">
 						<div class="day-number">05<small>十月</small></div>
-						<div class="day-meta">周一<br>第 02 天</div>
+						<div class="day-date-context"><div class="day-meta">周一<br>第 02 天</div><div class="daily-weather" data-date="2026-10-05" aria-label="2026年10月5日北京市参考天气"><span class="weather-condition">大部晴朗无云 · 11–26°C</span><span class="weather-rain">日降水概率 0%</span><small>Apple 天气 · 北京市参考<br>9/27 16:22 查询 · 非实时</small></div></div>
 					</div>
 					<h3 id="title-05">在环球，玩一整天</h3>
 					<p class="day-description">这一天不加别的目的地。<br>玩、拍照、吃饭，跟着体力走。</p>
@@ -2752,7 +2760,7 @@ body{padding-bottom:100px}.day{scroll-margin-top:16px}
 				<article class="day" id="day-06" aria-labelledby="title-06">
 					<div class="day-heading">
 						<div class="day-number">06<small>十月</small></div>
-						<div class="day-meta">周二<br>第 03 天</div>
+						<div class="day-date-context"><div class="day-meta">周二<br>第 03 天</div><div class="daily-weather" data-date="2026-10-06" aria-label="2026年10月6日北京市参考天气"><span class="weather-condition">大部多云 · 12–22°C</span><span class="weather-rain">日降水概率 0%</span><small>Apple 天气 · 北京市参考<br>9/27 16:22 查询 · 非实时</small></div></div>
 					</div>
 					<h3 id="title-06">胡同与歌，都喜欢</h3>
 					<p class="day-description">白天走一段老北京。<br>夜晚，把时间交给现场。</p>
@@ -2828,7 +2836,7 @@ body{padding-bottom:100px}.day{scroll-margin-top:16px}
 				<article class="day" id="day-07" aria-labelledby="title-07">
 					<div class="day-heading">
 						<div class="day-number">07<small>十月</small></div>
-						<div class="day-meta">周三<br>第 04 天</div>
+						<div class="day-date-context"><div class="day-meta">周三<br>第 04 天</div><div class="daily-weather" data-date="2026-10-07" aria-label="2026年10月7日北京市参考天气"><span class="weather-condition">天气待更新</span><span class="weather-rain">尚未进入本次预报范围</span><small>Apple 天气 · 北京市参考<br>9/27 16:22 查询 · 非实时</small></div></div>
 					</div>
 					<h3 id="title-07">带着回忆回家</h3>
 					<p class="day-description">吃顿早餐，再说再见。<br>最后一天，给返程留足时间。</p>

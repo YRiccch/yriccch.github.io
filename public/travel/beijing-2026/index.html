@@ -2582,9 +2582,46 @@
 			}
 		}
 	</style>
+
+<style id="trip-navigation-style">
+.trip-nav{position:fixed;right:24px;top:50%;transform:translateY(-50%);width:156px;z-index:900;padding:20px 0 20px 18px;border-left:1px solid var(--grid);background:var(--paper)}
+.trip-nav-label{font-size:10px;letter-spacing:.15em;color:var(--muted);margin:0 0 8px}
+.trip-nav-status{font-size:13px;font-weight:600;margin:0 0 15px}
+.trip-nav-track{height:2px;background:var(--grid);margin-bottom:18px;overflow:hidden}
+.trip-nav-fill{height:100%;width:0;background:var(--ink)}
+.trip-nav a{display:flex;gap:12px;align-items:center;padding:12px 0;text-decoration:none;color:var(--muted);font-size:12px;line-height:1.5}
+.trip-nav a span{font-variant-numeric:tabular-nums;font-size:10px}
+.trip-nav a strong{font-weight:400}
+.trip-nav a[aria-current="step"]{color:var(--ink)}
+.trip-nav a[aria-current="step"] strong{font-weight:700}
+.trip-nav a[aria-current="step"] span::before{content:'●';position:absolute;left:-4px;font-size:8px;background:var(--paper)}
+.day{scroll-margin-top:24px}
+@media(min-width:1000px){.page{max-width:1536px;margin-left:auto;margin-right:190px;padding-left:40px;padding-right:40px}}
+@media(max-width:999px){
+.trip-nav{top:auto;bottom:0;right:0;left:0;transform:none;width:auto;padding:9px max(16px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom));border-left:0;border-top:1px solid var(--grid);box-shadow:0 -4px 18px #00000005}
+.trip-nav-label{display:none}.trip-nav-status{font-size:10px;margin:0 0 5px;color:var(--muted)}
+.trip-nav-track{position:absolute;top:0;left:0;right:0;margin:0}.trip-nav-links{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.trip-nav a{flex-direction:column;gap:1px;padding:3px 0;font-size:11px}.trip-nav a span{font-size:9px}
+.trip-nav a[aria-current="step"] span::before{content:none}
+body{padding-bottom:100px}.day{scroll-margin-top:16px}
+}
+@media print{.trip-nav{display:none}body{padding-bottom:0}.page{margin:0 auto}}
+</style>
 </head>
 
 <body>
+<nav class="trip-nav" id="trip-nav" aria-label="行程大纲">
+<p class="trip-nav-label">北京 · 四日行程</p>
+<p class="trip-nav-status" id="trip-nav-status">行程概览 · 0%</p>
+<div class="trip-nav-track" role="progressbar" aria-label="行程阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="trip-nav-fill"></div></div>
+<div class="trip-nav-links">
+<a href="#day-04"><span>10.04</span><strong>抵京安顿</strong></a>
+<a href="#day-05"><span>10.05</span><strong>环球影城</strong></a>
+<a href="#day-06"><span>10.06</span><strong>胡同与演唱会</strong></a>
+<a href="#day-07"><span>10.07</span><strong>早餐与返程</strong></a>
+</div>
+</nav>
+
 	<main class="page">
 		<header class="masthead">
 			<div class="edition"><i aria-hidden="true"></i><span>两个人的旅行手记 / 北京篇</span></div><span class="top-note">2026
@@ -3080,6 +3117,42 @@
 			});
 		})();
 	</script>
+
+<script id="trip-navigation-script">
+(() => {
+ const nav=document.getElementById('trip-nav');
+ const days=[...document.querySelectorAll('.timeline > .day')];
+ const links=[...nav.querySelectorAll('a')];
+ const status=nav.querySelector('.trip-nav-status');
+ const bar=nav.querySelector('[role="progressbar"]');
+ const fill=nav.querySelector('.trip-nav-fill');
+ let pending=false;
+ function update(){
+  pending=false;
+  const marker=window.innerHeight*.25;
+  const rects=days.map(day=>day.getBoundingClientRect());
+  let active=-1;
+  rects.forEach((r,i)=>{if(r.top<=marker)active=i;});
+  const atEnd=window.scrollY>0 && window.scrollY+window.innerHeight>=document.documentElement.scrollHeight-4;
+  if(atEnd)active=days.length-1;
+  let progress=active<0?0:(active+Math.max(0,Math.min(1,(marker-rects[active].top)/rects[active].height)))/days.length;
+  if(atEnd)progress=1;
+  const percent=Math.round(progress*100);
+  links.forEach((a,i)=>{if(i===active)a.setAttribute('aria-current','step');else a.removeAttribute('aria-current');});
+  status.textContent=(active<0?'行程概览':`第 ${active+1} / ${days.length} 天`)+` · ${percent}%`;
+  bar.setAttribute('aria-valuenow',String(percent));fill.style.width=percent+'%';
+ }
+ function schedule(){if(!pending){pending=true;requestAnimationFrame(update);}}
+ window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',schedule);
+ new ResizeObserver(schedule).observe(document.querySelector('.timeline'));
+ links.forEach(a=>a.addEventListener('click',event=>{
+  event.preventDefault();
+  history.replaceState(null,'',a.hash);
+  document.querySelector(a.hash).scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
+ }));
+ update();
+})();
+</script>
 </body>
 
 </html>

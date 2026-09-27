@@ -3430,6 +3430,35 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
 .travel-peek .peek-foot{padding:5px 10px}
 .travel-peek .peek-brief{font-size:10px;color:var(--muted)}
 </style>
+<style id="departure-header-style">
+.hero{grid-template-columns:minmax(0,1.2fr) minmax(250px,1fr);align-items:center;gap:32px}
+.hero .date-block{text-align:left;margin-top:22px}
+.hero .date-range{font-size:clamp(30px,4vw,52px);white-space:nowrap}
+.hero .date-caption{font-size:12px;margin-top:10px}
+.hero .hero-tags{justify-content:flex-start;font-size:11px;margin-top:16px;flex-wrap:wrap}
+.departure-countdown{min-width:0;padding:24px 18px;border:1px solid var(--grid);border-radius:16px;background:#e9ebe4}
+.departure-countdown>p{margin:0;color:var(--muted);font-size:11px}
+#countdown-label{color:var(--ink);font-size:13px;letter-spacing:.12em}
+.countdown-digits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:20px 0}
+.countdown-unit{text-align:center;min-width:0}.countdown-unit small{display:block;font-size:10px;color:var(--muted);margin-top:8px}
+.countdown-value{display:block;position:relative;height:1.2em;overflow:hidden;font-size:clamp(25px,3.5vw,43px);font-weight:600;line-height:1.2;font-variant-numeric:tabular-nums;letter-spacing:-.04em}
+.countdown-roll{display:block;animation:countdown-roll .38s ease both}.countdown-roll>span{display:block;height:1.2em}
+@keyframes countdown-roll{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+.departure-countdown .countdown-now{font-size:10px;margin-top:8px;font-variant-numeric:tabular-nums}
+.day-date-left{display:flex;align-items:center;gap:16px;min-width:0}.day-date-left .day-meta{text-align:left;white-space:nowrap}
+.day-heading{align-items:center;gap:16px}.day-date-context{max-width:52%}
+.daily-weather{position:relative;padding-left:56px;min-height:48px;justify-content:center;margin-top:0}
+.weather-symbol{position:absolute;left:0;top:0;width:48px;height:48px;overflow:visible}
+.weather-sun{transform-origin:24px 24px;animation:weather-spin 24s linear infinite}
+.weather-cloud{animation:weather-drift 4s ease-in-out infinite alternate}
+.weather-wait{animation:weather-wait 3s ease-in-out infinite}
+@keyframes weather-spin{to{transform:rotate(360deg)}}
+@keyframes weather-drift{to{transform:translateX(3px)}}
+@keyframes weather-wait{50%{opacity:.4}}
+@media(max-width:650px){.hero{grid-template-columns:1fr;gap:22px}.departure-countdown{padding:18px}.countdown-value{font-size:36px}.day-heading{flex-wrap:wrap}.day-date-context{max-width:100%;width:100%;text-align:left}.daily-weather{padding-left:52px}.day-date-left{gap:14px}}
+@media(prefers-reduced-motion:reduce){.countdown-roll,.weather-sun,.weather-cloud,.weather-wait{animation:none}}
+@media print{.departure-countdown{display:none}.weather-sun,.weather-cloud,.weather-wait{animation:none}}
+</style>
 </head>
 
 <body>
@@ -3454,20 +3483,24 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
 			<div>
 				<p class="eyebrow">四天三晚 · 把喜欢的事，慢慢排进假期</p>
 				<h1 id="page-title">北京，<span>慢一点。</span></h1>
-				<p class="intro">一天留给环球，一晚留给喜欢的歌。<br>剩下的时间，走一段胡同，吃一顿热乎的北京味。</p>
-			</div>
 			<div class="date-block">
 				<div class="date-range">10.04 — 10.07</div>
 				<div class="date-caption">2026 年 10 月 · 周日出发 / 周三回家</div>
 				<div class="hero-tags"><span>环球影城</span><span>胡同散步</span><span>徐良演唱会</span></div>
 			</div>
+            </div>
+            <aside class="departure-countdown" aria-label="旅行出发倒计时">
+              <p id="countdown-label">距离出发</p>
+              <div class="countdown-digits" role="timer" aria-live="off" aria-label="正在计算倒计时"></div>
+              <p class="countdown-target">10 月 4 日 09:45 · 北京时间</p>
+              <p class="countdown-now"></p>
+            </aside>
 		</section>
 		<section aria-label="四天行程">
 			<div class="timeline" id="timeline">
 				<article class="day" id="day-04" aria-labelledby="title-04">
 					<div class="day-heading">
-						<div class="day-number">04<small>十月</small></div>
-						<div class="day-date-context"><div class="day-meta">周日<br>第 01 天</div><div class="daily-weather" data-date="2026-10-04" aria-label="2026年10月4日北京市参考天气"><span class="weather-condition">局部多云 · 10–23°C</span><span class="weather-rain">日降水概率 0%</span><small>Apple 天气 · 北京市参考<br>9/27 16:22 查询 · 非实时</small></div></div>
+						<div class="day-date-left"><div class="day-number">04<small>十月</small></div><div class="day-meta">周日<br>第 01 天</div></div><div class="day-date-context"><div class="daily-weather" data-date="2026-10-04" aria-label="2026年10月4日北京市参考天气"><span class="weather-condition">局部多云 · 10–23°C</span><span class="weather-rain">日降水概率 0%</span><small>Apple 天气 · 北京市参考<br>9/27 16:22 查询 · 非实时</small></div></div>
 					</div>
 					<h3 id="title-04">抵京，先慢下来</h3>
 					<p class="day-description">落地、安顿、吃顿好的。<br>今天的任务，就是进入假期。</p>
@@ -3520,8 +3553,7 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
 				</article>
 				<article class="day" id="day-05" aria-labelledby="title-05">
 					<div class="day-heading">
-						<div class="day-number">05<small>十月</small></div>
-						<div class="day-date-context"><div class="day-meta">周一<br>第 02 天</div><div class="daily-weather" data-date="2026-10-05" aria-label="2026年10月5日北京市参考天气"><span class="weather-condition">大部晴朗无云 · 11–26°C</span><span class="weather-rain">日降水概率 0%</span><small>Apple 天气 · 北京市参考<br>9/27 16:22 查询 · 非实时</small></div></div>
+						<div class="day-date-left"><div class="day-number">05<small>十月</small></div><div class="day-meta">周一<br>第 02 天</div></div><div class="day-date-context"><div class="daily-weather" data-date="2026-10-05" aria-label="2026年10月5日北京市参考天气"><span class="weather-condition">大部晴朗无云 · 11–26°C</span><span class="weather-rain">日降水概率 0%</span><small>Apple 天气 · 北京市参考<br>9/27 16:22 查询 · 非实时</small></div></div>
 					</div>
 					<h3 id="title-05">在环球，玩一整天</h3>
 					<p class="day-description">这一天不加别的目的地。<br>玩、拍照、吃饭，跟着体力走。</p>
@@ -3564,8 +3596,7 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
 				</article>
 				<article class="day" id="day-06" aria-labelledby="title-06">
 					<div class="day-heading">
-						<div class="day-number">06<small>十月</small></div>
-						<div class="day-date-context"><div class="day-meta">周二<br>第 03 天</div><div class="daily-weather" data-date="2026-10-06" aria-label="2026年10月6日北京市参考天气"><span class="weather-condition">大部多云 · 12–22°C</span><span class="weather-rain">日降水概率 0%</span><small>Apple 天气 · 北京市参考<br>9/27 16:22 查询 · 非实时</small></div></div>
+						<div class="day-date-left"><div class="day-number">06<small>十月</small></div><div class="day-meta">周二<br>第 03 天</div></div><div class="day-date-context"><div class="daily-weather" data-date="2026-10-06" aria-label="2026年10月6日北京市参考天气"><span class="weather-condition">大部多云 · 12–22°C</span><span class="weather-rain">日降水概率 0%</span><small>Apple 天气 · 北京市参考<br>9/27 16:22 查询 · 非实时</small></div></div>
 					</div>
 					<h3 id="title-06">胡同与歌，都喜欢</h3>
 					<p class="day-description">白天走一段老北京。<br>夜晚，把时间交给现场。</p>
@@ -3636,8 +3667,7 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
 				</article>
 				<article class="day" id="day-07" aria-labelledby="title-07">
 					<div class="day-heading">
-						<div class="day-number">07<small>十月</small></div>
-						<div class="day-date-context"><div class="day-meta">周三<br>第 04 天</div><div class="daily-weather" data-date="2026-10-07" aria-label="2026年10月7日北京市参考天气"><span class="weather-condition">天气待更新</span><span class="weather-rain">尚未进入本次预报范围</span><small>Apple 天气 · 北京市参考<br>9/27 16:22 查询 · 非实时</small></div></div>
+						<div class="day-date-left"><div class="day-number">07<small>十月</small></div><div class="day-meta">周三<br>第 04 天</div></div><div class="day-date-context"><div class="daily-weather" data-date="2026-10-07" aria-label="2026年10月7日北京市参考天气"><span class="weather-condition">天气待更新</span><span class="weather-rain">尚未进入本次预报范围</span><small>Apple 天气 · 北京市参考<br>9/27 16:22 查询 · 非实时</small></div></div>
 					</div>
 					<h3 id="title-07">带着回忆回家</h3>
 					<p class="day-description">吃顿早餐，再说再见。<br>最后一天，给返程留足时间。</p>
@@ -3922,6 +3952,35 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
  update();
 })();
 </script>
+<script id="departure-clock-script">
+(() => {
+ const start=Date.parse('2026-10-04T09:45:00+08:00'),end=Date.parse('2026-10-07T15:25:00+08:00');
+ const panel=document.querySelector('.departure-countdown'),digits=panel.querySelector('.countdown-digits');
+ const units=['天','时','分','秒'];let previous=[];
+ digits.innerHTML=units.map(u=>'<div class="countdown-unit"><span class="countdown-value">00</span><small>'+u+'</small></div>').join('');
+ const clock=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+ function update(){
+  const now=Date.now(),remaining=Math.max(0,Math.ceil(((now<start?start:end)-now)/1000));
+  const values=[Math.floor(remaining/86400),Math.floor(remaining/3600)%24,Math.floor(remaining/60)%60,remaining%60].map(n=>String(n).padStart(2,'0'));
+  panel.querySelector('#countdown-label').textContent=now<start?'距离出发':now<end?'旅行中 · 距离到家':'旅行已结束';
+  panel.querySelector('.countdown-target').textContent=now<start?'10 月 4 日 09:45 · 北京时间':'10 月 7 日 15:25 · 北京时间';
+  panel.querySelector('.countdown-now').textContent='现在 '+clock.format(now)+' · 北京时间';
+  digits.setAttribute('aria-label',values.map((v,i)=>Number(v)+units[i]).join(''));
+  digits.querySelectorAll('.countdown-value').forEach((el,i)=>{if(previous[i]===values[i])return;el.innerHTML=previous[i]===undefined?values[i]:'<span class="countdown-roll"><span>'+values[i]+'</span><span>'+previous[i]+'</span></span>';});
+  previous=values;return 1000-now%1000;
+ }
+ let timer;function tick(){clearTimeout(timer);timer=setTimeout(tick,update());}tick();
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)clearTimeout(timer);else tick();});
+ document.querySelectorAll('.daily-weather').forEach(el=>{
+  const d=TRAVEL_REGISTRY.dates[el.dataset.date],available=d?.status==='available';
+  const sunny=available&&d.condition.includes('晴'),cloudy=available&&d.condition.includes('云');
+  const sun='<g class="weather-sun" stroke="#c09647" stroke-width="2" stroke-linecap="round"><circle cx="24" cy="24" r="8" fill="#eccd7d"/>'+Array.from({length:8},(_,i)=>'<path d="M24 8v3" transform="rotate('+i*45+' 24 24)"/>').join('')+'</g>';
+  const cloud='<g class="weather-cloud"><path d="M12 37a7 7 0 0 1-1-14 10 10 0 0 1 19-3 8 8 0 1 1 5 17Z" fill="#d4dbdb" stroke="#8e9d9c" stroke-width="1.4"/></g>';
+  const icon=available?(sunny?sun:(d.condition.includes('局部')?sun:'')+(cloudy?cloud:'')):'<g class="weather-wait" fill="none" stroke="#91998b" stroke-width="2"><circle cx="24" cy="24" r="15"/><path d="M24 14v11l7 4"/></g>';
+  el.insertAdjacentHTML('afterbegin','<svg class="weather-symbol" viewBox="0 0 48 48" aria-hidden="true">'+icon+'</svg>');
+ });
+})();
+</script>
 <script id="travel-context-script">(() => {
  const R=TRAVEL_REGISTRY, root=document.documentElement;
 
@@ -3960,11 +4019,11 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
  function hrefFor(key){const [type,id]=key.split(':');return type==='place'?R.places[id].appleMaps:type==='date'?R.dates[id].appUrl:'#'+id;}
  // Existing normal destination links also participate; their external destinations stay intact.
  document.querySelectorAll('.page a').forEach(a=>{const key=lookup.get(a.textContent.replace(/\s*↗\s*$/,'').trim());if(key){a.classList.add('travel-term');a.dataset.term=key;a.setAttribute('aria-controls','travel-peek');a.setAttribute('aria-haspopup','dialog');a.textContent=R.places[key.split(':')[1]]?.name||a.textContent;}});
- const walker=document.createTreeWalker(document.querySelector('main.page'),NodeFilter.SHOW_TEXT,{acceptNode(node){return node.parentElement?.closest('a,button,script,style,svg,textarea,.photo-mount,.day-number,.daily-weather,.event-time,.event-kind')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;}});
+ const walker=document.createTreeWalker(document.querySelector('main.page'),NodeFilter.SHOW_TEXT,{acceptNode(node){return node.parentElement?.closest('a,button,script,style,svg,textarea,.photo-mount,.day-number,.daily-weather,.event-time,.event-kind,.departure-countdown')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;}});
  const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
  nodes.forEach(node=>{const text=node.nodeValue;regex.lastIndex=0;let m,last=0,fragment=null;while((m=regex.exec(text))){fragment ||= document.createDocumentFragment();fragment.append(text.slice(last,m.index));const key=lookup.get(m[0]);const label=key.startsWith('place:')&&!['beijing','yiwu','tongzhou','liuliqiao','wukesong','houhai'].includes(key.slice(6))?R.places[key.slice(6)].name:m[0];fragment.append(term(key,label,hrefFor(key)));last=m.index+m[0].length;}if(fragment){fragment.append(text.slice(last));node.replaceWith(fragment);}});
  document.querySelectorAll('.day').forEach(day=>{const date='2026-10-'+day.id.slice(-2),number=day.querySelector('.day-number');const a=term('date:'+date,'',R.dates[date].appUrl);a.innerHTML=number.innerHTML;a.setAttribute('aria-label',date+'，查看天气');number.replaceChildren(a);});
- document.querySelectorAll('.event[data-event-type]').forEach(event=>{event.querySelectorAll('.event-time,.event-kind').forEach(el=>{const a=term('event:'+event.id,el.textContent,'#'+event.id);el.replaceChildren(a);});});
+ document.querySelectorAll('.event[data-event-type]').forEach(event=>{event.querySelectorAll('.event-time,.event-kind,.departure-countdown').forEach(el=>{const a=term('event:'+event.id,el.textContent,'#'+event.id);el.replaceChildren(a);});});
  function stopMap(){if(miniMap){miniMap.remove();miniMap=null;}}
  function hide(suppress=false){if(suppress&&anchor)dismissed.add(anchor);stopMap();peek.hidden=true;if(anchor)anchor.setAttribute('aria-expanded','false');anchor=null;activeKey=null;manual=false;}
  function visible(el){const r=el.getBoundingClientRect();return !!el.getClientRects().length&&r.bottom>8&&r.top<innerHeight-90;}

@@ -3414,6 +3414,21 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
 @media(max-width:999px){.enhancement-control{top:8px;right:12px;padding:7px 10px;font-size:10px}.page>.masthead{padding-top:28px}}
 @media(prefers-reduced-motion:reduce){.travel-peek{animation:none}.enhancement-control i:before{transition:none}}
 @media print{.travel-peek,.enhancement-control{display:none!important}.travel-term{text-decoration:none}}
+
+/* Compact keyword-adjacent previews on every screen size. */
+.travel-peek{border-radius:10px}
+.travel-peek .peek-head{padding:9px 10px 7px}
+.travel-peek .peek-head h2{font-size:12px;line-height:1.45}
+.travel-peek .peek-body{padding:8px 10px;font-size:11px;line-height:1.5}
+.travel-peek .peek-map-wrap{height:90px}
+.travel-peek .peek-stops{flex-direction:row;flex-wrap:wrap;gap:3px 6px;margin:6px 0;font-size:9px}
+.travel-peek .peek-stops small{padding:0;font-size:8px}
+.travel-peek .peek-temperature{font-size:27px}
+.travel-peek .peek-facts{margin:6px 0}
+.travel-peek .peek-notes{margin-top:7px;gap:4px}
+.travel-peek .peek-notes a{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.travel-peek .peek-foot{padding:5px 10px}
+.travel-peek .peek-brief{font-size:10px;color:var(--muted)}
 </style>
 </head>
 
@@ -3930,7 +3945,7 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
  document.body.append(control);
  const toggle=control.querySelector('input');toggle.checked=root.dataset.visual!=='off';
  const peek=document.createElement('aside');peek.id='travel-peek';peek.className='travel-peek';peek.hidden=true;peek.setAttribute('role','dialog');peek.setAttribute('aria-modal','false');peek.setAttribute('aria-labelledby','peek-title');
- peek.innerHTML='<div class="peek-head"><div><span id="peek-kind"></span><h2 id="peek-title"></h2></div><button type="button" class="peek-close" aria-label="关闭资料浮层">×</button></div><div class="peek-body"></div><div class="peek-foot"><span>随阅读展开 · 点击关键词可查看</span><button type="button" id="peek-auto">暂停自动展开</button></div>';
+ peek.innerHTML='<div class="peek-head"><div><span id="peek-kind"></span><h2 id="peek-title"></h2></div><button type="button" class="peek-close" aria-label="关闭资料浮层">×</button></div><div class="peek-body"></div><div class="peek-foot"><span>关键词速览</span><button type="button" id="peek-auto">暂停自动展开</button></div>';
  document.body.append(peek);
  const body=peek.querySelector('.peek-body');
  const escape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -3978,19 +3993,18 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
   if(type==='place'){
    const p=R.places[id];if(!p)return false;title=p.name;kind='地点资料';mapIds=[id];html=mapHtml(mapIds)+routeLinks(mapIds);
    if(p.address)html+='<p class="peek-note">'+escape(p.address)+'</p>';
-   if(p.facts)html+=facts(p.facts);
-   if(p.note)html+='<p class="peek-note">'+escape(p.note)+'</p>';
-   if(p.noteIndices.length)html+='<div class="peek-notes"><strong>小红书 · 相关笔记</strong>'+p.noteIndices.map(i=>external(R.notes[i].href,R.notes[i].title)).join('')+'</div>';
+   if(p.facts)html+=facts(p.facts.slice(0,2));
+   if(p.note&&!p.address)html+='<p class="peek-note">'+escape(p.note)+'</p>';
+   if(p.noteIndices.length)html+='<div class="peek-notes"><strong>小红书 · 相关笔记</strong>'+p.noteIndices.slice(0,1).map(i=>external(R.notes[i].href,R.notes[i].title)).join('')+'</div>';
   }else if(type==='date'){
    const d=R.dates[id];if(!d)return false;title=id.slice(5).replace('-','月')+'日';kind='Apple 天气 · 北京市参考';
-   html=d.status==='available'?'<div class="peek-temperature">'+d.lowC+'–'+d.highC+'<small>°C</small></div><p>'+escape(d.condition)+'</p>'+facts([['日降水概率',d.dailyPrecipitationProbabilityPercent+'%'],['预报粒度','全天；不是当前或逐小时天气']]):'<p>天气待更新</p><p class="peek-note">尚未进入本次查询的预报范围。</p>';
-   html+='<p class="peek-note">查询于 '+escape(d.queriedAt.replace('T',' ').slice(0,16))+'（北京时间）· 静态快照，非实时更新。</p><div class="peek-links"><a href="'+escape(d.appUrl)+'">打开 Apple 天气 ↗</a>'+external(d.helpUrl,'查看使用说明')+'</div><p class="peek-note">'+escape(d.linkNote)+'</p>';
+   html=d.status==='available'?'<div class="peek-temperature">'+d.lowC+'–'+d.highC+'<small>°C</small></div><p>'+escape(d.condition)+'</p>'+facts([['日降水概率',d.dailyPrecipitationProbabilityPercent+'%']]):'<p>天气待更新</p><p class="peek-note">尚未进入本次查询的预报范围。</p>';
+   html+='<p class="peek-note">查询于 '+escape(d.queriedAt.replace('T',' ').slice(0,16))+' · 预报快照</p><div class="peek-links"><a href="'+escape(d.appUrl)+'">打开 Apple 天气 ↗</a></div>';
   }else if(type==='event'){
    const e=R.events[id],node=document.getElementById(id);if(!e||!node)return false;title=e.title;kind=e.type+' · '+e.subtype;
    const config=R.maps.find(m=>m.key===e.mapKeys[0]);if(config){mapIds=config.ids;modes=config.modes;html=mapHtml(mapIds,modes)+routeLinks(mapIds);}
-   // Reuse the event's meaningful information without copying IDs, galleries or whole map widgets.
-   const cards=[...node.querySelectorAll('.context-card')].slice(0,2);
-   html+=cards.map(card=>'<div class="peek-summary">'+card.innerHTML+'</div>').join('');
+   const card=node.querySelector('.context-card');
+   if(card)html+='<p class="peek-brief">'+escape(card.textContent.replace(/\s+/g,' ').trim().slice(0,130))+'</p>';
    if(!html)html='<p>'+escape(node.querySelector('.event-copy>p')?.textContent||'查看时间线中的安排。')+'</p>';
    html+='<p class="peek-note">'+escape(e.date)+' · '+escape(e.subtype)+'</p>';
   }else return false;
@@ -4000,19 +4014,33 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
  const overlap=(a,b)=>Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
  function position(){
   if(peek.hidden||!anchor)return;
-  const vw=innerWidth,vh=innerHeight,nav=document.querySelector('.trip-nav').getBoundingClientRect(),ctl=control.getBoundingClientRect(),r=anchor.getBoundingClientRect();
-  const mobile=vw<760,navBottom=nav.top>vh*.45?Math.max(0,vh-nav.top):0;
-  peek.style.width=Math.min(mobile?vw-24:320,vw-24)+'px';peek.style.maxHeight=Math.max(120,Math.min(mobile?vh*.38:440,vh-navBottom-ctl.height-40))+'px';
-  const w=peek.offsetWidth,h=peek.offsetHeight,gap=12;
-  if(mobile){peek.style.left='12px';peek.style.top=Math.max(ctl.bottom+gap,vh-navBottom-h-gap)+'px';peek.dataset.placement='sheet';return;}
-  const bounds={left:12,top:12,right:vw-12,bottom:vh-navBottom-12};
-  const options=[[r.right+gap,r.top],[r.left-w-gap,r.top],[r.left,r.bottom+gap],[r.left,r.top-h-gap]].map(([left,top])=>{left=Math.max(bounds.left,Math.min(left,bounds.right-w));top=Math.max(bounds.top,Math.min(top,bounds.bottom-h));return {left,top,right:left+w,bottom:top+h};});
-  const obstacle=[nav,ctl,r];options.sort((a,b)=>obstacle.reduce((sum,o)=>sum+overlap(a,o),0)-obstacle.reduce((sum,o)=>sum+overlap(b,o),0));
-  let best=options[0];
-  // If there is no clean adjacent space, use a shorter card in the free area left of the rail.
-  if(overlap(best,nav)||overlap(best,ctl)){
-   const right=nav.left>vw*.5?nav.left-gap:vw-12;const width=Math.min(320,right-24);peek.style.width=Math.max(180,width)+'px';peek.style.maxHeight=Math.max(120,Math.min(300,vh-navBottom-40))+'px';best={left:Math.max(12,right-peek.offsetWidth),top:Math.max(12,vh-navBottom-peek.offsetHeight-12)};
+  const vw=innerWidth,vh=innerHeight,nav=document.querySelector('.trip-nav').getBoundingClientRect(),ctl=control.getBoundingClientRect();
+  // Use the nearest rendered line when a keyword wraps across lines.
+  const r=anchor.getClientRects()[0]||anchor.getBoundingClientRect(),gap=8;
+  const navBottom=nav.width>vw*.65&&nav.top>vh*.45?vh-nav.top:0;
+  const bounds={left:10,top:10,right:vw-10,bottom:vh-navBottom-10};
+  peek.style.width=Math.min(248,vw-20)+'px';
+  peek.style.maxHeight=Math.min(280,bounds.bottom-bounds.top)+'px';
+  const w=peek.offsetWidth;
+  const candidates=[];
+  for(const side of ['right','left','below','above']){
+   const room=side==='below'?bounds.bottom-r.bottom-gap:side==='above'?r.top-gap-bounds.top:bounds.bottom-bounds.top;
+   if(room<100)continue;
+   const maxHeight=Math.min(280,room);peek.style.maxHeight=maxHeight+'px';
+   const h=peek.offsetHeight;
+   let left=side==='right'?r.right+gap:side==='left'?r.left-w-gap:r.left;
+   let top=side==='above'?r.top-h-gap:side==='below'?r.bottom+gap:r.top;
+   left=Math.max(bounds.left,Math.min(left,bounds.right-w));top=Math.max(bounds.top,Math.min(top,bounds.bottom-h));
+   const box={left,top,right:left+w,bottom:top+h};
+   const collision=[nav,ctl,r].reduce((sum,o)=>sum+overlap(box,o),0);
+   const distance=Math.hypot(Math.max(r.left-box.right,box.left-r.right,0),Math.max(r.top-box.bottom,box.top-r.bottom,0));
+   candidates.push({...box,maxHeight,collision,score:collision*1000+distance+(280-maxHeight)*.1});
   }
+  candidates.sort((a,b)=>a.score-b.score);
+  const best=candidates[0];
+  // No detached corner panel: suppress when no safe adjacent placement is available.
+  if(!best||best.collision){peek.style.visibility='hidden';return;}
+  peek.style.visibility='';peek.style.maxHeight=best.maxHeight+'px';
   peek.style.left=best.left+'px';peek.style.top=best.top+'px';peek.dataset.placement='anchor';
  }
  function show(a,isManual){

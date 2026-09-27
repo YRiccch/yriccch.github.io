@@ -60,7 +60,7 @@
         ],
         [
           "权益",
-          "无早餐；环球接送与魔法袍使用待确认"
+          "无早餐"
         ]
       ]
     },
@@ -203,22 +203,6 @@
       "noteIndices": [
         6,
         7
-      ]
-    },
-    "nanluo": {
-      "xy": null,
-      "note": "位置请通过地图搜索确认；不显示未经核实的坐标。",
-      "source": null,
-      "name": "南锣鼓巷",
-      "aliases": [
-        "南锣鼓巷"
-      ],
-      "query": "北京 南锣鼓巷",
-      "appleMaps": "https://maps.apple.com/?q=%E5%8C%97%E4%BA%AC+%E5%8D%97%E9%94%A3%E9%BC%93%E5%B7%B7",
-      "amap": "https://uri.amap.com/search?keyword=%E5%8C%97%E4%BA%AC+%E5%8D%97%E9%94%A3%E9%BC%93%E5%B7%B7&city=%E5%8C%97%E4%BA%AC&view=map&src=BeijingTrip&callnative=1",
-      "album": "nanluo",
-      "noteIndices": [
-        0
       ]
     },
     "beijing": {
@@ -473,9 +457,7 @@
         "airport",
         "qiu"
       ],
-      "modes": [
-        "机场接驳 · 方式待定"
-      ]
+      "modes": []
     },
     {
       "key": "event-map-2",
@@ -483,16 +465,6 @@
         "qiu"
       ],
       "modes": []
-    },
-    {
-      "key": "event-map-3",
-      "ids": [
-        "qiu",
-        "universal"
-      ],
-      "modes": [
-        "酒店接送 · 班次待确认"
-      ]
     },
     {
       "key": "event-map-4",
@@ -507,9 +479,7 @@
         "qiu",
         "yue"
       ],
-      "modes": [
-        "跨区转移 · 方式待定"
-      ]
+      "modes": []
     },
     {
       "key": "event-map-6",
@@ -527,9 +497,9 @@
         "gulou"
       ],
       "modes": [
-        "前往什刹海 · 方式待定",
-        "步行 · 路线待导航确认",
-        "步行 · 路线待导航确认"
+        null,
+        "步行",
+        "步行"
       ]
     },
     {
@@ -538,9 +508,7 @@
         "gulou",
         "arena"
       ],
-      "modes": [
-        "市内接驳 · 方式待定"
-      ]
+      "modes": []
     },
     {
       "key": "event-map-9",
@@ -550,29 +518,17 @@
       "modes": []
     },
     {
-      "key": "event-map-10",
-      "ids": [
-        "arena",
-        "yue"
-      ],
-      "modes": [
-        "返店交通 · 方式待定"
-      ]
-    },
-    {
       "key": "event-map-11",
       "ids": [
         "yue",
         "airport"
       ],
-      "modes": [
-        "机场接驳 · 方式待定"
-      ]
+      "modes": []
     }
   ],
   "events": {
     "event-04-1-fixed": {
-      "title": "义乌 → 北京 → 通州",
+      "title": "飞抵北京，前往通州",
       "type": "交通",
       "subtype": "飞机＋接驳",
       "mapKeys": [
@@ -581,7 +537,7 @@
       "date": "2026-10-04"
     },
     "event-04-2-fixed": {
-      "title": "秋果 S 酒店",
+      "title": "入住秋果 S 酒店",
       "type": "住",
       "subtype": "酒店入住",
       "mapKeys": [
@@ -597,35 +553,19 @@
       "date": "2026-10-04"
     },
     "event-04-4-suggested": {
-      "title": "证件与次日出发",
+      "title": "备好证件，早点休息",
       "type": "准备与休息",
       "subtype": "出发准备",
       "mapKeys": [],
       "date": "2026-10-04"
     },
-    "event-05-1-pending": {
-      "title": "确认去程与回程班次",
-      "type": "交通",
-      "subtype": "酒店接送",
-      "mapKeys": [
-        "event-map-3"
-      ],
-      "date": "2026-10-05"
-    },
     "event-05-2-pending": {
-      "title": "北京环球度假区",
+      "title": "环球影城玩一整天",
       "type": "玩",
       "subtype": "园区游玩",
       "mapKeys": [
         "event-map-4"
       ],
-      "date": "2026-10-05"
-    },
-    "event-05-4-suggested": {
-      "title": "环球 → 酒店",
-      "type": "交通",
-      "subtype": "接送返店",
-      "mapKeys": [],
       "date": "2026-10-05"
     },
     "event-06-1-suggested": {
@@ -647,7 +587,7 @@
       "date": "2026-10-06"
     },
     "event-06-2-suggested": {
-      "title": "什刹海 → 烟袋斜街 → 鼓楼",
+      "title": "胡同漫步，什刹海到鼓楼",
       "type": "玩",
       "subtype": "街区漫游",
       "mapKeys": [
@@ -665,7 +605,7 @@
       "date": "2026-10-06"
     },
     "event-06-4-fixed": {
-      "title": "徐良「时间折叠」",
+      "title": "看徐良「时间折叠」演唱会",
       "type": "玩",
       "subtype": "演唱会",
       "mapKeys": [
@@ -673,24 +613,15 @@
       ],
       "date": "2026-10-06"
     },
-    "event-06-5-suggested": {
-      "title": "五棵松 → 月屋酒店",
-      "type": "交通",
-      "subtype": "散场返店",
-      "mapKeys": [
-        "event-map-10"
-      ],
-      "date": "2026-10-06"
-    },
     "event-07-1-suggested": {
-      "title": "早餐与退房",
+      "title": "早餐后办理退房",
       "type": "吃",
       "subtype": "早餐与退房",
       "mapKeys": [],
       "date": "2026-10-07"
     },
     "event-07-2-pending": {
-      "title": "六里桥 → 大兴机场 → 义乌",
+      "title": "返程，飞回义乌",
       "type": "交通",
       "subtype": "接驳＋飞机",
       "mapKeys": [
@@ -750,9 +681,17 @@
     }
   ],
   "weatherLive": false,
-  "coordinateSystem": "WGS84；酒店坐标为既有来源转换参考值，非入口精确位置"
+  "coordinateSystem": "WGS84；酒店坐标为既有来源转换参考值，非入口精确位置；显示时经 wgs2gcj 转为 GCJ-02 以匹配高德底图"
 }</script>
-<script>const TRAVEL_REGISTRY=JSON.parse(document.getElementById("travel-registry").textContent);try{document.documentElement.dataset.visual=localStorage.getItem("travel-visual")||"on";}catch{document.documentElement.dataset.visual="on";}</script>
+<script>const TRAVEL_REGISTRY=JSON.parse(document.getElementById("travel-registry").textContent);document.documentElement.dataset.visual="on";
+window.wgs2gcj=(lat,lng)=>{const a=6378245,ee=0.006693421622965943,P=Math.PI;
+ const tLat=(x,y)=>{let r=-100+2*x+3*y+0.2*y*y+0.1*x*y+0.2*Math.sqrt(Math.abs(x));r+=(20*Math.sin(6*x*P)+20*Math.sin(2*x*P))*2/3;r+=(20*Math.sin(y*P)+40*Math.sin(y/3*P))*2/3;r+=(160*Math.sin(y/12*P)+320*Math.sin(y*P/30))*2/3;return r;};
+ const tLng=(x,y)=>{let r=300+x+2*y+0.1*x*x+0.1*x*y+0.1*Math.sqrt(Math.abs(x));r+=(20*Math.sin(6*x*P)+20*Math.sin(2*x*P))*2/3;r+=(20*Math.sin(x*P)+40*Math.sin(x/3*P))*2/3;r+=(150*Math.sin(x/12*P)+300*Math.sin(x/30*P))*2/3;return r;};
+ if(lng<72.004||lng>137.8347||lat<0.8293||lat>55.8273)return[lat,lng];
+ let dLat=tLat(lng-105,lat-35),dLng=tLng(lng-105,lat-35);
+ const rl=lat/180*P;let m=Math.sin(rl);m=1-ee*m*m;const s=Math.sqrt(m);
+ dLat=(dLat*180)/((a*(1-ee))/(m*s)*P);dLng=(dLng*180)/(a/s*Math.cos(rl)*P);
+ return[lat+dLat,lng+dLng];};</script>
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
@@ -767,7 +706,7 @@
   Derived from L11 Trend Lineage, templates/lupi-gallery.html and mono-tokens.js.
   The original per-lane SVG connectors, filled/open event marks, terminal dots,
   and reveal pattern are adapted to ordered itinerary events (NOT duration).
-  Itinerary, photos and Leaflet runtime are embedded locally. Online map tiles are requested from OpenStreetMap. No analytics.
+  Itinerary, photos and Leaflet runtime are embedded locally. Online map tiles are requested from Amap (Gaode). No analytics.
   Photography credits and source links are retained in the photo viewer and separate metadata file.
 -->
 	<style>
@@ -799,12 +738,6 @@
 			-webkit-font-smoothing: antialiased
 		}
 
-		button,
-		a,
-		summary {
-			-webkit-tap-highlight-color: transparent
-		}
-
 		a {
 			color: inherit;
 			text-underline-offset: 4px
@@ -814,13 +747,6 @@
 			font: inherit;
 			color: inherit;
 			cursor: pointer
-		}
-
-		button:focus-visible,
-		a:focus-visible,
-		summary:focus-visible {
-			outline: 2px solid var(--ink);
-			outline-offset: 5px
 		}
 
 		button {
@@ -930,71 +856,6 @@
 			margin-top: 18px
 		}
 
-		.hero-tags {
-			display: flex;
-			justify-content: flex-end;
-			gap: 18px;
-			margin-top: 24px;
-			font-size: 11px;
-			font-weight: 600
-		}
-
-		.hero-tags span+span {
-			border-left: 1px solid var(--line);
-			padding-left: 18px
-		}
-
-		.route-strip {
-			display: flex;
-			align-items: center;
-			gap: 14px;
-			padding: 18px 0;
-			border-top: 1px solid var(--grid);
-			border-bottom: 1px solid var(--ink);
-			font-size: 12px;
-			line-height: 1.5
-		}
-
-		.route-strip .label {
-			font-size: 10px;
-			letter-spacing: .12em;
-			color: var(--muted);
-			margin-right: 12px
-		}
-
-		.route-strip .arrow {
-			color: var(--faint)
-		}
-
-		.route-strip .end {
-			margin-left: auto;
-			color: var(--muted);
-			font-size: 11px
-		}
-
-		.section-head {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			gap: 20px;
-			padding: 26px 0 23px;
-			max-width: 800px;
-			margin-inline: auto
-		}
-
-		.section-head h2 {
-			font-size: 16.5px;
-			letter-spacing: -.02em;
-			margin: 0;
-			font-weight: 700
-		}
-
-		.tools {
-			display: flex;
-			gap: 20px;
-			align-items: center
-		}
-
 		.text-button {
 			padding: 7px 0;
 			border-bottom: 1px solid var(--line);
@@ -1094,14 +955,6 @@
 			margin: 0 0 9px
 		}
 
-		.day-description {
-			font-size: 11.5px;
-			color: var(--muted);
-			line-height: 1.7;
-			margin: 0 0 22px;
-			min-height: 0
-		}
-
 		.events {
 			position: relative;
 			list-style: none;
@@ -1147,13 +1000,6 @@
 			letter-spacing: .01em
 		}
 
-		.event-state {
-			font-size: 9.5px;
-			letter-spacing: .04em;
-			color: var(--muted);
-			white-space: nowrap
-		}
-
 		.event h4 {
 			font-size: 14px;
 			line-height: 1.6;
@@ -1192,36 +1038,6 @@
 			text-decoration-style: dotted;
 			text-decoration-color: var(--faint);
 			text-underline-offset: 5px
-		}
-
-		.event details {
-			margin-top: 8px
-		}
-
-		.event summary {
-			font-size: 11px;
-			color: var(--secondary);
-			cursor: pointer;
-			line-height: 1.8;
-			list-style: none;
-			display: flex;
-			align-items: baseline;
-			gap: 6px
-		}
-
-		.event summary::-webkit-details-marker {
-			display: none
-		}
-
-		.event summary::before {
-			content: '+';
-			font-size: 14px;
-			color: var(--muted);
-			font-weight: 400
-		}
-
-		.event details[open] summary::before {
-			content: '−'
 		}
 
 		.detail-content {
@@ -1404,52 +1220,26 @@
 			}
 		}
 
-		@media(min-width:1101px) {
-			.timeline {
-				align-items: start
-			}
-		}
+		
 
-		@media(max-width:1100px) {
-			.page {
-				padding: 26px 34px
-			}
+		
+			
 
 			.timeline {
 				grid-template-columns: minmax(0, 1fr);
 				gap: 40px
 			}
 
-			.day-description {
-				min-height: 0
-			}
-
 			.hero {
 				padding-top: 36px
-			}
-
-			.date-range {
-				font-size: 49px
-			}
-
-			.route-strip .end {
-				display: none
-			}
-
-			.section-head {
-				align-items: flex-start
-			}
-
-			.tools {
-				gap: 13px
 			}
 
 			.event {
 				min-height: 0
 			}
-		}
+		
 
-		@media(max-width:650px) {
+		
 			.page {
 				padding: 22px 22px
 			}
@@ -1492,47 +1282,6 @@
 				margin: 12px 0
 			}
 
-			.hero-tags {
-				grid-column: 1/-1;
-				justify-content: flex-start;
-				margin-top: 4px;
-				gap: 15px;
-				font-size: 10px
-			}
-
-			.hero-tags span+span {
-				padding-left: 15px
-			}
-
-			.route-strip {
-				flex-wrap: wrap;
-				gap: 9px;
-				font-size: 11px;
-				padding: 14px 0
-			}
-
-			.route-strip .label {
-				width: 100%;
-				margin: 0;
-				font-size: 9px
-			}
-
-			.section-head {
-				display: block;
-				padding: 22px 0
-			}
-
-			.section-head h2 {
-				margin-bottom: 14px
-			}
-
-			.tools {
-				margin-top: 14px;
-				justify-content: flex-start;
-				flex-wrap: wrap;
-				gap: 13px 22px
-			}
-
 			.legend {
 				gap: 18px;
 				font-size: 10px;
@@ -1564,11 +1313,6 @@
 				font-size: 20px
 			}
 
-			.day-description {
-				font-size: 12px;
-				margin-bottom: 24px
-			}
-
 			.events {
 				padding-left: 26px
 			}
@@ -1587,14 +1331,6 @@
 			}
 
 			.event-time {
-				font-size: 12px
-			}
-
-			.event-state {
-				font-size: 10px
-			}
-
-			.event summary {
 				font-size: 12px
 			}
 
@@ -1624,7 +1360,7 @@
 				font-size: 11px;
 				min-height: 34px
 			}
-		}
+		
 
 		@media(prefers-reduced-motion:reduce) {
 			html {
@@ -1690,22 +1426,6 @@
 				font-size: 10px
 			}
 
-			.hero-tags {
-				margin-top: 12px
-			}
-
-			.route-strip {
-				padding: 9px 0
-			}
-
-			.section-head {
-				padding: 14px 0
-			}
-
-			.tools .text-button {
-				display: none
-			}
-
 			.timeline {
 				grid-template-columns: minmax(0, 1fr);
 				gap: 20px;
@@ -1723,12 +1443,6 @@
 
 			.day h3 {
 				font-size: 15px
-			}
-
-			.day-description {
-				font-size: 10px;
-				min-height: 30px;
-				margin-bottom: 12px
 			}
 
 			.event {
@@ -1750,14 +1464,6 @@
 
 			.event-time {
 				font-size: 10px
-			}
-
-			.event-state {
-				font-size: 8px
-			}
-
-			.event details {
-				display: none
 			}
 
 			.day-footer {
@@ -2050,11 +1756,6 @@
 			color: var(--muted)
 		}
 
-		.photo-credits summary {
-			cursor: pointer;
-			line-height: 1.9
-		}
-
 		.photo-credits ul {
 			padding-left: 18px;
 			line-height: 1.9
@@ -2077,7 +1778,7 @@
 			overflow: hidden
 		}
 
-		@media(max-width:650px) {
+		
 			.photo-label {
 				font-size: 12px
 			}
@@ -2140,7 +1841,7 @@
 			.photo-group {
 				margin-top: 20px
 			}
-		}
+		
 
 		@media(prefers-reduced-motion:reduce) {
 			.photo-tile img {
@@ -3080,7 +2781,7 @@
 			font-size: 9px !important
 		}
 
-		@media(max-width:650px) {
+		
 			.journey-map {
 				height: 205px
 			}
@@ -3088,7 +2789,7 @@
 			.map-sketch-pin span {
 				display: none
 			}
-		}
+		
 
 		@media print {
 			.journey-map {
@@ -3335,8 +3036,7 @@
 	</style>
 
 <style id="trip-navigation-style">
-.trip-nav{position:fixed;right:24px;top:50%;transform:translateY(-50%);width:156px;z-index:900;padding:20px 0 20px 18px;border-left:1px solid var(--grid);background:var(--paper)}
-.trip-nav-label{font-size:10px;letter-spacing:.15em;color:var(--muted);margin:0 0 8px}
+.trip-nav{position:fixed;z-index:900;background:var(--paper);top:auto;bottom:0;right:0;left:0;width:auto;transform:none;padding:9px max(16px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom));border-left:0;border-top:1px solid var(--grid);box-shadow:0 -4px 18px #00000005}
 .trip-nav-status{font-size:13px;font-weight:600;margin:0 0 15px}
 .trip-nav-track{height:2px;background:var(--grid);margin-bottom:18px;overflow:hidden}
 .trip-nav-fill{height:100%;width:0;background:var(--ink)}
@@ -3346,16 +3046,12 @@
 .trip-nav a[aria-current="step"]{color:var(--ink)}
 .trip-nav a[aria-current="step"] strong{font-weight:700}
 .trip-nav a[aria-current="step"] span::before{content:'●';position:absolute;left:-4px;font-size:8px;background:var(--paper)}
-.day{scroll-margin-top:24px}
-@media(min-width:1000px){.page{max-width:1536px;margin-left:auto;margin-right:190px;padding-left:40px;padding-right:40px}}
-@media(max-width:999px){
-.trip-nav{top:auto;bottom:0;right:0;left:0;transform:none;width:auto;padding:9px max(16px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom));border-left:0;border-top:1px solid var(--grid);box-shadow:0 -4px 18px #00000005}
-.trip-nav-label{display:none}.trip-nav-status{font-size:10px;margin:0 0 5px;color:var(--muted)}
+.day{scroll-margin-top:24px}.trip-nav-status{font-size:10px;margin:0 0 5px;color:var(--muted)}
 .trip-nav-track{position:absolute;top:0;left:0;right:0;margin:0}.trip-nav-links{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
 .trip-nav a{flex-direction:column;gap:1px;padding:3px 0;font-size:11px}.trip-nav a span{font-size:9px}
 .trip-nav a[aria-current="step"] span::before{content:none}
 body{padding-bottom:100px}.day{scroll-margin-top:16px}
-}
+
 @media print{.trip-nav{display:none}body{padding-bottom:0}.page{margin:0 auto}}
 </style>
 <style id="daily-weather-style">
@@ -3363,13 +3059,11 @@ body{padding-bottom:100px}.day{scroll-margin-top:16px}
 .daily-weather{display:flex;flex-direction:column;gap:3px;margin-top:8px;font-size:11px;line-height:1.5}
 .weather-condition{font-weight:600;color:var(--ink)}
 .weather-rain{color:var(--secondary)}
-.daily-weather small{font-size:9px;font-weight:400;color:var(--muted);line-height:1.5}
-@media(max-width:650px){.daily-weather{font-size:10px}.daily-weather small{font-size:8px}}
+.daily-weather{font-size:10px}
 </style>
 <style id="event-layout-style">
-.event{padding-bottom:38px}.event-layout{display:grid;grid-template-columns:minmax(210px,.85fr) minmax(0,1.15fr);gap:28px;align-items:start}
+.event{padding-bottom:32px}.event-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;align-items:start}
 .event-copy,.event-visual{min-width:0}.event-copy{padding-top:2px}.event-copy .event-header{flex-wrap:wrap;justify-content:flex-start;gap:7px 12px}
-.event-kind{display:inline-block;font-size:9px;letter-spacing:.06em;color:var(--muted);margin:7px 0}
 .event-visual{display:flex;flex-direction:column;gap:12px;padding-left:22px;border-left:1px solid var(--grid)}
 .event-visual .photo-mount{min-width:0}.event-visual .photo-group{margin:0}.event-visual .photo-tile{flex-basis:180px;height:135px}.event-visual .photo-grid{gap:8px}
 .event-visual .xhs-card{flex-basis:160px}.event-visual .photo-group-label{font-size:11px}.event-visual .xhs-hint{font-size:8px!important}
@@ -3378,7 +3072,6 @@ body{padding-bottom:100px}.day{scroll-margin-top:16px}
 .event .context-note{font-size:9px;line-height:1.65;color:var(--muted);margin-top:8px}
 .context-facts{margin:0;font-size:11px}.context-facts>div{display:grid;grid-template-columns:60px minmax(0,1fr);gap:10px;padding:6px 0;border-top:1px solid var(--grid)}
 .context-facts dt{color:var(--muted)}.context-facts dd{margin:0;line-height:1.6}
-.flight-ticket{display:flex;align-items:center;justify-content:space-between;gap:12px}.flight-ticket>div{display:flex;flex-direction:column;gap:5px}.flight-ticket>div:last-child{text-align:right}.flight-ticket strong{font-size:24px;letter-spacing:-.03em}.flight-ticket span{font-size:11px}.flight-ticket .flight-ticket-arrow{font-size:20px;color:var(--muted)}
 .place-choices{display:flex;flex-direction:column;gap:8px}.place-choices a{font-size:11px;line-height:1.65;text-decoration:none;border-bottom:1px dotted var(--line);padding-bottom:7px}
 .context-checklist{list-style:none;padding:0;margin:0;font-size:11px;line-height:1.7}.context-checklist li{padding:5px 0 5px 15px;position:relative}.context-checklist li:before{content:'○';position:absolute;left:0;color:var(--muted)}
 .activity-chips{display:flex;gap:6px;flex-wrap:wrap}.activity-chips span{padding:5px 9px;border:1px solid var(--line);border-radius:20px;font-size:10px}
@@ -3388,25 +3081,24 @@ body{padding-bottom:100px}.day{scroll-margin-top:16px}
 .has-basemap .event-map-fallback{display:none}.event-map-stops{display:flex;flex-direction:column;gap:4px;padding:10px 0 5px;font-size:10px}
 .event-map-stops span{display:flex;align-items:center;gap:7px}.event-map-stops b{width:18px;height:18px;display:inline-grid;place-items:center;border:1px solid var(--line);border-radius:50%;font-size:9px}.event-map-stops small{padding-left:25px;color:var(--muted);font-size:9px}
 .event-map-links{display:flex;gap:15px;font-size:10px}.event-map-links a{text-underline-offset:3px}
-.optional-visual{margin-top:8px}.event-copy details{margin-top:12px}
-@media(min-width:1000px) and (max-width:1199px){.event-layout{grid-template-columns:minmax(190px,.8fr) minmax(0,1.2fr);gap:18px}.event-visual{padding-left:15px}}
-@media(max-width:760px){.event-layout{grid-template-columns:minmax(0,1fr);gap:16px}.event-visual{padding-left:0;border-left:0}.event-map-window{height:165px}.event{padding-bottom:32px}}
+
+.event-visual{padding-left:0;border-left:0}.event-map-window{height:165px}
 @media print{.event-layout{display:block}.event-visual{border-left:0;padding-left:0}.event-map-canvas{display:none}.event-map-fallback,.has-basemap .event-map-fallback{display:block}.event-map-window{height:130px}.context-card,.event-map{break-inside:avoid}}
 </style>
 <style id="travel-context-style">.travel-term{color:inherit;text-decoration:underline;text-decoration-style:dotted;text-decoration-color:#8c9080;text-underline-offset:4px;cursor:pointer;border-radius:2px}
-.travel-term:hover,.travel-term[aria-expanded="true"]{text-decoration-style:solid;background:#dce0d3}.day-number .travel-term{text-decoration:none}.event-kind .travel-term{border-bottom:1px dotted #939686;text-decoration:none}
-.enhancement-control{position:fixed;top:16px;right:24px;z-index:1100;background:#f4f3efeF;border:1px solid var(--grid);border-radius:24px;padding:9px 12px;box-shadow:0 3px 16px #00000008;font-size:11px}
-.enhancement-control label{display:flex;gap:10px;align-items:center;cursor:pointer}.enhancement-control input{position:absolute;opacity:0;width:1px;height:1px}.enhancement-control i{width:28px;height:16px;border-radius:20px;background:#a5a69f;position:relative}.enhancement-control i:before{content:'';width:12px;height:12px;border-radius:50%;background:var(--paper);position:absolute;top:2px;left:2px;transition:transform .2s}.enhancement-control input:checked+i{background:#53664d}.enhancement-control input:checked+i:before{transform:translateX(12px)}.enhancement-control label:has(input:focus-visible){outline:2px solid var(--ink);outline-offset:4px}
+.travel-term:hover,.travel-term[aria-expanded="true"]{text-decoration-style:solid;background:#dce0d3}.day-number .travel-term{text-decoration:none}
+
+
 .travel-peek{position:fixed;z-index:1050;display:flex;flex-direction:column;background:#faf9f5;border:1px solid #c7c9bf;border-radius:15px;box-shadow:0 12px 38px #171e1926;overflow:hidden;animation:peek-in .18s ease-out;color:var(--ink)}
 .travel-peek[hidden]{display:none}.peek-head{display:flex;gap:10px;justify-content:space-between;align-items:flex-start;padding:13px 14px 10px;border-bottom:1px solid var(--grid);flex-shrink:0}.peek-head h2{font-size:14px;line-height:1.5;margin:3px 0 0;font-weight:650}.peek-head #peek-kind{font-size:9px;color:#68725c;letter-spacing:.05em}.peek-close{font-size:22px;padding:0 4px;line-height:1;cursor:pointer;color:var(--muted)}
 .peek-body{padding:12px 14px;overflow-y:auto;overscroll-behavior:contain;min-height:0;font-size:12px;line-height:1.7}.peek-body p{margin:7px 0}.peek-foot{display:flex;flex-wrap:wrap;gap:4px;justify-content:space-between;padding:8px 12px;border-top:1px solid var(--grid);font-size:8px;color:var(--muted);flex-shrink:0}.peek-foot button{font-size:9px;color:var(--ink);text-decoration:underline;cursor:pointer}
 .peek-map-wrap{height:130px;position:relative;border-radius:8px;overflow:hidden}.peek-map{height:100%;width:100%}.peek-map-sketch{position:absolute;inset:0;background:#e7e6e0;z-index:500}.peek-map-sketch svg{height:100%;width:100%}.peek-map-sketch small{position:absolute;bottom:3px;left:7px;font-size:8px}.peek-map-wrap.loaded .peek-map-sketch{display:none}
-.peek-stops{display:flex;flex-direction:column;gap:2px;margin:9px 0;font-size:10px}.peek-stops small{padding-left:17px;font-size:9px;color:var(--muted)}.peek-stops b{color:#53664d}.peek-links{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:10px}.peek-links a,.peek-notes a{color:var(--ink);text-underline-offset:3px}.peek-note{font-size:9px!important;color:var(--muted);line-height:1.65!important}.peek-notes{margin-top:12px;font-size:10px;display:flex;flex-direction:column;gap:6px}.peek-summary{border-top:1px solid var(--grid);padding-top:10px;margin-top:10px}.peek-facts{font-size:10px;margin:10px 0}.peek-facts>div{display:flex;gap:10px;border-top:1px solid var(--grid);padding:5px 0}.peek-facts dt{min-width:64px;color:var(--muted)}.peek-facts dd{margin:0}.peek-temperature{font-size:36px;letter-spacing:-.04em;line-height:1.3}.peek-temperature small{font-size:15px;margin-left:4px}.peek-body .context-note{font-size:9px;color:var(--muted)}
-html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .event-layout{grid-template-columns:minmax(0,1fr)}html[data-visual="off"] .travel-term{background:none}
+.peek-stops{display:flex;flex-direction:column;gap:2px;margin:9px 0;font-size:10px}.peek-stops small{padding-left:17px;font-size:9px;color:var(--muted)}.peek-stops b{color:#53664d}.peek-links{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:10px}.peek-links a,.peek-notes a{color:var(--ink);text-underline-offset:3px}.peek-note{font-size:9px!important;color:var(--muted);line-height:1.65!important}.peek-notes{margin-top:12px;font-size:10px;display:flex;flex-direction:column;gap:6px}.peek-facts{font-size:10px;margin:10px 0}.peek-facts>div{display:flex;gap:10px;border-top:1px solid var(--grid);padding:5px 0}.peek-facts dt{min-width:64px;color:var(--muted)}.peek-facts dd{margin:0}.peek-temperature{font-size:36px;letter-spacing:-.04em;line-height:1.3}.peek-temperature small{font-size:15px;margin-left:4px}.peek-body .context-note{font-size:9px;color:var(--muted)}
+
 @keyframes peek-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:999px){.enhancement-control{top:8px;right:12px;padding:7px 10px;font-size:10px}.page>.masthead{padding-top:28px}}
-@media(prefers-reduced-motion:reduce){.travel-peek{animation:none}.enhancement-control i:before{transition:none}}
-@media print{.travel-peek,.enhancement-control{display:none!important}.travel-term{text-decoration:none}}
+.page>.masthead{padding-top:28px}
+@media(prefers-reduced-motion:reduce){.travel-peek{animation:none}}
+@media print{.travel-peek{display:none!important}.travel-term{text-decoration:none}}
 
 /* Compact keyword-adjacent previews on every screen size. */
 .travel-peek{border-radius:10px}
@@ -3424,20 +3116,18 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
 .travel-peek .peek-brief{font-size:10px;color:var(--muted)}
 </style>
 <style id="departure-header-style">
-.hero{grid-template-columns:minmax(0,1.2fr) minmax(250px,1fr);align-items:center;gap:32px}
+.hero{grid-template-columns:minmax(0,1fr);align-items:center;gap:22px}
 .hero .date-block{text-align:left;margin-top:22px}
-.hero .date-range{font-size:clamp(30px,4vw,52px);white-space:nowrap}
+.hero .date-range{font-size:49px;white-space:nowrap}
 .hero .date-caption{font-size:12px;margin-top:10px}
-.hero .hero-tags{justify-content:flex-start;font-size:11px;margin-top:16px;flex-wrap:wrap}
-.departure-countdown{min-width:0;padding:24px 18px;border:1px solid var(--grid);border-radius:16px;background:#e9ebe4}
+.departure-countdown{min-width:0}
 .departure-countdown>p{margin:0;color:var(--muted);font-size:11px}
 #countdown-label{color:var(--ink);font-size:13px;letter-spacing:.12em}
 .countdown-digits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:20px 0}
 .countdown-unit{text-align:center;min-width:0}.countdown-unit small{display:block;font-size:10px;color:var(--muted);margin-top:8px}
-.countdown-value{display:block;position:relative;height:1.2em;overflow:hidden;font-size:clamp(25px,3.5vw,43px);font-weight:600;line-height:1.2;font-variant-numeric:tabular-nums;letter-spacing:-.04em}
+.countdown-value{display:block;position:relative;height:1.2em;overflow:hidden;font-size:36px;font-weight:600;line-height:1.2;font-variant-numeric:tabular-nums;letter-spacing:-.04em}
 .countdown-roll{display:block;animation:countdown-roll .38s ease both}.countdown-roll>span{display:block;height:1.2em}
 @keyframes countdown-roll{from{transform:translateY(-50%)}to{transform:translateY(0)}}
-.departure-countdown .countdown-now{font-size:10px;margin-top:8px;font-variant-numeric:tabular-nums}
 .day-date-left{display:flex;align-items:center;gap:16px;min-width:0}.day-date-left .day-meta{text-align:left;white-space:nowrap}
 .day-heading{align-items:center;gap:16px}.day-date-context{max-width:52%}
 .daily-weather{position:relative;padding-left:56px;min-height:48px;justify-content:center;margin-top:0}
@@ -3448,7 +3138,7 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
 @keyframes weather-spin{to{transform:rotate(360deg)}}
 @keyframes weather-drift{to{transform:translateX(3px)}}
 @keyframes weather-wait{50%{opacity:.4}}
-@media(max-width:650px){.hero{grid-template-columns:1fr;gap:22px}.departure-countdown{padding:18px}.countdown-value{font-size:36px}.day-heading{flex-wrap:wrap}.day-date-context{max-width:100%;width:100%;text-align:left}.daily-weather{padding-left:52px}.day-date-left{gap:14px}}
+.day-heading{flex-wrap:wrap}.day-date-context{max-width:100%;width:100%;text-align:left}.daily-weather{padding-left:52px}.day-date-left{gap:14px}
 @media(prefers-reduced-motion:reduce){.countdown-roll,.weather-sun,.weather-cloud,.weather-wait{animation:none}}
 @media print{.departure-countdown{display:none}.weather-sun,.weather-cloud,.weather-wait{animation:none}}
 
@@ -3463,19 +3153,89 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
 .daily-weather[data-sky="cloudy"]::before,.daily-weather[data-sky="unknown"]::before{opacity:.2}
 .daily-weather::after{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse 72px 34px at 20% 89%,#e7edf180 0 49%,transparent 70%),radial-gradient(ellipse 118px 45px at 72% 104%,#ecf2f280 0 49%,transparent 72%),radial-gradient(ellipse 110px 30px at 92% 77%,#ffffff68 0 40%,transparent 75%);background-repeat:no-repeat;animation:weather-sky-drift 10s ease-in-out infinite alternate}
 .daily-weather[data-sky="sunny"]::after{opacity:.35}.daily-weather[data-sky="cloudy"]::after{opacity:.95}
-.weather-condition{font-size:13px!important;color:#fff!important}.weather-rain{color:#eef5f8!important}.daily-weather small{color:#e7eef1!important;font-size:8px!important}
+.weather-condition{font-size:13px!important;color:#fff!important}.weather-rain{color:#eef5f8!important}
 .daily-weather>.weather-symbol{left:17px;top:50%;transform:translateY(-50%);filter:drop-shadow(0 3px 5px #1b334c42)}
 @keyframes weather-light{to{transform:translate(12px,8px) scale(1.12)}}
 @keyframes weather-sky-drift{to{transform:translateX(16px)}}
-@media(max-width:650px){.day-date-context{width:100%;max-width:100%}.daily-weather{min-height:108px;padding:15px 14px 15px 76px}}
+.day-date-context{width:100%;max-width:100%}.daily-weather{min-height:108px;padding:15px 14px 15px 76px}
 @media(prefers-reduced-motion:reduce){.daily-weather::before,.daily-weather::after{animation:none}}
 @media print{.daily-weather::before,.daily-weather::after{animation:none}}
 </style>
-<style>.album-controls{justify-content:flex-end}.hero h1{font-size:clamp(30px,4vw,48px)}.hero{padding-top:24px}.peek-foot{justify-content:flex-end}</style></head>
+<style>.album-controls{justify-content:flex-end}.hero h1{font-size:clamp(30px,4vw,48px)}.hero{padding-top:24px}.peek-foot{justify-content:flex-end}</style><style>/* v8 · 标题艺术字体：Ma Shan Zheng（马善政毛笔楷书），SIL OFL 1.0。来源 https://github.com/google/fonts/tree/main/ofl/mashanzheng ，子集仅含“北京行程慢”六字（约2.9KB woff2）内嵌，离线可用；系统行楷/楷体作回退。印章为装饰，不承载信息。 */
+@font-face{font-family:"Ma Shan Zheng Title";src:url(data:font/woff2;base64,d09GMgABAAAAAAt4AA0AAAAAEqgAAAsmAAIAxQAAAAAAAAAAAAAAAAAAAAAAAAAAGyAcIAZgAFQRCAqcNJR6ATYCJAMOCw4ABCAFg14HIBv7DVGUjVaW4qsD21jS+KdCQzJMU3CkjqCheMd4aPFv6q7tqRTAs1JtPZh6wBwYp6PqksQkuL4+OWSHArC/PVQO4K3WwGqrTkJ1APwACcI2sZoNsaxuWQRf6/8G3Mis/v+3aQ9b2D6JzDiRtvNNlG+yWYjClmyvPJLWkXZEYyPiJJz//987flRYFsgjTzyR/9v33Np0+0DvREV7GIbpmMvirChwTkRS0W2OaQlu344BAYAX8lAE4e7uGwogQAPA//9Ii+s0mqbuEsNgALKXjAYA8CP1EYmAlDCB0GOxVmyMmwtwGrim0x8q/N8NUC+IikUFiF+gHyKoDBIoMArEHSSElobzYH6wIEEHrgmRTkqupjr9N5aFvtsYseb1vIUdP6t2AgRSIkAMQCGBnCLjT5YC6EcAEyAYjej27iRYUKClZTWNJa1D0xSMV+hKcxgBc+kfIebS8gU7HHa4kQ6ewbsSjYCIMkX3ZunULywxFrBpm6kEIMADUqS6a7pX+oxusSW2/goQ5nFPUa17qpnZJx1IdPPDrVu/5LDDndHlNyb4xSeWNhghJAYovCeHjxcCEkX7baaKWBH5NBVFFUHGm+POqJXnc3vq4Tc8kFe/qPq+RooybkO/SZeGTzoLHGfJu+Aonk5AAI13k+Ot3M95WiP6Fgdc9pa4I3HDggKKQnZeOm3Zm8meBH9Hs225Mj+zcdBLdte6vLamaP1Eu73XMVMUZfbQ84/zSy/VexQdy07ZsFv+KzcwlmiEqSx/YfWEe/SROh/YE7LEfTJ+OjFivWI+fn77ykI13nhi4ufXNR/ZuhS6LVQXYrPPAuLEutefvpvdqx22cRwLEABkc3qutXWpvuav/cgSUcao9zxsKgZlbNowrHWnmnvaD59IFzYZC0ps5ek+4yXvZtHyfDEfbyq+wAokKptuXfNLv9Rc8q+cSrwqMRBgLGbZBCcsF3XeSAcbVQQBiTmxHl3gHlHAgcRlAcG6MAIskycGk/QiGql+Dy+BREDWPDadfVDAWFx5PEmyzOZ6a1TO6dq0zirTXLqx7rkpKgT0s66iqU2PJR7vtPKy0VFdamb9KBAQKVq0WVxV1NM8euvydpp6iSckOhqJ18NGmlrA0fMs6JZrvqy53Mr09VAEEo1jIIRMNeesecnmc+0oYOK2x4Y/JxX1BeyTMWpmRV9QBheEmHkGNR/5bZQ20jR+B03XRbAuERsocf49iicvPQ1k4sLFqeqGbq/qwZ1XmJoZFJBYJhIDiazzA3vCA7+ELNMXECxjx7HFDS1/JmAkbtsuKzVLLiyOMg082AvBU2UVdWjf0i/zBqIc4en9Jg0zETRSAdWglaPFCHCmtAnc/QW639YqSqwYEBA9OXxzGD3eTwQMybGrmVt5J4vI9ZqiJNrt2akh/Kmnti4p6u9KyUSwvxmepA9VxRQQV4rtk9cTRavKXqY9eoo+X/egfUJRb67Mom243iMvuTFB+DEV1cOee3uLtFpblzQ7ekmhaK58qXfgr5+lm5mpmA+C5qXp6xdEgChPWsz/lU1GrHuPA2meKgpVViO3xlH3aF7zffUkIegLADVU1OLyqdGoVbpd/oU7M4gCTPuEReKCBT4P5kUyS1QPSyoiATce6TGs+fQBXWp+6LyfXx9pviqxGoNjIYCa1xTxlyFv8O8RFMYDiE5UTCLGjrp0TbLZq732wiLHT4Pnt3/3lLbff+ofbRXs02sVskPfTO1bcArsEeGSxpA8h7LppA+bKnc6iSVjm8UeB61XV2nmIYfnmDOs3Bpr79jOdyuqM3cs9pUnIP7jurs6pYcuXWOjhmtlAXqap2HVpyzSTITkigxIevxuY03VmV0R31+8T6+kZ1K5GmKX0nCM5GX42+mWBEN/IZ+C1EcPX5qVs9ZiEzXi3aXReRYDXHqj1/CR69HiriYpQAEa3Vuxa4TpDeyzCi8T9bvPfBKhYeq/xYV/jjdkH+wvrty5gCbHJDr7xYLN6JBD+wJ49K90z8bNqudsJrdsVsPRfv9oMhcKt8SDlhOkmWQyCG5escuTLyGcccQFi8CehjkNcRnKKkuD5r7yszXunlSCQHDMaTZnefVKX1ZLRS6boemVwoyN+fW7/79saIpe3xBhi3KJi+9MXszWww0WAuzrfPctyVSu8o6pl08+H6kLoORD5xesnDlCKiUwrMzZNBqCkNMypo3psgJO7Az69fvFhLi0ttW2nXaKKKylzrsxfNyjoXfLjHx9HQOxy1KosK8ZTLSWV287cW34tryYUn2TBWv3vZJTiLhO913VA09FFGdWHJsjSeuUjBxsOXM3LmCA08gWNUADRSJNLJAfLf/pvtk3HTFhcCsnl4wAh8il3nwstXJO1zzQwvXKsq9saOkSlPdl1xb+/QzzIl1gj3T0HSqfT9bZ0SlXHCVp+ciVo4N/xuVWscpCMF+tlr8rGF6hVq5PtLq8o2qPllWjkHmklTizFfJvYZJw98dbJ01vmMY3VX0OpsCylboBJqcOfph489AWzVqvFFkNdotmo4AIed6hV2YE2xYy7cZpbCylmjFdLL09LZYS8cCiMX7Tdw5fuCVc8W9YTb/ORlW8aOzGs9JPkpvFUFPp26WVK2gmhq9ajB5oUZSgj8lKXP6QFdPCsO3hZo/87ZLulsqa8iqjEiwtrQwExs/d+/x/vOxLTahwAcW7gPKTV2CFsEUo1IBgKdmIfjEcrcrTXnvwyYs2dfP2yjms2XTZls2mzm+LYbcBh74yHhFZzU88Qse/5LVwfJsuNkYulJT8m+V58GuTiHpyy3VtdrHsBq6rV7MzicGIyLzM7TkiDEo1C4R2pxOYjG+MN5OhUfhUfSrJLc/KQ8TNfNM1ThhyjmW6KZogXjCcVyNlyb0uPDQ1/bVURJ6kf4/TBCGUhsBOkRJ2kRA8FMMiuKBaNpHlBSA9jmxax1dwJHxvrhz7QKXRu68mVNEFC36JC74NDpaSMlGxBlWCgJxAIhj6gRBeBWgEtU/JYXNeWyeZqomsaZU7UGYdn0yH1Xb6t2QqRHa1OniPdzo2ComMNtBHEZD/x3z6w3NbDqjprZ7VF/wgv43hIemV7Tzcp4R0zynz1chCYdAPD8eiPM2DPW2PoU50HFtttqAqNFomogSG9mjwSjzaz8yLVWkJRBnmEkP66iebVGUYKOrIgFCCvrtSkukJn6v/JRfkotYuBq2LTEXCoEz3RjVdIYg8A2GWbr6AT+6FtbCvXobnDdTjLXaGSl47J4Sfa08nOWD+tMpgZrgy0IQDkvg+np47U926cdnM/4Ad4Uo4Nn0kV1jAzfskromEvtcqKh3aXsNSZVv+yyr3ADnheW9I81cZ0XrsOVEPVxS0Smt6JF2qinSfN3ny6eY7f/+f6RPddUfxysGf1TJpYk6cFnOOLRmWifOTSl8bhZsFL7LorqxfJrHwPvfO40+x4zUWWhORPvJa37ZelMTRg04/1JNoh68sBb0AgPO5W06T5s86t8j9F/7XR72lxmCHWodaLWapi/p/pFFkp0DgZu3YDE14QgCbxRrjkCoQRh6gtjBSMMBFLE2iCQDYBjicgCy2cRKCuMAp2OMep6FLyHEGsoTr/hxoEvGADV30MMcAdVRRwwhkmMIYJrDmEI5ZWQQgj6CQitRBwmFlqDZC8GDqogGxGJELxgRqDTTAEKL2tJIDPURaGGXSUKx3E2MUIORKF+0m6GZSUbRQRoVCpyMNIeoAeWJeXLVAzqbcZKeS7ECASIbGaDWHDiCFIYwzMoNdRxGHAzZawJFqCCYodKFaZEeJoHxorG+/grx0KZbzg5Ea+j8HpgAAAAA=) format("woff2");font-display:swap;}
+#page-title{font-family:"Ma Shan Zheng Title","Xingkai SC","STXingkai","Kaiti SC","KaiTi","STKaiti",serif;font-weight:400;font-size:clamp(38px,5vw,60px);line-height:1.18;letter-spacing:.04em;}
+.title-seal{display:inline-flex;align-items:center;justify-content:center;font-size:.32em;width:1.9em;height:1.9em;margin-left:.22em;vertical-align:.62em;background:#b3342a;color:#fff;border-radius:.14em;transform:rotate(4deg);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+</style>
+<style id="v11-type-scale">/* v11 · 主要文本放大 */
+.event h4{font-size:19px}
+.event p{font-size:15px;line-height:1.7}
+.event .minor{font-size:13px}
+.event .flight{font-size:21px}
+.event .flight span{font-size:14px}
+.event-time{font-size:14px}
+.detail-content,.detail-content p{font-size:15px;line-height:1.7}
+.context-facts{font-size:13px}
+.context-checklist{font-size:13px}
+.context-kicker{font-size:11px}
+.confirm-list li{font-size:13px}
+.food-line{font-size:13px}
+.activity-chips span{font-size:12px}
+.day-footer{font-size:12px}
+.daily-weather{font-size:12px}
+#countdown-label{font-size:14px}
+.date-caption{font-size:12px}
+.trip-nav a{font-size:12px}
+.trip-nav a span{font-size:10px}
+</style>
+<style id="v13-journey">/* v13 · 交通事件多段行程线 */
+.journey{list-style:none;margin:14px 0 4px;padding:0;position:relative}
+.journey::before{content:"";position:absolute;left:5px;top:18px;bottom:14px;width:2px;background:var(--grid)}
+.journey li{position:relative;display:flex;align-items:baseline;gap:9px;padding:7px 0 7px 24px}
+.journey li.j-leg{align-items:center;padding-top:2px;padding-bottom:2px;color:var(--muted)}
+.j-dot{position:absolute;left:1px;top:14px;width:9px;height:9px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 3px var(--paper)}
+.j-stop.j-end .j-dot{background:var(--paper);border:2px solid var(--ink);width:7px;height:7px;top:15px}
+.j-place{font-weight:600;font-size:16px;color:var(--ink)}
+.j-note{font-size:12px;color:var(--muted)}
+.j-time{margin-left:auto;font-size:14px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.j-ico{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;width:18px;height:18px;border-radius:4px;background:var(--ink);color:var(--paper);font-size:11px;font-weight:600}
+.j-leg .j-info{font-size:13px}
+.j-leg .j-info b{color:var(--ink);font-weight:600}
+.j-chip{margin-left:auto;flex:0 0 auto;font-size:10px;color:var(--muted);border:1px solid var(--grid);border-radius:999px;padding:1px 8px}
+</style>
+<style id="v14-day-heading">/* v14 · 日期头：Day N + 小字日期 */
+.day-number{font-size:46px;font-weight:800;letter-spacing:.02em;line-height:1}
+.day-number small{display:none}
+.day-meta{font-size:12px;line-height:1.6}
+</style>
+<style id="v15-event-header">/* v15 · 事件开头放大，去徽章 */
+.event-time{font-size:18px;font-weight:700}
+.event h4{font-size:21px;line-height:1.3}
+.event .flight{font-size:23px}
+</style>
+<style id="v18-map-left">/* v18 · 含地图事件：文本在左、地图在右 */
+.event-layout:has(.event-map){grid-template-columns:minmax(0,1fr) minmax(150px,44%);gap:20px;align-items:start}
+</style>
+<style id="stacked-collections-style">
+.collection-stack-toggle{display:flex;align-items:center;justify-content:flex-start;gap:16px;width:100%;padding:8px 26px 14px 0;border:0;background:none;color:var(--ink);cursor:pointer;text-align:left}
+.collection-stack-toggle:focus-visible{outline:2px solid #66775a;outline-offset:5px;border-radius:12px}
+.stack-toggle-label{flex:0 0 auto;border-radius:24px;background:#e3e2dc;padding:8px 12px;white-space:nowrap;font-size:12px;color:var(--secondary)}
+.stack-preview{display:block;position:relative;width:calc(100% - 82px);max-width:180px;aspect-ratio:3/4;flex:none;isolation:isolate}
+.stack-preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:12px;border:1px solid #ffffff6b;box-shadow:0 3px 12px #00000018;transform-origin:right center;transition:transform .25s ease}
+.stack-preview img:nth-child(1){z-index:3}
+.stack-preview img:nth-child(2){z-index:2;transform:translate(11px,0) scale(.92);filter:brightness(.93)}
+.stack-preview img:nth-child(3){z-index:1;transform:translate(22px,0) scale(.84);filter:brightness(.84)}
+@media(hover:hover){.collection-stack-toggle:hover .stack-preview img:nth-child(2){transform:translate(14px,0) scale(.92)}.collection-stack-toggle:hover .stack-preview img:nth-child(3){transform:translate(28px,0) scale(.84)}}
+.collection-stack-toggle[aria-expanded="true"]{padding:0 0 10px;justify-content:flex-end}
+.collection-stack-toggle[aria-expanded="true"] .stack-preview{display:none}
+.photo-grid[hidden],.xhs-strip[hidden],.album-controls[hidden]{display:none!important}
+.collection-stacked .photo-label small{display:none}
+@media(prefers-reduced-motion:reduce){.stack-preview img{transition:none}}
+@media print{.collection-stack-toggle{display:none}.photo-grid[hidden],.xhs-strip[hidden]{display:flex!important}.album-controls{display:none!important}}
+</style>
+</head>
 
 <body>
 <nav class="trip-nav" id="trip-nav" aria-label="行程大纲">
-<p class="trip-nav-label">北京 · 四日行程</p>
 <p class="trip-nav-status" id="trip-nav-status">行程概览 · 0%</p>
 <div class="trip-nav-track" role="progressbar" aria-label="行程阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="trip-nav-fill"></div></div>
 <div class="trip-nav-links">
@@ -3490,178 +3250,90 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
 		
 		<section class="hero" aria-labelledby="page-title">
 			<div>
-				<h1 id="page-title">北京行程</h1>
+				<h1 id="page-title">北京行程<span class="title-seal" aria-hidden="true">慢</span></h1>
             </div>
             <aside class="departure-countdown" aria-label="旅行出发倒计时">
               <p id="countdown-label">距离出发</p>
               <div class="countdown-digits" role="timer" aria-live="off" aria-label="正在计算倒计时"></div>
-              <p class="countdown-target">10 月 4 日 09:45 · 北京时间</p>
-              <p class="countdown-now"></p>
             </aside>
 		</section>
 		<section aria-label="四天行程">
 			<div class="timeline" id="timeline">
 				<article class="day" id="day-04" aria-label="10月4日行程">
 					<div class="day-heading">
-						<div class="day-date-left"><div class="day-number">04<small>十月</small></div><div class="day-meta">周日<br>第 01 天</div></div><div class="day-date-context"><div class="daily-weather" data-date="2026-10-04" aria-label="2026年10月4日北京市参考天气"><span class="weather-condition">局部多云 · 10–23°C</span><span class="weather-rain">日降水概率 0%</span><small>Apple 天气 · 北京市参考<br>9/27 16:22 查询 · 非实时</small></div></div>
+						<div class="day-date-left"><div class="day-number">Day 1</div><div class="day-meta">2026 年 10 月 4 日 · 星期日</div></div><div class="day-date-context"><div class="daily-weather" data-date="2026-10-04" aria-label="2026年10月4日北京市参考天气"><span class="weather-condition">局部多云 · 10–23°C</span><span class="weather-rain">日降水概率 0%</span></div></div>
 					</div>
 					
 					<ol class="events" role="list"><svg class="rail" aria-hidden="true"></svg>
 						<li class="event fixed" id="event-04-1-fixed" data-event-type="交通" data-event-subtype="飞机＋接驳"><div class="event-layout"><div class="event-copy">
 							<div class="event-header"><time class="event-time"
-									datetime="2026-10-04T09:45:00+08:00">09:45 出发</time><span
-									class="event-state">已订 · 航班</span></div>
-							<span class="event-kind">交通 · 飞机＋接驳</span><h4 class="flight">义乌 → 北京 → 通州</h4>
-							<p>KN5908 · 中国联合航空<br>09:45 义乌出发，11:50 抵达北京大兴机场。</p>
-							<p class="minor">机场至通州酒店：接驳方式与耗时待确认。</p>
-						</div><aside class="event-visual" aria-label="交通相关信息"><section class="context-card"><div class="context-kicker">已订航班 · KN5908 · 中国联合航空</div><div class="flight-ticket"><div><strong>09:45</strong><span>义乌</span></div><span class="flight-ticket-arrow">✈</span><div><strong>11:50</strong><span>北京大兴</span></div></div></section><section class="event-map" data-map-key="event-map-1" aria-label="北京大兴机场 → 秋果 S 酒店"><div class="event-map-window"><div class="event-map-canvas" id="event-map-1" data-apple-url="https://maps.apple.com/?saddr=%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%85%B4%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA&amp;daddr=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?saddr=%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%85%B4%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA&amp;daddr=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看北京大兴机场至秋果 S 酒店"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><path d="M45.0 110L455.0 65" stroke="#66665e" stroke-width="2" stroke-dasharray="5 6"/><circle cx="45.0" cy="110" r="13" fill="#24251f"/><text x="45.0" y="114" text-anchor="middle" fill="white" font-size="12">1</text><circle cx="455.0" cy="65" r="13" fill="#24251f"/><text x="455.0" y="69" text-anchor="middle" fill="white" font-size="12">2</text></svg></a></div><div class="event-map-stops"><span><b>1</b>北京大兴机场</span><small>↓ 机场接驳 · 方式待定</small><span><b>2</b>秋果 S 酒店</span></div><div class="event-map-links"><a href="https://maps.apple.com/?saddr=%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%85%B4%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA&amp;daddr=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section></aside></div></li>
+									datetime="2026-10-04T09:45:00+08:00">09:45 出发</time></div><h4 class="flight">飞抵北京，前往通州</h4>
+<ol class="journey"><li class="j-stop"><i class="j-dot"></i><span class="j-place">义乌</span><span class="j-time">09:45</span></li><li class="j-leg"><span class="j-ico">飞</span><span class="j-info"><b>KN5908 · 中国联合航空</b> · 约 2 小时 5 分</span><span class="j-chip">已订</span></li><li class="j-stop"><i class="j-dot"></i><span class="j-place">北京大兴机场</span><span class="j-time">11:50</span></li><li class="j-leg"><span class="j-ico">车</span><span class="j-info">机场接驳至酒店 · 建议打车或网约车</span></li><li class="j-stop j-end"><i class="j-dot"></i><span class="j-place">秋果 S 酒店</span></li></ol>
+						</div><aside class="event-visual" aria-label="交通相关信息"><section class="event-map" data-map-key="event-map-1" aria-label="北京大兴机场 → 秋果 S 酒店"><div class="event-map-window"><div class="event-map-canvas" id="event-map-1" data-apple-url="https://maps.apple.com/?saddr=%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%85%B4%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA&amp;daddr=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?saddr=%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%85%B4%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA&amp;daddr=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看北京大兴机场至秋果 S 酒店"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><path d="M45.0 110L455.0 65" stroke="#66665e" stroke-width="2" stroke-dasharray="5 6"/><circle cx="45.0" cy="110" r="13" fill="#24251f"/><text x="45.0" y="114" text-anchor="middle" fill="white" font-size="12">1</text><circle cx="455.0" cy="65" r="13" fill="#24251f"/><text x="455.0" y="69" text-anchor="middle" fill="white" font-size="12">2</text></svg></a></div><div class="event-map-links"><a href="https://maps.apple.com/?saddr=%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%85%B4%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA&amp;daddr=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section></aside></div></li>
 <li class="event fixed" id="event-04-2-fixed" data-event-type="住" data-event-subtype="酒店入住"><div class="event-layout"><div class="event-copy">
-							<div class="event-header"><span class="event-time">14:00 后</span><span
-									class="event-state">已订 · 连住两晚</span></div>
-							<span class="event-kind">住 · 酒店入住</span><h4>秋果 S 酒店</h4>
-							
-							<details>
-								<summary>入住与酒店权益</summary>
-								<div class="detail-content">
-									<p>北京通州东直门医院环球度假区店<br>翠屏西路西小马庄园 8 号商业楼</p>
-									<p>10/4 14:00 后入住，10/6 14:00 前退房。无早餐；订单含环球接送、魔法袍一套免费使用，班次及使用方式需确认。</p>
-									<p>两晚 ¥731.72 · 住完再付</p>
-								</div>
-							</details>
-						</div><aside class="event-visual" aria-label="住相关信息"><section class="event-map" data-map-key="event-map-2" aria-label="秋果 S 酒店"><div class="event-map-window"><div class="event-map-canvas" id="event-map-2" data-apple-url="https://maps.apple.com/?q=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?q=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看秋果 S 酒店"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><circle cx="250" cy="90" r="13" fill="#24251f"/><text x="250" y="94" text-anchor="middle" fill="white" font-size="12">1</text></svg></a></div><div class="event-map-stops"><span><b>1</b>秋果 S 酒店</span></div><div class="event-map-links"><a href="https://maps.apple.com/?q=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section><section class="context-card"><div class="context-kicker">秋果 S · 连住两晚</div><dl class="context-facts"><div><dt>入住</dt><dd>10/4 · 14:00 后</dd></div><div><dt>退房</dt><dd>10/6 · 14:00 前</dd></div><div><dt>餐食</dt><dd>无早餐</dd></div><div><dt>酒店权益</dt><dd>环球接送、魔法袍一套；使用方式待确认</dd></div></dl></section></aside></div></li>
+							<div class="event-header"><span class="event-time">14:00 后</span></div><h4>入住秋果 S 酒店</h4>
+						</div><aside class="event-visual" aria-label="住相关信息"><section class="event-map" data-map-key="event-map-2" aria-label="秋果 S 酒店"><div class="event-map-window"><div class="event-map-canvas" id="event-map-2" data-apple-url="https://maps.apple.com/?q=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?q=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看秋果 S 酒店"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><circle cx="250" cy="90" r="13" fill="#24251f"/><text x="250" y="94" text-anchor="middle" fill="white" font-size="12">1</text></svg></a></div><div class="event-map-stops"><span><b>1</b>秋果 S 酒店</span></div><div class="event-map-links"><a href="https://maps.apple.com/?q=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section></aside></div></li>
 <li class="event suggested" id="event-04-3-suggested" data-event-type="吃" data-event-subtype="晚餐候选"><div class="event-layout"><div class="event-copy">
-							<div class="event-header"><span class="event-time">傍晚</span><span class="event-state">二选一 · 未预订</span></div>
-							<span class="event-kind">吃 · 晚餐候选</span><h4>涮肉，或一碗炸酱面</h4>
-							
-							<details>
-								<summary>看看收藏的餐厅</summary>
-								<div class="detail-content">
-									<p>涮肉：南门涮肉（通州大船店）</p>
-									<p>炸酱面：方砖厂69号（梨园贵友店）／方砖厂69号（通州万达广场西门金街B区店）</p>
-									<p>以上为替代选择，营业、排队及交通待出发前确认。</p>
-								</div>
-							</details>
-						</div><aside class="event-visual" aria-label="吃相关信息"><section class="context-card"><div class="place-choices"><a href="https://uri.amap.com/search?keyword=%E5%8D%97%E9%97%A8%E6%B6%AE%E8%82%89%EF%BC%88%E9%80%9A%E5%B7%9E%E5%A4%A7%E8%88%B9%E5%BA%97%EF%BC%89&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">南门涮肉（通州大船店） ↗</a><a href="https://uri.amap.com/search?keyword=%E6%96%B9%E7%A0%96%E5%8E%8269%E5%8F%B7%EF%BC%88%E6%A2%A8%E5%9B%AD%E8%B4%B5%E5%8F%8B%E5%BA%97%EF%BC%89&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">方砖厂69号（梨园贵友店） ↗</a><a href="https://uri.amap.com/search?keyword=%E6%96%B9%E7%A0%96%E5%8E%8269%E5%8F%B7%EF%BC%88%E9%80%9A%E5%B7%9E%E4%B8%87%E8%BE%BE%E5%B9%BF%E5%9C%BA%E8%A5%BF%E9%97%A8%E9%87%91%E8%A1%97B%E5%8C%BA%E5%BA%97%EF%BC%89&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">方砖厂69号（通州万达广场西门金街B区店） ↗</a></div><p class="context-note">营业与排队待核实</p></section></aside></div></li>
+							<div class="event-header"><span class="event-time">傍晚</span></div><h4>涮肉，或一碗炸酱面</h4>
+						</div><aside class="event-visual" aria-label="吃相关信息"><section class="context-card"><div class="place-choices"><a href="https://uri.amap.com/search?keyword=%E5%8D%97%E9%97%A8%E6%B6%AE%E8%82%89%EF%BC%88%E9%80%9A%E5%B7%9E%E5%A4%A7%E8%88%B9%E5%BA%97%EF%BC%89&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">南门涮肉（通州大船店） ↗</a><a href="https://uri.amap.com/search?keyword=%E6%96%B9%E7%A0%96%E5%8E%8269%E5%8F%B7%EF%BC%88%E6%A2%A8%E5%9B%AD%E8%B4%B5%E5%8F%8B%E5%BA%97%EF%BC%89&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">方砖厂69号（梨园贵友店） ↗</a><a href="https://uri.amap.com/search?keyword=%E6%96%B9%E7%A0%96%E5%8E%8269%E5%8F%B7%EF%BC%88%E9%80%9A%E5%B7%9E%E4%B8%87%E8%BE%BE%E5%B9%BF%E5%9C%BA%E8%A5%BF%E9%97%A8%E9%87%91%E8%A1%97B%E5%8C%BA%E5%BA%97%EF%BC%89&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">方砖厂69号（通州万达广场西门金街B区店） ↗</a></div></section></aside></div></li>
 <li class="event suggested" id="event-04-4-suggested" data-event-type="准备与休息" data-event-subtype="养足精神"><div class="event-layout"><div class="event-copy">
-							<div class="event-header"><span class="event-time">晚上</span><span class="event-state">待办</span></div>
-							<span class="event-kind">准备与休息 · 出发准备</span><h4>证件与次日出发</h4>
+							<div class="event-header"><span class="event-time">晚上</span></div><h4>备好证件，早点休息</h4>
 							
-						</div><aside class="event-visual" aria-label="准备与休息相关信息"><section class="context-card"><ul class="context-checklist"><li>两人身份证件</li><li>第二天随身物品</li><li>确认酒店接送预约方式</li></ul></section></aside></div></li>
+						</div><aside class="event-visual" aria-label="准备与休息相关信息"><section class="context-card"><ul class="context-checklist"><li>两人身份证件</li><li>第二天随身物品</li></ul></section></aside></div></li>
 					</ol>
 				</article>
 				<article class="day" id="day-05" aria-label="10月5日行程">
 					<div class="day-heading">
-						<div class="day-date-left"><div class="day-number">05<small>十月</small></div><div class="day-meta">周一<br>第 02 天</div></div><div class="day-date-context"><div class="daily-weather" data-date="2026-10-05" aria-label="2026年10月5日北京市参考天气"><span class="weather-condition">大部晴朗无云 · 11–26°C</span><span class="weather-rain">日降水概率 0%</span><small>Apple 天气 · 北京市参考<br>9/27 16:22 查询 · 非实时</small></div></div>
+						<div class="day-date-left"><div class="day-number">Day 2</div><div class="day-meta">2026 年 10 月 5 日 · 星期一</div></div><div class="day-date-context"><div class="daily-weather" data-date="2026-10-05" aria-label="2026年10月5日北京市参考天气"><span class="weather-condition">大部晴朗无云 · 11–26°C</span><span class="weather-rain">日降水概率 0%</span></div></div>
 					</div>
 					
 					<ol class="events" role="list"><svg class="rail" aria-hidden="true"></svg>
-						<li class="event pending" id="event-05-1-pending" data-event-type="交通" data-event-subtype="酒店接送"><div class="event-layout"><div class="event-copy">
-							<div class="event-header"><span class="event-time">出发前</span><span class="event-state">待确认 ·
-									酒店接送</span></div>
-							<span class="event-kind">交通 · 酒店接送</span><h4>确认去程与回程班次</h4>
-							
-						</div><aside class="event-visual" aria-label="交通相关信息"><section class="event-map" data-map-key="event-map-3" aria-label="秋果 S 酒店 → 北京环球度假区"><div class="event-map-window"><div class="event-map-canvas" id="event-map-3" data-apple-url="https://maps.apple.com/?saddr=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97&amp;daddr=%E5%8C%97%E4%BA%AC%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?saddr=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97&amp;daddr=%E5%8C%97%E4%BA%AC%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看秋果 S 酒店至北京环球度假区"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><path d="M45.0 110L455.0 65" stroke="#66665e" stroke-width="2" stroke-dasharray="5 6"/><circle cx="45.0" cy="110" r="13" fill="#24251f"/><text x="45.0" y="114" text-anchor="middle" fill="white" font-size="12">1</text><circle cx="455.0" cy="65" r="13" fill="#24251f"/><text x="455.0" y="69" text-anchor="middle" fill="white" font-size="12">2</text></svg></a></div><div class="event-map-stops"><span><b>1</b>秋果 S 酒店</span><small>↓ 酒店接送 · 班次待确认</small><span><b>2</b>北京环球度假区</span></div><div class="event-map-links"><a href="https://maps.apple.com/?saddr=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97&amp;daddr=%E5%8C%97%E4%BA%AC%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E5%8C%97%E4%BA%AC%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section><section class="context-card"><dl class="context-facts"><div><dt>去程</dt><dd>预约方式、上车点、出发班次</dd></div><div><dt>回程</dt><dd>集合点、末班时间</dd></div></dl></section></aside></div></li>
-<li class="event pending" id="event-05-2-pending" data-event-type="玩" data-event-subtype="园区游玩"><div class="event-layout"><div class="event-copy">
-							<div class="event-header"><span class="event-time">全天</span><span class="event-state">已付款 ·
-									出票待核</span></div>
-							<span class="event-kind">玩 · 园区游玩</span><h4>北京环球度假区</h4>
+						<li class="event pending" id="event-05-2-pending" data-event-type="玩" data-event-subtype="园区游玩"><div class="event-layout"><div class="event-copy">
+							<div class="event-header"><span class="event-time">全天</span></div><h4>环球影城玩一整天</h4>
 							<p>双人一日票 · 10 月 5 日入园</p>
-							
-							<details>
-								<summary>门票与入园准备</summary>
-								<div class="detail-content">
-									<p>实付 ¥1,067.20。现有截图显示“出票中”，需在飞猪核实最新出票状态。</p>
-									<p>订单显示凭身份证件使用，带好两人证件。开闭园时间、入园规则及演出场次以官方当日信息为准。</p>
-								</div>
-							</details>
-						</div><aside class="event-visual" aria-label="玩相关信息"><section class="event-map" data-map-key="event-map-4" aria-label="北京环球度假区"><div class="event-map-window"><div class="event-map-canvas" id="event-map-4" data-apple-url="https://maps.apple.com/?q=%E5%8C%97%E4%BA%AC%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?q=%E5%8C%97%E4%BA%AC%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看北京环球度假区"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><circle cx="250" cy="90" r="13" fill="#24251f"/><text x="250" y="94" text-anchor="middle" fill="white" font-size="12">1</text></svg></a></div><div class="event-map-stops"><span><b>1</b>北京环球度假区</span></div><div class="event-map-links"><a href="https://maps.apple.com/?q=%E5%8C%97%E4%BA%AC%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E5%8C%97%E4%BA%AC%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section><section class="context-card"><div class="context-kicker">10 月 5 日 · 双人一日票</div><dl class="context-facts"><div><dt>入园</dt><dd>带好两人身份证件</dd></div><div><dt>票务</dt><dd>已付款；最新出票状态待核实</dd></div><div><dt>园区安排</dt><dd>开闭园、项目与演出场次按官方当日信息</dd></div></dl></section><div class="photo-mount" data-photo-album="universal"></div></aside></div></li>
-<li class="event suggested" id="event-05-4-suggested" data-event-type="交通" data-event-subtype="接送返店"><div class="event-layout"><div class="event-copy">
-							<div class="event-header"><span class="event-time">晚上</span><span class="event-state">接送班次待确认</span></div>
-							<span class="event-kind">交通 · 接送返店</span><h4>环球 → 酒店</h4>
-							
-						</div><aside class="event-visual" aria-label="交通相关信息"><section class="context-card"><div class="context-kicker">环球 → 秋果 S</div><dl class="context-facts"><div><dt>方式</dt><dd>酒店接送 · 需确认</dd></div><div><dt>离园</dt><dd>结合回程班次与体力</dd></div><div><dt>上车点</dt><dd>待酒店确认</dd></div></dl></section></aside></div></li>
-					</ol>
+						</div><aside class="event-visual" aria-label="玩相关信息"><section class="event-map" data-map-key="event-map-4" aria-label="北京环球度假区"><div class="event-map-window"><div class="event-map-canvas" id="event-map-4" data-apple-url="https://maps.apple.com/?q=%E5%8C%97%E4%BA%AC%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?q=%E5%8C%97%E4%BA%AC%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看北京环球度假区"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><circle cx="250" cy="90" r="13" fill="#24251f"/><text x="250" y="94" text-anchor="middle" fill="white" font-size="12">1</text></svg></a></div><div class="event-map-stops"><span><b>1</b>北京环球度假区</span></div><div class="event-map-links"><a href="https://maps.apple.com/?q=%E5%8C%97%E4%BA%AC%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E5%8C%97%E4%BA%AC%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section><div class="photo-mount" data-photo-album="universal"></div></aside></div></li>
+</ol>
 				</article>
 				<article class="day" id="day-06" aria-label="10月6日行程">
 					<div class="day-heading">
-						<div class="day-date-left"><div class="day-number">06<small>十月</small></div><div class="day-meta">周二<br>第 03 天</div></div><div class="day-date-context"><div class="daily-weather" data-date="2026-10-06" aria-label="2026年10月6日北京市参考天气"><span class="weather-condition">大部多云 · 12–22°C</span><span class="weather-rain">日降水概率 0%</span><small>Apple 天气 · 北京市参考<br>9/27 16:22 查询 · 非实时</small></div></div>
+						<div class="day-date-left"><div class="day-number">Day 3</div><div class="day-meta">2026 年 10 月 6 日 · 星期二</div></div><div class="day-date-context"><div class="daily-weather" data-date="2026-10-06" aria-label="2026年10月6日北京市参考天气"><span class="weather-condition">大部多云 · 12–22°C</span><span class="weather-rain">日降水概率 0%</span></div></div>
 					</div>
 					
 					<ol class="events" role="list"><svg class="rail" aria-hidden="true"></svg>
 						<li class="event suggested" id="event-06-1-suggested" data-event-type="交通" data-event-subtype="换酒店"><div class="event-layout"><div class="event-copy">
-							<div class="event-header"><span class="event-time">上午</span><span class="event-state">交通方式待确认</span></div>
-							<span class="event-kind">交通 · 换酒店</span><h4>退房，前往六里桥</h4>
+							<div class="event-header"><span class="event-time">上午</span></div><h4>退房，前往六里桥</h4><ol class="journey"><li class="j-stop"><i class="j-dot"></i><span class="j-place">秋果 S 酒店</span><span class="j-note">最晚 14:00 退房</span></li><li class="j-leg"><span class="j-ico">车</span><span class="j-info">跨区转移 · 通州 → 六里桥 · 建议打车</span></li><li class="j-stop j-end"><i class="j-dot"></i><span class="j-place">月屋酒店</span><span class="j-note">12:00 后可入住</span></li></ol>
 							
 							
-						</div><aside class="event-visual" aria-label="交通相关信息"><section class="event-map" data-map-key="event-map-5" aria-label="秋果 S 酒店 → 月屋酒店"><div class="event-map-window"><div class="event-map-canvas" id="event-map-5" data-apple-url="https://maps.apple.com/?saddr=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97&amp;daddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?saddr=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97&amp;daddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看秋果 S 酒店至月屋酒店"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><path d="M45.0 110L455.0 65" stroke="#66665e" stroke-width="2" stroke-dasharray="5 6"/><circle cx="45.0" cy="110" r="13" fill="#24251f"/><text x="45.0" y="114" text-anchor="middle" fill="white" font-size="12">1</text><circle cx="455.0" cy="65" r="13" fill="#24251f"/><text x="455.0" y="69" text-anchor="middle" fill="white" font-size="12">2</text></svg></a></div><div class="event-map-stops"><span><b>1</b>秋果 S 酒店</span><small>↓ 跨区转移 · 方式待定</small><span><b>2</b>月屋酒店</span></div><div class="event-map-links"><a href="https://maps.apple.com/?saddr=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97&amp;daddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section></aside></div></li>
-<li class="event fixed" id="event-06-hotel-fixed" data-event-type="住" data-event-subtype="入住／寄存"><div class="event-layout"><div class="event-copy"><div class="event-header"><span class="event-time">抵店后 · 12:00 后可入住</span><span class="event-state">已订 · 一晚</span></div><span class="event-kind">住 · 入住／寄存</span><h4>月屋酒店，安顿行李</h4><details>
-								<summary>换酒店怎么安排</summary>
-								<div class="detail-content">
-									<p>秋果 S 最晚 14:00 退房；建议上午出发。月屋订单入住时间为 12:00 后，提前到店需确认寄存。</p>
-									<p>月屋酒店（北京西站六里桥地铁站店）<br>广安路六里桥甲 1 号院 1 号楼 1 层</p>
-									<p>10/6–10/7 一晚 ¥349.60 · 住完再付 · 无早餐。10/7 12:00 前退房。</p>
-								</div>
-							</details></div><aside class="event-visual" aria-label="住相关信息"><section class="event-map" data-map-key="event-map-6" aria-label="月屋酒店"><div class="event-map-window"><div class="event-map-canvas" id="event-map-6" data-apple-url="https://maps.apple.com/?q=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?q=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看月屋酒店"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><circle cx="250" cy="90" r="13" fill="#24251f"/><text x="250" y="94" text-anchor="middle" fill="white" font-size="12">1</text></svg></a></div><div class="event-map-stops"><span><b>1</b>月屋酒店</span></div><div class="event-map-links"><a href="https://maps.apple.com/?q=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section><section class="context-card"><div class="context-kicker">月屋 · 六里桥</div><dl class="context-facts"><div><dt>入住</dt><dd>10/6 · 12:00 后</dd></div><div><dt>退房</dt><dd>10/7 · 12:00 前</dd></div><div><dt>早餐</dt><dd>不含早餐</dd></div><div><dt>行李</dt><dd>提前寄存需酒店确认</dd></div></dl></section></aside></div></li>
+						</div><aside class="event-visual" aria-label="交通相关信息"><section class="event-map" data-map-key="event-map-5" aria-label="秋果 S 酒店 → 月屋酒店"><div class="event-map-window"><div class="event-map-canvas" id="event-map-5" data-apple-url="https://maps.apple.com/?saddr=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97&amp;daddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?saddr=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97&amp;daddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看秋果 S 酒店至月屋酒店"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><path d="M45.0 110L455.0 65" stroke="#66665e" stroke-width="2" stroke-dasharray="5 6"/><circle cx="45.0" cy="110" r="13" fill="#24251f"/><text x="45.0" y="114" text-anchor="middle" fill="white" font-size="12">1</text><circle cx="455.0" cy="65" r="13" fill="#24251f"/><text x="455.0" y="69" text-anchor="middle" fill="white" font-size="12">2</text></svg></a></div><div class="event-map-links"><a href="https://maps.apple.com/?saddr=%E7%A7%8B%E6%9E%9CS%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%8C%BB%E9%99%A2%E7%8E%AF%E7%90%83%E5%BA%A6%E5%81%87%E5%8C%BA%E5%BA%97&amp;daddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section></aside></div></li>
+<li class="event fixed" id="event-06-hotel-fixed" data-event-type="住" data-event-subtype="入住／寄存"><div class="event-layout"><div class="event-copy"><div class="event-header"><span class="event-time">抵店后 · 12:00 后可入住</span></div><h4>月屋酒店，安顿行李</h4></div><aside class="event-visual" aria-label="住相关信息"><section class="event-map" data-map-key="event-map-6" aria-label="月屋酒店"><div class="event-map-window"><div class="event-map-canvas" id="event-map-6" data-apple-url="https://maps.apple.com/?q=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?q=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看月屋酒店"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><circle cx="250" cy="90" r="13" fill="#24251f"/><text x="250" y="94" text-anchor="middle" fill="white" font-size="12">1</text></svg></a></div><div class="event-map-stops"><span><b>1</b>月屋酒店</span></div><div class="event-map-links"><a href="https://maps.apple.com/?q=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section></aside></div></li>
 <li class="event suggested" id="event-06-2-suggested" data-event-type="玩" data-event-subtype="街区漫游"><div class="event-layout"><div class="event-copy">
-							<div class="event-header"><span class="event-time">午后</span><span class="event-state">路线可选</span></div>
-							<span class="event-kind">玩 · 街区漫游</span><h4>什刹海 → 烟袋斜街 → 鼓楼</h4>
-							
-							
-							
-							
-							<details>
-								<summary>小吃与可选延伸</summary>
-								<div class="detail-content">
-									<p>茶汤李（鼓楼店）／茶汤李（鼓楼东大街店）或茶饼斋（鼓楼店），选一家停下来吃。</p>
-									<p>如果第一天没吃涮肉，可考虑南门涮肉（后海店）替换午餐，不叠加大餐。</p>
-									<p>南锣鼓巷为可选延伸；交通方式待核算。</p>
-									
-								</div>
-							</details>
-						</div><aside class="event-visual" aria-label="玩相关信息"><section class="event-map" data-map-key="event-map-7" aria-label="月屋酒店 → 什刹海 → 烟袋斜街 → 鼓楼"><div class="event-map-window"><div class="event-map-canvas" id="event-map-7" data-apple-url="https://maps.apple.com/?saddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97&amp;daddr=%E9%BC%93%E6%A5%BC" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?saddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97&amp;daddr=%E9%BC%93%E6%A5%BC" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看月屋酒店至什刹海至烟袋斜街至鼓楼"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><path d="M45.0 110L181.66666666666666 65" stroke="#66665e" stroke-width="2" stroke-dasharray="5 6"/><path d="M181.66666666666666 65L318.3333333333333 110" stroke="#66665e" stroke-width="2" stroke-dasharray="5 6"/><path d="M318.3333333333333 110L455.0 65" stroke="#66665e" stroke-width="2" stroke-dasharray="5 6"/><circle cx="45.0" cy="110" r="13" fill="#24251f"/><text x="45.0" y="114" text-anchor="middle" fill="white" font-size="12">1</text><circle cx="181.66666666666666" cy="65" r="13" fill="#24251f"/><text x="181.66666666666666" y="69" text-anchor="middle" fill="white" font-size="12">2</text><circle cx="318.3333333333333" cy="110" r="13" fill="#24251f"/><text x="318.3333333333333" y="114" text-anchor="middle" fill="white" font-size="12">3</text><circle cx="455.0" cy="65" r="13" fill="#24251f"/><text x="455.0" y="69" text-anchor="middle" fill="white" font-size="12">4</text></svg></a></div><div class="event-map-stops"><span><b>1</b>月屋酒店</span><small>↓ 前往什刹海 · 方式待定</small><span><b>2</b>什刹海</span><small>↓ 步行 · 路线待导航确认</small><span><b>3</b>烟袋斜街</span><small>↓ 步行 · 路线待导航确认</small><span><b>4</b>鼓楼</span></div><div class="event-map-links"><a href="https://maps.apple.com/?saddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97&amp;daddr=%E9%BC%93%E6%A5%BC" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E9%BC%93%E6%A5%BC&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section><section class="context-card"><div class="place-choices"><a href="https://uri.amap.com/search?keyword=%E8%8C%B6%E6%B1%A4%E6%9D%8E%EF%BC%88%E9%BC%93%E6%A5%BC%E5%BA%97%EF%BC%89&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">茶汤李（鼓楼店） ↗</a><a href="https://uri.amap.com/search?keyword=%E8%8C%B6%E6%B1%A4%E6%9D%8E%EF%BC%88%E9%BC%93%E6%A5%BC%E4%B8%9C%E5%A4%A7%E8%A1%97%E5%BA%97%EF%BC%89&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">茶汤李（鼓楼东大街店） ↗</a><a href="https://uri.amap.com/search?keyword=%E8%8C%B6%E9%A5%BC%E6%96%8B%EF%BC%88%E9%BC%93%E6%A5%BC%E5%BA%97%EF%BC%89&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">茶饼斋（鼓楼店） ↗</a><a href="https://uri.amap.com/search?keyword=%E5%8D%97%E9%97%A8%E6%B6%AE%E8%82%89%EF%BC%88%E5%90%8E%E6%B5%B7%E5%BA%97%EF%BC%89&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">南门涮肉（后海店） ↗</a></div></section><div class="photo-mount" data-photo-album="shichahai"></div><div class="photo-mount" data-photo-album="yandai"></div><div class="photo-mount" data-photo-album="gulou"></div><details class="optional-visual"><summary>可选延伸 · 南锣鼓巷</summary><div class="photo-mount" data-photo-album="nanluo"></div></details></aside></div></li>
+							<div class="event-header"><span class="event-time">午后</span></div><h4>胡同漫步，什刹海到鼓楼</h4>
+						</div><aside class="event-visual" aria-label="玩相关信息"><section class="event-map" data-map-key="event-map-7" aria-label="月屋酒店 → 什刹海 → 烟袋斜街 → 鼓楼"><div class="event-map-window"><div class="event-map-canvas" id="event-map-7" data-apple-url="https://maps.apple.com/?saddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97&amp;daddr=%E9%BC%93%E6%A5%BC" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?saddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97&amp;daddr=%E9%BC%93%E6%A5%BC" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看月屋酒店至什刹海至烟袋斜街至鼓楼"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><path d="M45.0 110L181.66666666666666 65" stroke="#66665e" stroke-width="2" stroke-dasharray="5 6"/><path d="M181.66666666666666 65L318.3333333333333 110" stroke="#66665e" stroke-width="2" stroke-dasharray="5 6"/><path d="M318.3333333333333 110L455.0 65" stroke="#66665e" stroke-width="2" stroke-dasharray="5 6"/><circle cx="45.0" cy="110" r="13" fill="#24251f"/><text x="45.0" y="114" text-anchor="middle" fill="white" font-size="12">1</text><circle cx="181.66666666666666" cy="65" r="13" fill="#24251f"/><text x="181.66666666666666" y="69" text-anchor="middle" fill="white" font-size="12">2</text><circle cx="318.3333333333333" cy="110" r="13" fill="#24251f"/><text x="318.3333333333333" y="114" text-anchor="middle" fill="white" font-size="12">3</text><circle cx="455.0" cy="65" r="13" fill="#24251f"/><text x="455.0" y="69" text-anchor="middle" fill="white" font-size="12">4</text></svg></a></div><div class="event-map-stops"><span><b>1</b>月屋酒店</span><span><b>2</b>什刹海</span><small>↓ 步行</small><span><b>3</b>烟袋斜街</span><small>↓ 步行</small><span><b>4</b>鼓楼</span></div><div class="event-map-links"><a href="https://maps.apple.com/?saddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97&amp;daddr=%E9%BC%93%E6%A5%BC" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E9%BC%93%E6%A5%BC&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section><section class="context-card"><div class="place-choices"><a href="https://uri.amap.com/search?keyword=%E8%8C%B6%E6%B1%A4%E6%9D%8E%EF%BC%88%E9%BC%93%E6%A5%BC%E5%BA%97%EF%BC%89&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">茶汤李（鼓楼店） ↗</a><a href="https://uri.amap.com/search?keyword=%E8%8C%B6%E6%B1%A4%E6%9D%8E%EF%BC%88%E9%BC%93%E6%A5%BC%E4%B8%9C%E5%A4%A7%E8%A1%97%E5%BA%97%EF%BC%89&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">茶汤李（鼓楼东大街店） ↗</a><a href="https://uri.amap.com/search?keyword=%E8%8C%B6%E9%A5%BC%E6%96%8B%EF%BC%88%E9%BC%93%E6%A5%BC%E5%BA%97%EF%BC%89&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">茶饼斋（鼓楼店） ↗</a><a href="https://uri.amap.com/search?keyword=%E5%8D%97%E9%97%A8%E6%B6%AE%E8%82%89%EF%BC%88%E5%90%8E%E6%B5%B7%E5%BA%97%EF%BC%89&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">南门涮肉（后海店） ↗</a></div></section><div class="photo-mount" data-photo-album="shichahai"></div><div class="photo-mount" data-photo-album="yandai"></div><div class="photo-mount" data-photo-album="gulou"></div></aside></div></li>
 <li class="event suggested" id="event-06-3-suggested" data-event-type="交通" data-event-subtype="前往演出"><div class="event-layout"><div class="event-copy">
-							<div class="event-header"><span class="event-time">演出前</span><span class="event-state">交通方式待确认</span></div>
-							<span class="event-kind">交通 · 前往演出</span><h4>前往五棵松</h4>
+							<div class="event-header"><span class="event-time">演出前</span></div><h4>前往五棵松</h4><ol class="journey"><li class="j-stop"><i class="j-dot"></i><span class="j-place">鼓楼一带</span></li><li class="j-leg"><span class="j-ico">车</span><span class="j-info">前往五棵松 · 建议地铁 1 号线直达</span></li><li class="j-stop j-end"><i class="j-dot"></i><span class="j-place">五棵松 · 华熙 LIVE</span><span class="j-note">19:00 开演 · 留出晚餐与安检余量</span></li></ol>
 							
-						</div><aside class="event-visual" aria-label="交通相关信息"><section class="event-map" data-map-key="event-map-8" aria-label="鼓楼 → 五棵松 · 演唱会"><div class="event-map-window"><div class="event-map-canvas" id="event-map-8" data-apple-url="https://maps.apple.com/?saddr=%E9%BC%93%E6%A5%BC&amp;daddr=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?saddr=%E9%BC%93%E6%A5%BC&amp;daddr=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看鼓楼至五棵松 · 演唱会"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><path d="M45.0 110L455.0 65" stroke="#66665e" stroke-width="2" stroke-dasharray="5 6"/><circle cx="45.0" cy="110" r="13" fill="#24251f"/><text x="45.0" y="114" text-anchor="middle" fill="white" font-size="12">1</text><circle cx="455.0" cy="65" r="13" fill="#24251f"/><text x="455.0" y="69" text-anchor="middle" fill="white" font-size="12">2</text></svg></a></div><div class="event-map-stops"><span><b>1</b>鼓楼</span><small>↓ 市内接驳 · 方式待定</small><span><b>2</b>五棵松 · 演唱会</span></div><div class="event-map-links"><a href="https://maps.apple.com/?saddr=%E9%BC%93%E6%A5%BC&amp;daddr=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section><section class="context-card"><p>给交通、晚餐和安检入场留出余量；具体出发时刻待路线与入场通知确认。</p></section></aside></div></li>
+						</div><aside class="event-visual" aria-label="交通相关信息"><section class="event-map" data-map-key="event-map-8" aria-label="鼓楼 → 五棵松 · 演唱会"><div class="event-map-window"><div class="event-map-canvas" id="event-map-8" data-apple-url="https://maps.apple.com/?saddr=%E9%BC%93%E6%A5%BC&amp;daddr=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?saddr=%E9%BC%93%E6%A5%BC&amp;daddr=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看鼓楼至五棵松 · 演唱会"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><path d="M45.0 110L455.0 65" stroke="#66665e" stroke-width="2" stroke-dasharray="5 6"/><circle cx="45.0" cy="110" r="13" fill="#24251f"/><text x="45.0" y="114" text-anchor="middle" fill="white" font-size="12">1</text><circle cx="455.0" cy="65" r="13" fill="#24251f"/><text x="455.0" y="69" text-anchor="middle" fill="white" font-size="12">2</text></svg></a></div><div class="event-map-links"><a href="https://maps.apple.com/?saddr=%E9%BC%93%E6%A5%BC&amp;daddr=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section><section class="context-card"><p>给交通、晚餐和安检入场留出余量。</p></section></aside></div></li>
 <li class="event fixed" id="event-06-4-fixed" data-event-type="玩" data-event-subtype="演唱会"><div class="event-layout"><div class="event-copy">
 							<div class="event-header"><time class="event-time"
-									datetime="2026-10-06T19:00:00+08:00">19:00</time><span class="event-state">已订 ·
-									演唱会</span></div>
-							<span class="event-kind">玩 · 演唱会</span><h4>徐良「时间折叠」</h4>
+									datetime="2026-10-06T19:00:00+08:00">19:00</time></div><h4>看徐良「时间折叠」演唱会</h4>
 							<p>华熙生物·润百颜 ECM 中心</p>
-							
-							<details>
-								<summary>演出与入场信息</summary>
-								<div class="detail-content">
-									<p>看台 ¥680 × 2，合计 ¥1,360，订单显示预订成功、实名制观演。</p>
-									<p>入场方式、开放入场时间、具体入口以猫眼票夹及主办方通知为准。地图收藏的“南1门”不代表已确认入场口。</p>
-								</div>
-							</details>
-						</div><aside class="event-visual" aria-label="玩相关信息"><section class="context-card"><div class="context-kicker">徐良「时间折叠」</div><dl class="context-facts"><div><dt>开演</dt><dd>10/6 · 19:00</dd></div><div><dt>场馆</dt><dd>华熙生物·润百颜 ECM 中心</dd></div><div><dt>席位</dt><dd>看台 · 以票夹为准</dd></div><div><dt>入场</dt><dd>实名制；入口与开放时间待确认</dd></div></dl></section><section class="event-map" data-map-key="event-map-9" aria-label="五棵松 · 演唱会"><div class="event-map-window"><div class="event-map-canvas" id="event-map-9" data-apple-url="https://maps.apple.com/?q=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?q=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看五棵松 · 演唱会"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><circle cx="250" cy="90" r="13" fill="#24251f"/><text x="250" y="94" text-anchor="middle" fill="white" font-size="12">1</text></svg></a></div><div class="event-map-stops"><span><b>1</b>五棵松 · 演唱会</span></div><div class="event-map-links"><a href="https://maps.apple.com/?q=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section><div class="photo-mount" data-photo-album="wukesong"></div></aside></div></li>
-<li class="event suggested" id="event-06-5-suggested" data-event-type="交通" data-event-subtype="散场返店"><div class="event-layout"><div class="event-copy">
-							<div class="event-header"><span class="event-time">演出后</span><span class="event-state">返店交通待确认</span></div>
-							<span class="event-kind">交通 · 散场返店</span><h4>五棵松 → 月屋酒店</h4>
-							<p>散场时间与返店交通待确认。</p>
-						</div><aside class="event-visual" aria-label="交通相关信息"><section class="event-map" data-map-key="event-map-10" aria-label="五棵松 · 演唱会 → 月屋酒店"><div class="event-map-window"><div class="event-map-canvas" id="event-map-10" data-apple-url="https://maps.apple.com/?saddr=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83&amp;daddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?saddr=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83&amp;daddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看五棵松 · 演唱会至月屋酒店"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><path d="M45.0 110L455.0 65" stroke="#66665e" stroke-width="2" stroke-dasharray="5 6"/><circle cx="45.0" cy="110" r="13" fill="#24251f"/><text x="45.0" y="114" text-anchor="middle" fill="white" font-size="12">1</text><circle cx="455.0" cy="65" r="13" fill="#24251f"/><text x="455.0" y="69" text-anchor="middle" fill="white" font-size="12">2</text></svg></a></div><div class="event-map-stops"><span><b>1</b>五棵松 · 演唱会</span><small>↓ 返店交通 · 方式待定</small><span><b>2</b>月屋酒店</span></div><div class="event-map-links"><a href="https://maps.apple.com/?saddr=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83&amp;daddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section></aside></div></li>
-					</ol>
+						</div><aside class="event-visual" aria-label="玩相关信息"><section class="event-map" data-map-key="event-map-9" aria-label="五棵松 · 演唱会"><div class="event-map-window"><div class="event-map-canvas" id="event-map-9" data-apple-url="https://maps.apple.com/?q=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?q=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看五棵松 · 演唱会"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><circle cx="250" cy="90" r="13" fill="#24251f"/><text x="250" y="94" text-anchor="middle" fill="white" font-size="12">1</text></svg></a></div><div class="event-map-stops"><span><b>1</b>五棵松 · 演唱会</span></div><div class="event-map-links"><a href="https://maps.apple.com/?q=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9%C2%B7%E6%B6%A6%E7%99%BE%E9%A2%9CECM%E4%B8%AD%E5%BF%83&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section><div class="photo-mount" data-photo-album="wukesong"></div></aside></div></li>
+</ol>
 				</article>
 				<article class="day" id="day-07" aria-label="10月7日行程">
 					<div class="day-heading">
-						<div class="day-date-left"><div class="day-number">07<small>十月</small></div><div class="day-meta">周三<br>第 04 天</div></div><div class="day-date-context"><div class="daily-weather" data-date="2026-10-07" aria-label="2026年10月7日北京市参考天气"><span class="weather-condition">天气待更新</span><span class="weather-rain">尚未进入本次预报范围</span><small>Apple 天气 · 北京市参考<br>9/27 16:22 查询 · 非实时</small></div></div>
+						<div class="day-date-left"><div class="day-number">Day 4</div><div class="day-meta">2026 年 10 月 7 日 · 星期三</div></div><div class="day-date-context"><div class="daily-weather" data-date="2026-10-07" aria-label="2026年10月7日北京市参考天气"><span class="weather-condition">天气待更新</span></div></div>
 					</div>
 					
 					<ol class="events" role="list"><svg class="rail" aria-hidden="true"></svg>
 						<li class="event suggested" id="event-07-1-suggested" data-event-type="吃" data-event-subtype="早餐与退房"><div class="event-layout"><div class="event-copy">
-							<div class="event-header"><span class="event-time">上午</span><span class="event-state">早餐待选</span></div>
-							<span class="event-kind">吃 · 早餐与退房</span><h4>早餐与退房</h4>
+							<div class="event-header"><span class="event-time">上午</span></div><h4>早餐后办理退房</h4>
 							
 						</div><aside class="event-visual" aria-label="吃相关信息"><section class="context-card"><div class="place-choices"><a href="https://uri.amap.com/search?keyword=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97+%E9%99%84%E8%BF%91%E6%97%A9%E9%A4%90&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">月屋酒店 北京西站六里桥地铁站店 附近早餐 ↗</a></div></section><section class="context-card"><ul class="context-checklist"><li>吃早餐、收拾行李</li><li>办理退房；订单最晚 12:00</li><li>按最终机场交通方案提前出发</li></ul></section></aside></div></li>
 <li class="event pending" id="event-07-2-pending" data-event-type="交通" data-event-subtype="接驳＋飞机"><div class="event-layout"><div class="event-copy">
-							<div class="event-header"><span class="event-time">上午出发 · 15:25 抵义乌</span><span class="event-state">航班已订 · 接驳待确认</span></div>
-							<span class="event-kind">交通 · 接驳＋飞机</span><h4>六里桥 → 大兴机场 → 义乌</h4>
-							<p>酒店出发时刻及机场接驳方式待确认。</p><p>CZ8960 · 中国南方航空<br>13:15 北京大兴机场出发，15:25 抵达义乌。</p>
-						</div><aside class="event-visual" aria-label="交通相关信息"><section class="event-map" data-map-key="event-map-11" aria-label="月屋酒店 → 北京大兴机场"><div class="event-map-window"><div class="event-map-canvas" id="event-map-11" data-apple-url="https://maps.apple.com/?saddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97&amp;daddr=%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%85%B4%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?saddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97&amp;daddr=%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%85%B4%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看月屋酒店至北京大兴机场"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><path d="M45.0 110L455.0 65" stroke="#66665e" stroke-width="2" stroke-dasharray="5 6"/><circle cx="45.0" cy="110" r="13" fill="#24251f"/><text x="45.0" y="114" text-anchor="middle" fill="white" font-size="12">1</text><circle cx="455.0" cy="65" r="13" fill="#24251f"/><text x="455.0" y="69" text-anchor="middle" fill="white" font-size="12">2</text></svg></a></div><div class="event-map-stops"><span><b>1</b>月屋酒店</span><small>↓ 机场接驳 · 方式待定</small><span><b>2</b>北京大兴机场</span></div><div class="event-map-links"><a href="https://maps.apple.com/?saddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97&amp;daddr=%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%85%B4%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%85%B4%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section><section class="context-card"><div class="context-kicker">已订航班 · CZ8960 · 中国南方航空</div><div class="flight-ticket"><div><strong>13:15</strong><span>北京大兴</span></div><span class="flight-ticket-arrow">✈</span><div><strong>15:25</strong><span>义乌</span></div></div></section></aside></div></li>
+							<div class="event-header"><span class="event-time">上午出发 · 15:25 抵义乌</span></div><h4>返程，飞回义乌</h4>
+<ol class="journey"><li class="j-stop"><i class="j-dot"></i><span class="j-place">月屋酒店</span></li><li class="j-leg"><span class="j-ico">车</span><span class="j-info">前往大兴机场 · 建议地铁或打车</span></li><li class="j-stop"><i class="j-dot"></i><span class="j-place">北京大兴机场</span><span class="j-note">起飞</span><span class="j-time">13:15</span></li><li class="j-leg"><span class="j-ico">飞</span><span class="j-info"><b>CZ8960 · 中国南方航空</b> · 约 2 小时 10 分</span><span class="j-chip">已订</span></li><li class="j-stop j-end"><i class="j-dot"></i><span class="j-place">义乌</span><span class="j-time">15:25</span></li></ol>
+						</div><aside class="event-visual" aria-label="交通相关信息"><section class="event-map" data-map-key="event-map-11" aria-label="月屋酒店 → 北京大兴机场"><div class="event-map-window"><div class="event-map-canvas" id="event-map-11" data-apple-url="https://maps.apple.com/?saddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97&amp;daddr=%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%85%B4%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA" role="link" tabindex="0" aria-label="在 Apple 地图查看此事件地点"></div><a class="event-map-fallback" href="https://maps.apple.com/?saddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97&amp;daddr=%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%85%B4%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA" target="_blank" rel="noopener noreferrer" aria-label="打开地图查看月屋酒店至北京大兴机场"><svg viewBox="0 0 500 170" role="img" aria-label="地点关系示意"><rect width="500" height="170" fill="#e7e6e0"/><path d="M0 0V170" stroke="#deddd6"/><path d="M50 0V170" stroke="#deddd6"/><path d="M100 0V170" stroke="#deddd6"/><path d="M150 0V170" stroke="#deddd6"/><path d="M200 0V170" stroke="#deddd6"/><path d="M250 0V170" stroke="#deddd6"/><path d="M300 0V170" stroke="#deddd6"/><path d="M350 0V170" stroke="#deddd6"/><path d="M400 0V170" stroke="#deddd6"/><path d="M450 0V170" stroke="#deddd6"/><path d="M500 0V170" stroke="#deddd6"/><path d="M0 20H500" stroke="#deddd6"/><path d="M0 60H500" stroke="#deddd6"/><path d="M0 100H500" stroke="#deddd6"/><path d="M0 140H500" stroke="#deddd6"/><path d="M45.0 110L455.0 65" stroke="#66665e" stroke-width="2" stroke-dasharray="5 6"/><circle cx="45.0" cy="110" r="13" fill="#24251f"/><text x="45.0" y="114" text-anchor="middle" fill="white" font-size="12">1</text><circle cx="455.0" cy="65" r="13" fill="#24251f"/><text x="455.0" y="69" text-anchor="middle" fill="white" font-size="12">2</text></svg></a></div><div class="event-map-links"><a href="https://maps.apple.com/?saddr=%E6%9C%88%E5%B1%8B%E9%85%92%E5%BA%97+%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99%E5%85%AD%E9%87%8C%E6%A1%A5%E5%9C%B0%E9%93%81%E7%AB%99%E5%BA%97&amp;daddr=%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%85%B4%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA" target="_blank" rel="noopener noreferrer">Apple 地图 ↗</a><a href="https://uri.amap.com/search?keyword=%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%85%B4%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA&amp;city=%E5%8C%97%E4%BA%AC&amp;view=map&amp;src=BeijingTrip&amp;callnative=1" target="_blank" rel="noopener noreferrer">高德地点 ↗</a></div></section></aside></div></li>
 					</ol>
 				</article>
 			</div>
@@ -3802,9 +3474,9 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
   if(location.protocol==='file:' || !window.L)return;
   const init=()=>{
    const map=L.map(canvas,{zoomControl:false,dragging:false,touchZoom:false,doubleClickZoom:false,scrollWheelZoom:false,boxZoom:false,keyboard:false});
-   const path=config.ids.map(id=>points[id].xy);
+   const path=config.ids.map(id=>wgs2gcj(...points[id].xy));
    if(path.length===1)map.setView(path[0],14);else map.fitBounds(path,{padding:[28,28],maxZoom:15});
-   const tiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'});
+   const tiles=L.tileLayer('https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}',{subdomains:'1234',maxZoom:18,attribution:'&copy; 高德地图'});
    let loaded=false;
    tiles.on('tileload',()=>{loaded=true;box.classList.add('has-basemap');});
    tiles.on('tileerror',()=>{if(!loaded)box.classList.remove('has-basemap');});
@@ -3857,7 +3529,7 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
 				if ('IntersectionObserver' in window) new IntersectionObserver(entries => { visible = entries[0].isIntersecting; }, { threshold: .05 }).observe(strip);
 				const tick = now => {
 					if (!strip.isConnected) return;
-					if (previous && cycleWidth > 0 && visible && !document.hidden && !reducedMotion.matches && !hovered && !focused && now > pauseUntil) {
+					if (previous && cycleWidth > 0 && visible && !strip.hidden && !document.hidden && !reducedMotion.matches && !hovered && !focused && now > pauseUntil) {
 						strip.scrollLeft += Math.min(now - previous, 64) * .035;
 						if (strip.scrollLeft >= cycleWidth) strip.scrollLeft -= cycleWidth;
 					}
@@ -3934,13 +3606,10 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
  const panel=document.querySelector('.departure-countdown'),digits=panel.querySelector('.countdown-digits');
  const units=['天','时','分','秒'];let previous=[];
  digits.innerHTML=units.map(u=>'<div class="countdown-unit"><span class="countdown-value">00</span><small>'+u+'</small></div>').join('');
- const clock=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
  function update(){
   const now=Date.now(),remaining=Math.max(0,Math.ceil(((now<start?start:end)-now)/1000));
   const values=[Math.floor(remaining/86400),Math.floor(remaining/3600)%24,Math.floor(remaining/60)%60,remaining%60].map(n=>String(n).padStart(2,'0'));
   panel.querySelector('#countdown-label').textContent=now<start?'距离出发':now<end?'旅行中 · 距离到家':'旅行已结束';
-  panel.querySelector('.countdown-target').textContent=now<start?'10 月 4 日 09:45 · 北京时间':'10 月 7 日 15:25 · 北京时间';
-  panel.querySelector('.countdown-now').textContent='现在 '+clock.format(now)+' · 北京时间';
   digits.setAttribute('aria-label',values.map((v,i)=>Number(v)+units[i]).join(''));
   digits.querySelectorAll('.countdown-value').forEach((el,i)=>{if(previous[i]===values[i])return;el.innerHTML=previous[i]===undefined?values[i]:'<span class="countdown-roll"><span>'+values[i]+'</span><span>'+previous[i]+'</span></span>';});
   previous=values;return 1000-now%1000;
@@ -3965,8 +3634,7 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
  document.querySelectorAll('.daily-weather').forEach(el=>{
   const d=R.dates[el.dataset.date];if(!d)return;
   el.querySelector('.weather-condition').textContent=d.status==='available'?`${d.condition} · ${d.lowC}–${d.highC}°C`:'天气待更新';
-  el.querySelector('.weather-rain').textContent=d.status==='available'?`日降水概率 ${d.dailyPrecipitationProbabilityPercent}%`:'尚未进入本次预报范围';
-  el.querySelector('small').textContent=`${d.source} · ${d.location} · ${d.queriedAt.slice(0,16).replace('T',' ')} 查询 · 非实时`;
+  const rain=el.querySelector('.weather-rain');if(rain)rain.textContent=d.status==='available'?`日降水概率 ${d.dailyPrecipitationProbabilityPercent}%`:'';
  });
  R.maps.forEach(config=>{
   const box=document.querySelector('[data-map-key="'+config.key+'"]');if(!box)return;
@@ -3976,10 +3644,7 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
   box.querySelector('.event-map-fallback').href=url;
   const links=box.querySelectorAll('.event-map-links a');links[0].href=url;links[1].href=last.amap;
  });
- const control=document.createElement('div');control.className='enhancement-control';
- control.innerHTML='<label><span>可视化增强</span><input id="visual-toggle" type="checkbox" role="switch" aria-label="可视化增强"><i aria-hidden="true"></i></label>';
- document.body.append(control);
- const toggle=control.querySelector('input');toggle.checked=root.dataset.visual!=='off';
+
  const peek=document.createElement('aside');peek.id='travel-peek';peek.className='travel-peek';peek.hidden=true;peek.setAttribute('role','dialog');peek.setAttribute('aria-modal','false');peek.setAttribute('aria-labelledby','peek-title');
  peek.innerHTML='<div class="peek-head"><div><span id="peek-kind"></span><h2 id="peek-title"></h2></div><button type="button" class="peek-close" aria-label="关闭资料浮层">×</button></div><div class="peek-body"></div><div class="peek-foot"><button type="button" id="peek-auto">暂停自动展开</button></div>';
  document.body.append(peek);
@@ -3996,7 +3661,7 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
  function hrefFor(key){const [type,id]=key.split(':');return type==='place'?R.places[id].appleMaps:type==='date'?R.dates[id].appUrl:'#'+id;}
  // Existing normal destination links also participate; their external destinations stay intact.
  document.querySelectorAll('.page a').forEach(a=>{const key=lookup.get(a.textContent.replace(/\s*↗\s*$/,'').trim());if(key){a.classList.add('travel-term');a.dataset.term=key;a.setAttribute('aria-controls','travel-peek');a.setAttribute('aria-haspopup','dialog');a.textContent=R.places[key.split(':')[1]]?.name||a.textContent;}});
- const walker=document.createTreeWalker(document.querySelector('main.page'),NodeFilter.SHOW_TEXT,{acceptNode(node){return node.parentElement?.closest('a,button,script,style,svg,textarea,.photo-mount,.day-number,.daily-weather,.event-time,.event-kind,.departure-countdown')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;}});
+ const walker=document.createTreeWalker(document.querySelector('main.page'),NodeFilter.SHOW_TEXT,{acceptNode(node){return node.parentElement?.closest('a,button,script,style,svg,textarea,.photo-mount,.day-number,.daily-weather,.event-time,.event-kind,.departure-countdown,#page-title')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;}});
  const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
  nodes.forEach(node=>{const text=node.nodeValue;regex.lastIndex=0;let m,last=0,fragment=null;while((m=regex.exec(text))){fragment ||= document.createDocumentFragment();fragment.append(text.slice(last,m.index));const key=lookup.get(m[0]);const label=key.startsWith('place:')&&!['beijing','yiwu','tongzhou','liuliqiao','wukesong','houhai'].includes(key.slice(6))?R.places[key.slice(6)].name:m[0];fragment.append(term(key,label,hrefFor(key)));last=m.index+m[0].length;}if(fragment){fragment.append(text.slice(last));node.replaceWith(fragment);}});
  document.querySelectorAll('.day').forEach(day=>{const date='2026-10-'+day.id.slice(-2),number=day.querySelector('.day-number');const a=term('date:'+date,'',R.dates[date].appUrl);a.innerHTML=number.innerHTML;a.setAttribute('aria-label',date+'，查看天气');number.replaceChildren(a);});
@@ -4010,14 +3675,14 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
   let svg='<svg viewBox="0 0 300 130" aria-label="地点关系示意" role="img"><rect width="300" height="130" fill="#e7e6e0"/>';
   valid.slice(1).forEach((id,i)=>{svg+='<path d="M'+x(i)+' '+y(i)+'L'+x(i+1)+' '+y(i+1)+'" stroke="#74756a" stroke-width="2" stroke-dasharray="4 5"/>';});
   valid.forEach((id,i)=>{svg+='<circle cx="'+x(i)+'" cy="'+y(i)+'" r="11" fill="#252620"/><text x="'+x(i)+'" y="'+(y(i)+4)+'" fill="white" text-anchor="middle" font-size="11">'+(i+1)+'</text>';});svg+='</svg>';
-  return '<div class="peek-map-wrap"><div class="peek-map" aria-label="地点地图"></div><div class="peek-map-sketch">'+svg+'</div></div><div class="peek-stops">'+ids.map((id,i)=>'<span><b>'+(i+1)+'</b> '+escape(R.places[id].name)+'</span>'+(i<ids.length-1?'<small>↓ '+escape(modes[i]||'方式待定')+'</small>':'')).join('')+'</div>'+'';
+  return '<div class="peek-map-wrap"><div class="peek-map" aria-label="地点地图"></div><div class="peek-map-sketch">'+svg+'</div></div><div class="peek-stops">'+ids.map((id,i)=>'<span><b>'+(i+1)+'</b> '+escape(R.places[id].name)+'</span>'+(i<ids.length-1&&modes[i]?'<small>↓ '+escape(modes[i])+'</small>':'')).join('')+'</div>'+'';
  }
  function initMap(ids,modes=[]){
   const canvas=body.querySelector('.peek-map');const valid=ids.filter(id=>R.places[id]?.xy);if(!canvas||!valid.length||location.protocol==='file:'||!window.L)return;
   miniMap=L.map(canvas,{zoomControl:false,dragging:false,touchZoom:false,doubleClickZoom:false,scrollWheelZoom:false,boxZoom:false,keyboard:false});
-  const map=miniMap,path=valid.map(id=>R.places[id].xy);
+  const map=miniMap,path=valid.map(id=>wgs2gcj(...R.places[id].xy));
   if(path.length===1)map.setView(path[0],14);else map.fitBounds(path,{padding:[20,20],maxZoom:15});
-  const tiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'});
+  const tiles=L.tileLayer('https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}',{subdomains:'1234',maxZoom:18,attribution:'&copy; 高德地图'});
   tiles.on('tileload',()=>{if(map===miniMap)canvas.parentElement.classList.add('loaded');});tiles.addTo(map);
   path.slice(1).forEach((p,i)=>L.polyline([path[i],p],{color:modes[i]?.includes('步行')?'#6a715e':'#51676e',weight:2,dashArray:'4 5',interactive:false}).addTo(map));
   path.forEach((p,i)=>L.marker(p,{icon:L.divIcon({className:'trip-pin endpoint',html:String(i+1),iconSize:[22,22],iconAnchor:[11,11]}),interactive:false}).addTo(map));
@@ -4034,7 +3699,7 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
    if(p.noteIndices.length)html+='<div class="peek-notes"><strong>小红书 · 相关笔记</strong>'+p.noteIndices.slice(0,1).map(i=>external(R.notes[i].href,R.notes[i].title)).join('')+'</div>';
   }else if(type==='date'){
    const d=R.dates[id];if(!d)return false;title=id.slice(5).replace('-','月')+'日';kind='Apple 天气 · 北京市参考';
-   html=d.status==='available'?'<div class="peek-temperature">'+d.lowC+'–'+d.highC+'<small>°C</small></div><p>'+escape(d.condition)+'</p>'+facts([['日降水概率',d.dailyPrecipitationProbabilityPercent+'%']]):'<p>天气待更新</p><p class="peek-note">尚未进入本次查询的预报范围。</p>';
+   html=d.status==='available'?'<div class="peek-temperature">'+d.lowC+'–'+d.highC+'<small>°C</small></div><p>'+escape(d.condition)+'</p>'+facts([['日降水概率',d.dailyPrecipitationProbabilityPercent+'%']]):'<p>天气待更新</p>';
    html+='<p class="peek-note">查询于 '+escape(d.queriedAt.replace('T',' ').slice(0,16))+' · 预报快照</p><div class="peek-links"><a href="'+escape(d.appUrl)+'">打开 Apple 天气 ↗</a></div>';
   }else if(type==='event'){
    const e=R.events[id],node=document.getElementById(id);if(!e||!node)return false;title=e.title;kind=e.type+' · '+e.subtype;
@@ -4050,7 +3715,7 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
  const overlap=(a,b)=>Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
  function position(){
   if(peek.hidden||!anchor)return;
-  const vw=innerWidth,vh=innerHeight,nav=document.querySelector('.trip-nav').getBoundingClientRect(),ctl=control.getBoundingClientRect();
+  const vw=innerWidth,vh=innerHeight,nav=document.querySelector('.trip-nav').getBoundingClientRect();
   // Use the nearest rendered line when a keyword wraps across lines.
   const r=anchor.getClientRects()[0]||anchor.getBoundingClientRect(),gap=8;
   const navBottom=nav.width>vw*.65&&nav.top>vh*.45?vh-nav.top:0;
@@ -4068,7 +3733,7 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
    let top=side==='above'?r.top-h-gap:side==='below'?r.bottom+gap:r.top;
    left=Math.max(bounds.left,Math.min(left,bounds.right-w));top=Math.max(bounds.top,Math.min(top,bounds.bottom-h));
    const box={left,top,right:left+w,bottom:top+h};
-   const collision=[nav,ctl,r].reduce((sum,o)=>sum+overlap(box,o),0);
+   const collision=[nav,r].reduce((sum,o)=>sum+overlap(box,o),0);
    const distance=Math.hypot(Math.max(r.left-box.right,box.left-r.right,0),Math.max(r.top-box.bottom,box.top-r.bottom,0));
    candidates.push({...box,maxHeight,collision,score:collision*1000+distance+(280-maxHeight)*.1});
   }
@@ -4092,17 +3757,9 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!peek.hidden){const previous=anchor,restore=manual;hide(true);if(restore)previous?.focus({preventScroll:true});}});
  peek.addEventListener('mouseenter',()=>hovered=true);peek.addEventListener('mouseleave',()=>hovered=false);
  const autoButton=peek.querySelector('#peek-auto');autoButton.addEventListener('click',()=>{auto=!auto;autoButton.textContent=auto?'暂停自动展开':'恢复自动展开';autoButton.setAttribute('aria-pressed',String(!auto));});
- function apply(){
-  const marker=[...document.querySelectorAll('.event')].find(e=>e.getBoundingClientRect().bottom>innerHeight*.25),before=marker?.getBoundingClientRect().top;
-  root.dataset.visual=toggle.checked?'on':'off';try{localStorage.setItem('travel-visual',root.dataset.visual);}catch{}
-  document.querySelectorAll('.travel-term').forEach(a=>{if(toggle.checked)a.setAttribute('aria-haspopup','dialog');else a.removeAttribute('aria-haspopup');});
-  if(!toggle.checked)hide();
-  if(marker&&before!==undefined)window.scrollBy(0,marker.getBoundingClientRect().top-before);
-  document.querySelectorAll('.day').forEach(d=>{if(typeof renderLineage==='function')renderLineage(d);});
- }
- toggle.addEventListener('change',apply);apply();
+ document.querySelectorAll('.day').forEach(d=>{if(typeof renderLineage==='function')renderLineage(d);});
  function choose(){
-  if(!toggle.checked||!auto||hovered||peek.contains(document.activeElement)||document.querySelector('dialog[open],.xhs-toast'))return;
+  if(!auto||hovered||peek.contains(document.activeElement)||document.querySelector('dialog[open],.xhs-toast'))return;
   if(manual&&anchor&&visible(anchor))return;
   const candidates=[...document.querySelectorAll('.day-number .travel-term,.event-copy .event-kind .travel-term,.event-copy h4 .travel-term')].filter(a=>visible(a)&&!dismissed.has(a));
   candidates.sort((a,b)=>Math.abs(a.getBoundingClientRect().top-innerHeight*.32)-Math.abs(b.getBoundingClientRect().top-innerHeight*.32));
@@ -4116,6 +3773,25 @@ html[data-visual="off"] .event-visual{display:none}html[data-visual="off"] .even
  new ResizeObserver(position).observe(peek);
  new MutationObserver(()=>{if(document.querySelector('dialog[open],.xhs-toast'))hide();}).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['open']});
  // Start automatic previews after the first scroll, leaving the introduction unobstructed.
+})();
+</script>
+<script id="stacked-collections-script">
+(() => {
+ document.querySelectorAll('.photo-group,.xhs-group').forEach((group,index)=>{
+  const list=group.querySelector('.photo-grid,.xhs-strip');if(!list)return;
+  const cards=[...list.children].filter(card=>card.getAttribute('aria-hidden')!=='true');
+  if(!cards.length)return;
+  const button=document.createElement('button');button.type='button';button.className='collection-stack-toggle';
+  const label=document.createElement('span');label.className='stack-toggle-label';
+  const preview=document.createElement('span');preview.className='stack-preview';preview.setAttribute('aria-hidden','true');
+  cards.slice(0,3).forEach(card=>{const original=card.querySelector('img');if(!original)return;const img=document.createElement('img');img.src=original.src;img.alt='';img.loading='lazy';img.decoding='async';preview.append(img);});
+  button.append(label,preview);list.id ||= 'collection-content-'+index;button.setAttribute('aria-controls',list.id);
+  const controls=group.querySelector('.album-controls');let expanded=false;
+  const name=group.querySelector('.photo-label span')?.textContent||group.getAttribute('aria-label')||'图集';
+  function render(){button.setAttribute('aria-expanded',String(expanded));label.textContent=(expanded?'收起 ':'展开 ')+cards.length;button.setAttribute('aria-label',(expanded?'收起':'展开')+name+'，'+cards.length+'项');list.hidden=!expanded;if(controls)controls.hidden=!expanded;group.classList.toggle('collection-expanded',expanded);}
+  button.addEventListener('click',()=>{expanded=!expanded;render();if(expanded){list.scrollLeft=0;window.dispatchEvent(new Event('resize'));}});
+  group.insertBefore(button,list);group.classList.add('collection-stacked');render();
+ });
 })();
 </script>
 </body>

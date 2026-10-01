@@ -3419,7 +3419,8 @@ body{padding-bottom:100px}.day{scroll-margin-top:16px}@media print{.trip-nav{dis
   if(atEnd)progress=1;
   const percent=Math.round(progress*100);
   links.forEach((a,i)=>{if(i===active)a.setAttribute('aria-current','step');else a.removeAttribute('aria-current');});
-  status.textContent=(active<0?'行程概览':`Day ${active} · ${active===0?"出发前夜":"北京行程"}`)+` · ${percent}%`;
+  const DAY_NAMES=["义乌集结","出发·抵京胡同","环球影城","牛街观演","早餐与返程"];
+  status.textContent=(active<0?'行程概览':`Day ${active} · ${DAY_NAMES[active]||"北京行程"}`)+` · ${percent}%`;
   bar.setAttribute('aria-valuenow',String(percent));fill.style.width=percent+'%';
  }
  function schedule(){if(!pending){pending=true;requestAnimationFrame(update);}}

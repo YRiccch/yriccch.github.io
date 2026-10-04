@@ -25,6 +25,7 @@ export default {
   },
   pubs: {
     title: '相关论文',
+    readInChinese: '中文全文阅读',
     underReview: 'Under Review',
     links: {
       journal: '期刊',

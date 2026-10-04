@@ -133,9 +133,20 @@ export default function SectionPubs() {
 
   return (
     <>
-      <h2 className="mb-8 text-[1.35rem] font-semibold text-fg-strong">
-        <Letter3DSwap text={t('pubs.title')} />
-      </h2>
+      <div className="mb-8 flex flex-wrap items-center gap-x-3 gap-y-2">
+        <h2 className="m-0 text-[1.35rem] font-semibold text-fg-strong">
+          <Letter3DSwap text={t('pubs.title')} />
+        </h2>
+        <a
+          href="/paper-reading/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-line px-2.5 py-1 text-[0.72rem] leading-none text-fg-secondary transition-colors hover:border-accent hover:text-accent active:scale-[0.98]"
+        >
+          <BookOpen size={14} aria-hidden="true" />
+          <Letter3DSwap text={t('pubs.readInChinese')} />
+        </a>
+      </div>
 
       <PublicationList items={acceptedPublications} />
 

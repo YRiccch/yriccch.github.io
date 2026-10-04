@@ -27,6 +27,7 @@ export default {
   },
   pubs: {
     title: 'Publications',
+    readInChinese: 'Read in Chinese',
     underReview: 'Under Review',
     links: {
       journal: 'Journal',

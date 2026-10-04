@@ -5,8 +5,10 @@ import { profile } from './data/profile'
 import { useLocale } from './hooks/useLocale'
 import { useGoatcounter } from './hooks/useGoatcounter'
 import { LocaleSwap } from './components/LocaleSwap'
-import { PAGE_CONTAINER_CLASS, SITE_BUILD } from './config/site'
+import { PAGE_CONTAINER_CLASS } from './config/site'
+// import { SITE_BUILD } from './config/site'
 
+/* Temporarily hidden along with the footer's last updated timestamp.
 const lastUpdatedAt = new Date(SITE_BUILD.lastCommitAt)
 
 const lastUpdatedFormatters = {
@@ -29,13 +31,14 @@ const lastUpdatedFormatters = {
     timeZone: 'Asia/Shanghai',
   }),
 } as const
+*/
 
 /**
  * 布局壳：单列 max-w-650，Navbar 桌面端 fixed 内容右上角，移动端浮右侧。
  */
 export default function App() {
   const { t } = useTranslation()
-  const { locale, L } = useLocale()
+  const { /* locale, */ L } = useLocale()
   useGoatcounter()
 
   return (
@@ -53,7 +56,7 @@ export default function App() {
                   &copy; {new Date().getFullYear()} {L(profile.name)}. {t('footer.rights')}
                 </LocaleSwap>
               </p>
-              <p className="m-0 shrink-0 text-xs tabular-nums text-fg-quaternary">
+              {/* <p className="m-0 shrink-0 text-xs tabular-nums text-fg-quaternary">
                 <LocaleSwap>
                   {t('footer.lastUpdated', {
                     date:
@@ -63,7 +66,7 @@ export default function App() {
                       ).format(lastUpdatedAt),
                   })}
                 </LocaleSwap>
-              </p>
+              </p> */}
             </footer>
           </main>
         </div>

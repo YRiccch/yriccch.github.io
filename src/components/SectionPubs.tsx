@@ -137,7 +137,7 @@ export default function SectionPubs() {
         <h2 className="m-0 text-[1.35rem] font-semibold text-fg-strong">
           <Letter3DSwap text={t('pubs.title')} />
         </h2>
-        <a
+        {/* <a
           href="/paper-reading/"
           target="_blank"
           rel="noopener noreferrer"
@@ -145,7 +145,7 @@ export default function SectionPubs() {
         >
           <BookOpen size={14} aria-hidden="true" />
           <Letter3DSwap text={t('pubs.readInChinese')} />
-        </a>
+        </a> */}
       </div>
 
       <PublicationList items={acceptedPublications} />

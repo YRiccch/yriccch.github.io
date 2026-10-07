@@ -23,7 +23,7 @@ export default function SectionAbout() {
   return (
     <section id={SECTION_IDS.about} className="mb-16">
       {/* Hero */}
-      <header className="mb-11 flex items-center gap-7 max-[600px]:mb-9 max-[600px]:flex-col max-[600px]:items-start max-[600px]:gap-5">
+      <header className="mb-11 flex items-center gap-7 max-[600px]:mb-9 max-[600px]:flex-col max-[600px]:items-center max-[600px]:gap-5">
         <div className="w-36 h-36 shrink-0 rounded-full overflow-hidden bg-hover ring-1 ring-line max-[600px]:w-28 max-[600px]:h-28">
           <img
             {...imageSource(profile.avatar)}
@@ -37,7 +37,7 @@ export default function SectionAbout() {
             }}
           />
         </div>
-        <div className="min-w-0">
+        <div className="min-w-0 max-[600px]:text-center">
           <h1 className="m-0 text-[2rem] font-bold leading-tight text-fg-strong max-[600px]:text-[1.65rem]">
             <Letter3DSwap text={L(profile.name)} />
           </h1>
@@ -45,8 +45,8 @@ export default function SectionAbout() {
             <Letter3DSwap text={`${L(profile.role)} · ${L(profile.affiliation)}`} />
           </p>
 
-          <div className="mt-4 flex flex-col gap-2 text-[0.95rem] text-fg-secondary max-[600px]:mt-3.5 max-[600px]:gap-1.5 max-[600px]:text-[0.85rem]">
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+          <div className="mt-4 flex flex-col gap-2 text-[0.95rem] text-fg-secondary max-[600px]:mt-3.5 max-[600px]:items-center max-[600px]:gap-1.5 max-[600px]:text-[0.85rem]">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 max-[600px]:justify-center">
               <a
                 href={`mailto:${profile.email}`}
                 className="inline-flex items-center gap-1.5 hover:text-accent transition-colors"

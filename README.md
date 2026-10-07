@@ -1,73 +1,29 @@
-# React + TypeScript + Vite
+# 个人主页
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ruiqi Yu 的个人主页，使用 React、TypeScript 和 Vite 构建，通过 GitHub Pages 发布。
 
-Currently, two official plugins are available:
+## 本地开发
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```sh
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+主页使用 `/`，子页面使用已有的 hash 路由。主页内容位于 `src/data/`，组件和页面位于 `src/components/` 与 `src/views/`，静态资源位于 `public/`。
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 检查与发布
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```sh
+npm run lint
+npm run build
 ```
+
+构建依次完成图片处理、相册校验、TypeScript 检查和 Vite 构建，输出到 `dist/`。`dist/` 与自动生成的图片资源不提交。
+
+`.github/workflows/deploy-pages.yml` 在 `main` 推送后构建并发布整个 `dist/`。提交和推送后，需要确认 GitHub Actions 的构建与部署均成功。
+
+## 旅行模板
+
+旅行行程模板、北京实例、图片与原始 HTML 快照已迁往独立私有仓库 [travel-itinerary-template](https://github.com/YRiccch/travel-itinerary-template)。后续旅行在该仓库维护。
+
+个人主页不再包含旅行攻略源码或生成脚本，也不再发布原 `/travel/` 下的攻略页面。

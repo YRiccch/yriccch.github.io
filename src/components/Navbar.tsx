@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
 import {
-  Sun, Moon,
+  Sun, Moon, Ellipsis, Languages,
   User, Newspaper, BookOpen, Image as ImageIcon, Boxes, ArrowUp,
 } from 'lucide-react'
 import {
@@ -15,6 +15,7 @@ import {
 } from '../config/site'
 import { useTheme } from '../hooks/useTheme'
 import { Letter3DSwap } from './Letter3DSwap'
+import './Navbar.css'
 
 type NavIcon = React.ComponentType<{
   size?: number
@@ -94,8 +95,50 @@ export default function Navbar() {
 
   const [activeId, setActiveId] = useState<string>(SECTION_IDS.about)
   const [showBackTop, setShowBackTop] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const observerRef = useRef<IntersectionObserver | null>(null)
   const pendingSectionRef = useRef<string | null>(null)
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null)
+  const mobileMenuButtonRef = useRef<HTMLButtonElement | null>(null)
+  const mobileMenuPanelRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return
+
+    mobileMenuPanelRef.current?.querySelector<HTMLButtonElement>('button')?.focus()
+
+    const dismissOutside = (event: Event) => {
+      if (event.target instanceof Node && !mobileMenuRef.current?.contains(event.target)) {
+        setIsMobileMenuOpen(false)
+      }
+    }
+    const dismissOnEscape = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return
+      event.preventDefault()
+      setIsMobileMenuOpen(false)
+      mobileMenuButtonRef.current?.focus()
+    }
+    const mobileQuery = window.matchMedia(MEDIA_QUERIES.mobileNavigation)
+    const dismissOnDesktop = () => {
+      if (!mobileQuery.matches) setIsMobileMenuOpen(false)
+    }
+
+    document.addEventListener('pointerdown', dismissOutside)
+    document.addEventListener('focusin', dismissOutside)
+    document.addEventListener('keydown', dismissOnEscape)
+    mobileQuery.addEventListener('change', dismissOnDesktop)
+    return () => {
+      document.removeEventListener('pointerdown', dismissOutside)
+      document.removeEventListener('focusin', dismissOutside)
+      document.removeEventListener('keydown', dismissOnEscape)
+      mobileQuery.removeEventListener('change', dismissOnDesktop)
+    }
+  }, [isMobileMenuOpen])
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false)
+    mobileMenuButtonRef.current?.focus()
+  }
 
   const toggleLanguage = () => {
     i18n.changeLanguage(i18n.resolvedLanguage === 'en' ? 'zh' : 'en')
@@ -301,74 +344,85 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ============ Mobile（吸顶横向图标条）============ */}
-      <div className="hidden max-[900px]:block fixed top-0 inset-x-0 z-[100] bg-navbar backdrop-blur-md border-b border-line">
-        <div
-          className={`${PAGE_MAX_WIDTH_CLASS} mx-auto flex h-14 items-center gap-1 px-3`}
-        >
-          {/* 导航图标：横向平铺，可横向滚动以防溢出 */}
-          <ul className="flex items-center gap-1 m-0 p-0 list-none flex-1 min-w-0 overflow-x-auto no-scrollbar">
+      {/* ============ Mobile（悬浮胶囊导航）============ */}
+      <div className="mobile-nav">
+        <div className={`${PAGE_MAX_WIDTH_CLASS} mobile-nav-inner`}>
+          <ul
+            className="mobile-nav-links"
+            style={{
+              '--mobile-nav-active-index': Math.max(0, NAV_ITEMS.findIndex((item) => item.id === activeId)),
+            } as React.CSSProperties}
+          >
             {NAV_ITEMS.map((item) => {
               const Icon = item.icon
               const active = activeId === item.id
               return (
-                <li key={item.key} className="shrink-0">
+                <li key={item.key}>
                   <a
                     href={item.kind === 'route' ? `#${item.path}` : '#'}
                     onClick={(e) => {
                       e.preventDefault()
+                      setIsMobileMenuOpen(false)
                       navigateTo(item)
                     }}
                     aria-current={active ? 'page' : undefined}
                     aria-label={t(`nav.${item.key}`)}
-                    className={
-                      'group inline-flex items-center justify-center gap-1.5 h-10 min-w-[40px] box-border ' +
-                      'rounded-full text-[0.85rem] transition-colors duration-200 ' +
-                      (active
-                        ? 'text-accent px-2'
-                        : 'text-fg-tertiary px-2 hover:text-accent')
-                    }
+                    className="mobile-nav-link"
                   >
-                    <Icon
-                      size={18}
-                      className="transition-colors duration-200 group-hover:text-highlight"
-                      style={
-                        active
-                          ? { color: 'var(--highlight-color)' }
-                          : undefined
-                      }
-                    />
-                    {active && (
-                      <span className="whitespace-nowrap">
-                        <Letter3DSwap text={t(`nav.${item.key}`)} />
-                      </span>
-                    )}
+                    <Icon size={18} aria-hidden="true" />
+                    <span>{t(`navShort.${item.key}`)}</span>
                   </a>
                 </li>
               )
             })}
           </ul>
 
-          {/* 工具区：主题 + 语言，靠右 */}
-          <div className="flex items-center gap-0.5 shrink-0 pl-1 ml-1 border-l border-line">
+          <div ref={mobileMenuRef} className="mobile-nav-more">
             <button
-              onClick={(e) => toggleTheme({ clientX: e.clientX, clientY: e.clientY })}
-              title={themeTitle}
-              aria-label={themeTitle}
-              className="flex items-center justify-center w-10 h-10 rounded-full text-fg-tertiary hover:text-accent transition-colors active:scale-95"
+              ref={mobileMenuButtonRef}
+              type="button"
+              onClick={() => setIsMobileMenuOpen((open) => !open)}
+              title={t('actions.moreOptions')}
+              aria-label={t('actions.moreOptions')}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-nav-options"
+              className="mobile-nav-more-button"
             >
-              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+              <Ellipsis size={21} aria-hidden="true" />
             </button>
-            <button
-              onClick={toggleLanguage}
-              title={t('actions.switchLanguage')}
-              aria-label={t('actions.switchLanguage')}
-              className="flex items-center justify-center w-10 h-10 rounded-full text-fg-tertiary hover:text-accent transition-colors active:scale-95"
-            >
-              <span className="text-[13px] font-semibold tracking-tight">
-                <Letter3DSwap text={i18n.resolvedLanguage === 'en' ? '中' : 'En'} />
-              </span>
-            </button>
+            {isMobileMenuOpen && (
+              <div
+                id="mobile-nav-options"
+                ref={mobileMenuPanelRef}
+                className="mobile-nav-popover"
+                role="group"
+                aria-label={t('actions.moreOptions')}
+              >
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    closeMobileMenu()
+                    toggleTheme({ clientX: e.clientX, clientY: e.clientY })
+                  }}
+                  className="mobile-nav-option"
+                >
+                  {isDark ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
+                  <span>{themeTitle}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    closeMobileMenu()
+                    toggleLanguage()
+                  }}
+                  aria-label={t('actions.switchLanguage')}
+                  className="mobile-nav-option"
+                >
+                  <Languages size={18} aria-hidden="true" />
+                  <span>{t(i18n.resolvedLanguage === 'en' ? 'actions.switchToChinese' : 'actions.switchToEnglish')}</span>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

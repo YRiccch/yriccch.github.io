@@ -12,10 +12,20 @@ export default {
     life: 'Life',
     gadgets: 'Gadgets',
   },
+  navShort: {
+    about: 'About',
+    timeline: 'Career',
+    publications: 'Papers',
+    life: 'Life',
+    gadgets: 'Tools',
+  },
   actions: {
     switchToLight: 'Switch to light mode',
     switchToDark: 'Switch to dark mode',
     switchLanguage: 'Switch language',
+    moreOptions: 'More options',
+    switchToChinese: '简体中文',
+    switchToEnglish: 'English',
     backToTop: 'Back to top',
   },
   about: {

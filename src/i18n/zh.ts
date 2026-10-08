@@ -10,10 +10,20 @@ export default {
     life: '生活',
     gadgets: '小玩意儿',
   },
+  navShort: {
+    about: '关于',
+    timeline: '经历',
+    publications: '论文',
+    life: '生活',
+    gadgets: '工具',
+  },
   actions: {
     switchToLight: '切换到浅色模式',
     switchToDark: '切换到深色模式',
     switchLanguage: '切换语言',
+    moreOptions: '更多选项',
+    switchToChinese: '简体中文',
+    switchToEnglish: 'English',
     backToTop: '回到顶部',
   },
   about: {

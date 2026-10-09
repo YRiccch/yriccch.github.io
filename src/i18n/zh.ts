@@ -38,6 +38,7 @@ export default {
     readInChinese: '中文全文阅读',
     underReview: 'Under Review',
     links: {
+      doi: 'DOI',
       journal: '期刊',
       paper: '论文',
       arxiv: 'arXiv',

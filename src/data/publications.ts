@@ -3,14 +3,16 @@ import type { LocaleText } from './types'
 /**
  * 论文数据。
  * 论文的标题 / 作者 / 会议名按学术惯例保留原貌（中文论文用中文、英文论文用英文），
- * 不做翻译。只有 Link 按钮的标签走 i18n（journal / paper / arxiv / project）。
+ * 不做翻译。只有 Link 按钮的标签走 i18n（doi / journal / paper / arxiv / project）。
  *
  * 排序：导出时按 year 降序自动排，新加论文不用关心物理顺序，加 year 即可。
  * 同一年份内保持声明顺序（V8/SpiderMonkey/JSC 的 sort 都已稳定）。
  */
 export type PubLink = {
-  kind: 'journal' | 'paper' | 'arxiv' | 'project'
+  kind: 'doi' | 'journal' | 'paper' | 'arxiv' | 'project'
   url: string
+  /** Optional label distinguishes a supplementary version from the published paper. */
+  label?: LocaleText
 }
 
 export type PublicationStatus = 'accepted' | 'underReview'
@@ -87,7 +89,7 @@ const _publications: Publication[] = [
   {
     id: 'coivis',
     title:
-      'COIVis: Eye-tracking-based Visual Exploration of Concept Learning in MOOC Videos',
+      'COIVis: Eye-Tracking-Based Visual Exploration of Concept Learning in MOOC Videos',
     titleLogo: {
       src: '/pubslogo/coivislogo.svg',
       alt: 'COIVis',
@@ -101,10 +103,19 @@ const _publications: Publication[] = [
     year: 2026,
     status: 'accepted',
     links: [
+      // {
+      //   kind: 'doi',
+      //   url: 'https://doi.org/10.1109/TVCG.2026.3693055',
+      // },
       {
         kind: 'paper',
         url: 'https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=11520564',
       },
+      // {
+      //   kind: 'arxiv',
+      //   url: 'https://arxiv.org/abs/2512.06834v2',
+      //   label: { zh: 'arXiv（预印本）', en: 'arXiv (preprint)' },
+      // },
     ],
   },
   {
@@ -116,11 +127,15 @@ const _publications: Publication[] = [
     year: 2026,
     status: 'accepted',
     links: [
+      // {
+      //   kind: 'doi',
+      //   url: 'https://doi.org/10.1145/3772318.3791377',
+      // },
       {
         kind: 'paper',
-        url: 'https://dl.acm.org/doi/full/10.1145/3772318.3791377',
+        url: 'https://dl.acm.org/doi/epdf/10.1145/3772318.3791377',
       },
-      { kind: 'project', url: 'https://hypermooc.github.io/HyperMOOC/' },
+      // { kind: 'project', url: 'https://hypermooc.github.io/HyperMOOC/' },
     ],
   },
   {
@@ -151,7 +166,7 @@ const _publications: Publication[] = [
     status: 'accepted',
     links: [
       {
-        kind: 'journal',
+        kind: 'paper',
         url: 'https://www.academax.com/ZDXBLXB/doi/10.3785/j.issn.1008-9497.2022.03.002',
       },
     ],

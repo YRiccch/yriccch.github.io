@@ -16,6 +16,8 @@ import { imageSource } from '../data/imageSources'
 
 function IconFor({ kind }: { kind: PubLink['kind'] }) {
   switch (kind) {
+    case 'doi':
+      return <Link2 size={14} />
     case 'journal':
     case 'paper':
       return <FileText size={14} />
@@ -114,7 +116,7 @@ function PublicationList({ items }: { items: Publication[] }) {
                   className="inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-1 text-[0.72rem] leading-none text-fg-secondary transition-colors hover:border-accent hover:text-accent active:scale-[0.98]"
                 >
                   <IconFor kind={link.kind} />
-                  <Letter3DSwap text={t(`pubs.links.${link.kind}`)} />
+                  <Letter3DSwap text={link.label ? L(link.label) : t(`pubs.links.${link.kind}`)} />
                 </a>
               ))}
             </div>

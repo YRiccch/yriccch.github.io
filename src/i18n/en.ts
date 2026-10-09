@@ -40,6 +40,7 @@ export default {
     readInChinese: 'Read in Chinese',
     underReview: 'Under Review',
     links: {
+      doi: 'DOI',
       journal: 'Journal',
       paper: 'Paper',
       arxiv: 'arXiv',

@@ -135,7 +135,7 @@ const _publications: Publication[] = [
         kind: 'paper',
         url: 'https://dl.acm.org/doi/epdf/10.1145/3772318.3791377',
       },
-      // { kind: 'project', url: 'https://hypermooc.github.io/HyperMOOC/' },
+      { kind: 'project', url: 'https://hypermooc.github.io/HyperMOOC/' },
     ],
   },
   {

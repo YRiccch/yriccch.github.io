@@ -54,7 +54,7 @@ export const timeline: TimelineItem[] = [
     },
     body: {
       zh: '在 [hdu] 获得数字媒体技术学士学位。',
-      en: "Earned my Bachelor's degree in Digital Media Technology at [hdu], where I was advised by [liu].",
+      en: "Earned my Bachelor's degree in Digital Media Technology at [hdu].",
     },
   },
 ]

@@ -2,20 +2,23 @@ import * as m from 'motion/react-m'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, useReducedMotion } from 'motion/react'
 import { MOTION_EASING } from '../config/site'
-import type { LocaleText } from '../data/types'
+import type { TextRotateItem } from '../data/types'
 import { useLocale } from '../hooks/useLocale'
 import { useAnimationActivity } from '../hooks/useAnimationActivity'
 
+const CORRECTION_DELAY_MS = 420
+
 /**
  * Fancy 系列 —— 文本轮播。
- * 每 interval ms 向上滚动一条；hover 时暂停。
+ * 普通词向下切换；特殊词露馅后轻颤、划掉并向上抽走，空一拍再补上下一个词。
+ * hover 时暂停，离屏、页面隐藏或减少动态效果时停止自动播放。
  */
 export function TextRotate({
   items,
-  interval = 4800,
+  interval = 3000,
   className = '',
 }: {
-  items: LocaleText[]
+  items: TextRotateItem[]
   interval?: number
   className?: string
 }) {
@@ -24,16 +27,23 @@ export function TextRotate({
   const { L } = useLocale()
   const reduced = useReducedMotion()
   const { ref, active } = useAnimationActivity<HTMLSpanElement>()
+  const activeIndex = items.length ? index % items.length : 0
+  const activeItem = items[activeIndex]
+  const previousItem = items[(activeIndex - 1 + items.length) % items.length]
+  const duration = activeItem?.durationMs ?? interval
+  const correctionDelay = previousItem?.reverseOnExit ? CORRECTION_DELAY_MS : 0
 
   useEffect(() => {
     if (paused || !active || items.length <= 1) return
-    const intervalId = setInterval(() => {
+    const timeoutId = setTimeout(() => {
       setIndex((i) => (i + 1) % items.length)
-    }, interval)
-    return () => clearInterval(intervalId)
-  }, [items.length, interval, paused, active])
+    }, duration + correctionDelay)
+    return () => clearTimeout(timeoutId)
+  }, [items.length, duration, correctionDelay, index, paused, active])
 
-  const activeText = L(items[index])
+  if (!activeItem) return null
+
+  const activeText = L(activeItem)
 
   return (
     <span
@@ -54,17 +64,49 @@ export function TextRotate({
       </span>
       <AnimatePresence mode="popLayout" initial={false}>
         <m.span
-          key={`${index}-${activeText}`}
-          initial={reduced ? false : { y: '100%' }}
-          animate={{ y: 0 }}
-          exit={reduced ? undefined : { y: '-100%' }}
+          key={`${activeIndex}-${activeText}`}
+          initial={reduced ? false : { y: '-100%', opacity: 1 }}
+          animate={{ y: 0, x: 0, rotate: 0, opacity: 1 }}
+          exit={reduced ? undefined : activeItem.reverseOnExit ? {
+            y: ['0%', '8%', '8%', '-150%'],
+            x: [0, -2, 2, 0],
+            rotate: [0, -3, 2, -6],
+            opacity: [1, 1, 1, 0],
+            transition: {
+              duration: 0.3,
+              delay: 0,
+              times: [0, 0.2, 0.38, 1],
+              ease: 'easeIn',
+            },
+          } : {
+            y: '100%',
+            transition: {
+              duration: 0.28,
+              delay: 0,
+              ease: MOTION_EASING.verticalSwap,
+            },
+          }}
           transition={{
-            duration: reduced ? 0 : 0.34,
+            duration: reduced ? 0 : previousItem?.reverseOnExit ? 0.2 : 0.34,
+            delay: reduced ? 0 : correctionDelay / 1000,
             ease: MOTION_EASING.verticalSwap,
           }}
+          style={{ transformOrigin: 'left center' }}
           className="col-start-1 row-start-1 inline-block font-medium leading-[1.5] text-accent whitespace-nowrap"
         >
-          {activeText}
+          <span className="relative inline-block">
+            {activeText}
+            {activeItem.reverseOnExit && (
+              <m.span
+                aria-hidden="true"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 0 }}
+                exit={reduced ? undefined : { scaleX: 1 }}
+                transition={{ duration: reduced ? 0 : 0.08, delay: 0, ease: 'easeOut' }}
+                className="pointer-events-none absolute inset-x-0 top-1/2 h-[2px] origin-left bg-highlight"
+              />
+            )}
+          </span>
         </m.span>
       </AnimatePresence>
     </span>

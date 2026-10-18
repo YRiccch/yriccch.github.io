@@ -33,7 +33,7 @@ export default {
     interestsLabel: '兴趣',
   },
   news: {
-    title: '近期动态',
+    title: '动态',
     empty: '近期动态将陆续更新。',
     showMore: '查看更早动态',
     showLess: '收起动态',

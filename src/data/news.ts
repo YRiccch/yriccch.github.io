@@ -30,7 +30,7 @@ export const news: NewsItem[] = [
     icon: '🏅',
     body: {
       zh: '获得**2026年度黑格科技三等奖学金**！',
-      en: 'Won the  **Third Prize of Hege Technology Scholarship**!',
+      en: 'Won the **Third Prize of Hege\u00a0Technology Scholarship**!',
     },
   },
   {
@@ -38,8 +38,8 @@ export const news: NewsItem[] = [
     date: '2026-05',
     icon: '📜',
     body: {
-      zh: '**COIVis** 被 **IEEE TVCG 2026** 录用！',
-      en: '**COIVis** is accepted by **IEEE TVCG 2026**!',
+      zh: '我们的论文 **COIVis** 被 **IEEE TVCG 2026** 录用！',
+      en: 'Our paper **COIVis** is accepted by **IEEE TVCG 2026**!',
     },
   },
   {
@@ -47,8 +47,8 @@ export const news: NewsItem[] = [
     date: '2026-01',
     icon: '📜',
     body: {
-      zh: '**HyperMOOC** 被 **ACM CHI 2026** 录用！',
-      en: '**HyperMOOC** is accepted by **ACM CHI 2026**!',
+      zh: '我们的论文 **HyperMOOC** 被 **ACM CHI 2026** 录用！',
+      en: 'Our paper **HyperMOOC** is accepted by **ACM CHI 2026**!',
     },
   },
 ]

@@ -373,7 +373,7 @@ export default function SectionPhotoMarquee() {
   const lightboxCaption = lightbox?.caption ? L(lightbox.caption) : "";
 
   return (
-    <section aria-label="Life albums" className="mt-20">
+    <section aria-label="Life albums" className="mt-20 mb-16">
       {/* 屏幕阅读器专用标题，视觉上隐藏 */}
       <div className="life-stack-heading">
         <h2 className="m-0 text-[1.35rem] font-semibold leading-[1.15] text-fg-strong">

@@ -1,17 +1,17 @@
 import { useLayoutEffect, useRef } from 'react'
 import { SECTION_IDS } from '../config/site'
+import SectionTimeline from './SectionTimeline'
 import SectionPhotoMarquee from './SectionPhotoMarquee'
-import SectionPubs from './SectionPubs'
 
-/** Keep the sticky boundary in CSS without rerendering publications or albums. */
-export default function PublicationLifeStage() {
-  const publicationRef = useRef<HTMLDivElement>(null)
+/** Preserve the preceding content while the Life albums stack, as in the original shared stage. */
+export default function TimelineLifeStage() {
+  const timelineRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
-    const element = publicationRef.current
+    const element = timelineRef.current
     if (!element) return
     const updateHeight = (height: number) => {
-      element.style.setProperty('--publication-stage-height', height + 'px')
+      element.style.setProperty('--timeline-stage-height', height + 'px')
     }
     updateHeight(element.getBoundingClientRect().height)
     const observer = new ResizeObserver(([entry]) => {
@@ -22,11 +22,11 @@ export default function PublicationLifeStage() {
   }, [])
 
   return (
-    <section id={SECTION_IDS.publications} className="mb-16">
-      <div ref={publicationRef} className="publication-life-stage-content">
-        <SectionPubs />
+    <div data-scroll-anchor={SECTION_IDS.timeline}>
+      <div ref={timelineRef} className="timeline-life-stage-content">
+        <SectionTimeline />
       </div>
       <SectionPhotoMarquee />
-    </section>
+    </div>
   )
 }

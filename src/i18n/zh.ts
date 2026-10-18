@@ -5,15 +5,17 @@ export default {
   nav: {
     home: '主页',
     about: '关于我',
-    timeline: '时间线',
+    news: '动态',
     publications: '发表论文',
+    timeline: '时间线',
     life: '生活',
     gadgets: '小玩意儿',
   },
   navShort: {
     about: '关于',
-    timeline: '经历',
+    news: '动态',
     publications: '论文',
+    timeline: '经历',
     life: '生活',
     gadgets: '工具',
   },
@@ -29,6 +31,12 @@ export default {
   about: {
     title: '你好，我是虞瑞麒。',
     interestsLabel: '兴趣',
+  },
+  news: {
+    title: '近期动态',
+    empty: '近期动态将陆续更新。',
+    showMore: '查看更早动态',
+    showLess: '收起动态',
   },
   timeline: {
     title: '我的时间线',

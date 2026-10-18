@@ -43,7 +43,7 @@ html.dark .mobile-nav {
   position: relative;
   isolation: isolate;
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--mobile-nav-item-count), minmax(0, 1fr));
   flex: 1;
   min-width: 0;
   height: 54px;
@@ -58,7 +58,7 @@ html.dark .mobile-nav {
   position: absolute;
   inset-block: 5px;
   left: 5px;
-  width: calc((100% - 10px) / 5);
+  width: calc((100% - 10px) / var(--mobile-nav-item-count));
   border-radius: 999px;
   background: var(--mobile-nav-selection);
   transform: translateX(calc(var(--mobile-nav-active-index) * 100%));

@@ -14,8 +14,9 @@ export const ROUTES = {
 
 export const SECTION_IDS = {
   about: 'about',
-  timeline: 'timeline',
+  news: 'news',
   publications: 'publications',
+  timeline: 'timeline',
   gadgets: 'gadgets',
 } as const
 
@@ -46,7 +47,7 @@ export const NAVIGATION = {
   mobileScrollOffset: 72,
   backToTopThreshold: 480,
   homeActivationThreshold: 120,
-  observerRootMargin: '-100px 0px -55% 0px',
+  observerBottomMargin: '-55%',
   observerSetupDelayMs: 50,
 } as const
 

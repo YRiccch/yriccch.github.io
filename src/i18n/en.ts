@@ -7,15 +7,17 @@ export default {
   nav: {
     home: 'Home',
     about: 'About',
-    timeline: 'Timeline',
+    news: 'News',
     publications: 'Publications',
+    timeline: 'Timeline',
     life: 'Life',
     gadgets: 'Gadgets',
   },
   navShort: {
     about: 'About',
-    timeline: 'Career',
+    news: 'News',
     publications: 'Papers',
+    timeline: 'Career',
     life: 'Life',
     gadgets: 'Tools',
   },
@@ -31,6 +33,12 @@ export default {
   about: {
     title: "Hi, I'm Ruiqi.",
     interestsLabel: 'Interests',
+  },
+  news: {
+    title: 'News',
+    empty: 'Recent updates coming soon.',
+    showMore: 'Show earlier updates',
+    showLess: 'Show less',
   },
   timeline: {
     title: 'Timeline',

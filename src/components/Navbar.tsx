@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
 import {
   Sun, Moon, Ellipsis, Languages,
-  User, Newspaper, BookOpen, Image as ImageIcon, Boxes, ArrowUp,
+  User, Newspaper, BookOpen, History, Image as ImageIcon, Boxes, ArrowUp,
 } from 'lucide-react'
 import {
   MEDIA_QUERIES,
@@ -41,8 +41,8 @@ const NAV_ITEMS = [
     kind: 'section',
   },
   {
-    key: 'timeline',
-    id: SECTION_IDS.timeline,
+    key: 'news',
+    id: SECTION_IDS.news,
     icon: Newspaper,
     kind: 'section',
   },
@@ -50,6 +50,12 @@ const NAV_ITEMS = [
     key: 'publications',
     id: SECTION_IDS.publications,
     icon: BookOpen,
+    kind: 'section',
+  },
+  {
+    key: 'timeline',
+    id: SECTION_IDS.timeline,
+    icon: History,
     kind: 'section',
   },
   {
@@ -69,7 +75,8 @@ const NAV_ITEMS = [
 ] satisfies readonly NavItem[]
 
 function scrollToSection(id: string) {
-  const element = document.getElementById(id)
+  const element = document.querySelector<HTMLElement>(`[data-scroll-anchor="${id}"]`)
+    ?? document.getElementById(id)
   if (!element) return
 
   const isMobile = window.matchMedia(
@@ -203,15 +210,22 @@ export default function Navbar() {
         .filter((item) => item.kind === 'section')
         .map((item) => document.getElementById(item.id))
         .filter((element): element is HTMLElement => !!element)
+      const visibleSections = new Set<Element>()
+      const topOffset = window.matchMedia(MEDIA_QUERIES.mobileNavigation).matches
+        ? NAVIGATION.mobileScrollOffset
+        : NAVIGATION.desktopScrollOffset
 
       const observer = new IntersectionObserver(
         (entries) => {
-          const visible = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
-          if (visible.length > 0) setActiveId(visible[0].target.id)
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) visibleSections.add(entry.target)
+            else visibleSections.delete(entry.target)
+          })
+          // Observer entries only contain changes; retain sections still in view.
+          const firstVisible = sections.find((section) => visibleSections.has(section))
+          if (firstVisible) setActiveId(firstVisible.id)
         },
-        { rootMargin: NAVIGATION.observerRootMargin, threshold: 0 },
+        { rootMargin: `-${topOffset}px 0px ${NAVIGATION.observerBottomMargin} 0px`, threshold: 0 },
       )
       sections.forEach((section) => observer.observe(section))
       observerRef.current = observer
@@ -350,6 +364,7 @@ export default function Navbar() {
           <ul
             className="mobile-nav-links"
             style={{
+              '--mobile-nav-item-count': NAV_ITEMS.length,
               '--mobile-nav-active-index': Math.max(0, NAV_ITEMS.findIndex((item) => item.id === activeId)),
             } as React.CSSProperties}
           >

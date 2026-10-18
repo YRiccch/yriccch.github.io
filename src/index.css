@@ -35,7 +35,6 @@
   --timeline-body-border: #e9ecef;
   --life-stack-pin-top: calc(50vh - 10rem);
   --life-stack-heading-offset: 2.6rem;
-  --life-stack-publication-gap: 4rem;
   --life-photo-wall-base: #f8f0ec;
   --life-photo-wall-glow-a: #e9a083;
   --life-photo-wall-glow-b: #c76950;
@@ -125,11 +124,24 @@ p {
   }
 }
 
-/* The publication section stays in place while the Life stack collapses. */
+/* Keep the Life heading above its stacked album cards. */
 .life-stack-heading {
   position: sticky;
   top: calc(var(--life-stack-pin-top) - var(--life-stack-heading-offset));
   z-index: 20;
+}
+
+.timeline-life-stage-content > section {
+  margin-bottom: 0;
+}
+
+/* Keep the timeline above Life during stacking instead of leaving an empty viewport. */
+@media (min-width: 701px) {
+  .timeline-life-stage-content {
+    position: sticky;
+    top: calc(var(--life-stack-pin-top) - 4rem - var(--timeline-stage-height, 0px));
+    z-index: 10;
+  }
 }
 
 /* Pointer depth is separate from the stack's scroll scale and photo movement. */
@@ -170,16 +182,6 @@ p {
     transition-duration: 150ms, 300ms;
   }
   .album-hover-surface[data-hovered] .album-hover-light { opacity: 1; }
-}
-
-@media (min-width: 701px) {
-  .publication-life-stage-content {
-    position: sticky;
-    top: calc(
-      var(--life-stack-pin-top) - var(--life-stack-publication-gap) - var(--publication-stage-height, 0px)
-    );
-    z-index: 10;
-  }
 }
 
 /* 主题切换 fallback：不支持 View Transitions 的浏览器走"瞬间切换 + 临时禁过渡" */
@@ -233,7 +235,7 @@ b, strong {
 
 /* 移动端锚点定位：让原生跳转 / scroll spy 避开 56px 吸顶栏 */
 @media (max-width: 900px) {
-  #about, #timeline, #publications {
+  #about, #news, #publications, #timeline {
     scroll-margin-top: 72px;
   }
 }

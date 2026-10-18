@@ -33,4 +33,22 @@ export const news: NewsItem[] = [
       en: 'Won the  **Third Prize of Hege Technology Scholarship**!',
     },
   },
+  {
+    id: 'coivis-accepted-2026',
+    date: '2026-05',
+    icon: '📜',
+    body: {
+      zh: '**COIVis** 被 **IEEE TVCG 2026** 录用！',
+      en: '**COIVis** is accepted by **IEEE TVCG 2026**!',
+    },
+  },
+  {
+    id: 'hypermooc-accepted-2026',
+    date: '2026-01',
+    icon: '📜',
+    body: {
+      zh: '**HyperMOOC** 被 **ACM CHI 2026** 录用！',
+      en: '**HyperMOOC** is accepted by **ACM CHI 2026**!',
+    },
+  },
 ]

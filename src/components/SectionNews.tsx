@@ -48,7 +48,7 @@ export default function SectionNews() {
       ) : (
         <ul id="news-list" className="m-0 flex list-none flex-col gap-5 p-0">
           {visibleNews.map((item) => (
-            <li key={item.id} className="grid grid-cols-[7.5rem_minmax(0,1fr)] items-baseline gap-x-5 gap-y-1.5 max-[600px]:grid-cols-1">
+            <li key={item.id} className="grid grid-cols-[5rem_minmax(0,1fr)] items-baseline gap-x-3 gap-y-1.5 max-[600px]:grid-cols-1">
               <time dateTime={item.date} className="text-[0.8rem] tabular-nums text-fg-tertiary">
                 <LocaleSwap>{formatNewsDate(item.date, locale)}</LocaleSwap>
               </time>

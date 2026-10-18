@@ -9,8 +9,8 @@ import { useLocale } from '../hooks/useLocale'
 import { imageSource } from '../data/imageSources'
 
 /**
- * Publications Section：每条论文左侧缩略图（按图原始比例渲染、白底无裁剪、垂直居中），
- * 右侧标题/作者/会议/链接。缩略图来源 public/pubs/<id>.png，
+ * Publications Section：桌面左侧文字、右侧封面；手机标题占整行，作者等信息与小封面并排。
+ * 封面使用白底、完整显示不裁剪。缩略图来源 public/pubs/<id>.png，
  * 可在 publications.ts 的 thumbnail 字段里覆盖默认路径或扩展名。
  */
 
@@ -49,7 +49,7 @@ function PubThumb({ pub }: { pub: Publication }) {
     <div className="aspect-video w-full overflow-hidden rounded-md bg-white">
       <img
         {...imageSource(src)}
-        sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 700px) calc(100vw - 48px), (max-width: 750px) calc((100vw - 76px) * 0.382), 258px"
+        sizes="(max-width: 700px) 7rem, (max-width: 750px) calc((100vw - 76px) * 0.382), 258px"
         alt={pub.title}
         loading="lazy"
         decoding="async"
@@ -68,7 +68,7 @@ function PubTitle({ pub }: { pub: Publication }) {
     : pub.title
 
   return (
-    <h3 className="m-0 mb-2 text-[1.02rem] font-semibold leading-[1.4] text-accent">
+    <h3 className="m-0 mb-2 text-[1.02rem] font-semibold leading-[1.4] text-accent max-[700px]:col-span-2 max-[700px]:mb-0">
       {canReplace && (
         <img
           src={logo.src}
@@ -91,34 +91,36 @@ function PublicationList({ items }: { items: Publication[] }) {
   const { L } = useLocale()
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 max-[700px]:gap-6">
       {items.map((pub) => (
         <article
           key={pub.id}
-          className="grid grid-cols-[minmax(0,618fr)_minmax(0,382fr)] items-start gap-7 max-[700px]:grid-cols-1 max-[700px]:gap-4"
+          className="relative grid grid-cols-[minmax(0,618fr)_minmax(0,382fr)] items-start gap-7 max-[700px]:grid-cols-[minmax(0,1fr)_7rem] max-[700px]:gap-x-4 max-[700px]:gap-y-3 max-[700px]:pb-6 max-[700px]:after:absolute max-[700px]:after:inset-x-6 max-[700px]:after:bottom-0 max-[700px]:after:h-px max-[700px]:after:bg-line max-[700px]:after:content-[''] max-[700px]:last:pb-0 max-[700px]:last:after:hidden"
         >
-          <div className="min-w-0">
+          <div className="min-w-0 max-[700px]:contents">
             <PubTitle pub={pub} />
-            <p
-              className="m-0 text-[0.86rem] leading-[1.55] text-fg-secondary"
-              dangerouslySetInnerHTML={{ __html: pub.authorsHtml }}
-            />
-            <div className="mt-3 flex flex-wrap items-center gap-2.5">
-              <span className="text-[0.78rem] italic text-fg-tertiary">
-                {typeof pub.venue === 'string' ? pub.venue : L(pub.venue)}
-              </span>
-              {pub.links.map((link) => (
-                <a
-                  key={link.url}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-1 text-[0.72rem] leading-none text-fg-secondary transition-colors hover:border-accent hover:text-accent active:scale-[0.98]"
-                >
-                  <IconFor kind={link.kind} />
-                  <Letter3DSwap text={link.label ? L(link.label) : t(`pubs.links.${link.kind}`)} />
-                </a>
-              ))}
+            <div className="min-w-0">
+              <p
+                className="m-0 text-[0.86rem] leading-[1.55] text-fg-secondary"
+                dangerouslySetInnerHTML={{ __html: pub.authorsHtml }}
+              />
+              <div className="mt-3 flex flex-wrap items-center gap-2.5">
+                <span className="text-[0.78rem] italic text-fg-tertiary">
+                  {typeof pub.venue === 'string' ? pub.venue : L(pub.venue)}
+                </span>
+                {pub.links.map((link) => (
+                  <a
+                    key={link.url}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-1 text-[0.72rem] leading-none text-fg-secondary transition-colors hover:border-accent hover:text-accent active:scale-[0.98]"
+                  >
+                    <IconFor kind={link.kind} />
+                    <Letter3DSwap text={link.label ? L(link.label) : t(`pubs.links.${link.kind}`)} />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 

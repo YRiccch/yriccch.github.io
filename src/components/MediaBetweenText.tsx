@@ -9,7 +9,7 @@ import {
   type PointerEvent,
 } from 'react'
 import { createPortal } from 'react-dom'
-import { AnimatePresence } from 'motion/react'
+import { AnimatePresence, useReducedMotion } from 'motion/react'
 import { findMedia } from '../data/mediaKeywords'
 import { useLocale } from '../hooks/useLocale'
 import { imageSource } from '../data/imageSources'
@@ -40,7 +40,10 @@ export function MediaBetweenText({ id }: { id: string }) {
     useState<PreviewPosition | null>(null)
   const triggerRef = useRef<HTMLAnchorElement | HTMLSpanElement | null>(null)
   const anchorRectIndexRef = useRef(0)
+  const pointerRef = useRef<{ x: number; y: number } | null>(null)
+  const positionFrameRef = useRef<number | null>(null)
   const { L } = useLocale()
+  const reducedMotion = useReducedMotion()
   const media = findMedia(id)
 
   const updatePreviewPosition = useCallback(() => {
@@ -50,6 +53,14 @@ export function MediaBetweenText({ id }: { id: string }) {
     const clientRects = Array.from(trigger.getClientRects()).filter(
       (rect) => rect.width > 0 && rect.height > 0,
     )
+    const pointer = pointerRef.current
+    if (pointer) {
+      const pointerIndex = clientRects.findIndex((rect) =>
+        pointer.x >= rect.left && pointer.x <= rect.right &&
+        pointer.y >= rect.top && pointer.y <= rect.bottom,
+      )
+      if (pointerIndex >= 0) anchorRectIndexRef.current = pointerIndex
+    }
     const rect =
       clientRects[
         Math.min(anchorRectIndexRef.current, clientRects.length - 1)
@@ -58,7 +69,9 @@ export function MediaBetweenText({ id }: { id: string }) {
       PREVIEW_MAX_WIDTH,
       window.innerWidth - VIEWPORT_PADDING * 2,
     )
-    const idealCenterX = rect.left + rect.width / 2
+    const rectCenterX = rect.left + rect.width / 2
+    const pointerX = pointer ? Math.min(rect.right, Math.max(rect.left, pointer.x)) : rectCenterX
+    const idealCenterX = rectCenterX + (pointerX - rectCenterX) * 0.5
     const centerX = Math.min(
       window.innerWidth - VIEWPORT_PADDING - maxWidth / 2,
       Math.max(VIEWPORT_PADDING + maxWidth / 2, idealCenterX),
@@ -92,6 +105,21 @@ export function MediaBetweenText({ id }: { id: string }) {
     })
   }, [])
 
+  const schedulePosition = useCallback(() => {
+    if (positionFrameRef.current !== null) return
+    positionFrameRef.current = requestAnimationFrame(() => {
+      positionFrameRef.current = null
+      updatePreviewPosition()
+    })
+  }, [updatePreviewPosition])
+
+  const hidePreview = useCallback(() => {
+    pointerRef.current = null
+    if (positionFrameRef.current !== null) cancelAnimationFrame(positionFrameRef.current)
+    positionFrameRef.current = null
+    setActive(false)
+  }, [])
+
   const showPreview = (
     event:
       | PointerEvent<HTMLElement>
@@ -115,7 +143,9 @@ export function MediaBetweenText({ id }: { id: string }) {
     const clientRects = Array.from(currentTarget.getClientRects()).filter(
       (rect) => rect.width > 0 && rect.height > 0,
     )
-    if ('clientX' in event && 'clientY' in event) {
+    if ('clientX' in event && 'clientY' in event &&
+      (!('pointerType' in event) || event.pointerType !== 'touch')) {
+      pointerRef.current = { x: event.clientX, y: event.clientY }
       const hoveredRectIndex = clientRects.findIndex(
         (rect) =>
           event.clientX >= rect.left &&
@@ -126,6 +156,7 @@ export function MediaBetweenText({ id }: { id: string }) {
       anchorRectIndexRef.current =
         hoveredRectIndex >= 0 ? hoveredRectIndex : 0
     } else {
+      pointerRef.current = null
       anchorRectIndexRef.current = 0
     }
     updatePreviewPosition()
@@ -151,29 +182,42 @@ export function MediaBetweenText({ id }: { id: string }) {
       const target = event.target
 
       if (trigger && target instanceof Node && trigger.contains(target)) return
-      setActive(false)
+      hidePreview()
     }
 
-    let frame: number | undefined
-    const schedulePosition = () => {
-      if (frame !== undefined) return
-      frame = requestAnimationFrame(() => {
-        frame = undefined
-        updatePreviewPosition()
-      })
+    const onViewportChange = () => {
+      const pointer = pointerRef.current
+      const trigger = triggerRef.current
+      if (trigger) {
+        const rects = Array.from(trigger.getClientRects())
+        const inViewport = rects.some((rect) =>
+          rect.bottom > 0 && rect.top < window.innerHeight &&
+          rect.right > 0 && rect.left < window.innerWidth,
+        )
+        const underPointer = !pointer || rects.some((rect) =>
+          pointer.x >= rect.left && pointer.x <= rect.right &&
+          pointer.y >= rect.top && pointer.y <= rect.bottom,
+        )
+        if (!inViewport || !underPointer) {
+          hidePreview()
+          return
+        }
+      }
+      schedulePosition()
     }
     updatePreviewPosition()
-    window.addEventListener('resize', schedulePosition)
-    window.addEventListener('scroll', schedulePosition, { capture: true, passive: true })
+    window.addEventListener('resize', onViewportChange)
+    window.addEventListener('scroll', onViewportChange, { capture: true, passive: true })
     document.addEventListener('pointermove', closeOutsideTrigger)
 
     return () => {
-      window.removeEventListener('resize', schedulePosition)
-      if (frame !== undefined) cancelAnimationFrame(frame)
-      window.removeEventListener('scroll', schedulePosition, true)
+      window.removeEventListener('resize', onViewportChange)
+      if (positionFrameRef.current !== null) cancelAnimationFrame(positionFrameRef.current)
+      positionFrameRef.current = null
+      window.removeEventListener('scroll', onViewportChange, true)
       document.removeEventListener('pointermove', closeOutsideTrigger)
     }
-  }, [active, updatePreviewPosition])
+  }, [active, hidePreview, schedulePosition, updatePreviewPosition])
 
   if (!media) return <span className="text-fg-tertiary">[{id}]</span>
 
@@ -187,12 +231,18 @@ export function MediaBetweenText({ id }: { id: string }) {
 
   const handlers = {
     onPointerEnter: showPreview,
-    onPointerLeave: () => setActive(false),
+    onPointerLeave: hidePreview,
+    onPointerCancel: hidePreview,
     onPointerMove: (event: PointerEvent<HTMLElement>) => {
-      if (!active) showPreview(event)
+      if (!active) {
+        showPreview(event)
+      } else if (event.pointerType !== 'touch') {
+        pointerRef.current = { x: event.clientX, y: event.clientY }
+        schedulePosition()
+      }
     },
     onFocus: showPreview,
-    onBlur: () => setActive(false),
+    onBlur: hidePreview,
   }
 
   const innerVisual = (
@@ -231,19 +281,24 @@ export function MediaBetweenText({ id }: { id: string }) {
       ? createPortal(
           <AnimatePresence>
             {active && !zoomed && previewPosition && (
-              <div
+              <m.div
                 data-media-preview
                 aria-hidden="true"
                 className="pointer-events-none fixed z-[900]"
+                initial={false}
+                animate={{ x: previewPosition.centerX }}
+                transition={reducedMotion ? { duration: 0 } : { type: 'spring', stiffness: 500, damping: 45, mass: 0.5 }}
                 style={{
-                  left: previewPosition.centerX,
+                  left: 0,
                   top: previewPosition.anchorY,
+                }}
+              >
+                <div style={{
                   transform:
                     previewPosition.placement === 'top'
                       ? 'translate(-50%, -100%)'
                       : 'translateX(-50%)',
-                }}
-              >
+                }}>
                 <m.figure
                   initial={{
                     opacity: 0,
@@ -308,7 +363,8 @@ export function MediaBetweenText({ id }: { id: string }) {
                     </span>
                   )}
                 </m.figure>
-              </div>
+                </div>
+              </m.div>
             )}
           </AnimatePresence>,
           document.body,

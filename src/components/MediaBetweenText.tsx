@@ -212,6 +212,20 @@ export function MediaBetweenText({ id }: { id: string }) {
     </span>
   )
 
+  if (!media.media) {
+    return media.link ? (
+      <a
+        href={media.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${triggerClass} whitespace-nowrap`}
+        title={media.link}
+      >
+        {innerVisual}
+      </a>
+    ) : innerVisual
+  }
+
   const preview =
     typeof document !== 'undefined'
       ? createPortal(

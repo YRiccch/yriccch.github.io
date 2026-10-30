@@ -6,7 +6,7 @@ import type { LocaleText } from './types'
  * 字段：
  *   - id        SSoT，正文里用 [id] 占位
  *   - label     关键词的中英显示文字
- *   - media     悬停时浮出的媒体 URL（图片放 public/mbt/，视频也是）
+ *   - media?    可选的悬停预览 URL（图片放 public/mbt/，视频也是）
  *   - alt       无障碍描述
  *   - type?     'image'（默认）| 'video'
  *   - link?     可选外链。带 link 的关键词渲染成 <a target="_blank">
@@ -14,7 +14,7 @@ import type { LocaleText } from './types'
 export type MediaKeyword = {
   id: string
   label: LocaleText
-  media: string
+  media?: string
   alt: LocaleText
   type?: 'image' | 'video'
   link?: string
@@ -30,9 +30,15 @@ export const mediaKeywords: MediaKeyword[] = [
   {
     id: 'ntu',
     // 把 CCDS（计算与数据科学学院）和 NTU 包在同一个关键词里，悬停浮一张图
-    label: { zh: '南洋理工大学计算与数据科学学院', en: 'CCDS, Nanyang Technological University' },
+    label: { zh: '南洋理工大学计算与数据科学学院', en: 'College of Computing and Data Science (CCDS), Nanyang Technological University' },
     media: '/mbt/ntu.jpg',
     alt: { zh: '南洋理工大学计算与数据科学学院（CCDS）', en: 'CCDS, NTU campus' },
+  },
+  {
+    id: 'vida',
+    label: { zh: 'VIDA Lab', en: 'VIDA Lab' },
+    alt: { zh: 'VIDA Lab', en: 'VIDA Lab' },
+    link: 'https://vida-lab.org/',
   },
   {
     id: 'wang',

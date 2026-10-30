@@ -28,8 +28,8 @@ export const timeline: TimelineItem[] = [
       label: { zh: '2026.01 - 2026.04', en: 'Jan 2026 - Apr 2026' },
     },
     body: {
-      zh: '在 [ntu] 进行为期三个月的访问研究，师从 [wang]。',
-      en: 'Three-month visiting research stay at [ntu], mentored by [wang].',
+      zh: '在 [ntu] 的 [vida] 进行为期三个月的访问研究，师从 [wang]。',
+      en: 'Three-month research visit at the [vida], [ntu], supervised by [wang].',
     },
   },
   {

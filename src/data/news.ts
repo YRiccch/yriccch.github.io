@@ -30,7 +30,7 @@ export const news: NewsItem[] = [
     icon: '🏅',
     body: {
       zh: '获得**2026年度黑格科技三等奖学金**！',
-      en: 'Won the **Third Prize of Hege\u00a0Technology Scholarship**!',
+      en: 'Won the **Third Prize of HeyGears\u00a0Technology Scholarship**!',
     },
   },
   {

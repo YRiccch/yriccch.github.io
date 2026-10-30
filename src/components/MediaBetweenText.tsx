@@ -262,7 +262,7 @@ export function MediaBetweenText({ id }: { id: string }) {
                     damping: 28,
                     mass: 0.62,
                   }}
-                  className="m-0 w-fit overflow-hidden rounded-[10px] border border-line bg-card shadow-[0_18px_45px_rgba(0,0,0,0.24)]"
+                  className={`m-0 w-fit overflow-hidden rounded-[10px] border border-line shadow-[0_18px_45px_rgba(0,0,0,0.24)] ${media.whiteBackground ? 'bg-white' : 'bg-card'}`}
                 >
                   {!broken ? (
                     isVideo ? (
@@ -285,7 +285,7 @@ export function MediaBetweenText({ id }: { id: string }) {
                         sizes="240px"
                         decoding="async"
                         alt=""
-                        className="block h-auto w-auto"
+                        className={`block h-auto w-auto ${media.whiteBackground ? 'p-2' : ''}`}
                         style={{
                           maxWidth: previewPosition.maxWidth,
                           maxHeight: previewPosition.maxHeight,
@@ -394,7 +394,7 @@ export function MediaBetweenText({ id }: { id: string }) {
           href={media.link}
           target="_blank"
           rel="noopener noreferrer"
-          className={triggerClass}
+          className={`${triggerClass}${media.keepLabelTogether ? ' whitespace-nowrap' : ''}`}
           data-media-trigger="true"
           title={media.link}
           {...handlers}

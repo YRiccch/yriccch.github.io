@@ -10,6 +10,8 @@ import type { LocaleText } from './types'
  *   - alt       无障碍描述
  *   - type?     'image'（默认）| 'video'
  *   - link?     可选外链。带 link 的关键词渲染成 <a target="_blank">
+ *   - whiteBackground? 透明图预览使用白底和留白
+ *   - keepLabelTogether? 保持关键词不被换行拆开
  */
 export type MediaKeyword = {
   id: string
@@ -18,6 +20,8 @@ export type MediaKeyword = {
   alt: LocaleText
   type?: 'image' | 'video'
   link?: string
+  whiteBackground?: boolean
+  keepLabelTogether?: boolean
 }
 
 export const mediaKeywords: MediaKeyword[] = [
@@ -37,8 +41,11 @@ export const mediaKeywords: MediaKeyword[] = [
   {
     id: 'vida',
     label: { zh: 'VIDA Lab', en: 'VIDA Lab' },
+    media: '/mbt/vida.png',
     alt: { zh: 'VIDA Lab', en: 'VIDA Lab' },
     link: 'https://vida-lab.org/',
+    whiteBackground: true,
+    keepLabelTogether: true,
   },
   {
     id: 'wang',
